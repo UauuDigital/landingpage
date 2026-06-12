@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UAUU — Històries úniques en espais únics. Casaments exclusius a Ca n'Alzina, Mas Vivens, Can Macià i Castell de Tous." />
+  <title>UAUU — El vostre gran dia comença aquí</title>
+  <link rel="icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://uauu.cat" />
+  <link rel="preconnect" href="https://www.uauu.cat" />
+  <link rel="preconnect" href="https://www.google.com" />
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+
+  <link rel="preload" as="image" href="https://uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp" fetchpriority="high" />
+  <link rel="preload" as="font" href="/fonts/OGG MEDIUM/Ogg-Medium.otf" type="font/otf" crossorigin />
+  <link rel="preload" as="font" href="/fonts/Inter-VariableFont_opsz,wght.ttf" type="font/ttf" crossorigin />
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <!-- CSS (order matters: tokens → base → layout → components → animations) -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <a href="#inici" class="sr-only skip-link">Salta al contingut principal</a>
+
+  <!-- ══ NAV ══════════════════════════════════════════════════════════════ -->
+  <header role="banner">
+    <nav class="site-nav" aria-label="Navegació principal">
+      <a href="#inici" class="site-nav__logo" aria-label="UAUU — inici">
+        <img class="site-nav__logo-img" src="/logos/UAUU.png" alt="UAUU" height="20" />
+      </a>
+      <div class="site-nav__lang" role="group" aria-label="Selecció d'idioma">
+        <button class="site-nav__lang-btn is-active" data-lang="ca" aria-pressed="true" data-i18n="nav.lang.ca">CAT</button>
+        <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+        <button class="site-nav__lang-btn" data-lang="es" aria-pressed="false" data-i18n="nav.lang.es">ESP</button>
+        <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+        <button class="site-nav__lang-btn" data-lang="en" aria-pressed="false" data-i18n="nav.lang.en">ENG</button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="smooth-content">
+  <main>
+
+    <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+    <section id="inici" class="hero" aria-label="Portada">
+      <img
+        class="hero__bg"
+        src="https://uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp"
+        alt=""
+        role="presentation"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 class="hero__headline" data-i18n-html="hero.headline">El vostre<br>gran dia<br>comença aquí.</h1>
+      </div>
+
+      <div class="hero__card">
+        <a class="hero-card" href="#contacte">
+          <div class="hero-card__image-wrap">
+            <img
+              class="hero-card__image"
+              src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+              alt="Cerimònia UAUU"
+              loading="lazy"
+              width="200"
+              height="150"
+            />
+          </div>
+          <div class="hero-card__body">
+            <p class="hero-card__label" data-i18n="hero.card.label">CASA'T AMB UAUU</p>
+            <div class="hero-card__cta">
+              <span class="hero-card__cta-text" data-i18n-html="hero.card.cta">Més<br>informació</span>
+              <span class="hero-card__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ══ MANIFESTO ═════════════════════════════════════════════════════ -->
+    <section class="manifesto" aria-label="Manifesto">
+      <div class="manifesto__photos photo-scatter" aria-hidden="true">
+        <div class="photo-scatter__item" style="left:2%;width:88px;height:108px;--rot:-7deg;animation-duration:18s;animation-delay:-1s">
+          <img src="https://uauu.cat/media/finques/can-macia/galeria-dimatges/7.webp" alt="" loading="lazy" width="88" height="108" />
+        </div>
+        <div class="photo-scatter__item" style="left:17%;width:68px;height:85px;--rot:5deg;animation-duration:14s;animation-delay:-10s">
+          <img src="https://uauu.cat/media/finques/ca-n-alzina/cerimonia/5.webp" alt="" loading="lazy" width="68" height="85" />
+        </div>
+        <div class="photo-scatter__item" style="left:36%;width:80px;height:100px;--rot:-3deg;animation-duration:20s;animation-delay:-6s">
+          <img src="https://uauu.cat/media/general/gastronomia/3.webp" alt="" loading="lazy" width="80" height="100" />
+        </div>
+        <div class="photo-scatter__item" style="left:55%;width:75px;height:95px;--rot:8deg;animation-duration:16s;animation-delay:-14s">
+          <img src="https://uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp" alt="" loading="lazy" width="75" height="95" />
+        </div>
+        <div class="photo-scatter__item" style="left:71%;width:92px;height:72px;--rot:-5deg;animation-duration:13s;animation-delay:-2s">
+          <img src="https://uauu.cat/media/finques/mas-vivencs/cerimonia/4.webp" alt="" loading="lazy" width="92" height="72" />
+        </div>
+        <div class="photo-scatter__item" style="right:3%;width:85px;height:105px;--rot:4deg;animation-duration:17s;animation-delay:-9s">
+          <img src="https://uauu.cat/media/finques/can-macia/allotjament/2.webp" alt="" loading="lazy" width="85" height="105" />
+        </div>
+        <div class="photo-scatter__item" style="left:8%;width:70px;height:88px;--rot:-9deg;animation-duration:21s;animation-delay:-8s">
+          <img src="https://uauu.cat/media/finques/ca-n-alzina/galeria-dimatges/12.webp" alt="" loading="lazy" width="70" height="88" />
+        </div>
+        <div class="photo-scatter__item" style="left:28%;width:95px;height:75px;--rot:3deg;animation-duration:15s;animation-delay:-13s">
+          <img src="https://uauu.cat/media/general/gastronomia/9.webp" alt="" loading="lazy" width="95" height="75" />
+        </div>
+        <div class="photo-scatter__item" style="left:46%;width:78px;height:98px;--rot:-6deg;animation-duration:19s;animation-delay:-4s">
+          <img src="https://uauu.cat/media/finques/castell-de-tous/cerimonia/6.webp" alt="" loading="lazy" width="78" height="98" />
+        </div>
+        <div class="photo-scatter__item" style="left:63%;width:88px;height:110px;--rot:7deg;animation-duration:12s;animation-delay:-8s">
+          <img src="https://uauu.cat/media/finques/mas-vivencs/galeria-dimatges/3.webp" alt="" loading="lazy" width="88" height="110" />
+        </div>
+        <div class="photo-scatter__item" style="right:8%;width:82px;height:102px;--rot:-4deg;animation-duration:22s;animation-delay:-10s">
+          <img src="https://uauu.cat/media/finques/can-macia/cerimonia/5.webp" alt="" loading="lazy" width="82" height="102" />
+        </div>
+        <div class="photo-scatter__item" style="left:4%;width:75px;height:95px;--rot:6deg;animation-duration:16s;animation-delay:-13s">
+          <img src="https://uauu.cat/media/general/gastronomia/14.webp" alt="" loading="lazy" width="75" height="95" />
+        </div>
+        <div class="photo-scatter__item" style="left:22%;width:90px;height:70px;--rot:-8deg;animation-duration:14s;animation-delay:-1s">
+          <img src="https://uauu.cat/media/finques/ca-n-alzina/allotjament/6.webp" alt="" loading="lazy" width="90" height="70" />
+        </div>
+        <div class="photo-scatter__item" style="left:41%;width:65px;height:82px;--rot:3deg;animation-duration:18s;animation-delay:-11s">
+          <img src="https://uauu.cat/media/finques/castell-de-tous/galeria-dimatges/15.webp" alt="" loading="lazy" width="65" height="82" />
+        </div>
+        <div class="photo-scatter__item" style="left:59%;width:88px;height:108px;--rot:-5deg;animation-duration:20s;animation-delay:-5s">
+          <img src="https://uauu.cat/media/finques/mas-vivencs/cerimonia/9.webp" alt="" loading="lazy" width="88" height="108" />
+        </div>
+        <div class="photo-scatter__item" style="left:76%;width:80px;height:100px;--rot:9deg;animation-duration:13s;animation-delay:-10s">
+          <img src="https://uauu.cat/media/finques/can-macia/galeria-dimatges/22.webp" alt="" loading="lazy" width="80" height="100" />
+        </div>
+        <div class="photo-scatter__item" style="right:5%;width:95px;height:75px;--rot:-3deg;animation-duration:17s;animation-delay:-6s">
+          <img src="https://uauu.cat/media/finques/ca-n-alzina/cerimonia/8.webp" alt="" loading="lazy" width="95" height="75" />
+        </div>
+        <div class="photo-scatter__item" style="left:11%;width:72px;height:90px;--rot:5deg;animation-duration:21s;animation-delay:-19s">
+          <img src="https://uauu.cat/media/general/gastronomia/6.webp" alt="" loading="lazy" width="72" height="90" />
+        </div>
+        <div class="photo-scatter__item" style="left:32%;width:85px;height:65px;--rot:-7deg;animation-duration:15s;animation-delay:-8s">
+          <img src="https://uauu.cat/media/finques/castell-de-tous/cerimonia/11.webp" alt="" loading="lazy" width="85" height="65" />
+        </div>
+        <div class="photo-scatter__item" style="left:51%;width:78px;height:98px;--rot:4deg;animation-duration:19s;animation-delay:-3s">
+          <img src="https://uauu.cat/media/finques/mas-vivencs/galeria-dimatges/10.webp" alt="" loading="lazy" width="78" height="98" />
+        </div>
+        <div class="photo-scatter__item" style="left:68%;width:90px;height:112px;--rot:-6deg;animation-duration:12s;animation-delay:-10s">
+          <img src="https://uauu.cat/media/finques/can-macia/allotjament/9.webp" alt="" loading="lazy" width="90" height="112" />
+        </div>
+        <div class="photo-scatter__item" style="right:2%;width:68px;height:85px;--rot:8deg;animation-duration:16s;animation-delay:-1s">
+          <img src="https://uauu.cat/media/general/dj/festa.webp" alt="" loading="lazy" width="68" height="85" />
+        </div>
+        <div class="photo-scatter__item" style="left:6%;width:95px;height:115px;--rot:-4deg;animation-duration:20s;animation-delay:-11s">
+          <img src="https://uauu.cat/media/finques/ca-n-alzina/galeria-dimatges/28.webp" alt="" loading="lazy" width="95" height="115" />
+        </div>
+        <div class="photo-scatter__item" style="left:25%;width:80px;height:100px;--rot:6deg;animation-duration:14s;animation-delay:-6s">
+          <img src="https://uauu.cat/media/finques/castell-de-tous/galeria-dimatges/31.webp" alt="" loading="lazy" width="80" height="100" />
+        </div>
+        <div class="photo-scatter__item" style="left:44%;width:72px;height:90px;--rot:-9deg;animation-duration:18s;animation-delay:-2s">
+          <img src="https://uauu.cat/media/finques/mas-vivencs/cerimonia/13.webp" alt="" loading="lazy" width="72" height="90" />
+        </div>
+        <div class="photo-scatter__item" style="left:62%;width:88px;height:68px;--rot:3deg;animation-duration:22s;animation-delay:-15s">
+          <img src="https://uauu.cat/media/finques/can-macia/cerimonia/11.webp" alt="" loading="lazy" width="88" height="68" />
+        </div>
+        <div class="photo-scatter__item" style="left:79%;width:75px;height:95px;--rot:-5deg;animation-duration:15s;animation-delay:-4s">
+          <img src="https://uauu.cat/media/general/gastronomia/17.webp" alt="" loading="lazy" width="75" height="95" />
+        </div>
+        <div class="photo-scatter__item" style="right:6%;width:85px;height:105px;--rot:7deg;animation-duration:17s;animation-delay:-15s">
+          <img src="https://uauu.cat/media/finques/ca-n-alzina/allotjament/11.webp" alt="" loading="lazy" width="85" height="105" />
+        </div>
+        <div class="photo-scatter__item" style="left:15%;width:90px;height:70px;--rot:-3deg;animation-duration:13s;animation-delay:-6s">
+          <img src="https://uauu.cat/media/finques/castell-de-tous/galeria-dimatges/42.webp" alt="" loading="lazy" width="90" height="70" />
+        </div>
+        <div class="photo-scatter__item" style="left:48%;width:78px;height:98px;--rot:4deg;animation-duration:21s;animation-delay:-13s">
+          <img src="https://uauu.cat/media/finques/mas-vivencs/galeria-dimatges/18.webp" alt="" loading="lazy" width="78" height="98" />
+        </div>
+      </div>
+
+      <div class="manifesto__text">
+        <h2 class="manifesto__headline reveal" data-i18n-html="manifesto.headline"><span>Històries</span><span>úniques</span><span>en espais</span><span>únics.</span></h2>
+        <a href="#contacte" class="btn btn--glass reveal reveal--delay-1" data-i18n="manifesto.cta">
+          Descobreix-los <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ══ SERVICES ══════════════════════════════════════════════════════ -->
+    <section id="serveis" class="services">
+      <div class="services__header">
+        <h2 class="section-heading reveal" data-i18n="services.title">Els nostres serveis</h2>
+        <div class="services__nav" aria-label="Navegació del carrusel">
+          <button class="services__nav-btn" id="services-prev" aria-label="Anterior">Prev.</button>
+          <button class="services__nav-btn" id="services-next" aria-label="Següent">Next</button>
+        </div>
+      </div>
+
+      <div class="services__grid">
+
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://uauu.cat/media/fotos/finques/can-macia.webp" alt="Can Macià" loading="lazy" />
+          </div>
+          <p class="service-card__label" data-i18n="services.venues.label">EXCLUSIVITAT DELS ESPAIS</p>
+          <p class="service-card__description" data-i18n="services.venues.desc">Exclusivitat d'espais únics, fins a 4 finques per al vostre gran dia.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://uauu.cat/media/general/serveis-esencials/coordinacio.webp" alt="Coordinació i acompanyament" loading="lazy" />
+          </div>
+          <p class="service-card__label" data-i18n="services.coord.label">COORDINACIÓ I ACOMPANYAMENT</p>
+          <p class="service-card__description" data-i18n="services.coord.desc">Coordinació integral del vostre gran dia.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://uauu.cat/media/finques/castell-de-tous/cerimonia/5.webp" alt="Cerimònies úniques" loading="lazy" />
+          </div>
+          <p class="service-card__label" data-i18n="services.ceremony.label">CERIMÒNIES ÚNIQUES</p>
+          <p class="service-card__description" data-i18n="services.ceremony.desc">Muntatge i coordinació de la cerimònia.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://uauu.cat/media/finques/castell-de-tous/galeria-dimatges/27.webp" alt="Decoració" loading="lazy" />
+          </div>
+          <p class="service-card__label" data-i18n="services.decor.label">DECORACIÓ</p>
+          <p class="service-card__description" data-i18n="services.decor.desc">Decoració floral dels espais.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://uauu.cat/media/general/gastronomia/1.webp" alt="Gastronomia" loading="lazy" />
+          </div>
+          <p class="service-card__label" data-i18n="services.catering.label">GASTRONOMIA</p>
+          <p class="service-card__description" data-i18n="services.catering.desc">Menús exclusius per al vostre gran dia.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://uauu.cat/media/general/dj/festa.webp" alt="Festa" loading="lazy" />
+          </div>
+          <p class="service-card__label" data-i18n="services.festa.label">FESTA</p>
+          <p class="service-card__description" data-i18n="services.festa.desc">Música i entreteniment per a una celebració inoblidable.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══ CTA / FORM ════════════════════════════════════════════════════ -->
+    <section id="contacte" class="cta-section" aria-label="Sol·licita preus i proposta">
+      <img
+        class="cta-section__bg"
+        src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp"
+        alt=""
+        role="presentation"
+        loading="lazy"
+      />
+      <div class="cta-section__overlay" aria-hidden="true"></div>
+
+      <div class="cta-section__inner">
+        <h2 class="cta-headline reveal" data-i18n-html="cta.headline">
+          Accedeix als nostres<br>preus i proposta.
+        </h2>
+
+        <div class="venue-logos reveal reveal--delay-1" aria-label="Finques UAUU">
+          <img class="venue-logos__item" src="/logos/CA.png" alt="Ca n'Alzina" />
+          <img class="venue-logos__item" src="/logos/CT.png" alt="Castell de Tous" />
+          <img class="venue-logos__item" src="/logos/CM.png" alt="Can Macià" />
+          <img class="venue-logos__item" src="/logos/MV.png" alt="Mas Vivens" />
+        </div>
+
+        <form
+          id="contact-form"
+          class="contact-form reveal reveal--delay-2"
+          action="https://crm.espaigastronomia.cat/index.php?entryPoint=WebToPersonCapture"
+          method="POST"
+          novalidate
+          aria-label="Formulari de contacte"
+        >
+
+          <div class="contact-form__field">
+            <label class="sr-only" for="first_name" data-i18n="form.name">Nom *</label>
+            <input
+              class="contact-form__input"
+              type="text"
+              id="first_name"
+              name="first_name"
+              autocomplete="given-name"
+              required
+              data-i18n="form.name"
+              placeholder="Nom"
+            />
+            <span class="contact-form__error" role="alert"></span>
+          </div>
+
+          <div class="contact-form__field">
+            <label class="sr-only" for="last_name" data-i18n="form.surname">Cognoms *</label>
+            <input
+              class="contact-form__input"
+              type="text"
+              id="last_name"
+              name="last_name"
+              autocomplete="family-name"
+              required
+              data-i18n="form.surname"
+              placeholder="Cognom"
+            />
+            <span class="contact-form__error" role="alert"></span>
+          </div>
+
+          <div class="contact-form__field">
+            <label class="sr-only" for="email1" data-i18n="form.email">Correu electrònic *</label>
+            <input
+              class="contact-form__input"
+              type="email"
+              id="email1"
+              name="email1"
+              autocomplete="email"
+              required
+              data-i18n="form.email"
+              placeholder="Correu electrònic"
+            />
+            <span class="contact-form__error" role="alert"></span>
+          </div>
+
+          <div class="contact-form__field">
+            <label class="sr-only" for="phone_mobile" data-i18n="form.phone">Número de telèfon *</label>
+            <div class="contact-form__phone-wrap">
+              <button type="button" class="country-selector" id="country-selector" aria-label="Prefix telefònic">
+                <span class="cs-flag">🇪🇸</span>
+                <span class="cs-dial">+34</span>
+              </button>
+              <input
+                class="contact-form__input"
+                type="tel"
+                id="phone_mobile"
+                name="phone_mobile"
+                autocomplete="tel-national"
+                required
+                data-i18n="form.phone"
+                placeholder="Número de telèfon"
+              />
+            </div>
+            <span class="contact-form__error" role="alert"></span>
+          </div>
+
+          <div class="contact-form__field">
+            <label class="sr-only" for="event_date_c" data-i18n="form.date">Data del casament</label>
+            <input
+              class="contact-form__input"
+              type="text"
+              id="event_date_c"
+              name="event_date_c"
+              data-i18n="form.date"
+              placeholder="Data del casament"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="contact-form__field">
+            <label class="sr-only" for="num_diners_c" data-i18n="form.guests">Nombre de convidats</label>
+            <input
+              class="contact-form__input"
+              type="number"
+              id="num_diners_c"
+              name="num_diners_c"
+              min="1"
+              data-i18n="form.guests"
+              placeholder="Nombre de convidats"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-footer">
+            <div class="form-checkbox">
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <label for="privacy" data-i18n-html="form.privacy">
+                He llegit i accepto la <a href="https://www.uauu.cat/politica-de-privacitat/" target="_blank" rel="noopener">política de privacitat</a>
+              </label>
+            </div>
+            <button type="submit" id="btn-submit" data-i18n="form.submit">Enviar</button>
+          </div>
+
+          <input type="text" name="hp_website" class="honeypot" tabindex="-1" autocomplete="off" />
+
+          <input type="hidden" name="campaign_id"       value="837aea38-483f-e9a6-32dc-6a22cfcaf05e" />
+          <input type="hidden" name="redirect_url"      value="https://cataleg.uauu.cat/" />
+          <input type="hidden" name="assigned_user_id"  value="a622e474-8b6e-1ee8-bb2e-69d5f4e15f53" />
+          <input type="hidden" name="moduleDir"         value="Leads" />
+          <input type="hidden" name="event_type_c"      value="Casament" />
+          <input type="hidden" name="lead_source"       value="paid_xxss_1" />
+          <input type="hidden" name="idioma_contacto_c" id="idioma_contacto_c" value="catala" />
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+  </div><!-- #smooth-content -->
+
+  <div id="recaptcha_invisible" class="g-recaptcha"
+    data-sitekey="6LdUgHksAAAAADiH1j0npMbw-eH-5EPywowWgFAb"
+    data-callback="enviarAlCRM"
+    data-size="invisible"
+    data-badge="bottomleft"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+/* ── Local fonts ─────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Ogg';
+  src: url('/fonts/OGG MEDIUM/Ogg-Medium.otf') format('opentype'),
+       url('/fonts/OGG MEDIUM/Ogg-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Colors */
+  --color-bg:           #ffffff;
+  --color-surface:      #f5f2ee;
+  --color-surface-dark: #1a1714;
+  --color-text:         #1a1714;
+  --color-text-muted:   #6b6560;
+  --color-text-inverse: #ffffff;
+  --color-accent:       #c8b89a;
+  --color-border:       rgba(26, 23, 20, 0.15);
+  --color-overlay:      rgba(26, 23, 20, 0.45);
+
+  /* Typography */
+  --font-serif:  'Ogg', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+
+  --text-xs:    0.75rem;
+  --text-sm:    0.875rem;
+  --text-base:  1rem;
+  --text-md:    1.125rem;
+  --text-lg:    1.375rem;
+  --text-xl:    1.75rem;
+  --text-2xl:   2.25rem;
+  --text-3xl:   3rem;
+  --text-4xl:   4rem;
+  --text-5xl:   5.5rem;
+
+  --leading-tight:  1.1;
+  --leading-snug:   1.25;
+  --leading-normal: 1.5;
+  --leading-loose:  1.75;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* Spacing (8-point grid) */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.18);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast:   150ms;
+  --duration-base:   280ms;
+  --duration-slow:   500ms;
+  --duration-reveal: 800ms;
+
+  /* Layout */
+  --container-max:    1200px;
+  --container-prose:  680px;
+  --nav-height:       72px;
+  --section-padding:  var(--space-24);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --text-3xl:  2rem;
+    --text-4xl:  2.75rem;
+    --text-5xl:  3.5rem;
+    --section-padding: var(--space-16);
+  }
+}

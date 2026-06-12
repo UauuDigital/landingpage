@@ -1,0 +1,49 @@
+{
+  "nav.logo": "UAUU",
+  "nav.lang.ca": "CAT",
+  "nav.lang.es": "ESP",
+  "nav.lang.en": "ENG",
+
+  "hero.headline": "Vuestro<br>gran dia<br>empieza aquí.",
+  "hero.card.label": "CÁSATE CON UAUU",
+  "hero.card.cta": "Más<br>información",
+
+  "manifesto.headline": "<span>Historias</span><span>únicas</span><span>en espacios</span><span>únicos.</span>",
+  "manifesto.cta": "Descúbrelos",
+
+  "services.title": "Nuestros servicios",
+  "services.venues.label": "EXCLUSIVIDAD DE LOS ESPACIOS",
+  "services.venues.desc": "Exclusividad de espacios únicos, hasta 4 fincas (Ca n'Alzina, Mas Vivens, Can Macià y el Castell de Tous) para vuestro gran día.",
+  "services.coord.label": "COORDINACIÓN Y ACOMPAÑAMIENTO",
+  "services.coord.desc": "Exclusividad de espacios únicos, hasta 4 fincas (Ca n'Alzina, Mas Vivens, Can Macià y el Castell de Tous) para vuestro gran día.",
+  "services.ceremony.label": "CEREMONIAS ÚNICAS",
+  "services.ceremony.desc": "Montaje, decoración floral y coordinación de uno de los momentos más especiales de vuestro gran día.",
+  "services.decor.label": "DECORACIÓN",
+  "services.decor.desc": "Montaje y decoración floral de los espacios para vuestro gran día.",
+
+  "services.catering.label": "GASTRONOMÍA",
+  "services.catering.desc": "Menús exclusivos diseñados a vuestros gustos, con productos locales y chefs de experiencia.",
+
+  "services.festa.label": "FIESTA",
+  "services.festa.desc": "Música y entretenimiento para una celebración inolvidable.",
+
+  "cta.headline": "Accede a nuestros<br>precios y propuesta.",
+  "cta.venues.ca": "Ca n'Alzina",
+  "cta.venues.tous": "Castell de Tous",
+  "cta.venues.macia": "Can Macià",
+  "cta.venues.vivens": "Mas Vivens",
+
+  "form.name": "Nombre *",
+  "form.surname": "Apellidos *",
+  "form.email": "Correo electrónico *",
+  "form.phone.prefix": "🇪🇸 +34",
+  "form.phone": "Número de teléfono *",
+  "form.date": "Fecha de la boda",
+  "form.guests": "Número de invitados",
+  "form.privacy": "He leído y acepto la <a href=\"https://www.uauu.cat/politica-de-privacitat/\" target=\"_blank\" rel=\"noopener\">política de privacidad</a>",
+  "form.submit": "Enviar",
+
+  "footer.copy": "© 2026 UAUU Digital. Todos los derechos reservados.",
+  "footer.privacy": "Política de privacidad",
+  "footer.legal": "Aviso legal"
+}

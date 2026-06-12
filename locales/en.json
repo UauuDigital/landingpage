@@ -1,0 +1,49 @@
+{
+  "nav.logo": "UAUU",
+  "nav.lang.ca": "CAT",
+  "nav.lang.es": "ESP",
+  "nav.lang.en": "ENG",
+
+  "hero.headline": "Where your<br>dream day<br>begins.",
+  "hero.card.label": "GET MARRIED WITH UAUU",
+  "hero.card.cta": "Learn<br>more",
+
+  "manifesto.headline": "<span>Unique</span><span>stories</span><span>in unique</span><span>venues.</span>",
+  "manifesto.cta": "Discover them",
+
+  "services.title": "Our services",
+  "services.venues.label": "EXCLUSIVE VENUES",
+  "services.venues.desc": "Exclusive access to up to 4 unique estates (Ca n'Alzina, Mas Vivens, Can Macià and Castell de Tous) for your big day.",
+  "services.coord.label": "COORDINATION & GUIDANCE",
+  "services.coord.desc": "Exclusive access to up to 4 unique estates (Ca n'Alzina, Mas Vivens, Can Macià and Castell de Tous) for your big day.",
+  "services.ceremony.label": "UNIQUE CEREMONIES",
+  "services.ceremony.desc": "Setup, floral decoration and coordination of one of the most special moments of your big day.",
+  "services.decor.label": "DECORATION",
+  "services.decor.desc": "Setup and floral decoration of the venue spaces for your big day.",
+
+  "services.catering.label": "GASTRONOMY",
+  "services.catering.desc": "Exclusive menus tailored to your taste, with local produce and experienced chefs.",
+
+  "services.festa.label": "CELEBRATION",
+  "services.festa.desc": "Music and entertainment for an unforgettable party.",
+
+  "cta.headline": "Access our pricing<br>and proposal.",
+  "cta.venues.ca": "Ca n'Alzina",
+  "cta.venues.tous": "Castell de Tous",
+  "cta.venues.macia": "Can Macià",
+  "cta.venues.vivens": "Mas Vivens",
+
+  "form.name": "Name *",
+  "form.surname": "Surname *",
+  "form.email": "Email address *",
+  "form.phone.prefix": "🇪🇸 +34",
+  "form.phone": "Phone number *",
+  "form.date": "Wedding date",
+  "form.guests": "Number of guests",
+  "form.privacy": "I have read and accept the <a href=\"https://www.uauu.cat/politica-de-privacitat/\" target=\"_blank\" rel=\"noopener\">privacy policy</a>",
+  "form.submit": "Send",
+
+  "footer.copy": "© 2026 UAUU Digital. All rights reserved.",
+  "footer.privacy": "Privacy policy",
+  "footer.legal": "Legal notice"
+}
