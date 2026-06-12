@@ -4,7 +4,7 @@ const DEFAULT_LANG = 'ca';
 let currentStrings = {};
 
 async function loadLocale(lang) {
-  const res = await fetch(`/locales/${lang}.json`);
+  const res = await fetch(`locales/${lang}.json`);
   if (!res.ok) throw new Error(`Locale not found: ${lang}`);
   return res.json();
 }
