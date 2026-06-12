@@ -186,24 +186,29 @@ function initPhotoScatterDrift() {
   let mult        = 1;
   let targetMult  = 1;
   let lastScrollY = window.scrollY;
+  let scrollSpeed = 0;
   let rafId       = null;
 
   window.addEventListener('scroll', () => {
     const dy    = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
+    scrollSpeed = Math.abs(dy);
     if (dy > 0) targetMult =  1;
     if (dy < 0) targetMult = -1;
   }, { passive: true });
 
   function tick() {
-    mult += (targetMult - mult) * 0.07;
+    scrollSpeed *= 0.8;
 
-    photos.forEach(p => {
-      p.y += p.speed * mult;
-      if (p.y > H)    p.y -= TRAVEL;
-      if (p.y < -140) p.y += TRAVEL;
-      p.el.style.transform = `translateY(${p.y}px) rotate(${p.rot})${p.scaleStr}`;
-    });
+    if (scrollSpeed < 12) {
+      mult += (targetMult - mult) * 0.07;
+      photos.forEach(p => {
+        p.y += p.speed * mult;
+        if (p.y > H)    p.y -= TRAVEL;
+        if (p.y < -140) p.y += TRAVEL;
+        p.el.style.transform = `translateY(${p.y}px) rotate(${p.rot})${p.scaleStr}`;
+      });
+    }
 
     rafId = requestAnimationFrame(tick);
   }
