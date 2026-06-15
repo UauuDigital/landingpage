@@ -36,12 +36,6 @@ export function initForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  const dateField = document.getElementById('event_date_c');
-  if (dateField) {
-    dateField.addEventListener('focus', () => { dateField.type = 'date'; });
-    dateField.addEventListener('blur',  () => { if (!dateField.value) dateField.type = 'text'; });
-  }
-
   form.addEventListener('input', (e) => {
     e.target.classList.remove('is-error');
     e.target.closest('.form-footer')?.classList.remove('is-error');
@@ -50,6 +44,14 @@ export function initForm() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     syncLang();
+
+    const dateDisplay = document.getElementById('date_display');
+    const descField   = document.getElementById('description');
+    if (dateDisplay && descField) {
+      const val = dateDisplay.value.trim();
+      descField.value = val ? `Data del casament: ${val}` : '';
+    }
+
     if (!validate(form)) return;
 
     if (typeof grecaptcha !== 'undefined') {
