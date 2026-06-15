@@ -719,7 +719,7 @@
 .manifesto__headline {
   font-family: var(--font-sans);
   font-size: clamp(3rem, 7.5vw, 7rem);
-  font-weight: 640;
+  font-weight: 580;
   line-height: 1.05;
   letter-spacing: -0.03em;
   display: flex;

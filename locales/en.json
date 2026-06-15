@@ -40,7 +40,7 @@
   "form.phone": "Phone number *",
   "form.date": "Wedding date",
   "form.guests": "Number of guests",
-  "form.privacy": "I have read and accept the <a href=\"https://www.uauu.cat/politica-de-privacitat/\" target=\"_blank\" rel=\"noopener\">privacy policy</a>",
+  "form.privacy": "I have read and accept the <a href=\"https://www.uauu.cat/politica-de-privacitat/\" target=\"_blank\" rel=\"noopener noreferrer\">privacy policy</a>",
   "form.submit": "Send",
 
   "footer.copy": "© 2026 UAUU Digital. All rights reserved.",
