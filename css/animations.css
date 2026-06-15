@@ -18,17 +18,6 @@
 .reveal--delay-3 { transition-delay: 300ms; }
 .reveal--delay-4 { transition-delay: 400ms; }
 
-/* ── Photo scatter: continuous drift top → bottom ── */
-
-@keyframes scatter-drift {
-  from { transform: translateY(-140px) rotate(var(--rot, 0deg)); }
-  to   { transform: translateY(100svh)  rotate(var(--rot, 0deg)); }
-}
-
-.manifesto .photo-scatter__item {
-  animation: scatter-drift linear infinite;
-}
-
 /* ── Nav transition ── */
 
 .site-nav {

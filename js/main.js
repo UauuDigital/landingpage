@@ -157,71 +157,6 @@ function initReveal() {
   targets.forEach((el) => observer.observe(el));
 }
 
-// ── Photo scatter: scroll-driven drift direction + inertia ────────────────────
-
-function initPhotoScatterDrift() {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const section = document.querySelector('.manifesto');
-  const items   = [...document.querySelectorAll('.manifesto .photo-scatter__item')];
-  if (!section || !items.length) return;
-
-  const H        = section.offsetHeight;
-  const TRAVEL   = H + 140;
-  const scaleStr = matchMedia('(max-width: 640px)').matches ? ' scale(0.8)' : '';
-
-  const photos = items.map(el => {
-    const duration = parseFloat(el.style.animationDuration) || 18;
-    const delay    = parseFloat(el.style.animationDelay)    || 0;
-    const rot      = getComputedStyle(el).getPropertyValue('--rot').trim() || '0deg';
-    const progress = ((-delay) % duration) / duration;
-    const y        = -140 + progress * TRAVEL;
-
-    el.style.animation = 'none';
-    el.style.transform = `translateY(${y}px) rotate(${rot})${scaleStr}`;
-
-    return { el, rot, y, speed: TRAVEL / (duration * 60), scaleStr };
-  });
-
-  let mult        = 1;
-  let targetMult  = 1;
-  let lastScrollY = window.scrollY;
-  let scrollSpeed = 0;
-  let rafId       = null;
-
-  window.addEventListener('scroll', () => {
-    const dy    = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-    scrollSpeed = Math.abs(dy);
-    if (dy > 0) targetMult =  1;
-    if (dy < 0) targetMult = -1;
-  }, { passive: true });
-
-  function tick() {
-    scrollSpeed *= 0.8;
-
-    if (scrollSpeed < 12) {
-      mult += (targetMult - mult) * 0.07;
-      photos.forEach(p => {
-        p.y += p.speed * mult;
-        if (p.y > H)    p.y -= TRAVEL;
-        if (p.y < -140) p.y += TRAVEL;
-        p.el.style.transform = `translateY(${p.y}px) rotate(${p.rot})${p.scaleStr}`;
-      });
-    }
-
-    rafId = requestAnimationFrame(tick);
-  }
-
-  new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      if (!rafId) rafId = requestAnimationFrame(tick);
-    } else {
-      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-    }
-  }, { threshold: 0 }).observe(section);
-}
-
 // ── Services: drag-to-scroll + prev/next carousel ─────────────────────────────
 
 function initServicesCarousel() {
@@ -319,7 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initNav();
   initReveal();
-  initPhotoScatterDrift();
   initServicesCarousel();
   initCtaParallax();
   initLang();

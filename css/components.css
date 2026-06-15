@@ -266,12 +266,11 @@
 
 .photo-scatter__item {
   position: absolute;
-  top: 0;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14), 0 1px 4px rgba(0, 0, 0, 0.08);
-  will-change: transform;
   background: #e8e4e0;
+  transform: rotate(var(--rot, 0deg));
 }
 
 .photo-scatter__item img {
