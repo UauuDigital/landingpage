@@ -1,5 +1,6 @@
 const SUPPORTED = ['ca', 'es', 'en'];
 const DEFAULT_LANG = 'ca';
+const LANG_CRM    = { ca: 'catala', es: 'castellano', en: 'ingles' };
 
 let currentStrings = {};
 
@@ -36,6 +37,9 @@ async function switchLang(lang) {
     document.documentElement.lang = lang;
     localStorage.setItem('uauu-lang', lang);
 
+    const crmField = document.getElementById('idioma_contacto_c');
+    if (crmField) crmField.value = LANG_CRM[lang] ?? 'catala';
+
     document.querySelectorAll('.site-nav__lang-btn').forEach((btn) => {
       btn.classList.toggle('is-active', btn.dataset.lang === lang);
       btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
@@ -47,12 +51,7 @@ async function switchLang(lang) {
 
 export function initLang() {
   const saved = localStorage.getItem('uauu-lang');
-  const browser = navigator.language?.slice(0, 2).toLowerCase();
-  const initial = SUPPORTED.includes(saved)
-    ? saved
-    : SUPPORTED.includes(browser)
-    ? browser
-    : DEFAULT_LANG;
+  const initial = SUPPORTED.includes(saved) ? saved : DEFAULT_LANG;
 
   switchLang(initial);
 
