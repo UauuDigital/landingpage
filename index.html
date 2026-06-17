@@ -291,10 +291,17 @@
           <div class="contact-form__field">
             <label class="sr-only" for="phone_mobile" data-i18n="form.phone">Número de telèfon *</label>
             <div class="contact-form__phone-wrap">
-              <button type="button" class="country-selector" id="country-selector" aria-label="Prefix telefònic">
-                <span class="cs-flag">🇪🇸</span>
-                <span class="cs-dial">+34</span>
-              </button>
+              <div class="country-selector-wrap">
+                <button type="button" class="country-selector" id="country-selector" aria-haspopup="listbox" aria-expanded="false" aria-label="Prefix telefònic">
+                  <span class="cs-flag">🇪🇸</span>
+                  <span class="cs-dial">+34</span>
+                  <span class="cs-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="country-dropdown" id="country-dropdown" role="listbox" hidden>
+                  <input type="text" class="country-search" placeholder="Buscar..." autocomplete="off" />
+                  <ul class="country-list"></ul>
+                </div>
+              </div>
               <input
                 class="contact-form__input"
                 type="tel"

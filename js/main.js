@@ -1,5 +1,6 @@
 import { initLang } from './lang.js';
 import { initForm } from './form.js';
+import { initCountrySelector } from './phone.js';
 
 // ── Smooth scroll with inertia ────────────────────────────────────────────────
 
@@ -258,4 +259,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initCtaParallax();
   initLang();
   initForm();
+  initCountrySelector();
 });
