@@ -17,14 +17,15 @@ css/base.css         # Reset + estils globals (inclou .sr-only i .skip-link)
 css/layout.css       # Estructura de seccions, grid, responsive
 css/components.css   # Nav, botons, cards, formulari, hero-card
 css/animations.css   # Reveal en scroll, parallax, prefers-reduced-motion
-js/main.js           # Init: smooth scroll, nav pill, reveal, scatter drift, services carousel, CTA parallax
+js/main.js           # Init: smooth scroll, nav pill, reveal, services carousel, CTA parallax
 js/form.js           # Validació + reCAPTCHA invisible + submit natiu al CRM
 js/lang.js           # Switch CA / ES / EN, càrrega de locales/, aria-pressed
+js/phone.js          # Selector de prefix telefònic (cerca + navegació amb teclat)
 locales/ca.json      # Tots els textos en català (idioma per defecte i font de veritat)
 locales/es.json      # Castellà
 locales/en.json      # Anglès
 logos/               # Logos UAUU.png, CA.png, CT.png, CM.png, MV.png
-fonts/               # Ogg-Medium.otf/.ttf + Inter-VariableFont_opsz,wght.ttf
+fonts/               # Ogg-Medium.woff2 + Inter-Variable.woff2 (variable)
 assets/              # Buit al repo (assets a https://uauu.cat/media/)
 favicon.ico
 ```
@@ -40,7 +41,7 @@ tokens → base → layout → components → animations
 
 ## Seccions (ordre al DOM)
 1. **Hero** (#inici) — full-viewport, imatge de fons, headline, hero-card flotant (foto + CTA → #contacte)
-2. **Manifesto** — headline gran + 30 fotos escampades amb drift JS (scroll-direction + inertia)
+2. **Manifesto** — headline gran + 10 fotos escampades (posicions a `layout.css`, rotació via `--rot`). Sense drift JS; amaga't amb `prefers-reduced-motion`.
 3. **Services** (#serveis) — carrusel horitzontal de 6 cards (drag + prev/next), no grid fix
 4. **CTA / Form** (#contacte) — imatge de fons amb parallax, logos de les 4 finques, formulari de contacte
 
@@ -63,9 +64,10 @@ No hi ha footer.
 - Estructura real del CDN: `finques/{nom-finca}/{galeria-dimatges|cerimonia|allotjament}/{n}.webp` | `general/{gastronomia|dj}/{n}.webp`
 
 ## Formulari
-- Camps visibles: first_name, last_name, email1, phone_mobile (+ country selector prefix), event_date_c, num_diners_c, privacy (checkbox)
-- Camps hidden: campaign_id, redirect_url, assigned_user_id, moduleDir, event_type_c, lead_source, idioma_contacto_c (sincronitzat amb l'idioma actiu)
-- Honeypot antispam: `name="hp_website"` visible·ment ocult
+- Camps visibles: first_name, last_name, email1, phone_mobile (+ country selector prefix), data del casament, num_diners_c, privacy (checkbox)
+- La data del casament és un input de display (`id="date_display"`, **sense `name`**, no s'envia sol). El seu valor es concatena dins el camp `description` a `js/form.js` (`Data del casament: …`). No existeix cap camp `event_date_c`; la data viatja dins `description` de forma intencionada.
+- Camps hidden: campaign_id, redirect_url, assigned_user_id, moduleDir, event_type_c, lead_source, idioma_contacto_c (sincronitzat amb l'idioma actiu), description
+- Honeypot antispam: `name="hp_website"` visible·ment ocult. `js/form.js` aborta el submit (silenciosament) si el camp ve omplert.
 - Validació client-side a `js/form.js`: classe `.is-error` sobre l'input o `.form-footer`
 - Submissió: reCAPTCHA invisible (Google) → callback `window.enviarAlCRM` → submit natiu POST a `https://crm.espaigastronomia.cat/index.php?entryPoint=WebToPersonCapture`
 - **No** és un fetch; és submit natiu del formulari

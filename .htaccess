@@ -4,4 +4,22 @@
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # ── Cache strategy ──────────────────────────────────────────────────────
+  # Code (HTML/CSS/JS/JSON): the browser stores it but revalidates on every
+  # load. If unchanged the server replies 304 (cap byte); en desplegar una
+  # versió nova, l'usuari que ja tenia la pàgina oberta la rep actualitzada
+  # al recarregar, sense haver de versionar fitxers a mà.
+  <FilesMatch "\.(html|css|js|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # Assets immutables (fonts/imatges): cache llarg. Per renovar-los, canvia
+  # el nom del fitxer (p. ex. Inter-Variable.woff2 → Inter-Variable-2.woff2).
+  <FilesMatch "\.(woff2|woff|ttf|otf|webp|png|jpe?g|gif|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
 </IfModule>
+
+# 304 revalidation needs validators; emit an ETag from mtime + size.
+FileETag MTime Size

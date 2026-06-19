@@ -132,17 +132,6 @@
   transform: scale(0.98);
 }
 
-.btn--outline {
-  border: 1.5px solid currentColor;
-  color: var(--color-text);
-  background: transparent;
-}
-
-.btn--outline:hover {
-  background-color: var(--color-text);
-  color: var(--color-text-inverse);
-}
-
 .btn--glass {
   background: rgba(0, 0, 0, 0.06);
   backdrop-filter: blur(12px) saturate(150%);
@@ -154,25 +143,6 @@
 .btn--glass:hover {
   background: rgba(0, 0, 0, 0.11);
   border-color: rgba(0, 0, 0, 0.18);
-}
-
-.btn--solid {
-  background-color: var(--color-text-inverse);
-  color: var(--color-text);
-  border: 1.5px solid transparent;
-}
-
-.btn--solid:hover {
-  background-color: var(--color-accent);
-}
-
-.btn--dark {
-  background-color: var(--color-text);
-  color: var(--color-text-inverse);
-}
-
-.btn--dark:hover {
-  background-color: var(--color-text-muted);
 }
 
 .btn__arrow {
@@ -268,7 +238,7 @@
   position: absolute;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14), 0 1px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
   background: #e8e4e0;
   transform: rotate(var(--rot, 0deg));
 }
@@ -277,6 +247,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(var(--zoom, 1));
 }
 
 /* ── Services nav (prev/next) ── */
@@ -607,7 +578,8 @@
   transition: background 0.12s;
 }
 
-.country-item:hover { background: rgba(255, 255, 255, 0.08); }
+.country-item:hover,
+.country-item.is-highlighted { background: rgba(255, 255, 255, 0.08); }
 .country-item.is-selected { background: rgba(200, 184, 154, 0.18); }
 
 .ci-flag { font-size: 17px; line-height: 1; flex-shrink: 0; }

@@ -96,19 +96,32 @@ section {
   overflow: hidden;
 }
 
+/* Fade the photo edges with a compositor-cheap overlay instead of a mask:
+   masks force the moving layer to repaint on every smooth-scroll frame. */
+.manifesto::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, var(--color-bg) 0%, transparent 12%),
+    linear-gradient(to top,    var(--color-bg) 0%, transparent 12%);
+}
+
 .manifesto__photos {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  contain: layout style;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  contain: layout style paint;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .manifesto__text {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* ── Manifesto photos: positions ── */

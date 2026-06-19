@@ -70,6 +70,11 @@ export function initForm() {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // Antispam honeypot: bots fill hidden fields. Abort silently.
+    const honeypot = form.querySelector('[name="hp_website"]');
+    if (honeypot && honeypot.value.trim()) return;
+
     syncLang();
 
     const dateDisplay = document.getElementById('date_display');

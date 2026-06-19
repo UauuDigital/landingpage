@@ -2,9 +2,7 @@
 
 @font-face {
   font-family: 'Ogg';
-  src: url('../fonts/Ogg-Medium.woff2') format('woff2'),
-       url('../fonts/OGG MEDIUM/Ogg-Medium.otf') format('opentype'),
-       url('../fonts/OGG MEDIUM/Ogg-Medium.ttf') format('truetype');
+  src: url('../fonts/Ogg-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -12,7 +10,7 @@
 
 @font-face {
   font-family: 'Inter';
-  src: url('../fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('../fonts/Inter-Variable.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;

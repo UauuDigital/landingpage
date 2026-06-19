@@ -49,6 +49,7 @@ export function initCountrySelector() {
   const list = dropdown.querySelector('.country-list');
   let selectedFlag = '🇪🇸';
   let selectedDial = '+34';
+  let highlightIndex = -1;
 
   function renderList(filter = '') {
     const q = filter.toLowerCase().trim();
@@ -56,14 +57,31 @@ export function initCountrySelector() {
       ? COUNTRIES.filter(c => c.name.toLowerCase().includes(q) || c.dial.includes(q))
       : COUNTRIES;
 
-    list.innerHTML = items.map(c => {
+    list.innerHTML = items.map((c, i) => {
       const sel = (c.dial === selectedDial && c.flag === selectedFlag) ? ' is-selected' : '';
-      return `<li role="option" class="country-item${sel}" data-dial="${c.dial}" data-flag="${c.flag}">` +
+      return `<li role="option" id="country-opt-${i}" aria-selected="false" class="country-item${sel}" data-dial="${c.dial}" data-flag="${c.flag}">` +
         `<span class="ci-flag">${c.flag}</span>` +
         `<span class="ci-dial">${c.dial}</span>` +
         `<span class="ci-name">${c.name}</span>` +
         `</li>`;
     }).join('');
+    highlightIndex = -1;
+    searchInput?.removeAttribute('aria-activedescendant');
+  }
+
+  function setHighlight(index) {
+    const items = list.querySelectorAll('.country-item');
+    if (!items.length) return;
+    if (index < 0) index = items.length - 1;          // wrap to bottom
+    if (index >= items.length) index = 0;             // wrap to top
+    items.forEach((el, i) => {
+      const on = i === index;
+      el.classList.toggle('is-highlighted', on);
+      el.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    highlightIndex = index;
+    items[index].scrollIntoView({ block: 'nearest' });
+    searchInput?.setAttribute('aria-activedescendant', items[index].id);
   }
 
   function selectCountry(flag, dial) {
@@ -72,6 +90,7 @@ export function initCountrySelector() {
     btn.querySelector('.cs-flag').textContent = flag;
     btn.querySelector('.cs-dial').textContent = dial;
     closeDropdown();
+    btn.focus();
   }
 
   function openDropdown() {
@@ -89,6 +108,7 @@ export function initCountrySelector() {
   function closeDropdown() {
     dropdown.hidden = true;
     btn.setAttribute('aria-expanded', 'false');
+    searchInput?.removeAttribute('aria-activedescendant');
   }
 
   btn.addEventListener('click', () => {
@@ -107,6 +127,21 @@ export function initCountrySelector() {
   });
 
   searchInput?.addEventListener('input', () => renderList(searchInput.value));
+
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setHighlight(highlightIndex + 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setHighlight(highlightIndex - 1);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const items = list.querySelectorAll('.country-item');
+      const target = items[highlightIndex] || items[0];
+      if (target) selectCountry(target.dataset.flag, target.dataset.dial);
+    }
+  });
 
   list.addEventListener('click', (e) => {
     const item = e.target.closest('.country-item');

@@ -28,22 +28,13 @@
   "services.festa.desc": "Servicio de DJ y bartenders para poner punto y final a una celebración inolvidable.",
 
   "cta.headline": "Accede a nuestros<br>precios y propuesta.",
-  "cta.venues.ca": "Ca n'Alzina",
-  "cta.venues.tous": "Castell de Tous",
-  "cta.venues.macia": "Can Macià",
-  "cta.venues.vivens": "Mas Vivens",
 
   "form.name": "Nombre *",
   "form.surname": "Apellidos *",
   "form.email": "Correo electrónico *",
-  "form.phone.prefix": "🇪🇸 +34",
   "form.phone": "Número de teléfono *",
   "form.date": "Fecha de la boda",
   "form.guests": "Número de invitados",
   "form.privacy": "He leído y acepto la <a href=\"https://www.uauu.cat/politica-de-privacitat/\" target=\"_blank\" rel=\"noopener noreferrer\">política de privacidad</a>",
-  "form.submit": "Enviar",
-
-  "footer.copy": "© 2026 UAUU Digital. Todos los derechos reservados.",
-  "footer.privacy": "Política de privacidad",
-  "footer.legal": "Aviso legal"
+  "form.submit": "Enviar"
 }
