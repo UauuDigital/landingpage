@@ -3,6 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- OpenAI Ads Measurement Pixel — snippet oficial (developers.openai.com/ads/measurement-pixel). debug:true és temporal, es treu a la fase 3. -->
+  <script>
+  (function (w, d, s, u) {
+    if (w.oaiq) return;
+    var q = function () {
+      q.q.push(arguments);
+    };
+    q.q = [];
+    w.oaiq = q;
+    var js = d.createElement(s);
+    js.async = true;
+    js.src = u;
+    var f = d.getElementsByTagName(s)[0];
+    f.parentNode.insertBefore(js, f);
+  })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+  oaiq("init", {
+    pixelId: "QByt2ai5bMmJ4QseTuTBuH",
+    debug: true,
+  });
+  </script>
+  <!-- End OpenAI Ads Measurement Pixel -->
+
   <meta name="description" content="UAUU — Històries úniques en espais únics. Casaments exclusius a Ca n'Alzina, Mas Vivens, Can Macià i Castell de Tous." />
   <title>UAUU — El vostre gran dia comença aquí</title>
   <link rel="icon" href="favicon.ico" />
@@ -32,24 +56,6 @@
   <link rel="preload" as="image" href="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp" fetchpriority="high" />
   <link rel="preload" as="image" href="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp" />
   <link rel="preload" as="font" href="fonts/Ogg-Medium.woff2" type="font/woff2" crossorigin />
-
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2638565519874036');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2638565519874036&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
 
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
@@ -373,11 +379,11 @@
           <input type="text" name="hp_website" class="honeypot" tabindex="-1" autocomplete="off" />
 
           <input type="hidden" name="campaign_id"       value="837aea38-483f-e9a6-32dc-6a22cfcaf05e" />
-          <input type="hidden" name="redirect_url"      value="https://cataleg.uauu.cat/" />
+          <input type="hidden" name="redirect_url"      value="https://www.uauu.cat/welcome/gracies.html" />
           <input type="hidden" name="assigned_user_id"  value="a622e474-8b6e-1ee8-bb2e-69d5f4e15f53" />
           <input type="hidden" name="moduleDir"         value="Leads" />
           <input type="hidden" name="event_type_c"      value="Casament" />
-          <input type="hidden" name="lead_source"       value="bio_instagram" />
+          <input type="hidden" name="lead_source"       value="chatgpt_test" />
           <input type="hidden" name="idioma_contacto_c" id="idioma_contacto_c" value="catala" />
           <input type="hidden" name="description" id="description" />
 

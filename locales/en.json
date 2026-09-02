@@ -29,6 +29,11 @@
 
   "cta.headline": "Access our pricing<br>and proposal.",
 
+  "gracies.title": "Thank you — UAUU",
+  "gracies.headline": "Thank you for<br>reaching out.",
+  "gracies.body": "We've received your request. We'll be in touch with you very soon to start designing your big day.",
+  "gracies.cta": "View the catalogue",
+
   "form.name": "Name *",
   "form.surname": "Surname *",
   "form.email": "Email address *",

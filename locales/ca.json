@@ -29,6 +29,11 @@
 
   "cta.headline": "Accedeix als nostres<br>preus i proposta.",
 
+  "gracies.title": "Gràcies — UAUU",
+  "gracies.headline": "Gràcies per<br>escriure'ns.",
+  "gracies.body": "Hem rebut la vostra sol·licitud. Ens posarem en contacte amb vosaltres ben aviat per començar a dissenyar el vostre gran dia.",
+  "gracies.cta": "Veure el catàleg",
+
   "form.name": "Nom *",
   "form.surname": "Cognoms *",
   "form.email": "Correu electrònic *",

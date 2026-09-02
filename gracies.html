@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- OpenAI Ads Measurement Pixel — snippet oficial (developers.openai.com/ads/measurement-pixel). debug:true és temporal, es treu a la fase 3. -->
+  <script>
+  (function (w, d, s, u) {
+    if (w.oaiq) return;
+    var q = function () {
+      q.q.push(arguments);
+    };
+    q.q = [];
+    w.oaiq = q;
+    var js = d.createElement(s);
+    js.async = true;
+    js.src = u;
+    var f = d.getElementsByTagName(s)[0];
+    f.parentNode.insertBefore(js, f);
+  })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+  oaiq("init", {
+    pixelId: "QByt2ai5bMmJ4QseTuTBuH",
+    debug: true,
+  });
+  </script>
+  <!-- End OpenAI Ads Measurement Pixel -->
+
+  <!-- Script propi: dispara la conversió si venim del formulari.
+       1) event_id a sessionStorage (cas normal, desat per js/form.js) → el fem servir i l'esborrem.
+       2) sense clau però referrer del CRM (sessionStorage bloquejat: navegació privada, etc.)
+          → generem un event_id nou i disparem igualment. És preferible comptar de més
+          que perdre conversions sense assabentar-nos-en.
+       3) ni clau ni referrer del CRM (recàrrega, visita directa) → no disparem res.
+       Tot en try/catch: el tracking mai ha de trencar la pàgina de gràcies. -->
+  <script>
+  (function () {
+    var eventId = null;
+
+    try {
+      eventId = sessionStorage.getItem('uauu_lead_event_id');
+      if (eventId) sessionStorage.removeItem('uauu_lead_event_id');
+    } catch (e) {
+      // sessionStorage no disponible
+    }
+
+    if (!eventId) {
+      try {
+        if (new URL(document.referrer).hostname === 'crm.espaigastronomia.cat') {
+          eventId = (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function')
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        }
+      } catch (e) {
+        // document.referrer buit o no parsejable: no venim del CRM
+      }
+    }
+
+    if (eventId) {
+      try {
+        oaiq('measure', 'lead_created', { type: 'customer_action' }, { event_id: eventId });
+      } catch (e) {
+        // El tracking mai ha de trencar la pàgina de gràcies
+      }
+    }
+  })();
+  </script>
+
+  <meta name="robots" content="noindex, nofollow" />
+  <title data-i18n="gracies.title">Gràcies — UAUU</title>
+  <link rel="icon" href="favicon.ico" />
+
+  <link rel="preload" as="font" href="fonts/Ogg-Medium.woff2" type="font/woff2" crossorigin />
+
+  <!-- CSS (order matters: tokens → base → layout → components → animations) -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/gracies.css" />
+</head>
+<body>
+
+  <a href="#contingut" class="sr-only skip-link">Salta al contingut principal</a>
+
+  <!-- ══ NAV ══════════════════════════════════════════════════════════════ -->
+  <header role="banner">
+    <nav class="site-nav site-nav--on-light" aria-label="Navegació principal">
+      <a href="index.html" class="site-nav__logo" aria-label="UAUU — inici">
+        <img class="site-nav__logo-img" src="logos/UAUU.png" alt="UAUU" width="78" height="20" />
+      </a>
+      <div class="site-nav__lang" role="group" aria-label="Selecció d'idioma">
+        <button class="site-nav__lang-btn is-active" data-lang="ca" aria-pressed="true" data-i18n="nav.lang.ca">CAT</button>
+        <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+        <button class="site-nav__lang-btn" data-lang="es" aria-pressed="false" data-i18n="nav.lang.es">ESP</button>
+        <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+        <button class="site-nav__lang-btn" data-lang="en" aria-pressed="false" data-i18n="nav.lang.en">ENG</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contingut" class="gracies">
+    <section class="gracies__section container">
+      <img class="gracies__logo" src="logos/UAUU.png" alt="UAUU" width="120" height="31" />
+      <h1 class="cta-headline" data-i18n-html="gracies.headline">Gràcies per<br>escriure&#39;ns.</h1>
+      <p class="gracies__body" data-i18n="gracies.body">Hem rebut la vostra sol·licitud. El nostre equip es posarà en contacte amb vosaltres en un termini de [PLAZO] per començar a dissenyar el vostre gran dia.</p>
+      <a href="https://cataleg.uauu.cat/" class="btn btn--glass gracies__cta">
+        <span data-i18n="gracies.cta">Veure el catàleg</span>
+        <span class="btn__arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

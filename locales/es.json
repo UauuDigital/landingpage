@@ -29,6 +29,11 @@
 
   "cta.headline": "Accede a nuestros<br>precios y propuesta.",
 
+  "gracies.title": "Gracias — UAUU",
+  "gracies.headline": "Gracias por<br>escribirnos.",
+  "gracies.body": "Hemos recibido vuestra solicitud. Nos pondremos en contacto con vosotros muy pronto para empezar a diseñar vuestro gran día.",
+  "gracies.cta": "Ver el catálogo",
+
   "form.name": "Nombre *",
   "form.surname": "Apellidos *",
   "form.email": "Correo electrónico *",

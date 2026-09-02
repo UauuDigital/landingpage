@@ -1,0 +1,73 @@
+/* ── Pàgina de gràcies ──────────────────────────────────────────────────────
+   Estils propis, aïllats de la resta del sistema (tokens → base → layout →
+   components → animations). Reutilitza únicament custom properties de
+   tokens.css — cap valor hardcoded. */
+
+/* .site-nav ve pensat per anar sobre la imatge fosca del hero (logo i text en
+   blanc). gracies.html té fons clar (--color-bg): sense aquest modificador,
+   el nav queda invisible (blanc sobre blanc). */
+.site-nav--on-light .site-nav__logo-img {
+  filter: none;
+}
+
+.site-nav--on-light .site-nav__lang-btn {
+  color: var(--color-text-muted);
+}
+
+.site-nav--on-light .site-nav__lang-btn:hover,
+.site-nav--on-light .site-nav__lang-btn.is-active {
+  color: var(--color-text);
+}
+
+.site-nav--on-light .site-nav__lang-divider {
+  color: var(--color-border);
+}
+
+/* components.css posa un fons fosc darrere els botons d'idioma en mòbil
+   (pensat per a text blanc); amb text fosc quedaria il·legible. */
+@media (max-width: 640px) {
+  .site-nav--on-light .site-nav__lang {
+    background: var(--color-surface);
+  }
+}
+
+.gracies {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--space-24);
+  background-color: var(--color-bg);
+}
+
+.gracies__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  max-width: var(--container-prose);
+  text-align: center;
+}
+
+.gracies__logo {
+  height: 32px;
+  width: auto;
+  margin-bottom: var(--space-4);
+}
+
+.gracies__body {
+  max-width: 46ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+}
+
+.gracies__cta {
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .gracies {
+    padding-block: var(--space-16);
+  }
+}

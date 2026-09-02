@@ -3,6 +3,7 @@
 ## Projecte
 Landing page de UAUU Weddings & Events.
 Estàtica, sense frameworks, desplegada a Plesk/Servàtica via FTP.
+URL de producció: `https://www.uauu.cat/welcome/` (el site NO viu a l'arrel del domini — per això tots els paths són relatius, mai root-relative).
 
 ## Stack
 - HTML5 semàntic, CSS custom (sense Tailwind ni Bootstrap), JS vanilla (ES modules)
@@ -12,11 +13,13 @@ Estàtica, sense frameworks, desplegada a Plesk/Servàtica via FTP.
 ## Estructura de fitxers
 ```
 index.html           # Entrada única. Totes les seccions aquí.
+gracies.html         # Pàgina de gràcies. Destí del redirect_url del CRM tras enviar el formulari.
 css/tokens.css       # Variables: colors, fonts, spacing. RES es defineix fora d'aquí.
 css/base.css         # Reset + estils globals (inclou .sr-only i .skip-link)
 css/layout.css       # Estructura de seccions, grid, responsive
 css/components.css   # Nav, botons, cards, formulari, hero-card
 css/animations.css   # Reveal en scroll, parallax, prefers-reduced-motion
+css/gracies.css      # Estils propis de gracies.html, aïllats (no toca la resta del sistema)
 js/main.js           # Init: smooth scroll, nav pill, reveal, services carousel, CTA parallax
 js/form.js           # Validació + reCAPTCHA invisible + submit natiu al CRM
 js/lang.js           # Switch CA / ES / EN, càrrega de locales/, aria-pressed
@@ -71,6 +74,16 @@ No hi ha footer.
 - Validació client-side a `js/form.js`: classe `.is-error` sobre l'input o `.form-footer`
 - Submissió: reCAPTCHA invisible (Google) → callback `window.enviarAlCRM` → submit natiu POST a `https://crm.espaigastronomia.cat/index.php?entryPoint=WebToPersonCapture`
 - **No** és un fetch; és submit natiu del formulari
+- `redirect_url` apunta a `https://www.uauu.cat/welcome/gracies.html` — el CRM hi redirigeix el navegador si accepta el lead. Vegeu ## Tracking per a què passa allà.
+- Abans del submit, `js/form.js` genera un `event_id` (`crypto.randomUUID()`, amb fallback) i el desa a `sessionStorage['uauu_lead_event_id']` — el recull `gracies.html` per disparar la conversió del pixel
+
+## Tracking
+- Pixel de conversió: **OpenAI Ads Measurement Pixel** (`oaiq`, pixelId `QByt2ai5bMmJ4QseTuTBuH`). S'inicialitza (`oaiq("init", ...)`) a `index.html` i a `gracies.html` — snippet oficial idèntic a les dues pàgines, el més amunt possible del `<head>`.
+- `debug: true` als dos `init` és **temporal** (fase de proves), pendent de retirar-lo abans de donar la integració per tancada en producció.
+- L'esdeveniment de conversió (`lead_created`, data shape `customer_action`) es dispara **NOMÉS a `gracies.html`**, mai a `index.html` ni en el submit del formulari — es vol una conversió confirmada (el CRM ha acceptat el lead i hi ha redirigit), no assumida.
+- `event_id`: generat a `js/form.js` abans del submit i desat a `sessionStorage['uauu_lead_event_id']`; `gracies.html` el recull, dispara `oaiq("measure", "lead_created", ...)` amb aquest `event_id` a les opcions, i l'esborra tot seguit (evita duplicats en recàrrega/visita directa). Aquest mateix `event_id` és el que caldria reutilitzar si en el futur s'implementa la Conversions API (server-to-server) d'OpenAI Ads, per deduplicar l'esdeveniment de navegador amb el de servidor.
+- Pla B a `gracies.html`: si `sessionStorage` no està disponible (navegació privada, etc.) però `document.referrer` és `crm.espaigastronomia.cat`, es genera un `event_id` nou i es dispara igualment — es prefereix comptar de més que perdre conversions en silenci.
+- El Meta Pixel que hi va haver a `index.html` s'ha eliminat definitivament (no reviure'l).
 
 ## Accessibilitat
 - Skip link: `<a href="#inici" class="sr-only skip-link">` (visible en focus)

@@ -1,7 +1,27 @@
 const LANG_MAP = { ca: 'catala', es: 'castellano', en: 'ingles' };
+const LEAD_EVENT_ID_KEY = 'uauu_lead_event_id';
+
+function makeEventId() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+// Genera i desa l'event_id del lead abans d'enviar el formulari, perquè gracies.html
+// el pugui recollir i disparar-hi l'esdeveniment de conversió del pixel (no aquí:
+// aquí encara no sabem si el CRM acceptarà el lead). Mai bloqueja l'enviament.
+function storeLeadEventId() {
+  try {
+    sessionStorage.setItem(LEAD_EVENT_ID_KEY, makeEventId());
+  } catch (_) {
+    // sessionStorage pot fallar (navegació privada, etc.)
+  }
+}
 
 // reCAPTCHA callback — must be global
 window.enviarAlCRM = function () {
+  storeLeadEventId();
   document.getElementById('contact-form').submit();
 };
 
@@ -96,6 +116,7 @@ export function initForm() {
     if (typeof grecaptcha !== 'undefined') {
       grecaptcha.execute();
     } else {
+      storeLeadEventId();
       form.submit();
     }
   });
