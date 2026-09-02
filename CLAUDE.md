@@ -79,11 +79,12 @@ No hi ha footer.
 
 ## Tracking
 - Pixel de conversió: **OpenAI Ads Measurement Pixel** (`oaiq`, pixelId `QByt2ai5bMmJ4QseTuTBuH`). S'inicialitza (`oaiq("init", ...)`) a `index.html` i a `gracies.html` — snippet oficial idèntic a les dues pàgines, el més amunt possible del `<head>`.
-- `debug: true` als dos `init` és **temporal** (fase de proves), pendent de retirar-lo abans de donar la integració per tancada en producció.
 - L'esdeveniment de conversió (`lead_created`, data shape `customer_action`) es dispara **NOMÉS a `gracies.html`**, mai a `index.html` ni en el submit del formulari — es vol una conversió confirmada (el CRM ha acceptat el lead i hi ha redirigit), no assumida.
-- `event_id`: generat a `js/form.js` abans del submit i desat a `sessionStorage['uauu_lead_event_id']`; `gracies.html` el recull, dispara `oaiq("measure", "lead_created", ...)` amb aquest `event_id` a les opcions, i l'esborra tot seguit (evita duplicats en recàrrega/visita directa). Aquest mateix `event_id` és el que caldria reutilitzar si en el futur s'implementa la Conversions API (server-to-server) d'OpenAI Ads, per deduplicar l'esdeveniment de navegador amb el de servidor.
+- `event_id`: generat a `js/form.js` abans del submit i desat a `sessionStorage['uauu_lead_event_id']`; `gracies.html` el recull i l'esborra tot seguit. Aquest mateix `event_id` és el que caldria reutilitzar si en el futur s'implementa la Conversions API (server-to-server) d'OpenAI Ads, per deduplicar l'esdeveniment de navegador amb el de servidor.
 - Pla B a `gracies.html`: si `sessionStorage` no està disponible (navegació privada, etc.) però `document.referrer` és `crm.espaigastronomia.cat`, es genera un `event_id` nou i es dispara igualment — es prefereix comptar de més que perdre conversions en silenci.
+- **Guard `uauu_lead_event_fired`**: abans de res, `gracies.html` comprova aquest flag a `sessionStorage`; si ja hi és, no dispara res més. Sense això, una simple recàrrega de `gracies.html` tornaria a entrar pel pla B (el `document.referrer` sobreviu a un F5) i duplicaria la conversió amb un `event_id` diferent, impossible de deduplicar per OpenAI. El flag es marca just després de disparar, tant si l'`event_id` ve de `sessionStorage` com del pla B. Únic residu acceptable: emmagatzematge bloquejat A MÉS de recàrrega (no es pot ni llegir ni marcar el flag) — cas rar, no es complica més.
 - El Meta Pixel que hi va haver a `index.html` s'ha eliminat definitivament (no reviure'l).
+- `debug: true` es manté activament als dos `init` — a propòsit, mentre no es validi la integració en producció. No treure'l fins que Marc ho confirmi.
 
 ## Accessibilitat
 - Skip link: `<a href="#inici" class="sr-only skip-link">` (visible en focus)

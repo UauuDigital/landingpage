@@ -5,3 +5,6 @@ node_modules/
 .env
 assets/images/*
 !assets/images/.gitkeep
+
+# Informes de treball temporals (recon, verificacions de fase)
+_temp_*.md

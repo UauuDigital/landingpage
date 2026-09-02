@@ -28,15 +28,28 @@
   <!-- End OpenAI Ads Measurement Pixel -->
 
   <!-- Script propi: dispara la conversió si venim del formulari.
-       1) event_id a sessionStorage (cas normal, desat per js/form.js) → el fem servir i l'esborrem.
+       0) si ja hem disparat en aquesta pestanya (uauu_lead_event_fired) → no fem res.
+          Sense això, un simple F5 a gracies.html tornaria a entrar pel pla B (el
+          referrer del CRM sobreviu a una recàrrega) i duplicaria la conversió amb
+          un event_id diferent, impossible de deduplicar per OpenAI.
+       1) event_id a sessionStorage (cas normal, desat per js/form.js) → el fem servir,
+          l'esborrem i marquem el flag.
        2) sense clau però referrer del CRM (sessionStorage bloquejat: navegació privada, etc.)
-          → generem un event_id nou i disparem igualment. És preferible comptar de més
-          que perdre conversions sense assabentar-nos-en.
-       3) ni clau ni referrer del CRM (recàrrega, visita directa) → no disparem res.
-       Tot en try/catch: el tracking mai ha de trencar la pàgina de gràcies. -->
+          → generem un event_id nou, disparem i marquem el flag igualment. És preferible
+          comptar de més que perdre conversions sense assabentar-nos-en.
+       3) ni clau ni referrer del CRM (visita directa) → no disparem res.
+       Tot en try/catch: el tracking mai ha de trencar la pàgina de gràcies. Únic residu
+       acceptable: emmagatzematge bloquejat A MÉS de recàrrega (no es pot marcar el flag). -->
   <script>
   (function () {
+    var FIRED_KEY = 'uauu_lead_event_fired';
     var eventId = null;
+
+    try {
+      if (sessionStorage.getItem(FIRED_KEY)) return;
+    } catch (e) {
+      // sessionStorage no disponible: no podem comprovar el flag, seguim
+    }
 
     try {
       eventId = sessionStorage.getItem('uauu_lead_event_id');
@@ -60,6 +73,7 @@
     if (eventId) {
       try {
         oaiq('measure', 'lead_created', { type: 'customer_action' }, { event_id: eventId });
+        sessionStorage.setItem(FIRED_KEY, '1');
       } catch (e) {
         // El tracking mai ha de trencar la pàgina de gràcies
       }
