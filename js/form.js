@@ -15,6 +15,10 @@ const UTM_SOURCE_MAP = {
   facebook: 'meta_ads',
   meta: 'meta_ads',
   google: 'google_ads',
+  tiktok: 'tiktok',
+  instagram_stories: 'instagram_stories',
+  ig_stories: 'instagram_stories',
+  stories: 'instagram_stories',
 };
 // Valor quan no hi ha utm_source, o quan no és cap dels canals reconeguts.
 const DEFAULT_LEAD_SOURCE = 'web_directe';
