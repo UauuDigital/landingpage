@@ -76,6 +76,7 @@ No hi ha footer.
 - **No** és un fetch; és submit natiu del formulari
 - `redirect_url` apunta a `https://www.uauu.cat/welcome/gracies.html` — el CRM hi redirigeix el navegador si accepta el lead. Vegeu ## Tracking per a què passa allà.
 - Abans del submit, `js/form.js` genera un `event_id` (`crypto.randomUUID()`, amb fallback) i el desa a `sessionStorage['uauu_lead_event_id']` — el recull `gracies.html` per disparar la conversió del pixel
+- `lead_source` es omple dinàmicament des de l'`utm_source` de la URL (mateix punt que l'`event_id`, a `storeLeadEventId()` a `js/form.js`), NO cal editar-lo a mà per campanya. `lead_source` a SugarCRM és un desplegable de llista tancada, per això es mapeja contra una llista blanca (`UTM_SOURCE_MAP`, a dalt de `js/form.js`) en lloc d'enviar l'utm en cru — un valor no reconegut pel CRM podria deixar el lead sense origen. Per donar d'alta un canal nou (nova campanya): afegir-hi una entrada al mapa. Sense `utm_source` o amb un que no hi consta: `DEFAULT_LEAD_SOURCE` (`web_directe`), el mateix valor que porta com a `value` per defecte a l'HTML (xarxa de seguretat si el JS falla). L'utm es persisteix a `sessionStorage['uauu_utm_source']` per sobreviure a recàrregues i navegació interna; un `utm_source` nou sempre substitueix l'anterior.
 
 ## Tracking
 - Pixel de conversió: **OpenAI Ads Measurement Pixel** (`oaiq`, pixelId `QByt2ai5bMmJ4QseTuTBuH`). S'inicialitza (`oaiq("init", ...)`) a `index.html` i a `gracies.html` — snippet oficial idèntic a les dues pàgines, el més amunt possible del `<head>`.
