@@ -1,5 +1,6 @@
 const LANG_MAP = { ca: 'catala', es: 'castellano', en: 'ingles' };
 const LEAD_EVENT_ID_KEY = 'uauu_lead_event_id';
+const LEAD_EVENT_FIRED_KEY = 'uauu_lead_event_fired';
 
 function makeEventId() {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -11,9 +12,12 @@ function makeEventId() {
 // Genera i desa l'event_id del lead abans d'enviar el formulari, perquè gracies.html
 // el pugui recollir i disparar-hi l'esdeveniment de conversió del pixel (no aquí:
 // aquí encara no sabem si el CRM acceptarà el lead). Mai bloqueja l'enviament.
+// Esborra també el flag "ja disparat": un submit nou és, per definició, una
+// conversió nova, encara que la pestanya ja n'hagués enviat una altra abans.
 function storeLeadEventId() {
   try {
     sessionStorage.setItem(LEAD_EVENT_ID_KEY, makeEventId());
+    sessionStorage.removeItem(LEAD_EVENT_FIRED_KEY);
   } catch (_) {
     // sessionStorage pot fallar (navegació privada, etc.)
   }

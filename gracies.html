@@ -4,7 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- OpenAI Ads Measurement Pixel — snippet oficial (developers.openai.com/ads/measurement-pixel). debug:true és temporal, es treu a la fase 3. -->
+  <!-- Neteja la URL ABANS de res més (fins i tot abans del pixel): SugarCRM torna aquí
+       reenviant TOTS els camps del formulari (nom, email, telèfon...) com a query string.
+       Sense això, aquestes dades personals quedarien a la barra d'adreces, a l'historial
+       del navegador, als logs del servidor i al source_url que capturaria el pixel. -->
+  <script>
+  try {
+    if ((window.location.search || window.location.hash) && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  } catch (e) {
+    // Si replaceState no està disponible, la pàgina segueix funcionant igual
+  }
+  </script>
+
+  <!-- OpenAI Ads Measurement Pixel — snippet oficial (developers.openai.com/ads/measurement-pixel). -->
   <script>
   (function (w, d, s, u) {
     if (w.oaiq) return;
@@ -22,7 +36,6 @@
 
   oaiq("init", {
     pixelId: "QByt2ai5bMmJ4QseTuTBuH",
-    debug: true,
   });
   </script>
   <!-- End OpenAI Ads Measurement Pixel -->
