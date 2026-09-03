@@ -2,16 +2,34 @@ import { initLang } from './lang.js';
 import { initForm } from './form.js';
 import { initCountrySelector } from './phone.js';
 
+// ── Scroll frame bus ──────────────────────────────────────────────────────────
+// Efectes lligats a l'scroll (parallax) s'hi subscriuen en lloc de tenir cada un
+// el seu rAF permanent: només s'executen quan el contingut realment es mou.
+
+const scrollFrameListeners = new Set();
+
+function onScrollFrame(fn) {
+  scrollFrameListeners.add(fn);
+}
+
+function emitScrollFrame() {
+  scrollFrameListeners.forEach((fn) => fn());
+}
+
 // ── Smooth scroll with inertia ────────────────────────────────────────────────
 
 function initSmoothScroll() {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (matchMedia('(pointer: coarse)').matches) return; // native inertia on touch
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  if (matchMedia('(pointer: coarse)').matches) return false; // native inertia on touch
 
   const el = document.getElementById('smooth-content');
-  if (!el) return;
+  if (!el) return false;
 
-  Object.assign(el.style, { position: 'fixed', top: '0', left: '0', width: '100%' });
+  // El lerp de JS ja fa d'easing: amb scroll-behavior:smooth del CSS actiu, un
+  // clic a un àncora s'animaria dues vegades (navegador + lerp) i quedaria lent.
+  document.documentElement.style.scrollBehavior = 'auto';
+
+  Object.assign(el.style, { position: 'fixed', top: '0', left: '0', width: '100%', willChange: 'transform' });
 
   const syncHeight = () => { document.body.style.height = el.scrollHeight + 'px'; };
   syncHeight();
@@ -37,10 +55,9 @@ function initSmoothScroll() {
       const target = document.getElementById(id);
       if (!target) return;
       e.preventDefault();
-      window.scrollTo(0, target.offsetTop);
+      window.scrollTo({ top: target.offsetTop, behavior: 'instant' });
     });
   });
-
 
   function tick() {
     currentY += (targetY - currentY) * EASE;
@@ -52,7 +69,20 @@ function initSmoothScroll() {
       el.style.transform = `translateY(${-targetY}px)`;
       rafId = null;
     }
+    emitScrollFrame();
   }
+
+  return true;
+}
+
+// Sense smooth scroll (mòbil, reduced motion): el bus s'alimenta de l'scroll natiu
+function initNativeScrollFrames() {
+  let pending = false;
+  window.addEventListener('scroll', () => {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => { pending = false; emitScrollFrame(); });
+  }, { passive: true });
 }
 
 // ── Nav: pill + scroll-linked slide ──────────────────────────────────────────
@@ -232,27 +262,29 @@ function initCtaParallax() {
   if (!section || !img) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  let rafId   = null;
+  let visible = false;
 
-  function tick() {
+  function update() {
+    if (!visible) return;
     const rect     = section.getBoundingClientRect();
     const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
     const clamped  = Math.max(0, Math.min(1, progress));
     const offset   = (clamped - 0.5) * 110; // ±55px, within the 70px inset buffer
     img.style.transform = `scale(1.04) translateY(${offset}px)`;
-    rafId = requestAnimationFrame(tick);
   }
 
+  onScrollFrame(update);
+
   new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !rafId)  { rafId = requestAnimationFrame(tick); }
-    if (!entries[0].isIntersecting && rafId)  { cancelAnimationFrame(rafId); rafId = null; }
+    visible = entries[0].isIntersecting;
+    update();
   }, { threshold: 0 }).observe(section);
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
-  initSmoothScroll();
+  if (!initSmoothScroll()) initNativeScrollFrames();
   initNav();
   initReveal();
   initServicesCarousel();

@@ -20,15 +20,15 @@ css/layout.css       # Estructura de seccions, grid, responsive
 css/components.css   # Nav, botons, cards, formulari, hero-card
 css/animations.css   # Reveal en scroll, parallax, prefers-reduced-motion
 css/gracies.css      # Estils propis de gracies.html, aïllats (no toca la resta del sistema)
-js/main.js           # Init: smooth scroll, nav pill, reveal, services carousel, CTA parallax
-js/form.js           # Validació + reCAPTCHA invisible + submit natiu al CRM
+js/main.js           # Init: smooth scroll, bus de frames d'scroll, nav pill, reveal, services carousel, CTA parallax
+js/form.js           # Validació + reCAPTCHA invisible (carregat en diferit) + submit natiu al CRM
 js/lang.js           # Switch CA / ES / EN, càrrega de locales/, aria-pressed
 js/phone.js          # Selector de prefix telefònic (cerca + navegació amb teclat)
 locales/ca.json      # Tots els textos en català (idioma per defecte i font de veritat)
 locales/es.json      # Castellà
 locales/en.json      # Anglès
 logos/               # Logos UAUU.png, CA.png, CT.png, CM.png, MV.png
-fonts/               # Ogg-Medium.woff2 + Inter-Variable.woff2 (variable)
+fonts/               # Ogg-Medium.woff2 + Inter-Variable-latin.woff2 (variable, subset llatí)
 assets/              # Buit al repo (assets a https://uauu.cat/media/)
 favicon.ico
 ```
@@ -52,13 +52,21 @@ No hi ha footer.
 
 ## Scroll suau (desktop)
 `initSmoothScroll()` a `js/main.js`: en desktop (no touch), posa `#smooth-content` en `position: fixed` i anima `translateY` via rAF (EASE = 0.06). Pausat en mòbil/touch. Tot el contingut visible és dins `#smooth-content`; els àncors interns es gestionen via JS.
+- Quan el smooth scroll JS és actiu, es força `scroll-behavior: auto` a `<html>` (el `smooth` de `base.css` només serveix per a mòbil/reduced-motion): si no, els àncors s'animarien dues vegades.
+- **Bus de frames d'scroll** (`onScrollFrame` a `js/main.js`): els efectes lligats a l'scroll (parallax del CTA) s'hi subscriuen i només s'executen quan el contingut es mou (cada tick del lerp, o cada event `scroll` natiu en mòbil). No crear rAF permanents per a efectes nous: subscriure'ls al bus.
 
 ## Multiidioma
 - Textos externalitzats a `locales/{ca,es,en}.json`
 - Cada element visible amb `data-i18n="clau"` (o `data-i18n-html` per HTML ric)
 - Idioma per defecte: català. Detecció automàtica per `navigator.language`. Es guarda a `localStorage('uauu-lang')`
+- Si l'idioma inicial coincideix amb el `lang` de `<html>` (català), `initLang()` no baixa el JSON ni toca el DOM: l'HTML ja porta aquests textos. Per això l'HTML i `ca.json` han d'estar sempre sincronitzats.
 - Lang buttons: `aria-pressed="true/false"` (no `aria-current`)
 - Quan s'afegeix una clau nova: actualitzar els **tres** fitxers JSON simultàniament
+
+## Fonts
+- `Inter-Variable-latin.woff2` és un subset (Latin bàsic + Latin-1 + Latin Extended-A + puntuació general + €, fletxes) generat amb `pyftsubset` des de l'Inter Variable oficial, conservant els eixos `wght` i `opsz`. Si mai cal un caràcter fora d'aquests rangs, regenerar el subset (no tornar a la font completa, 349 KB).
+- `'Inter Fallback'` a `tokens.css`: Arial amb `size-adjust`/`ascent-override`/`descent-override` calculats a partir de les mètriques reals d'Inter, per evitar salts de layout al swap.
+- Les dues fonts es preloaden a `index.html`.
 
 ## Imatges
 - Tots els assets a CDN extern: `https://uauu.cat/media/` (alguns `https://www.uauu.cat/media/`)
@@ -73,6 +81,7 @@ No hi ha footer.
 - Honeypot antispam: `name="hp_website"` visible·ment ocult. `js/form.js` aborta el submit (silenciosament) si el camp ve omplert.
 - Validació client-side a `js/form.js`: classe `.is-error` sobre l'input o `.form-footer`
 - Submissió: reCAPTCHA invisible (Google) → callback `window.enviarAlCRM` → submit natiu POST a `https://crm.espaigastronomia.cat/index.php?entryPoint=WebToPersonCapture`
+- **reCAPTCHA es carrega en diferit** (`loadRecaptcha()` a `js/form.js`): no hi ha cap `<script>` de Google al `<head>`. S'injecta quan el formulari s'acosta al viewport (IntersectionObserver, 800px de marge) o al primer `focusin`/`pointerdown` sobre el formulari. Es renderitza en mode explícit (`render=explicit` + callback `uauuRecaptchaReady`) i el submit espera la promesa; si Google no respon en 8 s, s'envia sense captcha (mateix comportament que abans si `api.js` fallava).
 - **No** és un fetch; és submit natiu del formulari
 - `redirect_url` apunta a `https://www.uauu.cat/welcome/gracies.html` — el CRM hi redirigeix el navegador si accepta el lead. Vegeu ## Tracking per a què passa allà.
 - Abans del submit, `js/form.js` genera un `event_id` (`crypto.randomUUID()`, amb fallback) i el desa a `sessionStorage['uauu_lead_event_id']` — el recull `gracies.html` per disparar la conversió del pixel

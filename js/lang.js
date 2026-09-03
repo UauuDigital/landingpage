@@ -53,7 +53,9 @@ export function initLang() {
   const saved = localStorage.getItem('uauu-lang');
   const initial = SUPPORTED.includes(saved) ? saved : DEFAULT_LANG;
 
-  switchLang(initial);
+  // L'HTML ja porta els textos de l'idioma per defecte: no cal baixar el JSON
+  // ni reescriure el DOM per tornar a posar el mateix.
+  if (initial !== document.documentElement.lang) switchLang(initial);
 
   document.querySelectorAll('.site-nav__lang-btn').forEach((btn) => {
     btn.addEventListener('click', () => switchLang(btn.dataset.lang));

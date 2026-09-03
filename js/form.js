@@ -89,6 +89,74 @@ window.enviarAlCRM = function () {
   document.getElementById('contact-form').submit();
 };
 
+// ── reCAPTCHA en diferit ───────────────────────────────────────────────────
+// El script de Google (uns 400 KB de JS + un iframe) no es carrega amb la
+// pàgina sinó quan el formulari s'acosta al viewport o l'usuari hi interactua.
+// Es renderitza en mode explícit per saber del cert quan es pot cridar execute().
+const RECAPTCHA_ONLOAD = 'uauuRecaptchaReady';
+const RECAPTCHA_SRC = `https://www.google.com/recaptcha/api.js?onload=${RECAPTCHA_ONLOAD}&render=explicit`;
+const RECAPTCHA_TIMEOUT_MS = 8000;
+
+let recaptchaPromise = null;
+let recaptchaWidgetId = null;
+
+function loadRecaptcha() {
+  if (recaptchaPromise) return recaptchaPromise;
+
+  recaptchaPromise = new Promise((resolve) => {
+    const container = document.getElementById('recaptcha_invisible');
+    if (!container) return resolve();
+
+    // Si Google no respon (bloquejat, sense xarxa), el submit no es queda penjat:
+    // continua com si no hi hagués reCAPTCHA, igual que abans si api.js fallava.
+    const timer = setTimeout(resolve, RECAPTCHA_TIMEOUT_MS);
+
+    window[RECAPTCHA_ONLOAD] = () => {
+      try {
+        recaptchaWidgetId = grecaptcha.render(container, {
+          sitekey:  container.dataset.sitekey,
+          size:     container.dataset.size || 'invisible',
+          badge:    container.dataset.badge || 'bottomleft',
+          callback: window.enviarAlCRM,
+        });
+      } catch (_) {
+        recaptchaWidgetId = null;
+      }
+      clearTimeout(timer);
+      resolve();
+    };
+
+    ['https://www.google.com', 'https://www.gstatic.com'].forEach((href) => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = href;
+      document.head.appendChild(link);
+    });
+
+    const script = document.createElement('script');
+    script.src = RECAPTCHA_SRC;
+    script.async = true;
+    script.onerror = () => { clearTimeout(timer); resolve(); };
+    document.head.appendChild(script);
+  });
+
+  return recaptchaPromise;
+}
+
+function scheduleRecaptcha(form) {
+  const onInteract = () => loadRecaptcha();
+  form.addEventListener('focusin', onInteract, { once: true });
+  form.addEventListener('pointerdown', onInteract, { once: true });
+
+  if (!('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((e) => e.isIntersecting)) return;
+    observer.disconnect();
+    loadRecaptcha();
+  }, { rootMargin: '800px 0px' });
+  observer.observe(form);
+}
+
 function getDialCode() {
   return document.querySelector('#country-selector .cs-dial')?.textContent.trim() ?? '+34';
 }
@@ -146,14 +214,18 @@ export function initForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
+  scheduleRecaptcha(form);
+  let submitting = false;
+
   form.addEventListener('input', (e) => {
     e.target.classList.remove('is-error');
     e.target.closest('.contact-form__phone-wrap')?.classList.remove('is-error');
     e.target.closest('.form-footer')?.classList.remove('is-error');
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (submitting) return;
 
     // Antispam honeypot: bots fill hidden fields. Abort silently.
     const honeypot = form.querySelector('[name="hp_website"]');
@@ -177,8 +249,13 @@ export function initForm() {
       phoneInput.value = raw.startsWith('+') ? raw : dialCode + raw;
     }
 
-    if (typeof grecaptcha !== 'undefined') {
-      grecaptcha.execute();
+    submitting = true;
+    await loadRecaptcha();
+
+    if (recaptchaWidgetId !== null && typeof grecaptcha !== 'undefined') {
+      grecaptcha.execute(recaptchaWidgetId);
+      // Si l'usuari tanca el repte sense resoldre'l, ha de poder tornar a enviar
+      submitting = false;
     } else {
       storeLeadEventId();
       form.submit();

@@ -8,12 +8,26 @@
   font-display: swap;
 }
 
+/* Subset llatí (bàsic + Latin-1 + Latin Extended-A + puntuació) generat amb
+   pyftsubset des de l'Inter Variable complet: 76 KB en lloc de 349 KB. */
 @font-face {
   font-family: 'Inter';
-  src: url('../fonts/Inter-Variable.woff2') format('woff2-variations');
+  src: url('../fonts/Inter-Variable-latin.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+}
+
+/* Fallback amb mètriques ajustades a Inter (Arial és present a macOS i
+   Windows): el text de sistema ocupa el mateix espai mentre es carrega la
+   font i el swap no provoca salts de layout. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.47%;
+  ascent-override: 90.14%;
+  descent-override: 22.44%;
+  line-gap-override: 0%;
 }
 
 :root {
@@ -30,7 +44,7 @@
 
   /* Typography */
   --font-serif:  'Ogg', Georgia, 'Times New Roman', serif;
-  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans:   'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
 
   --text-xs:    0.75rem;
   --text-sm:    0.875rem;
