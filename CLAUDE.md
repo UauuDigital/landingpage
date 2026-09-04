@@ -44,9 +44,8 @@ tokens → base → layout → components → animations
 
 ## Seccions (ordre al DOM)
 1. **Hero** (#inici) — full-viewport, imatge de fons, headline, hero-card flotant (foto + CTA → #contacte)
-2. **Manifesto** — headline gran + 10 fotos escampades (posicions a `layout.css`, rotació via `--rot`). Sense drift JS; amaga't amb `prefers-reduced-motion`.
-3. **Services** (#serveis) — carrusel horitzontal de 6 cards (drag + prev/next), no grid fix
-4. **CTA / Form** (#contacte) — imatge de fons amb parallax, logos de les 4 finques, formulari de contacte
+2. **Services** (#serveis) — carrusel horitzontal de 6 cards (drag + prev/next), no grid fix
+3. **CTA / Form** (#contacte) — imatge de fons amb parallax, logos de les 4 finques, formulari de contacte
 
 No hi ha footer.
 
