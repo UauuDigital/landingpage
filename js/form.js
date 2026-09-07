@@ -23,6 +23,11 @@ const UTM_SOURCE_MAP = {
 // Valor quan no hi ha utm_source, o quan no és cap dels canals reconeguts.
 const DEFAULT_LEAD_SOURCE = 'web_directe';
 const UTM_SOURCE_STORAGE_KEY = 'uauu_utm_source';
+// Desa el lead_source ja resolt (mateix valor que rep el CRM) perquè gracies.html
+// el pugui reutilitzar tal qual a l'event de conversió d'Umami, sense recalcular
+// el mapeig UTM_SOURCE_MAP (i sense poder-ho fer: gracies.html neteja la URL
+// abans de res, així que ja no hi ha utm_source a llegir des d'allà).
+const LEAD_SOURCE_STORAGE_KEY = 'uauu_lead_source';
 
 function makeEventId() {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -76,8 +81,10 @@ function storeLeadEventId() {
   }
 
   try {
+    const leadSource = resolveLeadSource();
     const leadSourceField = document.getElementById('lead_source');
-    if (leadSourceField) leadSourceField.value = resolveLeadSource();
+    if (leadSourceField) leadSourceField.value = leadSource;
+    sessionStorage.setItem(LEAD_SOURCE_STORAGE_KEY, leadSource);
   } catch (_) {
     // Si falla, el formulari s'envia igualment amb el valor per defecte de l'HTML
   }

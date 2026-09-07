@@ -40,6 +40,9 @@
   </script>
   <!-- End OpenAI Ads Measurement Pixel -->
 
+  <!-- Umami Cloud — analítica de visites (trackeja utm_source/utm_campaign automàticament) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="9e3fe141-1c09-457b-b9cb-37bb5645d49f"></script>
+
   <!-- Script propi: dispara la conversió si venim del formulari.
        0) si ja hem disparat en aquesta pestanya (uauu_lead_event_fired) → no fem res.
           Sense això, un simple F5 a gracies.html tornaria a entrar pel pla B (el
@@ -52,10 +55,25 @@
           comptar de més que perdre conversions sense assabentar-nos-en.
        3) ni clau ni referrer del CRM (visita directa) → no disparem res.
        Tot en try/catch: el tracking mai ha de trencar la pàgina de gràcies. Únic residu
-       acceptable: emmagatzematge bloquejat A MÉS de recàrrega (no es pot marcar el flag). -->
+       acceptable: emmagatzematge bloquejat A MÉS de recàrrega (no es pot marcar el flag).
+
+       lead_source per a Umami: reutilitza el mateix valor ja resolt i desat per
+       js/form.js (uauu_lead_source, el que rep el CRM), no el recalcula — gracies.html
+       ja ha netejat la URL abans que arribi aquí, així que no hi ha utm_source a llegir.
+       Es dispara amb el mateix guard que el pixel d'OpenAI (mateix bloc, mateix flag):
+       una sola conversió per pestanya, mai duplicada en recarregar.
+
+       umami.track() s'ajorna a DOMContentLoaded: l'script d'Umami de més amunt porta
+       `defer`, però `defer` només afecta scripts externs (amb `src`) — en un script
+       inline com aquest no fa res, i s'executaria igualment durant el parsing, abans
+       que `window.umami` existeixi. DOMContentLoaded sí que dispara després que tots
+       els scripts defer hagin corregut, així que és el punt segur per cridar-lo.
+       oaiq no té aquest problema (la seva pròpia cua interna ja encua les crides fetes
+       abans que el script real carregui) i es manté disparant-se a l'instant, com abans. -->
   <script>
   (function () {
     var FIRED_KEY = 'uauu_lead_event_fired';
+    var DEFAULT_LEAD_SOURCE = 'web_directe'; // ha de coincidir amb DEFAULT_LEAD_SOURCE a js/form.js
     var eventId = null;
 
     try {
@@ -84,11 +102,35 @@
     }
 
     if (eventId) {
+      var leadSource = DEFAULT_LEAD_SOURCE;
+      try {
+        leadSource = sessionStorage.getItem('uauu_lead_source') || DEFAULT_LEAD_SOURCE;
+        sessionStorage.removeItem('uauu_lead_source');
+      } catch (e) {
+        // sessionStorage no disponible: ens quedem amb el valor per defecte
+      }
+
       try {
         oaiq('measure', 'lead_created', { type: 'customer_action' }, { event_id: eventId });
         sessionStorage.setItem(FIRED_KEY, '1');
       } catch (e) {
         // El tracking mai ha de trencar la pàgina de gràcies
+      }
+
+      var fireUmami = function () {
+        try {
+          if (typeof umami !== 'undefined') {
+            umami.track('lead_created', { lead_source: leadSource });
+          }
+        } catch (e) {
+          // El tracking mai ha de trencar la pàgina de gràcies
+        }
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fireUmami);
+      } else {
+        // El DOM ja estava carregat quan hem arribat aquí (script tard o reexecutat)
+        fireUmami();
       }
     }
   })();
