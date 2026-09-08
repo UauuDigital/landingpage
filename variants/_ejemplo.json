@@ -1,4 +1,6 @@
 {
+  "template": "index.html",
+
   "hero.headline": {
     "ca": "[VARIANT DE PROVA]<br>Aquest text<br>és fictici.",
     "es": "[VARIANTE DE PRUEBA]<br>Este texto<br>es ficticio.",
