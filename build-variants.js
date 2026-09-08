@@ -10,7 +10,10 @@
 // clau "template" al seu JSON — vegeu CLAUDE.md ## Variants). El que és
 // SEMPRE compartit entre plantilles és el sistema de disseny (css/, fonts/)
 // i els mòduls JS (js/): una plantilla nova pot tenir un DOM/seccions
-// diferents, mai el seu propi CSS ni JS.
+// diferents, mai el seu propi CSS ni JS -- però ha de portar, literalment i
+// amb el mateix ordre d'atributs, el bloc <head> d'index.html (vegeu
+// requireTag(): es valida abans d'escriure res, exit 1 amb el tag i la
+// plantilla exactes si en falta algun -- mai un replace() silenciós).
 //
 // Per cada variants/<nom>.json (excepte default.json, que és la que ja
 // aplica js/variant.js en temps real sobre l'index.html de l'arrel, i
@@ -245,34 +248,80 @@ function bakeVariantContent(html, data) {
 // Estàtics i coherents amb la variant: els crawlers de xarxes socials i
 // cercadors no executen JS, així que og:image/title/description han
 // d'existir ja resolts a l'HTML servit, no dependre de js/variant.js.
+//
+// Exigeix el format EXACTE d'index.html (mateix ordre d'atributs:
+// property="og:title" content="...", mai a l'inrevés) en lloc de tolerar
+// variacions: és més senzill i, com que CLAUDE.md ja demana copiar el bloc
+// <head> literalment a qualsevol plantilla nova, no calen dues maneres
+// d'escriure el mateix tag. Cada substitució es valida abans de fer-se —
+// un regex que no hi coincideix és, si no, un no-op silenciós.
+function requireTag(html, regex, name, templateFile, label) {
+  if (!regex.test(html)) {
+    throw new Error(
+      `variants/${name}.json: la plantilla "${templateFile}" no té ${label} (o no coincideix exactament amb el format d'index.html). Copia aquest tag literalment des de index.html.`
+    );
+  }
+}
 
-function rewriteMeta(html, data, name) {
+function rewriteMeta(html, data, name, templateFile) {
   let out = html;
   const title = data['meta.title'];
   const description = data['meta.description'];
   const heroImage = data['hero.bg']?.ca;
   const pageUrl = `${SITE_BASE_URL}${name}/`;
 
+  const check = (label, regex) => requireTag(out, regex, name, templateFile, label);
+
   if (title) {
-    out = out.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
-    out = out.replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${escapeAttr(title)}$2`);
-    out = out.replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${escapeAttr(title)}$2`);
+    const titleRe = /<title>[\s\S]*?<\/title>/;
+    check('<title>...</title>', titleRe);
+    out = out.replace(titleRe, `<title>${escapeHtml(title)}</title>`);
+
+    const ogTitleRe = /(<meta property="og:title" content=")[^"]*(")/;
+    check('<meta property="og:title" content="...">', ogTitleRe);
+    out = out.replace(ogTitleRe, `$1${escapeAttr(title)}$2`);
+
+    const twitterTitleRe = /(<meta name="twitter:title" content=")[^"]*(")/;
+    check('<meta name="twitter:title" content="...">', twitterTitleRe);
+    out = out.replace(twitterTitleRe, `$1${escapeAttr(title)}$2`);
   }
 
   if (description) {
-    out = out.replace(/(<meta name="description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`);
-    out = out.replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`);
-    out = out.replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${escapeAttr(description)}$2`);
+    const descRe = /(<meta name="description" content=")[^"]*(")/;
+    check('<meta name="description" content="...">', descRe);
+    out = out.replace(descRe, `$1${escapeAttr(description)}$2`);
+
+    const ogDescRe = /(<meta property="og:description" content=")[^"]*(")/;
+    check('<meta property="og:description" content="...">', ogDescRe);
+    out = out.replace(ogDescRe, `$1${escapeAttr(description)}$2`);
+
+    const twitterDescRe = /(<meta name="twitter:description" content=")[^"]*(")/;
+    check('<meta name="twitter:description" content="...">', twitterDescRe);
+    out = out.replace(twitterDescRe, `$1${escapeAttr(description)}$2`);
   }
 
   if (heroImage) {
-    out = out.replace(/(<link rel="preload" as="image" href=")[^"]*("[^>]*>)/, `$1${escapeAttr(heroImage)}$2`);
-    out = out.replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${escapeAttr(heroImage)}$2`);
-    out = out.replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${escapeAttr(heroImage)}$2`);
+    const preloadRe = /(<link rel="preload" as="image" href=")[^"]*("[^>]*>)/;
+    check('<link rel="preload" as="image" href="...">', preloadRe);
+    out = out.replace(preloadRe, `$1${escapeAttr(heroImage)}$2`);
+
+    const ogImageRe = /(<meta property="og:image" content=")[^"]*(")/;
+    check('<meta property="og:image" content="...">', ogImageRe);
+    out = out.replace(ogImageRe, `$1${escapeAttr(heroImage)}$2`);
+
+    const twitterImageRe = /(<meta name="twitter:image" content=")[^"]*(")/;
+    check('<meta name="twitter:image" content="...">', twitterImageRe);
+    out = out.replace(twitterImageRe, `$1${escapeAttr(heroImage)}$2`);
   }
 
-  out = out.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${escapeAttr(pageUrl)}$2`);
-  out = out.replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${escapeAttr(pageUrl)}$2`);
+  // Sense condició de variant: pageUrl sempre es calcula i sempre s'escriu.
+  const canonicalRe = /(<link rel="canonical" href=")[^"]*(")/;
+  check('<link rel="canonical" href="...">', canonicalRe);
+  out = out.replace(canonicalRe, `$1${escapeAttr(pageUrl)}$2`);
+
+  const ogUrlRe = /(<meta property="og:url" content=")[^"]*(")/;
+  check('<meta property="og:url" content="...">', ogUrlRe);
+  out = out.replace(ogUrlRe, `$1${escapeAttr(pageUrl)}$2`);
 
   return out;
 }
@@ -281,18 +330,31 @@ function rewriteMeta(html, data, name) {
 // variants/<nom>.json ha de tornar a carregar per reaplicar-se en cada canvi
 // d'idioma (vegeu js/variant.js i js/lang.js). El comentari de hash just a
 // sota és la marca de frescor que llegeix --check (vegeu computeInputHash).
-function injectVariantMeta(html, name, hash) {
+//
+// Requereix el tag EXACTE (mateix format que index.html, self-closing amb
+// espai abans de "/>"): sense això, l'html.replace() de sota seria un no-op
+// silenciós -- la pàgina es generaria sense meta de variant ni marca de
+// frescor, i --check informaria "no porta la marca de generació" en lloc
+// d'assenyalar la causa real. Es falla aquí, abans d'escriure res.
+const CHARSET_META = '<meta charset="UTF-8" />';
+
+function injectVariantMeta(html, name, templateFile, hash) {
+  if (!html.includes(CHARSET_META)) {
+    throw new Error(
+      `variants/${name}.json: la plantilla "${templateFile}" no té el tag ${CHARSET_META} exacte. Copia'l literalment des de index.html (mateixes majúscules i espaiat).`
+    );
+  }
   return html.replace(
-    '<meta charset="UTF-8" />',
-    `<meta charset="UTF-8" />\n  <meta name="uauu-variant" content="${escapeAttr(name)}" />\n  <!-- build-variants:hash sha256:${hash} -->`
+    CHARSET_META,
+    `${CHARSET_META}\n  <meta name="uauu-variant" content="${escapeAttr(name)}" />\n  <!-- build-variants:hash sha256:${hash} -->`
   );
 }
 
-function buildVariantHtml(name, data, rawJson, templateHtml) {
+function buildVariantHtml(name, data, rawJson, templateHtml, templateFile) {
   const hash = computeInputHash(templateHtml, rawJson);
   let html = templateHtml;
-  html = injectVariantMeta(html, name, hash);
-  html = rewriteMeta(html, data, name);
+  html = injectVariantMeta(html, name, templateFile, hash);
+  html = rewriteMeta(html, data, name, templateFile);
   html = bakeVariantContent(html, data);
   html = rewriteRelativePaths(html);
   return html;
@@ -352,9 +414,17 @@ function runGenerate() {
     }
   });
 
-  jobs.forEach(({ name, data, rawJson, templatePath }) => {
+  // Genera TOT l'HTML abans d'escriure cap fitxer: buildVariantHtml() pot
+  // llençar (p.ex. si el <head> d'una plantilla no té algun tag esperat, vegeu
+  // requireTag()), i si la variant #2 falla, la #1 no ha de quedar ja escrita
+  // al disc. Mateix criteri de "validar-ho tot abans" que la resta del script.
+  const built = jobs.map(({ name, data, rawJson, templateFile, templatePath }) => {
     const templateHtml = readTemplate(templatePath);
-    const html = buildVariantHtml(name, data, rawJson, templateHtml);
+    const html = buildVariantHtml(name, data, rawJson, templateHtml, templateFile);
+    return { name, html };
+  });
+
+  built.forEach(({ name, html }) => {
     const outDir = path.join(ROOT, name);
 
     fs.mkdirSync(outDir, { recursive: true });
@@ -377,7 +447,16 @@ function runCheck() {
 
   const stale = [];
 
-  jobs.forEach(({ name, rawJson, templateFile, templatePath }) => {
+  jobs.forEach(({ name, data, rawJson, templateFile, templatePath }) => {
+    const templateHtml = readTemplate(templatePath);
+
+    // Valida el mateix que faria "generate" (inclòs el <head> de la
+    // plantilla, vegeu requireTag()) encara que aquesta variant ja estigui
+    // al dia: si regenerar-la fallaria, --check ha d'avisar-ho abans de la
+    // pujada per FTP, no descobrir-ho quan ja calgui regenerar de veritat.
+    // El resultat es descarta -- aquí només interessa que no llenci error.
+    buildVariantHtml(name, data, rawJson, templateHtml, templateFile);
+
     const outFile = path.join(ROOT, name, 'index.html');
 
     if (!fs.existsSync(outFile)) {
@@ -393,7 +472,6 @@ function runCheck() {
       return;
     }
 
-    const templateHtml = readTemplate(templatePath);
     const expected = computeInputHash(templateHtml, rawJson);
     if (match[1] !== expected) {
       stale.push(`${name}/index.html: desactualitzada respecte a ${templateFile} o variants/${name}.json -- executa node build-variants.js`);
