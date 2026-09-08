@@ -1,3 +1,4 @@
+import { initVariant } from './variant.js';
 import { initLang } from './lang.js';
 import { initForm } from './form.js';
 import { initCountrySelector } from './phone.js';
@@ -283,13 +284,18 @@ function initCtaParallax() {
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   if (!initSmoothScroll()) initNativeScrollFrames();
   initNav();
   initReveal();
   initServicesCarousel();
   initCtaParallax();
-  initLang();
   initForm();
   initCountrySelector();
+  // Només variant → i18n depenen d'aquest ordre (la variant fixa el contingut
+  // base abans que l'i18n hi apliqui la traducció per sobre, vegeu el comentari
+  // a initVariant() a js/variant.js); la resta d'init no en depenen, per això
+  // van abans de l'await i no queden endarrerides per la petició de xarxa.
+  await initVariant();
+  initLang();
 });
