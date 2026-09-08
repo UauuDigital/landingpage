@@ -1,0 +1,260 @@
+{
+  "template": "index-b.html",
+
+  "hero.headline": {
+    "ca": "[PENDENT] Casaments a mida.<br>Resposta directa.",
+    "es": "[PENDIENTE] Bodas a medida.<br>Respuesta directa.",
+    "en": "[PENDING] Weddings, your way.<br>Straight answers."
+  },
+  "hero.subtitle": {
+    "ca": "[PENDENT] 4 finques a 45 minuts de Barcelona · Fins a 200 convidats · Tot inclòs.",
+    "es": "[PENDIENTE] 4 fincas a 45 minutos de Barcelona · Hasta 200 invitados · Todo incluido.",
+    "en": "[PENDING] 4 venues 45 min from Barcelona · Up to 200 guests · All-inclusive."
+  },
+  "hero.cta": {
+    "ca": "[PENDENT] Vull la meva proposta",
+    "es": "[PENDIENTE] Quiero mi propuesta",
+    "en": "[PENDING] I want my proposal"
+  },
+  "hero.bg": {
+    "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
+    "es": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
+    "en": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+  },
+
+  "fitxa.headline": {
+    "ca": "[PENDENT] La fitxa ràpida.",
+    "es": "[PENDIENTE] La ficha rápida.",
+    "en": "[PENDING] The quick facts."
+  },
+  "fitxa.zona": {
+    "ca": "[PENDENT] <strong>Zona:</strong> Anoia, a 45 minuts de Barcelona.",
+    "es": "[PENDIENTE] <strong>Zona:</strong> Anoia, a 45 minutos de Barcelona.",
+    "en": "[PENDING] <strong>Area:</strong> Anoia, 45 minutes from Barcelona."
+  },
+  "fitxa.capacitat": {
+    "ca": "[PENDENT] <strong>Capacitat:</strong> de 50 a 200 convidats segons la finca.",
+    "es": "[PENDIENTE] <strong>Capacidad:</strong> de 50 a 200 invitados según la finca.",
+    "en": "[PENDING] <strong>Capacity:</strong> 50 to 200 guests depending on the venue."
+  },
+  "fitxa.inclou": {
+    "ca": "[PENDENT] <strong>Inclou:</strong> càtering, decoració, coordinació i muntatge.",
+    "es": "[PENDIENTE] <strong>Incluye:</strong> catering, decoración, coordinación y montaje.",
+    "en": "[PENDING] <strong>Includes:</strong> catering, decoration, coordination and setup."
+  },
+  "fitxa.temporades": {
+    "ca": "[PENDENT] <strong>Temporades:</strong> disponible d'abril a octubre.",
+    "es": "[PENDIENTE] <strong>Temporadas:</strong> disponible de abril a octubre.",
+    "en": "[PENDING] <strong>Seasons:</strong> available April through October."
+  },
+  "fitxa.preu": {
+    "ca": "[PENDENT] <strong>Preu orientatiu:</strong> des de [X].000 € (paquet complet).",
+    "es": "[PENDIENTE] <strong>Precio orientativo:</strong> desde [X].000 € (paquete completo).",
+    "en": "[PENDING] <strong>Estimated price:</strong> from €[X],000 (full package)."
+  },
+
+  "finques.headline": {
+    "ca": "[PENDENT] Quatre finques, un mateix nivell d'exigència.",
+    "es": "[PENDIENTE] Cuatro fincas, un mismo nivel de exigencia.",
+    "en": "[PENDING] Four venues, one standard of excellence."
+  },
+  "finques.alzina.info": {
+    "ca": "[PENDENT] Fins a 150 convidats · Estil rústic · A 40 min de Barcelona",
+    "es": "[PENDIENTE] Hasta 150 invitados · Estilo rústico · A 40 min de Barcelona",
+    "en": "[PENDING] Up to 150 guests · Rustic style · 40 min from Barcelona"
+  },
+  "finques.macia.info": {
+    "ca": "[PENDENT] Fins a 200 convidats · Estil masia catalana · A 50 min de Barcelona",
+    "es": "[PENDIENTE] Hasta 200 invitados · Estilo masía catalana · A 50 min de Barcelona",
+    "en": "[PENDING] Up to 200 guests · Traditional Catalan farmhouse · 50 min from Barcelona"
+  },
+  "finques.castell.info": {
+    "ca": "[PENDENT] Fins a 180 convidats · Estil senyorial · A 55 min de Barcelona",
+    "es": "[PENDIENTE] Hasta 180 invitados · Estilo señorial · A 55 min de Barcelona",
+    "en": "[PENDING] Up to 180 guests · Stately manor style · 55 min from Barcelona"
+  },
+  "finques.vivencs.info": {
+    "ca": "[PENDENT] Fins a 120 convidats · Estil íntim · A 45 min de Barcelona",
+    "es": "[PENDIENTE] Hasta 120 invitados · Estilo íntimo · A 45 min de Barcelona",
+    "en": "[PENDING] Up to 120 guests · Intimate style · 45 min from Barcelona"
+  },
+
+  "serveis.headline": {
+    "ca": "[PENDENT] Tot inclòs, sense sorpreses.",
+    "es": "[PENDIENTE] Todo incluido, sin sorpresas.",
+    "en": "[PENDING] All-inclusive, no surprises."
+  },
+
+  "com-funciona.headline": {
+    "ca": "[PENDENT] Com funciona",
+    "es": "[PENDIENTE] Cómo funciona",
+    "en": "[PENDING] How it works"
+  },
+  "com-funciona.pas1.titol": {
+    "ca": "[PENDENT] Ens expliques la teva idea",
+    "es": "[PENDIENTE] Nos cuentas tu idea",
+    "en": "[PENDING] Tell us your idea"
+  },
+  "com-funciona.pas1.desc": {
+    "ca": "[PENDENT] Omples el formulari amb les dades bàsiques del vostre casament.",
+    "es": "[PENDIENTE] Rellenas el formulario con los datos básicos de vuestra boda.",
+    "en": "[PENDING] Fill in the form with the basic details of your wedding."
+  },
+  "com-funciona.pas2.titol": {
+    "ca": "[PENDENT] Et truquem amb una proposta",
+    "es": "[PENDIENTE] Te llamamos con una propuesta",
+    "en": "[PENDING] We call you with a proposal"
+  },
+  "com-funciona.pas2.desc": {
+    "ca": "[PENDENT] En menys de 24h et contactem amb un pressupost i les dates disponibles.",
+    "es": "[PENDIENTE] En menos de 24h te contactamos con un presupuesto y las fechas disponibles.",
+    "en": "[PENDING] Within 24h we contact you with a quote and available dates."
+  },
+  "com-funciona.pas3.titol": {
+    "ca": "[PENDENT] Visiteu la finca i reserveu",
+    "es": "[PENDIENTE] Visitáis la finca y reserváis",
+    "en": "[PENDING] Visit the venue and book"
+  },
+  "com-funciona.pas3.desc": {
+    "ca": "[PENDENT] Coneixeu l'espai en persona i confirmeu la data amb l'equip UAUU.",
+    "es": "[PENDIENTE] Conocéis el espacio en persona y confirmáis la fecha con el equipo UAUU.",
+    "en": "[PENDING] Meet the venue in person and confirm the date with the UAUU team."
+  },
+
+  "form.headline": {
+    "ca": "[PENDENT] Demana la teva proposta personalitzada.",
+    "es": "[PENDIENTE] Pide tu propuesta personalizada.",
+    "en": "[PENDING] Get your personalised proposal."
+  },
+
+  "proves.headline": {
+    "ca": "[PENDENT] Casos d'èxit.",
+    "es": "[PENDIENTE] Casos de éxito.",
+    "en": "[PENDING] Success stories."
+  },
+  "proves.bodes.xifra": {
+    "ca": "[PENDENT: xifra]",
+    "es": "[PENDIENTE: cifra]",
+    "en": "[PENDING: figure]"
+  },
+  "proves.bodes.label": {
+    "ca": "[PENDENT: etiqueta de la xifra, p.ex. \"casaments organitzats l'any passat\"]",
+    "es": "[PENDIENTE: etiqueta de la cifra, p.ej. \"bodas organizadas el año pasado\"]",
+    "en": "[PENDING: figure label, e.g. \"weddings organised last year\"]"
+  },
+  "proves.ressenya1.text": {
+    "ca": "[PENDENT: ressenya 1 — testimoni real pendent, no inventar]",
+    "es": "[PENDIENTE: reseña 1 — testimonio real pendiente, no inventar]",
+    "en": "[PENDING: review 1 — real testimonial pending, do not invent]"
+  },
+  "proves.ressenya1.autor": {
+    "ca": "[PENDENT: nom i finca reals]",
+    "es": "[PENDIENTE: nombre y finca reales]",
+    "en": "[PENDING: real name and venue]"
+  },
+  "proves.ressenya2.text": {
+    "ca": "[PENDENT: ressenya 2 — testimoni real pendent, no inventar]",
+    "es": "[PENDIENTE: reseña 2 — testimonio real pendiente, no inventar]",
+    "en": "[PENDING: review 2 — real testimonial pending, do not invent]"
+  },
+  "proves.ressenya2.autor": {
+    "ca": "[PENDENT: nom i finca reals]",
+    "es": "[PENDIENTE: nombre y finca reales]",
+    "en": "[PENDING: real name and venue]"
+  },
+  "proves.ressenya3.text": {
+    "ca": "[PENDENT: ressenya 3 — testimoni real pendent, no inventar]",
+    "es": "[PENDIENTE: reseña 3 — testimonio real pendiente, no inventar]",
+    "en": "[PENDING: review 3 — real testimonial pending, do not invent]"
+  },
+  "proves.ressenya3.autor": {
+    "ca": "[PENDENT: nom i finca reals]",
+    "es": "[PENDIENTE: nombre y finca reales]",
+    "en": "[PENDING: real name and venue]"
+  },
+
+  "faq.headline": {
+    "ca": "[PENDENT] Preguntes freqüents",
+    "es": "[PENDIENTE] Preguntas frecuentes",
+    "en": "[PENDING] Frequently asked questions"
+  },
+  "faq.cta": {
+    "ca": "[PENDENT] Demana la teva proposta",
+    "es": "[PENDIENTE] Pide tu propuesta",
+    "en": "[PENDING] Get your proposal"
+  },
+  "faq.p1.pregunta": {
+    "ca": "[PENDENT] Quin és el rang de preus?",
+    "es": "[PENDIENTE] ¿Cuál es el rango de precios?",
+    "en": "[PENDING] What's the price range?"
+  },
+  "faq.p1.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 1.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 1.",
+    "en": "[PENDING] Answer to question 1."
+  },
+  "faq.p2.pregunta": {
+    "ca": "[PENDENT] Quines dates hi ha disponibles?",
+    "es": "[PENDIENTE] ¿Qué fechas hay disponibles?",
+    "en": "[PENDING] What dates are available?"
+  },
+  "faq.p2.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 2.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 2.",
+    "en": "[PENDING] Answer to question 2."
+  },
+  "faq.p3.pregunta": {
+    "ca": "[PENDENT] Quina és la capacitat màxima?",
+    "es": "[PENDIENTE] ¿Cuál es la capacidad máxima?",
+    "en": "[PENDING] What's the maximum capacity?"
+  },
+  "faq.p3.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 3.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 3.",
+    "en": "[PENDING] Answer to question 3."
+  },
+  "faq.p4.pregunta": {
+    "ca": "[PENDENT] Què inclou exactament el paquet?",
+    "es": "[PENDIENTE] ¿Qué incluye exactamente el paquete?",
+    "en": "[PENDING] What exactly does the package include?"
+  },
+  "faq.p4.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 4.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 4.",
+    "en": "[PENDING] Answer to question 4."
+  },
+  "faq.p5.pregunta": {
+    "ca": "[PENDENT] Com funciona la reserva i el dipòsit?",
+    "es": "[PENDIENTE] ¿Cómo funciona la reserva y el depósito?",
+    "en": "[PENDING] How does booking and the deposit work?"
+  },
+  "faq.p5.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 5.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 5.",
+    "en": "[PENDING] Answer to question 5."
+  },
+  "faq.p6.pregunta": {
+    "ca": "[PENDENT] Què passa si plou?",
+    "es": "[PENDIENTE] ¿Qué pasa si llueve?",
+    "en": "[PENDING] What happens if it rains?"
+  },
+  "faq.p6.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 6.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 6.",
+    "en": "[PENDING] Answer to question 6."
+  },
+
+  "tancament.headline": {
+    "ca": "[PENDENT] Encara hi ets a temps.",
+    "es": "[PENDIENTE] Todavía estás a tiempo.",
+    "en": "[PENDING] There's still time."
+  },
+  "tancament.cta": {
+    "ca": "[PENDENT] Vull la meva proposta",
+    "es": "[PENDIENTE] Quiero mi propuesta",
+    "en": "[PENDING] I want my proposal"
+  },
+
+  "meta.title": "[PENDENT] UAUU — Resposta directa",
+  "meta.description": "[PENDENT] Descripció meta de la variant B (resposta directa)."
+}
