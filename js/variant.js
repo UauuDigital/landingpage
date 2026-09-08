@@ -68,20 +68,13 @@ export function reapplyVariant(lang) {
   applyForLang(lang);
 }
 
-// Dada de sessió a Umami (no un event nou ni una segona pageview): permet
-// comparar visites i conversions per variant al dashboard sense tocar
-// l'auto-track del script d'Umami. Vegeu _temp_variants-generator.md sobre
-// per què s'ha triat identify() i no data-auto-track="false".
-function tagUmamiSession(name) {
-  try {
-    if (typeof umami !== 'undefined' && typeof umami.identify === 'function') {
-      umami.identify({ variant: name });
-    }
-  } catch (_) {
-    // El tracking mai ha de trencar la pàgina
-  }
-}
-
+// Cada variant viu a la seva pròpia URL (/welcome/<nom>/), i Umami ja
+// registra el path a cada pageview automàtic: la segmentació de visites per
+// variant es resol filtrant per URL al dashboard, sense cap crida extra
+// aquí. sessionStorage.uauu_variant es manté igualment: és l'únic pont cap a
+// gracies.html, on totes les conversions cauen a la mateixa URL i el filtre
+// per path no serveix de res (vegeu la propietat `variant` de l'event
+// lead_created a gracies.html).
 export async function initVariant() {
   if (!hasVariantContent()) return;
 
@@ -93,8 +86,6 @@ export async function initVariant() {
     // sessionStorage pot fallar (navegació privada, etc.): gracies.html farà
     // servir el seu propi valor per defecte per a l'event de conversió
   }
-
-  tagUmamiSession(name);
 
   try {
     cachedData = await loadVariant(name);

@@ -30,9 +30,19 @@
 //
 // Reproduïble: executar-ho dues vegades sense tocar variants/*.json produeix
 // exactament el mateix HTML. Les carpetes generades no s'editen mai a mà.
+//
+// `node build-variants.js --check`: comprovació de frescor sense regenerar
+// res. Cada pàgina generada porta encastat un hash (comentari HTML) de
+// l'index.html + el JSON amb què es va cuinar; --check el recalcula amb els
+// fitxers ACTUALS i el compara amb el que hi ha escrit. Detecta tant un
+// variants/<nom>.json editat com un canvi a index.html (la plantilla) sense
+// haver tornat a executar el generador -- exit code 1 si alguna cosa està
+// desactualitzada, 0 si tot hi és. Pensat per anar abans de cada pujada per
+// FTP, sense el cost de regenerar-ho tot per comprovar-ho.
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = __dirname;
 const TEMPLATE_PATH = path.join(ROOT, 'index.html');
@@ -40,11 +50,16 @@ const VARIANTS_DIR = path.join(ROOT, 'variants');
 const SITE_BASE_URL = 'https://www.uauu.cat/welcome/';
 const LOCALES = ['ca', 'es', 'en'];
 const META_KEYS = new Set(['meta.title', 'meta.description']);
+const HASH_COMMENT_RE = /<!-- build-variants:hash sha256:([0-9a-f]{64}) -->/;
 
 // ── Utilitats ────────────────────────────────────────────────────────────
 
-function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+// Hash dels INPUTS bruts (bytes tal qual al disc, sense parsejar): detecta
+// qualsevol canvi, incloent-hi un espai en blanc, tant a la plantilla com al
+// JSON de la variant. El separador \0 evita que "AB"+"C" i "A"+"BC" (canvis
+// de mida a banda i banda de la unió) donin el mateix hash per casualitat.
+function computeInputHash(templateHtml, rawJson) {
+  return crypto.createHash('sha256').update(templateHtml).update('\0').update(rawJson).digest('hex');
 }
 
 function escapeHtml(str) {
@@ -203,56 +218,68 @@ function rewriteMeta(html, data, name) {
 
 // <meta name="uauu-variant"> és qui, en temps real, diu a js/variant.js quin
 // variants/<nom>.json ha de tornar a carregar per reaplicar-se en cada canvi
-// d'idioma (vegeu js/variant.js i js/lang.js).
-function injectVariantMeta(html, name) {
+// d'idioma (vegeu js/variant.js i js/lang.js). El comentari de hash just a
+// sota és la marca de frescor que llegeix --check (vegeu computeInputHash).
+function injectVariantMeta(html, name, hash) {
   return html.replace(
     '<meta charset="UTF-8" />',
-    `<meta charset="UTF-8" />\n  <meta name="uauu-variant" content="${escapeAttr(name)}" />`
+    `<meta charset="UTF-8" />\n  <meta name="uauu-variant" content="${escapeAttr(name)}" />\n  <!-- build-variants:hash sha256:${hash} -->`
   );
 }
 
-function buildVariantHtml(name, data, templateHtml) {
+function buildVariantHtml(name, data, rawJson, templateHtml) {
+  const hash = computeInputHash(templateHtml, rawJson);
   let html = templateHtml;
-  html = injectVariantMeta(html, name);
+  html = injectVariantMeta(html, name, hash);
   html = rewriteMeta(html, data, name);
   html = bakeVariantContent(html, data);
   html = rewriteRelativePaths(html);
   return html;
 }
 
-// ── Main ─────────────────────────────────────────────────────────────────
-
-function main() {
-  const templateHtml = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+// ── Recollida i validació de les variants a processar ───────────────────
+// Comuna a generar i a --check: llegeix cada variants/<nom>.json (excepte
+// default.json) i en valida l'estructura abans de fer-hi res més. Una
+// variant amb errors no ha de deixar mig repo generat ni informar "al dia"
+// per accident.
+function collectJobs() {
   const files = fs
     .readdirSync(VARIANTS_DIR)
     .filter((f) => f.endsWith('.json') && f !== 'default.json');
 
-  if (!files.length) {
+  return files.map((file) => {
+    const name = path.basename(file, '.json');
+    const rawJson = fs.readFileSync(path.join(VARIANTS_DIR, file), 'utf8');
+    const data = JSON.parse(rawJson);
+
+    validateVariantData(name, data);
+
+    return { name, file, data, rawJson };
+  });
+}
+
+function runGenerate() {
+  const templateHtml = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+  const jobs = collectJobs();
+
+  if (!jobs.length) {
     console.log('[build-variants] Cap variant a generar (només hi ha default.json a variants/).');
     return;
   }
 
-  // Pas 1: validar-ho TOT abans d'escriure res. Una variant amb errors no ha
-  // de deixar mig repo generat.
-  const jobs = files.map((file) => {
-    const name = path.basename(file, '.json');
-    const data = readJson(path.join(VARIANTS_DIR, file));
-
-    validateVariantData(name, data);
-
+  // Els noms reservats només importen quan s'escriu de veritat: es
+  // comproven tots abans de tocar cap fitxer, perquè una col·lisió no
+  // deixi mig repo generat.
+  jobs.forEach(({ name, file }) => {
     if (isForeignExistingPath(name)) {
       throw new Error(
         `variants/${file}: el nom de variant "${name}" col·lideix amb un fitxer o carpeta ja existent al repo. Tria un altre nom.`
       );
     }
-
-    return { name, data };
   });
 
-  // Pas 2: generar.
-  jobs.forEach(({ name, data }) => {
-    const html = buildVariantHtml(name, data, templateHtml);
+  jobs.forEach(({ name, data, rawJson }) => {
+    const html = buildVariantHtml(name, data, rawJson, templateHtml);
     const outDir = path.join(ROOT, name);
 
     fs.mkdirSync(outDir, { recursive: true });
@@ -265,8 +292,54 @@ function main() {
   });
 }
 
+function runCheck() {
+  const templateHtml = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+  const jobs = collectJobs();
+
+  if (!jobs.length) {
+    console.log('[build-variants --check] Cap variant a comprovar (només hi ha default.json a variants/).');
+    return;
+  }
+
+  const stale = [];
+
+  jobs.forEach(({ name, rawJson }) => {
+    const outFile = path.join(ROOT, name, 'index.html');
+
+    if (!fs.existsSync(outFile)) {
+      stale.push(`${name}/: no generada (falta ${name}/index.html) -- executa node build-variants.js`);
+      return;
+    }
+
+    const html = fs.readFileSync(outFile, 'utf8');
+    const match = html.match(HASH_COMMENT_RE);
+
+    if (!match) {
+      stale.push(`${name}/index.html: no porta la marca de generació (editada a mà, o generada amb una versió antiga del script) -- torna a executar node build-variants.js`);
+      return;
+    }
+
+    const expected = computeInputHash(templateHtml, rawJson);
+    if (match[1] !== expected) {
+      stale.push(`${name}/index.html: desactualitzada respecte a index.html o variants/${name}.json -- executa node build-variants.js`);
+    }
+  });
+
+  if (stale.length) {
+    console.error('[build-variants --check] Variants desactualitzades:');
+    stale.forEach((line) => console.error(`  - ${line}`));
+    process.exit(1);
+  }
+
+  console.log('[build-variants --check] Totes les variants generades estan al dia.');
+}
+
 try {
-  main();
+  if (process.argv.includes('--check')) {
+    runCheck();
+  } else {
+    runGenerate();
+  }
 } catch (err) {
   console.error(`[build-variants] ${err.message}`);
   process.exit(1);
