@@ -1,0 +1,65 @@
+/* ── Variant B ("Resposta directa") — CSS propi d'aquesta plantilla ────────
+   Només allò que NO existeix ja al sistema compartit (tokens, tipografies,
+   botons, camp de formulari, nav...): tot això s'hereta de layout.css i
+   components.css tal qual, sense redefinir-se aquí. Colors i mides es
+   reutilitzen de tokens.css sempre que n'hi ha un d'adequat; els valors que
+   es veuen "en cru" (rgba de blanc semitransparent, max-width en ch) ho fan
+   perquè el propi sistema ja els tracta així de puntuals segons el context
+   (vegeu .hero-card__label o .gracies__body a css/gracies.css) i no hi ha
+   cap token existent que els generalitzi sense inventar-ne un que només
+   faria servir aquest únic lloc. */
+
+/* ── Hero: subtítol i CTA únic (index.html no en té cap dels dos) ── */
+
+.hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 46ch;
+  margin-top: var(--space-4);
+}
+
+.hero__cta {
+  margin-top: var(--space-8);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--color-text-inverse);
+}
+
+.hero__cta:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Secció de formulari (#contacte) ──────────────────────────────────────
+   Fons fosc sòlid: el component .contact-form (vidre translúcid blanc) ve
+   dissenyat per llegir-se sobre un fons fosc (igual que a la secció CTA/form
+   d'index.html, que hi posa una foto + overlay). Aquí, de moment, un fons
+   sòlid n'hi ha prou i evita haver de triar ja una foto/variant key
+   definitiva per a aquesta secció (es podrà afegir més endavant si cal, amb
+   el mateix patró data-variant-src="cta.bg" que ja fa servir index.html). No
+   es repeteixen els logos de finques: ja són a la secció "Les 4 finques". */
+
+.variante-b-form {
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+
+.variante-b-form__inner {
+  max-width: 820px;
+}
+
+/* ── Formulari en una sola columna ─────────────────────────────────────
+   Únic canvi de layout respecte a index.html: només es reescriu
+   grid-template-columns. La resta del component -- camps, selector de
+   prefix, reCAPTCHA, validació -- és exactament el mateix .contact-form
+   de sempre; js/form.js no es toca. */
+
+.contact-form--stacked {
+  grid-template-columns: 1fr;
+}
