@@ -21,7 +21,13 @@
   margin-top: var(--space-4);
 }
 
-.hero__cta {
+/* Variant fosca de .btn--glass (components.css), pensada per anar sobre
+   fons foscos sòlids o fotografia -- el mateix "vidre" pero amb text
+   invers. Es reutilitza tant al hero com al tancament (secció 9): mateix
+   botó, dos llocs. Candidata a pujar a components.css com a parella de
+   .btn--glass si mai una altra plantilla la necessita, però això
+   tocaria un fitxer compartit i queda fora d'abast d'aquesta variant. */
+.btn--glass-dark {
   margin-top: var(--space-8);
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(24px) saturate(180%);
@@ -30,7 +36,7 @@
   color: var(--color-text-inverse);
 }
 
-.hero__cta:hover {
+.btn--glass-dark:hover {
   background: rgba(255, 255, 255, 0.28);
   border-color: rgba(255, 255, 255, 0.55);
 }
@@ -122,6 +128,28 @@
   margin-bottom: var(--space-2);
 }
 
+/* Placeholder de foto pendent (Ca n'Alzina, sense carpeta al CDN): un
+   buit evident, mai una foto real d'una altra finca fent-se passar per
+   aquesta -- una foto correcta però equivocada es cola a producció, un
+   forat visible no. Mateixa proporció que .service-card__image-wrap
+   (aspect-ratio 6/5), perquè la graella no es descompensi. */
+.venue-card__photo-placeholder {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-3);
+}
+
+.venue-card__photo-placeholder span {
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
 @media (max-width: 1024px) {
   .venue-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -208,4 +236,161 @@
     grid-template-columns: 1fr;
     gap: var(--space-10);
   }
+}
+
+/* ── Prova social (secció 5) ───────────────────────────────────────────
+   Xifra + ressenyes + fotos generals. Estructura completa, buida de
+   contingut real (vegeu el comentari a index-b.html i
+   _temp_variante-b-cierre.md): res del que hi ha aquí és definitiu. */
+
+.proves-stat {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.proves-stat__number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  color: var(--color-accent);
+}
+
+.proves-stat__label {
+  display: block;
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-bottom: var(--space-10);
+}
+
+.testimonial-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.testimonial-card p {
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
+  margin-bottom: var(--space-3);
+}
+
+.testimonial-card footer {
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.proves-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.proves-gallery__img {
+  width: 100%;
+  aspect-ratio: 6/5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  .proves-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── FAQ (secció 8) ─────────────────────────────────────────────────────
+   <details>/<summary> natius: navegables per teclat i amb semàntica
+   d'accessibilitat correcta sense JS (el navegador ja gestiona Tab,
+   Enter/Espai i l'estat obert/tancat). Només s'hi amaga la marca per
+   defecte i se'n dibuixa una de pròpia amb ::after, que reacciona a
+   [open] amb CSS pur. */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: var(--container-prose);
+  margin-inline: auto;
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+}
+
+.faq-item__question {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+}
+
+.faq-item__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item__question::after {
+  content: '+';
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.faq-item[open] .faq-item__question::after {
+  content: '\2212';
+}
+
+.faq-item__answer {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.faq-item__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+}
+
+.faq-item__cta:hover {
+  text-decoration: underline;
+}
+
+.faq-item__cta:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ── Tancament (secció 9) ───────────────────────────────────────────────
+   Fons fosc sòlid, com la secció de formulari: tanca la pàgina amb el
+   mateix llenguatge visual amb què s'obre al hero. */
+
+.tancament {
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-inverse);
+  text-align: center;
 }

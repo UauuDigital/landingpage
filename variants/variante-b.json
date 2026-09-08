@@ -127,6 +127,134 @@
     "en": "[PENDING] Get your personalised proposal."
   },
 
+  "proves.headline": {
+    "ca": "[PENDENT] Casos d'èxit.",
+    "es": "[PENDIENTE] Casos de éxito.",
+    "en": "[PENDING] Success stories."
+  },
+  "proves.bodes.xifra": {
+    "ca": "[PENDENT: xifra]",
+    "es": "[PENDIENTE: cifra]",
+    "en": "[PENDING: figure]"
+  },
+  "proves.bodes.label": {
+    "ca": "[PENDENT: etiqueta de la xifra, p.ex. \"casaments organitzats l'any passat\"]",
+    "es": "[PENDIENTE: etiqueta de la cifra, p.ej. \"bodas organizadas el año pasado\"]",
+    "en": "[PENDING: figure label, e.g. \"weddings organised last year\"]"
+  },
+  "proves.ressenya1.text": {
+    "ca": "[PENDENT: ressenya 1 — testimoni real pendent, no inventar]",
+    "es": "[PENDIENTE: reseña 1 — testimonio real pendiente, no inventar]",
+    "en": "[PENDING: review 1 — real testimonial pending, do not invent]"
+  },
+  "proves.ressenya1.autor": {
+    "ca": "[PENDENT: nom i finca reals]",
+    "es": "[PENDIENTE: nombre y finca reales]",
+    "en": "[PENDING: real name and venue]"
+  },
+  "proves.ressenya2.text": {
+    "ca": "[PENDENT: ressenya 2 — testimoni real pendent, no inventar]",
+    "es": "[PENDIENTE: reseña 2 — testimonio real pendiente, no inventar]",
+    "en": "[PENDING: review 2 — real testimonial pending, do not invent]"
+  },
+  "proves.ressenya2.autor": {
+    "ca": "[PENDENT: nom i finca reals]",
+    "es": "[PENDIENTE: nombre y finca reales]",
+    "en": "[PENDING: real name and venue]"
+  },
+  "proves.ressenya3.text": {
+    "ca": "[PENDENT: ressenya 3 — testimoni real pendent, no inventar]",
+    "es": "[PENDIENTE: reseña 3 — testimonio real pendiente, no inventar]",
+    "en": "[PENDING: review 3 — real testimonial pending, do not invent]"
+  },
+  "proves.ressenya3.autor": {
+    "ca": "[PENDENT: nom i finca reals]",
+    "es": "[PENDIENTE: nombre y finca reales]",
+    "en": "[PENDING: real name and venue]"
+  },
+
+  "faq.headline": {
+    "ca": "[PENDENT] Preguntes freqüents",
+    "es": "[PENDIENTE] Preguntas frecuentes",
+    "en": "[PENDING] Frequently asked questions"
+  },
+  "faq.cta": {
+    "ca": "[PENDENT] Demana la teva proposta",
+    "es": "[PENDIENTE] Pide tu propuesta",
+    "en": "[PENDING] Get your proposal"
+  },
+  "faq.p1.pregunta": {
+    "ca": "[PENDENT] Quin és el rang de preus?",
+    "es": "[PENDIENTE] ¿Cuál es el rango de precios?",
+    "en": "[PENDING] What's the price range?"
+  },
+  "faq.p1.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 1.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 1.",
+    "en": "[PENDING] Answer to question 1."
+  },
+  "faq.p2.pregunta": {
+    "ca": "[PENDENT] Quines dates hi ha disponibles?",
+    "es": "[PENDIENTE] ¿Qué fechas hay disponibles?",
+    "en": "[PENDING] What dates are available?"
+  },
+  "faq.p2.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 2.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 2.",
+    "en": "[PENDING] Answer to question 2."
+  },
+  "faq.p3.pregunta": {
+    "ca": "[PENDENT] Quina és la capacitat màxima?",
+    "es": "[PENDIENTE] ¿Cuál es la capacidad máxima?",
+    "en": "[PENDING] What's the maximum capacity?"
+  },
+  "faq.p3.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 3.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 3.",
+    "en": "[PENDING] Answer to question 3."
+  },
+  "faq.p4.pregunta": {
+    "ca": "[PENDENT] Què inclou exactament el paquet?",
+    "es": "[PENDIENTE] ¿Qué incluye exactamente el paquete?",
+    "en": "[PENDING] What exactly does the package include?"
+  },
+  "faq.p4.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 4.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 4.",
+    "en": "[PENDING] Answer to question 4."
+  },
+  "faq.p5.pregunta": {
+    "ca": "[PENDENT] Com funciona la reserva i el dipòsit?",
+    "es": "[PENDIENTE] ¿Cómo funciona la reserva y el depósito?",
+    "en": "[PENDING] How does booking and the deposit work?"
+  },
+  "faq.p5.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 5.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 5.",
+    "en": "[PENDING] Answer to question 5."
+  },
+  "faq.p6.pregunta": {
+    "ca": "[PENDENT] Què passa si plou?",
+    "es": "[PENDIENTE] ¿Qué pasa si llueve?",
+    "en": "[PENDING] What happens if it rains?"
+  },
+  "faq.p6.resposta": {
+    "ca": "[PENDENT] Resposta a la pregunta 6.",
+    "es": "[PENDIENTE] Respuesta a la pregunta 6.",
+    "en": "[PENDING] Answer to question 6."
+  },
+
+  "tancament.headline": {
+    "ca": "[PENDENT] Encara hi ets a temps.",
+    "es": "[PENDIENTE] Todavía estás a tiempo.",
+    "en": "[PENDING] There's still time."
+  },
+  "tancament.cta": {
+    "ca": "[PENDENT] Vull la meva proposta",
+    "es": "[PENDIENTE] Quiero mi propuesta",
+    "en": "[PENDING] I want my proposal"
+  },
+
   "meta.title": "[PENDENT] UAUU — Resposta directa",
   "meta.description": "[PENDENT] Descripció meta de la variant B (resposta directa)."
 }
