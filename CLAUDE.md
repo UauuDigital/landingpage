@@ -12,7 +12,8 @@ URL de producció: `https://www.uauu.cat/welcome/` (el site NO viu a l'arrel del
 
 ## Estructura de fitxers
 ```
-index.html           # Entrada única. Totes les seccions aquí.
+index.html           # Entrada única / plantilla per defecte. Totes les seccions aquí.
+index-b.html         # Plantilla pròpia de la Variant B "Resposta directa" (vegeu ## Variants)
 gracies.html         # Pàgina de gràcies. Destí del redirect_url del CRM tras enviar el formulari.
 css/tokens.css       # Variables: colors, fonts, spacing. RES es defineix fora d'aquí.
 css/base.css         # Reset + estils globals (inclou .sr-only i .skip-link)
@@ -20,6 +21,7 @@ css/layout.css       # Estructura de seccions, grid, responsive
 css/components.css   # Nav, botons, cards, formulari, hero-card
 css/animations.css   # Reveal en scroll, parallax, prefers-reduced-motion
 css/gracies.css      # Estils propis de gracies.html, aïllats (no toca la resta del sistema)
+css/variante-b.css   # Estils propis d'index-b.html (Variant B), aïllats igual que gracies.css
 js/main.js           # Init: smooth scroll, bus de frames d'scroll, nav pill, reveal, services carousel, CTA parallax
 js/form.js           # Validació + reCAPTCHA invisible (carregat en diferit) + submit natiu al CRM
 js/lang.js           # Switch CA / ES / EN, càrrega de locales/, aria-pressed
@@ -29,6 +31,7 @@ locales/ca.json      # Tots els textos en català (idioma per defecte i font de 
 locales/es.json      # Castellà
 locales/en.json      # Anglès
 variants/default.json    # Contingut variable de l'arrel (mateixos valors que index.html)
+variants/variante-b.json # Variant B "Resposta directa" (vegeu ## Variants) — tot placeholder, no desplegar
 variants/_ejemplo.json   # Referència del format d'una variant — el "_" fa que el generador l'ignori
 build-variants.js    # Generador estàtic de pàgines de variant (vegeu ## Variants)
 logos/               # Logos UAUU.png, CA.png, CT.png, CM.png, MV.png
@@ -78,6 +81,11 @@ Sistema de variants de contingut per campanya (Meta/Google Ads, promos estaciona
 - **En temps real** (`js/variant.js`): llegeix `<meta name="uauu-variant">` del `<head>` (el posa `build-variants.js` a les pàgines generades; sense meta, és la variant `default`), aplica el contingut en `ca` i es torna a aplicar (`reapplyVariant()`) just després de cada canvi d'idioma des de `js/lang.js` — la variant sempre guanya per sobre de l'i18n genèric, també en tornar a CAT. També desa `sessionStorage['uauu_variant']`, que `gracies.html` llegeix per etiquetar l'event `lead_created` d'Umami amb la variant d'origen (la pageview de la landing ja queda etiquetada sola: cada variant té la seva pròpia URL).
 - **`node build-variants.js`**: per cada `variants/<nom>.json` (excepte `default.json` i els `_*`), genera `<nom>/index.html` a partir de la SEVA plantilla (`template`, o `index.html` per defecte) — plantilla + JSON ja resolts: copy en ca cuit al DOM, `<title>`/meta/OG/Twitter i el preload del hero coherents amb la variant, totes les rutes relatives reescrites amb `../`. Sense npm, sense dependències. Les carpetes generades no es versionen (porten el seu propi `.gitignore`) i no s'editen mai a mà.
 - **Pas obligatori abans de cada pujada per FTP**: `node build-variants.js --check` (exit 0 si tot està al dia, 1 si la plantilla d'una variant — la seva pròpia, no necessàriament `index.html` — o el seu `variants/<nom>.json` ha canviat des de l'última generació — en aquest cas, `node build-variants.js` i tornar a comprovar).
+
+### Variant B — "Resposta directa"
+Landing llarga (9 seccions) centrada 100% en captar el lead, pensada per a trànsit fred que necessita més context abans de convertir. Plantilla pròpia `index-b.html` + `css/variante-b.css`; JSON `variants/variante-b.json`. Ordre de seccions: 1. Hero (titular + subtítol + un únic CTA) · 2. Fitxa escaneable (zona, capacitat, què inclou, temporades, preu) · 3. Les 4 finques en cards (foto, capacitat, estil, distància) · 4. Serveis en checklist (reutilitza el catàleg real de `locales/*`, no és copy de variant) · 5. Prova social (ressenyes + xifra de bodes/any + fotos) · 6. Com funciona (3 passos) · 7. Formulari (el mateix `<form>` d'`index.html`, en una sola columna) · 8. FAQ (`<details>/<summary>`, cada resposta acaba amb CTA) · 9. Tancament (CTA repetit). Cap enllaç extern excepte la política de privacitat del formulari; tots els CTA anquen a `#contacte`.
+
+**⚠️ NO desplegar encara**: tot el contingut textual de la Variant B és placeholder (`[PENDENT]`/`[PENDIENTE]`/`[PENDING]`), pendent de contingut real. Especialment sensible: **les 3 ressenyes de la secció de prova social han de ser testimonis reals de clients** (mai inventats) i **la xifra de bodes organitzades l'any ha de ser la dada de negoci real** (mai una xifra inventada perquè sembli plausible). La foto de Ca n'Alzina també és un placeholder visual (no hi ha carpeta real al CDN per a aquesta finca).
 
 ## Fonts
 - `Inter-Variable-latin.woff2` és un subset (Latin bàsic + Latin-1 + Latin Extended-A + puntuació general + €, fletxes) generat amb `pyftsubset` des de l'Inter Variable oficial, conservant els eixos `wght` i `opsz`. Si mai cal un caràcter fora d'aquests rangs, regenerar el subset (no tornar a la font completa, 349 KB).
