@@ -8,7 +8,9 @@
 // mà, abans de pujar per FTP. index.html és la ÚNICA font de veritat del DOM;
 // aquest generador el pren com a plantilla i, per cada variants/<nom>.json
 // (excepte default.json, que és la que ja aplica js/variant.js en temps real
-// sobre l'index.html de l'arrel), escriu una còpia COMPLETA i ja resolta a
+// sobre l'index.html de l'arrel, i excepte els que comencen per "_" —
+// convenció per a fitxers de referència/exemple que no s'han de desplegar,
+// p.ex. variants/_ejemplo.json), escriu una còpia COMPLETA i ja resolta a
 // <arrel>/<nom>/index.html:
 //
 //   - el copy de la variant, en català (idioma per defecte), cuit dins el DOM
@@ -239,13 +241,13 @@ function buildVariantHtml(name, data, rawJson, templateHtml) {
 
 // ── Recollida i validació de les variants a processar ───────────────────
 // Comuna a generar i a --check: llegeix cada variants/<nom>.json (excepte
-// default.json) i en valida l'estructura abans de fer-hi res més. Una
-// variant amb errors no ha de deixar mig repo generat ni informar "al dia"
-// per accident.
+// default.json, i excepte els que comencen per "_", vegeu més avall) i en
+// valida l'estructura abans de fer-hi res més. Una variant amb errors no ha
+// de deixar mig repo generat ni informar "al dia" per accident.
 function collectJobs() {
   const files = fs
     .readdirSync(VARIANTS_DIR)
-    .filter((f) => f.endsWith('.json') && f !== 'default.json');
+    .filter((f) => f.endsWith('.json') && f !== 'default.json' && !f.startsWith('_'));
 
   return files.map((file) => {
     const name = path.basename(file, '.json');
@@ -263,7 +265,7 @@ function runGenerate() {
   const jobs = collectJobs();
 
   if (!jobs.length) {
-    console.log('[build-variants] Cap variant a generar (només hi ha default.json a variants/).');
+    console.log('[build-variants] Cap variant a generar (variants/ només té default.json i/o fitxers "_*" d\'exemple).');
     return;
   }
 
@@ -284,8 +286,8 @@ function runGenerate() {
 
     fs.mkdirSync(outDir, { recursive: true });
     fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
-    // Marca la carpeta com a generada (i, de retruc, l'exclou de git —
-    // vegeu _temp_variants-generator.md sobre la decisió de no versionar-les).
+    // Marca la carpeta com a generada (i, de retruc, l'exclou de git — les
+    // carpetes generades no es versionen, vegeu CLAUDE.md ## Variants).
     fs.writeFileSync(path.join(outDir, '.gitignore'), '*\n', 'utf8');
 
     console.log(`[build-variants] Generat ${name}/index.html`);
@@ -297,7 +299,7 @@ function runCheck() {
   const jobs = collectJobs();
 
   if (!jobs.length) {
-    console.log('[build-variants --check] Cap variant a comprovar (només hi ha default.json a variants/).');
+    console.log('[build-variants --check] Cap variant a comprovar (variants/ només té default.json i/o fitxers "_*" d\'exemple).');
     return;
   }
 
