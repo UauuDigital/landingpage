@@ -23,10 +23,11 @@
 
 /* Variant fosca de .btn--glass (components.css), pensada per anar sobre
    fons foscos sòlids o fotografia -- el mateix "vidre" pero amb text
-   invers. Es reutilitza tant al hero com al tancament (secció 9): mateix
-   botó, dos llocs. Candidata a pujar a components.css com a parella de
-   .btn--glass si mai una altra plantilla la necessita, però això
-   tocaria un fitxer compartit i queda fora d'abast d'aquesta variant. */
+   invers. Únic ús actual: el tancament (secció 9); el hero ara fa servir
+   la hero-card compartida amb index.html en lloc d'aquest botó. Candidata
+   a pujar a components.css com a parella de .btn--glass si mai una altra
+   plantilla la necessita, però això tocaria un fitxer compartit i queda
+   fora d'abast d'aquesta variant. */
 .btn--glass-dark {
   margin-top: var(--space-8);
   background: rgba(255, 255, 255, 0.18);
