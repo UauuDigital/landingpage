@@ -63,3 +63,149 @@
 .contact-form--stacked {
   grid-template-columns: 1fr;
 }
+
+/* ── Fitxa escaneable (secció 2) ───────────────────────────────────────
+   Llista de fets curts, no paràgrafs: cada .fact-sheet__item porta
+   l'etiqueta i el valor junts (un <strong> dins del mateix
+   data-variant-html — vegeu el comentari a index-b.html sobre per què).
+   Mateix llenguatge visual que .service-card__label/__description
+   (mida, pes, color), aquí en targetes soltes en lloc de sota una foto. */
+
+.fact-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.fact-sheet__item {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.fact-sheet__item strong {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: var(--weight-medium);
+  margin-bottom: var(--space-1);
+}
+
+/* ── Les 4 finques (secció 3) ──────────────────────────────────────────
+   Graella estàtica (mai carrusel): cada targeta és un <a href="#contacte">
+   sencer -- tota la card ancora al formulari, sense cap enllaç extern.
+   La imatge/descripció reutilitzen .service-card__image-wrap, __image i
+   __description (mateix component que la secció de serveis d'index.html);
+   només calen les regles pròpies de la graella i del nom de la finca. */
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+.venue-card {
+  display: block;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.venue-card:hover {
+  transform: translateY(-4px);
+}
+
+.venue-card__name {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 1024px) {
+  .venue-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Serveis en checklist (secció 4) ───────────────────────────────────
+   Mateix contingut i mateixes classes de text que la secció de serveis
+   d'index.html (.service-card__label/__description): només canvia el
+   contenidor -- una llista vertical amb marca de check, no cards en
+   carrusel. */
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: var(--container-prose);
+  margin-inline: auto;
+}
+
+.checklist__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.checklist__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+}
+
+/* ── Com funciona, 3 passos (secció 6 al DOM) ──────────────────────────
+   Graella de 3 columnes que col·lapsa a 1 en mòbil, mateix patró que
+   .venue-grid. El número de pas reutilitza la tipografia serif dels
+   titulars per mantenir el mateix llenguatge visual. */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  text-align: center;
+}
+
+.steps__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.steps__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+.steps__desc {
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+@media (max-width: 768px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}

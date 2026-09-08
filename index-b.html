@@ -123,32 +123,125 @@
 
     <!-- ══ 2. FITXA ESCANEABLE ══════════════════════════════════════════
          Zona, capacitats, què inclou el paquet, temporades, rang de preu
-         orientatiu. ══════════════════════════════════════════════════ -->
+         orientatiu. Format de fitxa (llista de fets curts), no paràgrafs:
+         és el bloc que respon "això m'encaixa?" en 10 segons. Cada punt
+         combina etiqueta + valor en un sol data-variant-html (amb un
+         <strong> intern) perquè l'etiqueta també tradueixi per idioma —
+         no hi ha clau i18n "Zona"/"Capacitat" a locales/, i no es toquen
+         els fitxers compartits per crear-ne una nova només per aquesta
+         plantilla (vegeu _temp_variante-b-contenido.md). ══════════════ -->
     <section id="fitxa" aria-label="Fitxa del producte">
       <div class="container">
-        <p>[PENDIENTE: sección 2 — Ficha escaneable (zona, capacidades, qué incluye, temporadas, rango de precio)]</p>
+        <h2 class="section-heading" data-variant-html="fitxa.headline">[PENDENT] La fitxa ràpida.</h2>
+        <ul class="fact-sheet">
+          <li class="fact-sheet__item" data-variant-html="fitxa.zona">[PENDENT] <strong>Zona:</strong> Anoia, a 45 minuts de Barcelona.</li>
+          <li class="fact-sheet__item" data-variant-html="fitxa.capacitat">[PENDENT] <strong>Capacitat:</strong> de 50 a 200 convidats segons la finca.</li>
+          <li class="fact-sheet__item" data-variant-html="fitxa.inclou">[PENDENT] <strong>Inclou:</strong> càtering, decoració, coordinació i muntatge.</li>
+          <li class="fact-sheet__item" data-variant-html="fitxa.temporades">[PENDENT] <strong>Temporades:</strong> disponible d'abril a octubre.</li>
+          <li class="fact-sheet__item" data-variant-html="fitxa.preu">[PENDENT] <strong>Preu orientatiu:</strong> des de [X].000 € (paquet complet).</li>
+        </ul>
       </div>
-      <!-- PENDIENTE: sección 2 -->
     </section>
 
     <!-- ══ 3. LES 4 FINQUES ═════════════════════════════════════════════
          Cards (foto, capacitat, estil, distància), sense enllaços externs
-         — cada card ancora al formulari. ═══════════════════════════════ -->
+         — cada card ancora al formulari. Reutilitza .service-card__image-wrap
+         / __image / __description de components.css (mateix tractament
+         visual que les cards de serveis), amb un contenidor .venue-grid
+         propi (graella estàtica, no carrusel). Els noms de les finques
+         queden fixos (fet de marca, no copy de campanya — vegeu ## Variants
+         a CLAUDE.md); la resta de la fitxa de cada finca sí és variable. -->
     <section id="finques" aria-label="Les nostres finques">
       <div class="container">
-        <p>[PENDIENTE: sección 3 — Las 4 fincas en cards (foto, capacidad, estilo, distancia), cada card ancla a #contacte]</p>
+        <h2 class="section-heading" data-variant-html="finques.headline">[PENDENT] Quatre finques, un mateix nivell d'exigència.</h2>
+        <div class="venue-grid">
+          <a href="#contacte" class="venue-card">
+            <div class="service-card__image-wrap">
+              <img class="service-card__image" src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/9.webp" alt="Ca n'Alzina" loading="lazy" decoding="async" width="382" height="318" />
+            </div>
+            <h3 class="venue-card__name">Ca n'Alzina</h3>
+            <p class="service-card__description" data-variant-html="finques.alzina.info">[PENDENT] Fins a 150 convidats · Estil rústic · A 40 min de Barcelona</p>
+          </a>
+          <a href="#contacte" class="venue-card">
+            <div class="service-card__image-wrap">
+              <img class="service-card__image" src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/2.webp" alt="Can Macià" loading="lazy" decoding="async" width="382" height="318" />
+            </div>
+            <h3 class="venue-card__name">Can Macià</h3>
+            <p class="service-card__description" data-variant-html="finques.macia.info">[PENDENT] Fins a 200 convidats · Estil masia catalana · A 50 min de Barcelona</p>
+          </a>
+          <a href="#contacte" class="venue-card">
+            <div class="service-card__image-wrap">
+              <img class="service-card__image" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/2.webp" alt="Castell de Tous" loading="lazy" decoding="async" width="382" height="318" />
+            </div>
+            <h3 class="venue-card__name">Castell de Tous</h3>
+            <p class="service-card__description" data-variant-html="finques.castell.info">[PENDENT] Fins a 180 convidats · Estil senyorial · A 55 min de Barcelona</p>
+          </a>
+          <a href="#contacte" class="venue-card">
+            <div class="service-card__image-wrap">
+              <img class="service-card__image" src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/2.webp" alt="Mas Vivencs" loading="lazy" decoding="async" width="382" height="318" />
+            </div>
+            <h3 class="venue-card__name">Mas Vivencs</h3>
+            <p class="service-card__description" data-variant-html="finques.vivencs.info">[PENDENT] Fins a 120 convidats · Estil íntim · A 45 min de Barcelona</p>
+          </a>
+        </div>
       </div>
-      <!-- PENDIENTE: sección 3 -->
     </section>
 
     <!-- ══ 4. SERVEIS (checklist) ═══════════════════════════════════════
          Els mateixos 6 serveis d'index.html, en format checklist — NO
-         carrusel. ═══════════════════════════════════════════════════════ -->
+         carrusel. Reutilitza els MATEIXOS data-i18n existents (services.*
+         a locales/*.json): és el mateix catàleg de serveis real, no copy
+         de campanya nova, per això no es dupliquen com a claus de variant
+         (vegeu _temp_variante-b-contenido.md). Només l'encapçalament de la
+         secció és contingut nou d'aquesta variant. ══════════════════════ -->
     <section id="serveis" aria-label="Els nostres serveis">
       <div class="container">
-        <p>[PENDIENTE: sección 4 — Los 6 servicios como checklist (NO carrusel)]</p>
+        <h2 class="section-heading" data-variant-html="serveis.headline">[PENDENT] Tot inclòs, sense sorpreses.</h2>
+        <ul class="checklist">
+          <li class="checklist__item">
+            <span class="checklist__icon" aria-hidden="true">✓</span>
+            <div>
+              <p class="service-card__label" data-i18n="services.venues.label">EXCLUSIVITAT DELS ESPAIS</p>
+              <p class="service-card__description" data-i18n="services.venues.desc">Exclusivitat d'espais únics, fins a 4 finques (Ca n'Alzina, Mas Vivens, Can Macià i el Castell de Tous) per al vostre gran dia.</p>
+            </div>
+          </li>
+          <li class="checklist__item">
+            <span class="checklist__icon" aria-hidden="true">✓</span>
+            <div>
+              <p class="service-card__label" data-i18n="services.coord.label">COORDINACIÓ I ACOMPANYAMENT</p>
+              <p class="service-card__description" data-i18n="services.coord.desc">Servei d'acompanyament des del primer dia fins al casament. Un equip de professionals amb anys d'experiència en casaments a la vostra disposició.</p>
+            </div>
+          </li>
+          <li class="checklist__item">
+            <span class="checklist__icon" aria-hidden="true">✓</span>
+            <div>
+              <p class="service-card__label" data-i18n="services.ceremony.label">CERIMÒNIES ÚNIQUES</p>
+              <p class="service-card__description" data-i18n="services.ceremony.desc">Muntatge, decoració floral, coordinació d'un dels moments més especials del vostre gran dia.</p>
+            </div>
+          </li>
+          <li class="checklist__item">
+            <span class="checklist__icon" aria-hidden="true">✓</span>
+            <div>
+              <p class="service-card__label" data-i18n="services.decor.label">DECORACIÓ</p>
+              <p class="service-card__description" data-i18n="services.decor.desc">Menatge de taula i centres florals a escollir entre una gran varietat d'opcions en tendència, actualitzades any rere any.</p>
+            </div>
+          </li>
+          <li class="checklist__item">
+            <span class="checklist__icon" aria-hidden="true">✓</span>
+            <div>
+              <p class="service-card__label" data-i18n="services.catering.label">GASTRONOMIA</p>
+              <p class="service-card__description" data-i18n="services.catering.desc">Dissenyeu-vos el vostre propi menú amb una extensa diversitat d'opcions d'aperitius, buffets, opcions de cuina en directe i plats pel banquet.</p>
+            </div>
+          </li>
+          <li class="checklist__item">
+            <span class="checklist__icon" aria-hidden="true">✓</span>
+            <div>
+              <p class="service-card__label" data-i18n="services.festa.label">FESTA</p>
+              <p class="service-card__description" data-i18n="services.festa.desc">Servei de DJ i bartenders per posar punt i final a una celebració inoblidable.</p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <!-- PENDIENTE: sección 4 -->
     </section>
 
     <!-- ══ 5. PROVA SOCIAL ══════════════════════════════════════════════
@@ -164,9 +257,25 @@
          3 passos. ════════════════════════════════════════════════════ -->
     <section id="com-funciona" aria-label="Com funciona">
       <div class="container">
-        <p>[PENDIENTE: sección 6 — Cómo funciona, en 3 pasos]</p>
+        <h2 class="section-heading" data-variant-html="com-funciona.headline">[PENDENT] Com funciona</h2>
+        <ol class="steps">
+          <li class="steps__item">
+            <span class="steps__number" aria-hidden="true">1</span>
+            <h3 class="steps__title" data-variant-html="com-funciona.pas1.titol">[PENDENT] Ens expliques la teva idea</h3>
+            <p class="steps__desc" data-variant-html="com-funciona.pas1.desc">[PENDENT] Omples el formulari amb les dades bàsiques del vostre casament.</p>
+          </li>
+          <li class="steps__item">
+            <span class="steps__number" aria-hidden="true">2</span>
+            <h3 class="steps__title" data-variant-html="com-funciona.pas2.titol">[PENDENT] Et truquem amb una proposta</h3>
+            <p class="steps__desc" data-variant-html="com-funciona.pas2.desc">[PENDENT] En menys de 24h et contactem amb un pressupost i les dates disponibles.</p>
+          </li>
+          <li class="steps__item">
+            <span class="steps__number" aria-hidden="true">3</span>
+            <h3 class="steps__title" data-variant-html="com-funciona.pas3.titol">[PENDENT] Visiteu la finca i reserveu</h3>
+            <p class="steps__desc" data-variant-html="com-funciona.pas3.desc">[PENDENT] Coneixeu l'espai en persona i confirmeu la data amb l'equip UAUU.</p>
+          </li>
+        </ol>
       </div>
-      <!-- PENDIENTE: sección 6 -->
     </section>
 
     <!-- ══ 7. FORMULARI ═════════════════════════════════════════════════
@@ -179,7 +288,7 @@
          ═══════════════════════════════════════════════════════════════ -->
     <section id="contacte" class="variante-b-form" aria-label="Sol·licita la teva proposta">
       <div class="container variante-b-form__inner">
-        <h2 class="cta-headline">[PENDENT] Demana la teva proposta personalitzada.</h2>
+        <h2 class="cta-headline" data-variant-html="form.headline">[PENDENT] Demana la teva proposta personalitzada.</h2>
 
         <form
           id="contact-form"
