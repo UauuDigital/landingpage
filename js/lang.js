@@ -1,11 +1,21 @@
+import { reapplyVariant } from './variant.js';
+
 const SUPPORTED = ['ca', 'es', 'en'];
 const DEFAULT_LANG = 'ca';
 const LANG_CRM    = { ca: 'catala', es: 'castellano', en: 'ingles' };
 
 let currentStrings = {};
 
+// Mateix raonament que a variant.js: import.meta.url ancora la ruta a la
+// ubicació real de js/lang.js, no a la del document que l'ha carregat -- així
+// el fetch funciona igual des de l'arrel que des d'una pàgina de variant
+// generada un nivell més avall (<arrel>/<variant>/index.html).
+function localeUrl(lang) {
+  return new URL(`../locales/${lang}.json`, import.meta.url);
+}
+
 async function loadLocale(lang) {
-  const res = await fetch(`locales/${lang}.json`);
+  const res = await fetch(localeUrl(lang));
   if (!res.ok) throw new Error(`Locale not found: ${lang}`);
   return res.json();
 }
@@ -36,6 +46,12 @@ async function switchLang(lang) {
     applyStrings(currentStrings);
     document.documentElement.lang = lang;
     localStorage.setItem('uauu-lang', lang);
+
+    // La variant (si n'hi ha) torna a aplicar-se per SOBRE de l'idioma que
+    // acabem de carregar: sense això, el seu copy no sobreviuria al canvi
+    // d'idioma (tornar a CAT tornaria a descarregar ca.json i esborraria el
+    // que hi hagués). Vegeu el comentari a reapplyVariant() a js/variant.js.
+    reapplyVariant(lang);
 
     const crmField = document.getElementById('idioma_contacto_c');
     if (crmField) crmField.value = LANG_CRM[lang] ?? 'catala';

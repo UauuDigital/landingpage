@@ -63,6 +63,13 @@
        Es dispara amb el mateix guard que el pixel d'OpenAI (mateix bloc, mateix flag):
        una sola conversió per pestanya, mai duplicada en recarregar.
 
+       variant per a Umami: mateix patró exacte que lead_source, però desat per
+       js/variant.js (uauu_variant) en carregar la landing (o la pàgina d'una
+       variant generada), no per js/form.js. Permet comparar visites i
+       conversions per variant al dashboard d'Umami. 'default' si no hi ha cap
+       valor desat (sessionStorage bloquejat, o visita directa a gracies.html
+       sense passar per la landing).
+
        umami.track() s'ajorna a DOMContentLoaded: l'script d'Umami de més amunt porta
        `defer`, però `defer` només afecta scripts externs (amb `src`) — en un script
        inline com aquest no fa res, i s'executaria igualment durant el parsing, abans
@@ -74,6 +81,7 @@
   (function () {
     var FIRED_KEY = 'uauu_lead_event_fired';
     var DEFAULT_LEAD_SOURCE = 'web_directe'; // ha de coincidir amb DEFAULT_LEAD_SOURCE a js/form.js
+    var DEFAULT_VARIANT = 'default'; // ha de coincidir amb DEFAULT_VARIANT a js/variant.js
     var eventId = null;
 
     try {
@@ -110,6 +118,14 @@
         // sessionStorage no disponible: ens quedem amb el valor per defecte
       }
 
+      var variant = DEFAULT_VARIANT;
+      try {
+        variant = sessionStorage.getItem('uauu_variant') || DEFAULT_VARIANT;
+        sessionStorage.removeItem('uauu_variant');
+      } catch (e) {
+        // sessionStorage no disponible: ens quedem amb el valor per defecte
+      }
+
       try {
         oaiq('measure', 'lead_created', { type: 'customer_action' }, { event_id: eventId });
         sessionStorage.setItem(FIRED_KEY, '1');
@@ -120,7 +136,7 @@
       var fireUmami = function () {
         try {
           if (typeof umami !== 'undefined') {
-            umami.track('lead_created', { lead_source: leadSource });
+            umami.track('lead_created', { lead_source: leadSource, variant: variant });
           }
         } catch (e) {
           // El tracking mai ha de trencar la pàgina de gràcies

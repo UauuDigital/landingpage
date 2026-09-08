@@ -1,0 +1,38 @@
+{
+  "hero.headline": {
+    "ca": "El vostre<br>gran dia<br>comença aquí.",
+    "es": "Vuestro<br>gran dia<br>empieza aquí.",
+    "en": "Where your<br>dream day<br>begins."
+  },
+  "hero.bg": {
+    "ca": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp",
+    "es": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp",
+    "en": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp"
+  },
+  "hero.card.image": {
+    "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
+    "es": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
+    "en": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+  },
+  "hero.card.label": {
+    "ca": "CASA'T AMB UAUU",
+    "es": "CÁSATE CON UAUU",
+    "en": "GET MARRIED WITH UAUU"
+  },
+  "hero.card.cta": {
+    "ca": "Més<br>informació",
+    "es": "Más<br>información",
+    "en": "Learn<br>more"
+  },
+
+  "cta.headline": {
+    "ca": "Accedeix als nostres<br>preus i proposta.",
+    "es": "Accede a nuestros<br>precios y propuesta.",
+    "en": "Access our pricing<br>and proposal."
+  },
+  "cta.bg": {
+    "ca": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp",
+    "es": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp",
+    "en": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp"
+  }
+}

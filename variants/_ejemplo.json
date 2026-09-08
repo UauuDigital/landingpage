@@ -1,0 +1,41 @@
+{
+  "hero.headline": {
+    "ca": "[VARIANT DE PROVA]<br>Aquest text<br>és fictici.",
+    "es": "[VARIANTE DE PRUEBA]<br>Este texto<br>es ficticio.",
+    "en": "[TEST VARIANT]<br>This text<br>is fake."
+  },
+  "hero.bg": {
+    "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
+    "es": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
+    "en": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+  },
+  "hero.card.image": {
+    "ca": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp",
+    "es": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp",
+    "en": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp"
+  },
+  "hero.card.label": {
+    "ca": "PROVA DEL GENERADOR",
+    "es": "PRUEBA DEL GENERADOR",
+    "en": "GENERATOR TEST"
+  },
+  "hero.card.cta": {
+    "ca": "Info<br>de prova",
+    "es": "Info<br>de prueba",
+    "en": "Test<br>info"
+  },
+
+  "cta.headline": {
+    "ca": "[PROVA] Formulari<br>de la variant.",
+    "es": "[PRUEBA] Formulario<br>de la variante.",
+    "en": "[TEST] Variant<br>form."
+  },
+  "cta.bg": {
+    "ca": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp",
+    "es": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp",
+    "en": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp"
+  },
+
+  "meta.title": "UAUU — [VARIANT DE PROVA]",
+  "meta.description": "Pàgina de prova del generador de variants (build-variants.js). No és contingut real de cap campanya."
+}
