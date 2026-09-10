@@ -50,24 +50,46 @@
   border-color: rgba(255, 255, 255, 0.55);
 }
 
-/* Amplada de contingut pròpia de la Variant B: 1932px, un 61% més que el
-   cap de ".container" (layout.css, container-max=1200px -- compartit amb
-   index.html, que no es toca). Modificador additiu sobre ".container"
-   (mateix patró que ".variante-b-form__inner" més avall, que ja hi
-   sobreescriu max-width amb un valor propi): width i margin-inline
-   segueixen venint de ".container" tal qual.
+/* ── Amplada de contingut de la Variant B ─────────────────────────────────
+   El cap i el marge lateral es defineixen aquí UNA sola vegada perquè
+   tenen dos consumidors dins d'aquest fitxer: ".container--wide" i
+   ".finques" (que ha de reproduir el mateix inset a mà, vegeu-hi el
+   comentari). Repetir-hi els literals ja va deixar el carrusel de
+   finques desincronitzat quan el cap va passar de 1680 a 1932px --
+   sense conflicte de git ni cap avís, exactament el mateix que va
+   passar amb els 260px de la hero-card.
 
-   El marge lateral escala amb la finestra (4vw) en lloc de ser un fix,
-   amb terra a --space-8 (32px, el mateix valor de ".container": mai més
-   estret que avui a cap ample) i sostre a --space-16 (64px). Amb el cap
-   a 1932px, "margin-inline:auto" no reparteix res per sota d'aquesta
-   amplada: a tot el rang habitual de desktop (1440-1920px) el marge
-   lateral el fixa només el clamp, i el sostre de 64px hi mana a partir
-   de 1600px.
+   No van a tokens.css: allà només hi puja un valor quan el necessiten
+   dos fitxers reals, i aquests dos usos són tots dos d'aquesta variant
+   (--container-max, el cap compartit, el consumeix index.html en
+   producció i no es toca).
 
-   Només a partir de 769px: per sota, el padding mòbil de ".container"
-   (--space-5) es manté intacte -- no hi ha res a eixamplar en un mòbil,
-   on el contingut ja ocupa tot l'ample.
+   Cap: 1932px, un 61% més que --container-max (1200px).
+   Marge: escala amb la finestra (4vw) en lloc de ser fix, amb terra a
+   --space-8 (32px, el mateix de ".container": mai més estret que abans)
+   i sostre a --space-20 (80px). El sostre és prou alt perquè el 4vw
+   mani a tot el rang de desktop fins al cap (4vw val 77px a 1932px):
+   amb el sostre anterior de 64px, el marge s'aplanava a partir de
+   1600px i el percentatge queia (3,3% a 1920px) mentre que de 1280 a
+   1600px es mantenia al 4%. Per damunt del cap ja no cal que el padding
+   creixi: "margin-inline:auto" hi reparteix la resta. */
+:root {
+  --container-wide-max: 1932px;
+  /* Mòbil: el mateix valor que ".container" (layout.css) -- no hi ha res
+     a eixamplar en un mòbil, on el contingut ja ocupa tot l'ample. */
+  --container-wide-gutter: var(--space-5);
+}
+
+@media (min-width: 769px) {
+  :root {
+    --container-wide-gutter: clamp(var(--space-8), 4vw, var(--space-20));
+  }
+}
+
+/* Modificador additiu sobre ".container" (mateix patró que
+   ".variante-b-form__inner" més avall, que ja hi sobreescriu max-width
+   amb un valor propi): width i margin-inline segueixen venint de
+   ".container" tal qual.
 
    Va a totes les seccions d'aquesta plantilla que fan servir
    ".container" (és la línia d'amplada de tota la variant, no una
@@ -75,13 +97,8 @@
    un màxim propi més estret (820px, formulari d'una sola columna) per
    una raó independent d'aquesta. */
 .container--wide {
-  max-width: 1932px;
-}
-
-@media (min-width: 769px) {
-  .container--wide {
-    padding-inline: clamp(var(--space-8), 4vw, var(--space-16));
-  }
+  max-width: var(--container-wide-max);
+  padding-inline: var(--container-wide-gutter);
 }
 
 /* ── Secció de formulari (#contacte) ──────────────────────────────────────
@@ -123,7 +140,7 @@
 
 /* "Full-bleed" volia dir el FONS de la secció, no el contingut: el
    contingut fa servir ".container container--wide" -- mateix marge
-   lateral i mateix cap d'amplada (1932px) que la resta de seccions
+   lateral i mateix cap d'amplada que la resta de seccions
    d'aquesta plantilla, així queden coherents entre elles.
    ".fitxa__inner" no porta padding-inline propi -- ve d'aquelles dues
    classes (vegeu l'HTML i el bloc de ".container--wide" més amunt). */
@@ -395,12 +412,15 @@
 /* .services__header i .services__grid porten un padding-inline propi
    (80/32px, layout.css) que no és el de la resta de seccions d'aquesta
    plantilla. Es reprodueix aquí l'inset EXACTE de ".container--wide",
-   centrat inclòs: passat el cap de 1680px, "margin-inline:auto" hi
-   afegeix (100% - 1680px)/2, que un padding sol no reprodueix (a 1920px
-   la resta de titulars comencen a 177px, no a 64px). El "100%" és
-   l'amplada real de la secció; amb 100vw hi sumaríem la barra de
-   scroll. La graella només el porta a l'inici: al final hi va un valor
-   petit perquè les cards segueixin sagnant per la dreta.
+   centrat inclòs: passat el cap, "margin-inline:auto" hi afegeix
+   (100% - cap)/2, que un padding sol no reprodueix. El cap i el marge
+   venen de les variables de dalt, mai repetits en cru: quan el cap va
+   passar de 1680 a 1932px, el literal que hi havia aquí va deixar
+   aquest titular 113px a la dreta dels altres set a 1920px, sense cap
+   avís de git. El "100%" és l'amplada real de la secció; amb 100vw hi
+   sumaríem la barra de scroll. La graella només porta l'inset a
+   l'inici: al final hi va un valor petit perquè les cards segueixin
+   sagnant per la dreta.
 
    Alçada lliure, a diferència de .services a index.html (100svh +
    overflow:hidden): aquestes cards porten nom + tres blocs
@@ -412,7 +432,7 @@
 .finques {
   height: auto;
   --finques-inset: calc(
-    max(0px, (100% - 1680px) / 2) + clamp(var(--space-8), 4vw, var(--space-16))
+    max(0px, (100% - var(--container-wide-max)) / 2) + var(--container-wide-gutter)
   );
 }
 
@@ -453,11 +473,9 @@
   margin-top: var(--space-3);
 }
 
-@media (max-width: 768px) {
-  .finques {
-    --finques-inset: var(--space-5);
-  }
-}
+/* (El cas mòbil ja no necessita cap regla pròpia: --container-wide-gutter
+   val --space-5 per sota de 769px i el terme del centrat és 0, així que
+   --finques-inset hi dona els mateixos 20px sol.) */
 
 /* ── Serveis en checklist (secció 4) ───────────────────────────────────
    Mateix contingut i mateixes classes de text que la secció de serveis
