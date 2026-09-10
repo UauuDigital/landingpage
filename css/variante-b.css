@@ -50,6 +50,38 @@
   border-color: rgba(255, 255, 255, 0.55);
 }
 
+/* Amplada de contingut pròpia de la Variant B: 1680px, un 40% més que el
+   cap de ".container" (layout.css, container-max=1200px -- compartit amb
+   index.html, que no es toca). Modificador additiu sobre ".container"
+   (mateix patró que ".variante-b-form__inner" més avall, que ja hi
+   sobreescriu max-width amb un valor propi): width i margin-inline
+   segueixen venint de ".container" tal qual.
+
+   El marge lateral escala amb la finestra (4vw) en lloc de ser un fix,
+   amb terra a --space-8 (32px, el mateix valor de ".container": mai més
+   estret que avui a cap ample) i sostre a --space-16 (64px, perquè a
+   partir del cap de 1680px el marge ja creix sol via margin-inline:auto
+   i no cal que el padding hi sumi indefinidament).
+
+   Només a partir de 769px: per sota, el padding mòbil de ".container"
+   (--space-5) es manté intacte -- no hi ha res a eixamplar en un mòbil,
+   on el contingut ja ocupa tot l'ample.
+
+   Va a totes les seccions d'aquesta plantilla que fan servir
+   ".container" (és la línia d'amplada de tota la variant, no una
+   excepció de la fitxa) excepte ".variante-b-form__inner", que ja porta
+   un màxim propi més estret (820px, formulari d'una sola columna) per
+   una raó independent d'aquesta. */
+.container--wide {
+  max-width: 1680px;
+}
+
+@media (min-width: 769px) {
+  .container--wide {
+    padding-inline: clamp(var(--space-8), 4vw, var(--space-16));
+  }
+}
+
 /* ── Secció de formulari (#contacte) ──────────────────────────────────────
    Fons fosc sòlid: el component .contact-form (vidre translúcid blanc) ve
    dissenyat per llegir-se sobre un fons fosc (igual que a la secció CTA/form
@@ -88,12 +120,11 @@
    desktop (vegeu el mòbil més avall, on sí que en cal un). */
 
 /* "Full-bleed" volia dir el FONS de la secció, no el contingut: el
-   contingut torna a fer servir ".container" (layout.css, compartida) --
-   mateix marge lateral (32/20px + el cap a container-max=1200px, que a
-   partir d'aquí ja escala sol amb l'ample de finestra) que la resta de
-   seccions de totes dues plantilles, així queden coherents entre elles.
-   ".fitxa__inner" ja no porta padding-inline propi -- ve de ".container"
-   (vegeu l'HTML: class="container fitxa__inner"). */
+   contingut fa servir ".container container--wide" -- mateix marge
+   lateral i mateix cap d'amplada (1680px) que la resta de seccions
+   d'aquesta plantilla, així queden coherents entre elles.
+   ".fitxa__inner" no porta padding-inline propi -- ve d'aquelles dues
+   classes (vegeu l'HTML i el bloc de ".container--wide" més amunt). */
 .fitxa__inner {
   display: grid;
   /* minmax(0, ...) evita el mínim implícit "auto" de 1fr: sense això,
@@ -262,13 +293,35 @@
   font-family: var(--font-sans);
 }
 
-/* Marcador propi (mai el pin blau per defecte de Leaflet). */
+/* Basemap minimalista amb un filtre CSS pur sobre els tiles d'OSM: cap
+   dependència d'un basemap de tercers (CARTO Positron i companyia), que
+   obligaria a validar-ne la llicència d'ús comercial sense compte abans
+   de fer-lo servir. grayscale(1) deixa el mapa completament neutre --
+   l'únic color que hi queda és el dels marcadors -- i brightness/contrast
+   suavitzen l'ombrejat del relleu d'OSM sense arribar a esborrar les
+   etiquetes (comprovat visualment al rang de zoom que fa servir
+   fitBounds()).
+
+   El filtre s'aplica només a ".leaflet-tile-pane" (el <div> que conté
+   únicament les imatges de tiles), mai a ".leaflet-container" sencer:
+   marcadors, popups i el control d'atribució viuen en panes germans, no
+   descendents d'aquest, i conserven el seu color real -- l'atribució
+   d'OSM (requisit de llicència) segueix llegint-se igual. */
+.leaflet-tile-pane {
+  filter: grayscale(1) brightness(1.18) contrast(0.8);
+}
+
+/* Marcador propi (mai el pin blau per defecte de Leaflet). Color d'aquesta
+   variant, no de marca (--color-accent és el daurat de UAUU): un sol ús
+   avui, per això queda "en cru" aquí en lloc de com a variable -- vegeu
+   la capçalera del fitxer sobre aquest mateix criteri per a altres valors
+   puntuals. */
 .map-marker {
   display: block;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: #f76c6f;
   border: 2px solid var(--color-bg);
   box-shadow: var(--shadow-sm);
 }

@@ -148,15 +148,18 @@
          dreta -- mapa interactiu de les 4 finques (Leaflet + OSM,
          inicialitzat en diferit des de js/variante-b.js -- vegeu
          initFitxaMap() i el comentari a _temp_variante-b-mapa.md).
-         "container" hi centra el contingut igual que a la resta de
-         seccions de totes dues plantilles -- "full-bleed" (## Variants)
-         es refereix al fons de la secció, no al contingut. Cada targeta és un únic
+         "container container--wide" hi centra el contingut igual que a
+         la resta de seccions d'aquesta plantilla (--wide, a
+         variante-b.css, és l'amplada pròpia de la Variant B: més ampla
+         que la de index.html, que no es toca) -- "full-bleed"
+         (## Variants) es refereix al fons de la secció, no al
+         contingut. Cada targeta és un únic
          data-variant-html amb l'etiqueta + el valor en dos <span>
          (mateix patró que les targetes del hero -- vegeu el punt 3 de
          ## Variants a CLAUDE.md sobre per què no hi ha clau i18n
          genèrica per a "Aforament"/"Preu"/etc.). ═══════════════════════ -->
     <section id="fitxa" class="fitxa" aria-label="Fitxa del producte">
-      <div class="container fitxa__inner">
+      <div class="container container--wide fitxa__inner">
         <div class="fitxa__content">
           <p class="fitxa__eyebrow" data-variant-html="fitxa.eyebrow">[PENDENT: eyebrow]</p>
           <h2 class="section-heading" data-variant-html="fitxa.headline">Què és UAUU weddings &amp; events?</h2>
@@ -226,7 +229,7 @@
          un bloc neutre .venue-card__photo-placeholder amb el text
          [PENDENT: foto Ca n'Alzina] ben visible. -->
     <section id="finques" aria-label="Les nostres finques">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="finques.headline">[PENDENT] Quatre finques, un mateix nivell d'exigència.</h2>
         <div class="venue-grid">
           <a href="#contacte" class="venue-card">
@@ -269,7 +272,7 @@
          (vegeu _temp_variante-b-contenido.md). Només l'encapçalament de la
          secció és contingut nou d'aquesta variant. ══════════════════════ -->
     <section id="serveis" aria-label="Els nostres serveis">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="serveis.headline">[PENDENT] Tot inclòs, sense sorpreses.</h2>
         <ul class="checklist">
           <li class="checklist__item">
@@ -329,7 +332,7 @@
          Les fotos sí són reals del CDN, però generals (general/...),
          no atribuïdes a cap finca concreta. ═══════════════════════════ -->
     <section id="proves" aria-label="Casos d'èxit">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="proves.headline">[PENDENT] Casos d'èxit</h2>
 
         <p class="proves-stat">
@@ -363,7 +366,7 @@
     <!-- ══ 6. COM FUNCIONA ══════════════════════════════════════════════
          3 passos. ════════════════════════════════════════════════════ -->
     <section id="com-funciona" aria-label="Com funciona">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="com-funciona.headline">[PENDENT] Com funciona</h2>
         <ol class="steps">
           <li class="steps__item">
@@ -538,7 +541,7 @@
          (faq.cta) reutilitzada a les 6 preguntes -- no té sentit
          duplicar-la sis vegades si sempre diu el mateix. ══════════════ -->
     <section id="faq" aria-label="Preguntes freqüents">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="faq.headline">[PENDENT] Preguntes freqüents</h2>
         <div class="faq-list">
           <details class="faq-item">
@@ -593,7 +596,7 @@
          variante-b.css) hi és l'únic ús que en queda a la plantilla.
          ══════════════════════════════════════════════════════════════ -->
     <section id="tancament" class="tancament" aria-label="Última crida a l'acció">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="tancament.headline">[PENDENT] Encara hi ets a temps.</h2>
         <a href="#contacte" class="btn btn--glass-dark">
           <span data-variant-html="tancament.cta">[PENDENT] Vull la meva proposta</span>
