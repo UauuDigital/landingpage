@@ -365,8 +365,8 @@
 }
 
 /* Mòbil: una sola columna. Les 4 targetes es mantenen en graella 2x2
-   (hi caben còmodament fins a mòbils petits, mateix criteri que
-   .venue-grid) -- no calia apilar-les totes soles per manca d'espai. El
+   (hi caben còmodament fins a mòbils petits) -- no calia apilar-les
+   totes soles per manca d'espai. El
    mapa passa de "s'estira per igualar l'alçada del contingut" (sense
    aspect-ratio a desktop, vegeu amunt -- no té sentit apilat, ja no hi ha
    cap alçada de columna amb qui igualar-se) a una proporció fixa pròpia:
@@ -384,63 +384,76 @@
 }
 
 /* ── Les 4 finques (secció 3) ──────────────────────────────────────────
-   Graella estàtica (mai carrusel): cada targeta és un <a href="#contacte">
-   sencer -- tota la card ancora al formulari, sense cap enllaç extern.
-   La imatge/descripció reutilitzen .service-card__image-wrap, __image i
-   __description (mateix component que la secció de serveis d'index.html);
-   només calen les regles pròpies de la graella i del nom de la finca. */
+   La secció fa servir el component de carrusel de serveis sencer
+   (.services + .services__grid + .service-card, i el JS compartit): aquí
+   només hi ha el que li és propi d'aquesta variant -- l'inset lateral,
+   la card com a enllaç i els blocs d'informació. Ni el flex-basis de
+   .service-card ni el carrusel es toquen. */
 
-.venue-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-5);
+/* .services__header i .services__grid porten un padding-inline propi
+   (80/32px, layout.css) que no és el de la resta de seccions d'aquesta
+   plantilla. Es reprodueix aquí l'inset EXACTE de ".container--wide",
+   centrat inclòs: passat el cap de 1680px, "margin-inline:auto" hi
+   afegeix (100% - 1680px)/2, que un padding sol no reprodueix (a 1920px
+   la resta de titulars comencen a 177px, no a 64px). El "100%" és
+   l'amplada real de la secció; amb 100vw hi sumaríem la barra de
+   scroll. La graella només el porta a l'inici: al final hi va un valor
+   petit perquè les cards segueixin sagnant per la dreta.
+
+   Alçada lliure, a diferència de .services a index.html (100svh +
+   overflow:hidden): aquestes cards porten nom + tres blocs
+   etiqueta/valor i són força més altes que les de serveis, prou perquè
+   en pantalles baixes l'últim bloc quedés tallat sense scroll ni avís
+   (overflow:hidden no en deixa cap rastre). Amb height:auto, el
+   "flex:1; min-height:0" de .services__grid queda en no-res i la secció
+   creix amb el contingut. */
+.finques {
+  height: auto;
+  --finques-inset: calc(
+    max(0px, (100% - 1680px) / 2) + clamp(var(--space-8), 4vw, var(--space-16))
+  );
 }
 
-.venue-card {
-  display: block;
+.finques .services__header {
+  padding-inline: var(--finques-inset);
+}
+
+.finques .services__grid {
+  padding-inline: var(--finques-inset) var(--space-8);
+}
+
+/* Cada card és un <a href="#contacte"> sencer: cap enllaç extern. */
+.finca-card {
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
-.venue-card:hover {
+.finca-card:hover {
   transform: translateY(-4px);
 }
 
-.venue-card__name {
+.finca-card__name {
   font-size: var(--text-lg);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
-/* Placeholder de foto pendent (Ca n'Alzina, sense carpeta al CDN): un
-   buit evident, mai una foto real d'una altra finca fent-se passar per
-   aquesta -- una foto correcta però equivocada es cola a producció, un
-   forat visible no. Mateixa proporció que .service-card__image-wrap
-   (aspect-ratio 6/5), perquè la graella no es descompensi. */
-.venue-card__photo-placeholder {
-  background: var(--color-surface);
-  border: 1px dashed var(--color-border);
+/* Etiqueta + valor, cada bloc una clau de variant. Els dos <span> venen
+   de dins del data-variant-html i reutilitzen .service-card__label i
+   .service-card__description (components.css) tal qual: el flex els
+   converteix en blocs perquè la tipografia compartida s'hi apliqui
+   igual que quan són <p> a index.html. */
+.finca-card__info {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--space-3);
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
-.venue-card__photo-placeholder span {
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+.finca-card__info + .finca-card__info {
+  margin-top: var(--space-3);
 }
 
-@media (max-width: 1024px) {
-  .venue-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .venue-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .finques {
+    --finques-inset: var(--space-5);
   }
 }
 
@@ -483,9 +496,9 @@
 }
 
 /* ── Com funciona, 3 passos (secció 6 al DOM) ──────────────────────────
-   Graella de 3 columnes que col·lapsa a 1 en mòbil, mateix patró que
-   .venue-grid. El número de pas reutilitza la tipografia serif dels
-   titulars per mantenir el mateix llenguatge visual. */
+   Graella de 3 columnes que col·lapsa a 1 en mòbil. El número de pas
+   reutilitza la tipografia serif dels titulars per mantenir el mateix
+   llenguatge visual. */
 
 .steps {
   display: grid;

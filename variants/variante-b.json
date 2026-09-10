@@ -64,29 +64,69 @@
   },
 
   "finques.headline": {
-    "ca": "[PENDENT] Quatre finques, un mateix nivell d'exigència.",
-    "es": "[PENDIENTE] Cuatro fincas, un mismo nivel de exigencia.",
-    "en": "[PENDING] Four venues, one standard of excellence."
+    "ca": "Quatre escenaris, una sola visió.",
+    "es": "[PENDIENTE: revisión de marca] Cuatro escenarios, una sola visión.",
+    "en": "[PENDING: brand review] Four settings, a single vision."
   },
-  "finques.alzina.info": {
-    "ca": "[PENDENT] Fins a 150 convidats · Estil rústic · A 40 min de Barcelona",
-    "es": "[PENDIENTE] Hasta 150 invitados · Estilo rústico · A 40 min de Barcelona",
-    "en": "[PENDING] Up to 150 guests · Rustic style · 40 min from Barcelona"
+  "finques.alzina.essencia": {
+    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Finca situada en plena natura, envoltada de vinyes i ametllers.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Finca situada en plena naturaleza, rodeada de viñedos y almendros.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A venue set in unspoilt countryside, surrounded by vineyards and almond trees.</span>"
   },
-  "finques.macia.info": {
-    "ca": "[PENDENT] Fins a 200 convidats · Estil masia catalana · A 50 min de Barcelona",
-    "es": "[PENDIENTE] Hasta 200 invitados · Estilo masía catalana · A 50 min de Barcelona",
-    "en": "[PENDING] Up to 200 guests · Traditional Catalan farmhouse · 50 min from Barcelona"
+  "finques.alzina.capacitat": {
+    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 250 convidats.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 250 invitados.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 250 guests.</span>"
   },
-  "finques.castell.info": {
-    "ca": "[PENDENT] Fins a 180 convidats · Estil senyorial · A 55 min de Barcelona",
-    "es": "[PENDIENTE] Hasta 180 invitados · Estilo señorial · A 55 min de Barcelona",
-    "en": "[PENDING] Up to 180 guests · Stately manor style · 55 min from Barcelona"
+  "finques.alzina.ubicacio": {
+    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">Rubió, a 45 minuts de Barcelona.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">Rubió, a 45 minutos de Barcelona.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">Rubió, 45 minutes from Barcelona.</span>"
   },
-  "finques.vivencs.info": {
-    "ca": "[PENDENT] Fins a 120 convidats · Estil íntim · A 45 min de Barcelona",
-    "es": "[PENDIENTE] Hasta 120 invitados · Estilo íntimo · A 45 min de Barcelona",
-    "en": "[PENDING] Up to 120 guests · Intimate style · 45 min from Barcelona"
+  "finques.vivencs.essencia": {
+    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Masia en un entorn natural privilegiat i unes vistes espectaculars a la Serra de Rubió.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Masía en un entorno natural privilegiado y unas vistas espectaculares a la Serra de Rubió.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A farmhouse in a privileged natural setting with spectacular views over the Serra de Rubió.</span>"
+  },
+  "finques.vivencs.capacitat": {
+    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 320 convidats.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 320 invitados.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 320 guests.</span>"
+  },
+  "finques.vivencs.ubicacio": {
+    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">La Pobla de Claramunt, a 45 minuts de Barcelona.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">La Pobla de Claramunt, a 45 minutos de Barcelona.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">La Pobla de Claramunt, 45 minutes from Barcelona.</span>"
+  },
+  "finques.castell.essencia": {
+    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Un escenari de conte, un castell històric rehabilitat amb més de 1000 anys d'història.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Un escenario de cuento, un castillo histórico rehabilitado con más de 1000 años de historia.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A fairy-tale setting: a restored historic castle with over 1,000 years of history.</span>"
+  },
+  "finques.castell.capacitat": {
+    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 140 convidats.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 140 invitados.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 140 guests.</span>"
+  },
+  "finques.castell.ubicacio": {
+    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">Sant Martí de Tous, a 50 minuts de Barcelona.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">Sant Martí de Tous, a 50 minutos de Barcelona.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">Sant Martí de Tous, 50 minutes from Barcelona.</span>"
+  },
+  "finques.macia.essencia": {
+    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Casa del segle XVII envoltada de frondosos jardins.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Casa del siglo XVII rodeada de frondosos jardines.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A 17th-century house surrounded by lush gardens.</span>"
+  },
+  "finques.macia.capacitat": {
+    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 250 convidats.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 250 invitados.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 250 guests.</span>"
+  },
+  "finques.macia.ubicacio": {
+    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">Òdena, a 40 minuts de Barcelona.</span>",
+    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">Òdena, a 40 minutos de Barcelona.</span>",
+    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">Òdena, 40 minutes from Barcelona.</span>"
   },
 
   "serveis.headline": {

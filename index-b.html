@@ -215,52 +215,79 @@
     </section>
 
     <!-- ══ 3. LES 4 FINQUES ═════════════════════════════════════════════
-         Cards (foto, capacitat, estil, distància), sense enllaços externs
-         — cada card ancora al formulari. Reutilitza .service-card__image-wrap
-         / __image / __description de components.css (mateix tractament
-         visual que les cards de serveis), amb un contenidor .venue-grid
-         propi (graella estàtica, no carrusel). Els noms de les finques
-         queden fixos (fet de marca, no copy de campanya — vegeu ## Variants
-         a CLAUDE.md); la resta de la fitxa de cada finca sí és variable.
-         Ca n'Alzina no té cap carpeta real al CDN (comprovat contra el
-         servidor, no adivinat des del HTML): en lloc d'una foto d'una
-         altra finca fent-se passar per aquesta (que sembla correcta i
-         per això es cola a producció, com el placeholder [PLAZO]), porta
-         un bloc neutre .venue-card__photo-placeholder amb el text
-         [PENDENT: foto Ca n'Alzina] ben visible. -->
-    <section id="finques" aria-label="Les nostres finques">
-      <div class="container container--wide">
-        <h2 class="section-heading" data-variant-html="finques.headline">[PENDENT] Quatre finques, un mateix nivell d'exigència.</h2>
-        <div class="venue-grid">
-          <a href="#contacte" class="venue-card">
-            <div class="service-card__image-wrap venue-card__photo-placeholder">
-              <span>[PENDENT: foto Ca n'Alzina]</span>
-            </div>
-            <h3 class="venue-card__name">Ca n'Alzina</h3>
-            <p class="service-card__description" data-variant-html="finques.alzina.info">[PENDENT] Fins a 150 convidats · Estil rústic · A 40 min de Barcelona</p>
-          </a>
-          <a href="#contacte" class="venue-card">
-            <div class="service-card__image-wrap">
-              <img class="service-card__image" src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/2.webp" alt="Can Macià" loading="lazy" decoding="async" width="382" height="318" />
-            </div>
-            <h3 class="venue-card__name">Can Macià</h3>
-            <p class="service-card__description" data-variant-html="finques.macia.info">[PENDENT] Fins a 200 convidats · Estil masia catalana · A 50 min de Barcelona</p>
-          </a>
-          <a href="#contacte" class="venue-card">
-            <div class="service-card__image-wrap">
-              <img class="service-card__image" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/2.webp" alt="Castell de Tous" loading="lazy" decoding="async" width="382" height="318" />
-            </div>
-            <h3 class="venue-card__name">Castell de Tous</h3>
-            <p class="service-card__description" data-variant-html="finques.castell.info">[PENDENT] Fins a 180 convidats · Estil senyorial · A 55 min de Barcelona</p>
-          </a>
-          <a href="#contacte" class="venue-card">
-            <div class="service-card__image-wrap">
-              <img class="service-card__image" src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/2.webp" alt="Mas Vivencs" loading="lazy" decoding="async" width="382" height="318" />
-            </div>
-            <h3 class="venue-card__name">Mas Vivencs</h3>
-            <p class="service-card__description" data-variant-html="finques.vivencs.info">[PENDENT] Fins a 120 convidats · Estil íntim · A 45 min de Barcelona</p>
-          </a>
+         Mateix component que la secció de serveis d'index.html, no una
+         còpia: .services (layout.css), .services__grid i .service-card
+         (components.css) i el carrusel d'initServicesCarousel()
+         (js/main.js) — arrossegament amb inèrcia + prev/next.
+
+         Els botons conserven els id "services-prev"/"services-next"
+         perquè són el ganxo literal d'aquell init (els busca per id, i
+         el carrusel per querySelector únic). Reutilitzar-los evita
+         generalitzar un JS compartit amb index.html en producció; si
+         algun dia hi ha dos carrusels a la mateixa pàgina, caldrà
+         generalitzar-lo aleshores.
+
+         Que la quarta card quedi tallada a la dreta és volgut: és el
+         que convida a arrossegar. Cada card ancora al formulari, sense
+         cap enllaç extern; el guard d'initFinquesDragGuard()
+         (js/variante-b.js) evita que acabar un arrossegament sobre una
+         card hi navegui.
+
+         Els noms de finca no es tradueixen (fet de marca — vegeu
+         ## Variants a CLAUDE.md). Els tres blocs d'informació sí, cada
+         un amb la seva clau de variant i el patró etiqueta+valor en dos
+         <span>, el mateix de les targetes de la fitxa. ═══════════════ -->
+    <section id="finques" class="services finques" aria-label="Les nostres finques">
+      <div class="services__header">
+        <h2 class="section-heading" data-variant-html="finques.headline">Quatre escenaris, una sola visió.</h2>
+        <div class="services__nav" aria-label="Navegació del carrusel">
+          <button class="services__nav-btn" id="services-prev" aria-label="Anterior">Prev.</button>
+          <button class="services__nav-btn" id="services-next" aria-label="Següent">Next</button>
         </div>
+      </div>
+
+      <div class="services__grid">
+
+        <a class="service-card finca-card" href="#contacte">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://www.uauu.cat/media/finques/ca-n-alzina/galeria-dimatges/ca-n-alzina_30.webp" alt="Ca n'Alzina" loading="lazy" decoding="async" width="382" height="318" />
+          </div>
+          <h3 class="finca-card__name">Ca n'Alzina</h3>
+          <p class="finca-card__info" data-variant-html="finques.alzina.essencia"><span class="service-card__label">Essència</span><span class="service-card__description">Finca situada en plena natura, envoltada de vinyes i ametllers.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.alzina.capacitat"><span class="service-card__label">Capacitat</span><span class="service-card__description">Fins a 250 convidats.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.alzina.ubicacio"><span class="service-card__label">Ubicació</span><span class="service-card__description">Rubió, a 45 minuts de Barcelona.</span></p>
+        </a>
+
+        <a class="service-card finca-card" href="#contacte">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/12.webp" alt="Mas Vivencs" loading="lazy" decoding="async" width="382" height="318" />
+          </div>
+          <h3 class="finca-card__name">Mas Vivencs</h3>
+          <p class="finca-card__info" data-variant-html="finques.vivencs.essencia"><span class="service-card__label">Essència</span><span class="service-card__description">Masia en un entorn natural privilegiat i unes vistes espectaculars a la Serra de Rubió.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.vivencs.capacitat"><span class="service-card__label">Capacitat</span><span class="service-card__description">Fins a 320 convidats.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.vivencs.ubicacio"><span class="service-card__label">Ubicació</span><span class="service-card__description">La Pobla de Claramunt, a 45 minuts de Barcelona.</span></p>
+        </a>
+
+        <a class="service-card finca-card" href="#contacte">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/38.webp" alt="Castell de Tous" loading="lazy" decoding="async" width="382" height="318" />
+          </div>
+          <h3 class="finca-card__name">Castell de Tous</h3>
+          <p class="finca-card__info" data-variant-html="finques.castell.essencia"><span class="service-card__label">Essència</span><span class="service-card__description">Un escenari de conte, un castell històric rehabilitat amb més de 1000 anys d'història.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.castell.capacitat"><span class="service-card__label">Capacitat</span><span class="service-card__description">Fins a 140 convidats.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.castell.ubicacio"><span class="service-card__label">Ubicació</span><span class="service-card__description">Sant Martí de Tous, a 50 minuts de Barcelona.</span></p>
+        </a>
+
+        <a class="service-card finca-card" href="#contacte">
+          <div class="service-card__image-wrap">
+            <img class="service-card__image" src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/2.webp" alt="Can Macià" loading="lazy" decoding="async" width="382" height="318" />
+          </div>
+          <h3 class="finca-card__name">Can Macià</h3>
+          <p class="finca-card__info" data-variant-html="finques.macia.essencia"><span class="service-card__label">Essència</span><span class="service-card__description">Casa del segle XVII envoltada de frondosos jardins.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.macia.capacitat"><span class="service-card__label">Capacitat</span><span class="service-card__description">Fins a 250 convidats.</span></p>
+          <p class="finca-card__info" data-variant-html="finques.macia.ubicacio"><span class="service-card__label">Ubicació</span><span class="service-card__description">Òdena, a 40 minuts de Barcelona.</span></p>
+        </a>
+
       </div>
     </section>
 
