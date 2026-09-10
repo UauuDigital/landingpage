@@ -9,7 +9,8 @@ assets/images/*
 # Informes de treball temporals (recon, verificacions de fase)
 _temp_*.md
 
-# Imatges de referència de disseny (comparació puntual, mai un asset del
-# projecte -- CLAUDE.md ## Imatges: cap imatge al repo, tot al CDN extern)
-_ref_*.png
-_ref_*.jpg
+# Fitxers de referència de disseny (comparació puntual, mai un asset del
+# projecte -- CLAUDE.md ## Imatges: cap imatge al repo, tot al CDN extern).
+# Patró ampli a propòsit: cobreix qualsevol nom i extensió (_ref_fitxa.png,
+# _ref2_serveis.png...), n'hi haurà més a mesura que avancin les seccions.
+_ref*
