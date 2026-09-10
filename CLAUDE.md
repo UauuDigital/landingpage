@@ -45,7 +45,7 @@ tokens → base → layout → components → animations
 
 ## Marca UAUU
 - To: premium, càlid, modern. Mai genèric.
-- Paleta: `--color-text` #1a1714 | `--color-bg` #ffffff | `--color-surface` #f5f2ee | `--color-accent` #c8b89a
+- Paleta: `--color-text` #1a1714 | `--color-bg` #ffffff | `--color-surface` #f5f5f5 | `--color-accent` #c8b89a
 - Tipografia: **Ogg** (serif custom, `--font-serif`) per a titulars · **Inter** (variable, `--font-sans`) per a cos
 - Les 4 finques: Ca n'Alzina · Can Macià · Castell de Tous · Mas Vivens
 

@@ -48,19 +48,19 @@
     "en": "[PENDING] <span class=\"fitxa-card__label\">Capacity</span><span class=\"fitxa-card__value\">35 to 320 guests</span>"
   },
   "fitxa.inclou": {
-    "ca": "<span class=\"fitxa-card__label\">Què inclou</span><span class=\"fitxa-card__value\">espai, càtering, decoració, coordinació i muntatge</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Qué incluye</span><span class=\"fitxa-card__value\">espacio, catering, decoración, coordinación y montaje</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">What's included</span><span class=\"fitxa-card__value\">venue, catering, decor, coordination and setup</span>"
+    "ca": "<span class=\"fitxa-card__label\">Què inclou</span><span class=\"fitxa-card__value\">Espai, càtering, decoració, coordinació i muntatge</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Qué incluye</span><span class=\"fitxa-card__value\">Espacio, catering, decoración, coordinación y montaje</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">What's included</span><span class=\"fitxa-card__value\">Venue, catering, decor, coordination and setup</span>"
   },
   "fitxa.disponibilitat": {
-    "ca": "<span class=\"fitxa-card__label\">Disponibilitat</span><span class=\"fitxa-card__value\">dates disponibles per 2027 i 2028</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Disponibilidad</span><span class=\"fitxa-card__value\">fechas disponibles para 2027 y 2028</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">Availability</span><span class=\"fitxa-card__value\">dates available for 2027 and 2028</span>"
+    "ca": "<span class=\"fitxa-card__label\">Disponibilitat</span><span class=\"fitxa-card__value\">Dates disponibles per 2027 i 2028</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Disponibilidad</span><span class=\"fitxa-card__value\">Fechas disponibles para 2027 y 2028</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">Availability</span><span class=\"fitxa-card__value\">Dates available for 2027 and 2028</span>"
   },
   "fitxa.preu": {
-    "ca": "<span class=\"fitxa-card__label\">Preu</span><span class=\"fitxa-card__value\">des de 134 fins a 163€ / comensal</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Precio</span><span class=\"fitxa-card__value\">desde 134 hasta 163€ / comensal</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">Price</span><span class=\"fitxa-card__value\">from €134 to €163 / guest</span>"
+    "ca": "<span class=\"fitxa-card__label\">Preu</span><span class=\"fitxa-card__value\">Des de 134 fins a 163€ / comensal</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Precio</span><span class=\"fitxa-card__value\">Desde 134 hasta 163€ / comensal</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">Price</span><span class=\"fitxa-card__value\">From €134 to €163 / guest</span>"
   },
 
   "finques.headline": {
