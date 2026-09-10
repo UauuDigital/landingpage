@@ -141,6 +141,7 @@ Landing llarga (9 seccions) centrada 100% en captar el lead, pensada per a tràn
 Les regles i la verificació d'aquesta secció **s'apliquen per defecte, sense que calgui demanar-les a cada prompt**.
 
 ### Regles permanents del projecte
+- **Escala en lloc de decidir**: si una instrucció xoca amb una altra, si complir-la obligaria a tocar un fitxer compartit fora de l'abast del prompt, o si dues opcions de disseny són defensables i l'elecció té conseqüències, para i explica-ho abans d'actuar. Les decisions mecàniques o reversibles (renombrar una variable, triar un valor dins d'un rang ja acceptat, un fix que no canvia comportament) es prenen sense preguntar.
 - Media queries pròpies d'una variant: només al CSS d'aquella variant (`variante-b.css`, `gracies.css`...), mai a `layout.css` ni `components.css`.
 - Res puja a `components.css`/`tokens.css` fins que hi ha un segon consumidor **real**. Amb un sol ús, queda al CSS de la variant encara que s'assembli a algun component compartit.
 - Token nou (a `tokens.css`) només quan dos fitxers reals necessiten literalment el mateix valor. Repetir un valor que ja és "en cru" en algun altre lloc del sistema no obliga a tokenitzar-lo.
@@ -165,9 +166,12 @@ Dona-la per feta a cada canvi, sense que calgui que et la demanin:
 
 ### Limitacions conegudes de l'entorn de proves
 - **`resize_window` no canvia el viewport real de la pestanya de Claude in Chrome.** Símptoma: la mida "canvia" però `window.innerWidth` i les captures segueixen igual. Conclusió: fer servir un iframe del mateix origen per provar amples diferents.
-- **rAF/temporitzadors es paren o s'alenteixen si la pestanya perd el focus durant l'automatització.** Símptoma: una animació (scroll suau, parallax) sembla congelada tot i que el codi és correcte. Conclusió: no és un bug del codi — comprova el focus de la pestanya abans de sospitar-ne.
+- **rAF/temporitzadors es paren o s'alenteixen si la pestanya perd el focus durant l'automatització.** Verificat (no assumit): `document.hasFocus()` en `false` i `document.visibilityState` en `hidden` durant l'automatització, zero frames de `requestAnimationFrame` en 1,5s. Conclusió: no és un bug del codi — en una pestanya real amb focus no es reprodueix; comprova el focus de la pestanya abans de sospitar del codi.
 - **Soroll d'extensions de Chrome a la consola.** Símptoma: `"A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"`. Conclusió: ve d'una extensió instal·lada al navegador, no del nostre codi — ignora-la.
 - **El servidor local serveix contingut en caché després d'editar CSS/JS.** Símptoma: `getComputedStyle` o l'aspecte visual no reflecteix el canvi acabat de fer. Conclusió: recarrega dur (`cmd+shift+r`) abans de mesurar, no assumeixis que el canvi ha fallat.
+
+### Informe final
+Per defecte, en acabar una tasca: genera `_temp_[tema].md` a l'arrel del repo, redactat per enganxar-lo tal qual en una sessió de Claude.ai sense accés al codi (autocontingut, sense assumir que qui el llegeix ha vist els fitxers), i executa `open "<ruta_completa>"` just després. `_temp_*.md` ja està al `.gitignore`: no es versiona.
 
 ### Tècniques de mesura establertes
 - **Amples diferents**: iframe del mateix origen amb `style.width` variable, no `resize_window`.
