@@ -124,6 +124,15 @@ async function buildFitxaMap(container) {
   });
 
   map.fitBounds(bounds, { padding: [28, 28] });
+
+  // .fitxa__map ja no té una alçada fixa a desktop: s'estira per igualar
+  // la de .fitxa__content (vegeu variante-b.css). Leaflet només mesura el
+  // contenidor un cop, a L.map(); si l'alçada canvia després -- finestra
+  // redimensionada, o un canvi d'idioma que allarga/escurça el text i
+  // altera l'alçada de les targetes -- els tiles es quedarien mal
+  // retallats fins que l'usuari interactués amb el mapa. invalidateSize()
+  // el torna a mesurar.
+  new ResizeObserver(() => map.invalidateSize()).observe(container);
 }
 
 function initFitxaMap() {

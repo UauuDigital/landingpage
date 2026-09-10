@@ -148,16 +148,15 @@
          dreta -- mapa interactiu de les 4 finques (Leaflet + OSM,
          inicialitzat en diferit des de js/variante-b.js -- vegeu
          initFitxaMap() i el comentari a _temp_variante-b-mapa.md).
-         ÚNICA secció de la plantilla sense ".container": el contingut
-         arriba fins a la vora del viewport (decisió pròpia d'aquesta
-         secció, no del sistema compartit -- ".fitxa__inner" porta el seu
-         propi padding-inline a variante-b.css). Cada targeta és un únic
+         "container" hi centra el contingut igual que a la resta de
+         seccions de totes dues plantilles -- "full-bleed" (## Variants)
+         es refereix al fons de la secció, no al contingut. Cada targeta és un únic
          data-variant-html amb l'etiqueta + el valor en dos <span>
          (mateix patró que les targetes del hero -- vegeu el punt 3 de
          ## Variants a CLAUDE.md sobre per què no hi ha clau i18n
          genèrica per a "Aforament"/"Preu"/etc.). ═══════════════════════ -->
     <section id="fitxa" class="fitxa" aria-label="Fitxa del producte">
-      <div class="fitxa__inner">
+      <div class="container fitxa__inner">
         <div class="fitxa__content">
           <p class="fitxa__eyebrow" data-variant-html="fitxa.eyebrow">[PENDENT: eyebrow]</p>
           <h2 class="section-heading" data-variant-html="fitxa.headline">Què és UAUU weddings &amp; events?</h2>

@@ -87,12 +87,13 @@
    haver-li de calcular-la a mà -- per això NO porta aspect-ratio a
    desktop (vegeu el mòbil més avall, on sí que en cal un). */
 
-/* Decisió explícita: aquesta secció NO fa servir ".container" (layout.css,
-   compartida) -- el contingut arriba fins a la vora del viewport en lloc de
-   quedar centrat a container-max (1200px), a diferència de la resta de
-   seccions de totes dues plantilles. Per això porta el seu propi
-   padding-inline aquí (mateixos tokens que ".container", perquè el marge
-   lateral es llegeixi igual), no a layout.css. */
+/* "Full-bleed" volia dir el FONS de la secció, no el contingut: el
+   contingut torna a fer servir ".container" (layout.css, compartida) --
+   mateix marge lateral (32/20px + el cap a container-max=1200px, que a
+   partir d'aquí ja escala sol amb l'ample de finestra) que la resta de
+   seccions de totes dues plantilles, així queden coherents entre elles.
+   ".fitxa__inner" ja no porta padding-inline propi -- ve de ".container"
+   (vegeu l'HTML: class="container fitxa__inner"). */
 .fitxa__inner {
   display: grid;
   /* minmax(0, ...) evita el mínim implícit "auto" de 1fr: sense això,
@@ -101,15 +102,6 @@
      _temp_variante-b-fitxa.md) i desbordar la secció. */
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: var(--space-10);
-  padding-inline: var(--space-8);
-}
-
-/* Flex column perquè .fitxa-cards hi pugui fer margin-top:auto (vegeu-hi
-   el comentari) -- sense això un marge automàtic no té cap eix on repartir
-   l'espai. */
-.fitxa__content {
-  display: flex;
-  flex-direction: column;
 }
 
 /* Glif + color fosc (mai l'accent) davant del text, seguint _ref_fitxa.png.
@@ -137,10 +129,6 @@
    seu propi margin-bottom -- no es redefineix res aquí. */
 
 .fitxa__cta {
-  /* .fitxa__content ara és flex column (vegeu amunt): sense align-self,
-     l'align-items:stretch per defecte estiraria el botó a tota l'amplada
-     de la columna en lloc de deixar-lo amb la mida del seu contingut. */
-  align-self: flex-start;
   margin-bottom: var(--space-8);
 }
 
@@ -176,20 +164,10 @@
   transform: translateX(4px);
 }
 
-/* margin-top:auto empeny tota la graella cap avall dins de .fitxa__content
-   (flex column, vegeu més avall) -- deixa el "espacio vacío generoso" entre
-   el botó i les targetes de _ref_fitxa.png sense un valor fix, i n'alinea
-   la base amb la de .fitxa__map quan el contingut de dalt és més curt que
-   el mapa. Amb 4 targetes (2x2) en lloc de les 2 de la referència, el
-   contingut sol ja pot superar l'alçada del mapa a amplades esteses --
-   quan passa, el marge automàtic no té res a repartir i les targetes
-   toquen el botó; vegeu _temp_variante-b-refinament.md per les mesures
-   reals i el marge residual. */
 .fitxa-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
-  margin-top: auto;
 }
 
 /* Targetes altes (icona a dalt, forat vertical, text avall): justify-
@@ -254,15 +232,20 @@
    amb el LCP del hero. "Molt arrodonit": --radius-xl és el radi més gran
    del sistema de tokens fora del --radius-pill (pensat per a formes
    circulars, no encaixaria aquí). overflow:hidden hi retalla els tiles
-   quadrats de Leaflet a la cantonada arrodonida. 3/2 (_ref_fitxa.png,
-   mesurat sobre la imatge: ~954x602px): abans 4/5 el feia
-   desproporcionadament alt. */
+   quadrats de Leaflet a la cantonada arrodonida.
+
+   Sense aspect-ratio ni align-self a desktop (a diferència del mòbil, més
+   avall): align-items:stretch (per defecte al grid de .fitxa__inner) fa
+   que el panell s'estiri fins a igualar l'alçada real de .fitxa__content
+   -- mapa més gran i base exactament alineada amb la de les targetes, en
+   lloc d'una proporció fixa que quedava més curta que el contingut
+   (mesurat: vegeu _temp_variante-b-refinament.md). Leaflet necessita
+   invalidateSize() quan el contenidor canvia de mida després
+   d'inicialitzar-se (finestra, canvi d'idioma): vegeu js/variante-b.js. */
 .fitxa__map {
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  align-self: start;
-  aspect-ratio: 3 / 2;
   background: var(--color-surface);
 }
 
@@ -331,14 +314,15 @@
 /* Mòbil: una sola columna. Les 4 targetes es mantenen en graella 2x2
    (hi caben còmodament fins a mòbils petits, mateix criteri que
    .venue-grid) -- no calia apilar-les totes soles per manca d'espai. El
-   mapa passa de "encaixa l'alçada del contingut" (align-self:start +
-   aspect-ratio 4/5, pensat per a la columna estreta de desktop) a una
-   proporció més ampla i baixa: a amplada completa de mòbil, 4/5 el
-   deixaria absurdament alt. */
+   mapa passa de "s'estira per igualar l'alçada del contingut" (sense
+   aspect-ratio a desktop, vegeu amunt -- no té sentit apilat, ja no hi ha
+   cap alçada de columna amb qui igualar-se) a una proporció fixa pròpia:
+   sense això, sense contingut de referència al costat, el panell
+   col·lapsaria a una alçada mínima. El padding lateral mòbil ja el porta
+   ".container" (layout.css): no cal repetir-lo aquí. */
 @media (max-width: 768px) {
   .fitxa__inner {
     grid-template-columns: 1fr;
-    padding-inline: var(--space-5);
   }
 
   .fitxa__map {
