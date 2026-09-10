@@ -450,12 +450,17 @@
    contenidor -- una llista vertical amb marca de check, no cards en
    carrusel. */
 
+/* Limitada a --container-prose per longitud de línia llegible, però
+   alineada a l'esquerra amb el seu titular (i amb la resta del document),
+   no centrada: amb l'amplada de .container--wide, un bloc de 680px
+   centrat quedava despenjat cap al mig i deixava el titular sol a
+   l'esquerra (436px de desfasament a 1920px). Mateix criteri a
+   .faq-list. */
 .checklist {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
   max-width: var(--container-prose);
-  margin-inline: auto;
 }
 
 .checklist__item {
@@ -602,12 +607,13 @@
    defecte i se'n dibuixa una de pròpia amb ::after, que reacciona a
    [open] amb CSS pur. */
 
+/* Alineada a l'esquerra amb el seu titular, no centrada -- vegeu el
+   comentari de .checklist. */
 .faq-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   max-width: var(--container-prose);
-  margin-inline: auto;
 }
 
 .faq-item {
