@@ -130,9 +130,9 @@
   },
 
   "serveis.headline": {
-    "ca": "[PENDENT] Tot inclòs, sense sorpreses.",
-    "es": "[PENDIENTE] Todo incluido, sin sorpresas.",
-    "en": "[PENDING] All-inclusive, no surprises."
+    "ca": "Tot inclòs, sense preocupacions, sense sorpreses.",
+    "es": "[PENDIENTE: revisión de marca] Todo incluido, sin preocupaciones, sin sorpresas.",
+    "en": "[PENDING: brand review] All included, no worries, no surprises."
   },
 
   "com-funciona.headline": {

@@ -195,7 +195,60 @@ function initFinquesDragGuard() {
   );
 }
 
+// ── Serveis: stepper d'una card per servei ────────────────────────────────
+// Component propi, deliberadament separat d'initServicesCarousel()
+// (js/main.js): allà la interacció és arrossegament lliure amb una card
+// asomant, i aquí és un pas discret d'un servei a l'altre amb indicador de
+// progrés. Comparteixen pàgina (el carrusel de finques és la secció 3) però
+// ni els id ni els selectors: initServicesCarousel() busca
+// ".services__grid" i "#services-prev"/"#services-next", cap dels quals
+// existeix aquí dins.
+//
+// La classe "is-ready" al <section> és el que activa el mode navegable al
+// CSS: sense JS, les sis cards es queden apilades i els controls amagats.
+function initServeisStepper() {
+  const section = document.querySelector('.serveis');
+  if (!section) return;
+
+  const panels = [...section.querySelectorAll('.stepper__panel')];
+  const prev = document.getElementById('serveis-step-prev');
+  const next = document.getElementById('serveis-step-next');
+  const current = section.querySelector('[data-stepper-current]');
+  const total = section.querySelector('[data-stepper-total]');
+  const fill = section.querySelector('.stepper__fill');
+  if (!panels.length || !prev || !next) return;
+
+  const pad = (n) => String(n).padStart(2, '0');
+  let index = 0;
+
+  function render() {
+    panels.forEach((panel, i) => panel.classList.toggle('is-current', i === index));
+    prev.disabled = index === 0;
+    next.disabled = index === panels.length - 1;
+    if (current) current.textContent = pad(index + 1);
+    if (fill) fill.style.width = `${((index + 1) / panels.length) * 100}%`;
+  }
+
+  function go(delta) {
+    const target = Math.min(Math.max(index + delta, 0), panels.length - 1);
+    if (target === index) return;
+    index = target;
+    render();
+  }
+
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
+
+  // El total surt del nombre real de cards, no d'un literal a l'HTML: si
+  // el catàleg de serveis creix o minva, l'indicador el segueix sol.
+  if (total) total.textContent = pad(panels.length);
+
+  section.classList.add('is-ready');
+  render();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initFitxaMap();
   initFinquesDragGuard();
+  initServeisStepper();
 });
