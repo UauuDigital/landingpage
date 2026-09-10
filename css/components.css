@@ -156,13 +156,6 @@
 
 /* ── Hero card ── */
 
-/* Amplada exposada com a variable perquè cap altre fitxer (p.ex. la
-   Variant B, per calcular quant d'espai reservar-li al titular) l'hagi
-   de repetir en cru -- vegeu variante-b.css. */
-:root {
-  --hero-card-width: 260px;
-}
-
 .hero-card {
   display: block;
   text-decoration: none;
