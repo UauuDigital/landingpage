@@ -27,35 +27,40 @@
     "en": "Learn<br>more"
   },
 
+  "fitxa.eyebrow": {
+    "ca": "[PENDENT: eyebrow]",
+    "es": "[PENDIENTE: eyebrow]",
+    "en": "[PENDING: eyebrow]"
+  },
   "fitxa.headline": {
-    "ca": "[PENDENT] La fitxa ràpida.",
-    "es": "[PENDIENTE] La ficha rápida.",
-    "en": "[PENDING] The quick facts."
+    "ca": "Què és UAUU weddings &amp; events?",
+    "es": "[PENDIENTE] ¿Qué es UAUU weddings &amp; events?",
+    "en": "[PENDING] What is UAUU weddings &amp; events?"
   },
-  "fitxa.zona": {
-    "ca": "[PENDENT] <strong>Zona:</strong> Anoia, a 45 minuts de Barcelona.",
-    "es": "[PENDIENTE] <strong>Zona:</strong> Anoia, a 45 minutos de Barcelona.",
-    "en": "[PENDING] <strong>Area:</strong> Anoia, 45 minutes from Barcelona."
+  "fitxa.cta": {
+    "ca": "Accedeix als catàlegs",
+    "es": "[PENDIENTE] Accede a los catálogos",
+    "en": "[PENDING] Access the catalogues"
   },
-  "fitxa.capacitat": {
-    "ca": "[PENDENT] <strong>Capacitat:</strong> de 50 a 200 convidats segons la finca.",
-    "es": "[PENDIENTE] <strong>Capacidad:</strong> de 50 a 200 invitados según la finca.",
-    "en": "[PENDING] <strong>Capacity:</strong> 50 to 200 guests depending on the venue."
+  "fitxa.aforament": {
+    "ca": "<span class=\"fitxa-card__label\">Aforament</span><span class=\"fitxa-card__value\">De 35 a 320 comensals</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Aforo</span><span class=\"fitxa-card__value\">De 35 a 320 comensales</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">Capacity</span><span class=\"fitxa-card__value\">35 to 320 guests</span>"
   },
   "fitxa.inclou": {
-    "ca": "[PENDENT] <strong>Inclou:</strong> càtering, decoració, coordinació i muntatge.",
-    "es": "[PENDIENTE] <strong>Incluye:</strong> catering, decoración, coordinación y montaje.",
-    "en": "[PENDING] <strong>Includes:</strong> catering, decoration, coordination and setup."
+    "ca": "<span class=\"fitxa-card__label\">Què inclou</span><span class=\"fitxa-card__value\">espai, càtering, decoració, coordinació i muntatge</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Qué incluye</span><span class=\"fitxa-card__value\">espacio, catering, decoración, coordinación y montaje</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">What's included</span><span class=\"fitxa-card__value\">venue, catering, decor, coordination and setup</span>"
   },
-  "fitxa.temporades": {
-    "ca": "[PENDENT] <strong>Temporades:</strong> disponible d'abril a octubre.",
-    "es": "[PENDIENTE] <strong>Temporadas:</strong> disponible de abril a octubre.",
-    "en": "[PENDING] <strong>Seasons:</strong> available April through October."
+  "fitxa.disponibilitat": {
+    "ca": "<span class=\"fitxa-card__label\">Disponibilitat</span><span class=\"fitxa-card__value\">dates disponibles per 2027 i 2028</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Disponibilidad</span><span class=\"fitxa-card__value\">fechas disponibles para 2027 y 2028</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">Availability</span><span class=\"fitxa-card__value\">dates available for 2027 and 2028</span>"
   },
   "fitxa.preu": {
-    "ca": "[PENDENT] <strong>Preu orientatiu:</strong> des de [X].000 € (paquet complet).",
-    "es": "[PENDIENTE] <strong>Precio orientativo:</strong> desde [X].000 € (paquete completo).",
-    "en": "[PENDING] <strong>Estimated price:</strong> from €[X],000 (full package)."
+    "ca": "<span class=\"fitxa-card__label\">Preu</span><span class=\"fitxa-card__value\">des de 134 fins a 163€ / comensal</span>",
+    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Precio</span><span class=\"fitxa-card__value\">desde 134 hasta 163€ / comensal</span>",
+    "en": "[PENDING] <span class=\"fitxa-card__label\">Price</span><span class=\"fitxa-card__value\">from €134 to €163 / guest</span>"
   },
 
   "finques.headline": {

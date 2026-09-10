@@ -79,35 +79,153 @@
   grid-template-columns: 1fr;
 }
 
-/* ── Fitxa escaneable (secció 2) ───────────────────────────────────────
-   Llista de fets curts, no paràgrafs: cada .fact-sheet__item porta
-   l'etiqueta i el valor junts (un <strong> dins del mateix
-   data-variant-html — vegeu el comentari a index-b.html sobre per què).
-   Mateix llenguatge visual que .service-card__label/__description
-   (mida, pes, color), aquí en targetes soltes en lloc de sota una foto. */
+/* ── Fitxa ràpida (secció 2) ────────────────────────────────────────────
+   Dues columnes a desktop: contingut (eyebrow+titular+CTA+4 targetes) i
+   el panell del mapa (reservat, ple de contingut en el segon prompt
+   d'aquesta secció). "align-items: stretch" (valor per defecte de grid)
+   fa que .fitxa__map ompli la mateixa alçada que .fitxa__content sense
+   haver-li de calcular-la a mà -- per això NO porta aspect-ratio a
+   desktop (vegeu el mòbil més avall, on sí que en cal un). */
 
-.fact-sheet {
+.fitxa__inner {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* minmax(0, ...) evita el mínim implícit "auto" de 1fr: sense això,
+     una pista pot créixer per sobre de la seva quota si el contingut
+     demana més (mesurat de veritat, no assumit -- vegeu
+     _temp_variante-b-fitxa.md) i desbordar la secció. */
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-10);
+}
+
+.fitxa__eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+/* .cta-headline (components.css) ja aporta la tipografia serif gran i el
+   seu propi margin-bottom -- no es redefineix res aquí. */
+
+.fitxa__cta {
+  margin-bottom: var(--space-8);
+}
+
+/* Botó píndola fosc amb cercle+fletxa: primer ús d'aquest patró de
+   botó, per això viu aquí i no a components.css (es puja a compartit
+   només quan hi hagi un segon consumidor real -- mateix criteri que es
+   va aplicar a .glass-card). Reutilitza .btn (components.css) per a la
+   forma de píndola/padding/transició; el cercle de la fletxa repeteix
+   deliberadament els mateixos números que .hero-card__arrow
+   (components.css) perquè és el mateix llenguatge visual de marca, però
+   sense compartir-ne la regla -- els colors inverteixen sentit (aquí el
+   fons ja és fosc de per si, no vidre sobre foto). */
+.btn--dark {
+  background: var(--color-surface-dark);
+  color: var(--color-text-inverse);
+  padding-right: var(--space-2);
+}
+
+.btn--dark .btn__arrow-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+  transition: background-color var(--duration-fast), border-color var(--duration-fast), transform var(--duration-fast) var(--ease-out);
+}
+
+.btn--dark:hover .btn__arrow-circle {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateX(4px);
+}
+
+.fitxa-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
 }
 
-.fact-sheet__item {
+.fitxa-card {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
 }
 
-.fact-sheet__item strong {
-  display: block;
+/* Icones SVG inline (trazo fi, sense farciment): no hi ha cap set
+   d'icones al projecte (assets/icons buit) -- pendents de revisió de
+   disseny, vegeu _temp_variante-b-fitxa.md. */
+.fitxa-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.fitxa-card__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.fitxa-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.fitxa-card__label {
   font-size: var(--text-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   font-weight: var(--weight-medium);
-  margin-bottom: var(--space-1);
+}
+
+.fitxa-card__value {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+/* Panell del mapa: reutilitza el mateix llenguatge de placeholder que
+   .venue-card__photo-placeholder (secció 3, més avall) -- fons, vora
+   discontínua, text centrat -- combinant-hi la classe directament en
+   lloc de repetir-ne els valors. Només s'hi afegeix la mida/radi propis
+   d'aquest panell. "Molt arrodonit": --radius-xl és el radi més gran
+   del sistema de tokens fora del --radius-pill (pensat per a formes
+   circulars, no encaixaria aquí). */
+.fitxa__map {
+  border-radius: var(--radius-xl);
+  align-self: start;
+  aspect-ratio: 4 / 5;
+}
+
+/* Mòbil: una sola columna. Les 4 targetes es mantenen en graella 2x2
+   (hi caben còmodament fins a mòbils petits, mateix criteri que
+   .venue-grid) -- no calia apilar-les totes soles per manca d'espai. El
+   mapa passa de "encaixa l'alçada del contingut" (align-self:start +
+   aspect-ratio 4/5, pensat per a la columna estreta de desktop) a una
+   proporció més ampla i baixa: a amplada completa de mòbil, 4/5 el
+   deixaria absurdament alt. */
+@media (max-width: 768px) {
+  .fitxa__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .fitxa__map {
+    aspect-ratio: 4 / 3;
+  }
 }
 
 /* ── Les 4 finques (secció 3) ──────────────────────────────────────────
