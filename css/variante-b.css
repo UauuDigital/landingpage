@@ -181,17 +181,82 @@
   line-height: var(--leading-normal);
 }
 
-/* Panell del mapa: reutilitza el mateix llenguatge de placeholder que
-   .venue-card__photo-placeholder (secció 3, més avall) -- fons, vora
-   discontínua, text centrat -- combinant-hi la classe directament en
-   lloc de repetir-ne els valors. Només s'hi afegeix la mida/radi propis
-   d'aquest panell. "Molt arrodonit": --radius-xl és el radi més gran
+/* Panell del mapa: mapa interactiu real (Leaflet + OpenStreetMap),
+   inicialitzat en diferit des de js/main.js (initFitxaMap()) quan la
+   secció entra en viewport -- ni el JS de Leaflet ni els tiles competeixen
+   amb el LCP del hero. "Molt arrodonit": --radius-xl és el radi més gran
    del sistema de tokens fora del --radius-pill (pensat per a formes
-   circulars, no encaixaria aquí). */
+   circulars, no encaixaria aquí). overflow:hidden hi retalla els tiles
+   quadrats de Leaflet a la cantonada arrodonida. */
 .fitxa__map {
+  position: relative;
   border-radius: var(--radius-xl);
+  overflow: hidden;
   align-self: start;
   aspect-ratio: 4 / 5;
+  background: var(--color-surface);
+}
+
+/* Element on Leaflet inicialitza el mapa (L.map(...)): estat neutre
+   (el mateix fons de .fitxa__map) mentre encara no s'ha inicialitzat --
+   no és un placeholder marcat com a pendent, és l'estat normal abans
+   d'entrar en viewport. aria-hidden perquè el mapa és purament
+   visual/orientatiu -- vegeu el comentari a index-b.html sobre la
+   llista .sr-only germana amb el mateix contingut essencial. */
+.fitxa__map-canvas {
+  width: 100%;
+  height: 100%;
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+}
+
+/* Marcador propi (mai el pin blau per defecte de Leaflet). */
+.map-marker {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Popup: Leaflet només aporta l'estructura (bafarada, fletxa, botó de
+   tancar); el contingut visual segueix la resta del sistema de disseny. */
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.leaflet-popup-content {
+  margin: var(--space-4);
+  font-family: var(--font-sans);
+  line-height: var(--leading-normal);
+}
+
+.map-popup__name {
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+  margin-bottom: var(--space-1);
+}
+
+.map-popup__town {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.map-popup__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+}
+
+.map-popup__cta:hover {
+  text-decoration: underline;
 }
 
 /* Mòbil: una sola columna. Les 4 targetes es mantenen en graella 2x2

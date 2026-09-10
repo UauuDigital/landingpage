@@ -145,8 +145,9 @@
     <!-- ══ 2. FITXA RÀPIDA ══════════════════════════════════════════════
          Dues columnes a desktop (.fitxa__inner): esquerra -- eyebrow +
          titular + CTA de píndola fosca + 4 targetes en graella 2x2;
-         dreta -- panell reservat per al mapa de les finques (segon
-         prompt d'aquesta secció, vegeu _temp_variante-b-fitxa.md).
+         dreta -- mapa interactiu de les 4 finques (Leaflet + OSM,
+         inicialitzat en diferit des de js/main.js -- vegeu
+         initFitxaMap() i el comentari a _temp_variante-b-mapa.md).
          Secció d'amplada completa igual que la resta de la plantilla
          (mai el marge/radi propis del hero): ".container" hi centra el
          contingut igual que a "Les 4 finques" o "Serveis". Cada targeta
@@ -192,8 +193,20 @@
           </div>
         </div>
 
-        <div class="fitxa__map venue-card__photo-placeholder">
-          <span>[PENDENT: mapa de les finques]</span>
+        <!-- .fitxa__map-canvas és on Leaflet pinta (aria-hidden: el mapa
+             és purament visual/orientatiu). El mateix contingut essencial
+             (nom + municipi de cada finca) queda disponible per a lector
+             de pantalla via la llista .sr-only, independentment de si
+             Leaflet arriba a carregar-se -- no depenem que un widget de
+             mapa de tercers sigui perfectament navegable per teclat. -->
+        <div class="fitxa__map">
+          <div class="fitxa__map-canvas" aria-hidden="true"></div>
+          <ul class="sr-only">
+            <li>Can Macià — Òdena</li>
+            <li>Ca n'Alzina — Rubió</li>
+            <li>Mas Vivencs — La Pobla de Claramunt</li>
+            <li>Castell de Tous — Sant Martí de Tous</li>
+          </ul>
         </div>
       </div>
     </section>
