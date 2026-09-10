@@ -151,6 +151,51 @@ function initFitxaMap() {
   observer.observe(container);
 }
 
+// ── Finques: no navegar en acabar un arrossegament ────────────────────────
+// A index.html les cards del carrusel son <article>; aquí cada card és un
+// <a href="#contacte"> sencer, i sense això qualsevol arrossegament acabaria
+// obrint l'enllaç en deixar anar el botó. La distància es mesura aquí i no
+// es reaprofita la d'initServicesCarousel() (js/main.js) perquè viu dins del
+// seu closure -- i el JS compartit no s'ha de tocar per una particularitat
+// d'aquesta variant. El listener va en fase de captura: ha d'arribar abans
+// que l'<a>.
+const FINQUES_DRAG_THRESHOLD = 5; // px; per sota, és un clic amb pols tremolós
+
+function initFinquesDragGuard() {
+  const grid = document.querySelector('.finques .services__grid');
+  if (!grid) return;
+
+  let downX = null;
+  let dragged = false;
+
+  grid.addEventListener('mousedown', (e) => {
+    downX = e.clientX;
+    dragged = false;
+  });
+
+  grid.addEventListener('mousemove', (e) => {
+    if (downX !== null && Math.abs(e.clientX - downX) > FINQUES_DRAG_THRESHOLD) {
+      dragged = true;
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    downX = null;
+  });
+
+  grid.addEventListener(
+    'click',
+    (e) => {
+      if (!dragged) return;
+      e.preventDefault();
+      e.stopPropagation();
+      dragged = false;
+    },
+    true
+  );
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initFitxaMap();
+  initFinquesDragGuard();
 });
