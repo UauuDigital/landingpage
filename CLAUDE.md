@@ -136,3 +136,46 @@ Landing llarga (9 seccions) centrada 100% en captar el lead, pensada per a tràn
 - Cap comentari tret que el PER QUÈ no sigui obvi
 - CSS custom properties per a tots els valors — mai hardcoded
 - Paths relatius a tot arreu (logos/, fonts/, locales/) — mai root-relative (/logos/) perquè el site pot estar en subdirectori
+
+## Procés de treball (Claude Code)
+Les regles i la verificació d'aquesta secció **s'apliquen per defecte, sense que calgui demanar-les a cada prompt**.
+
+### Regles permanents del projecte
+- **Escala en lloc de decidir**: si una instrucció xoca amb una altra, si complir-la obligaria a tocar un fitxer compartit fora de l'abast del prompt, o si dues opcions de disseny són defensables i l'elecció té conseqüències, para i explica-ho abans d'actuar. Les decisions mecàniques o reversibles (renombrar una variable, triar un valor dins d'un rang ja acceptat, un fix que no canvia comportament) es prenen sense preguntar.
+- Media queries pròpies d'una variant: només al CSS d'aquella variant (`variante-b.css`, `gracies.css`...), mai a `layout.css` ni `components.css`.
+- Res puja a `components.css`/`tokens.css` fins que hi ha un segon consumidor **real**. Amb un sol ús, queda al CSS de la variant encara que s'assembli a algun component compartit.
+- Token nou (a `tokens.css`) només quan dos fitxers reals necessiten literalment el mateix valor. Repetir un valor que ja és "en cru" en algun altre lloc del sistema no obliga a tokenitzar-lo.
+- Tot contingut que no sigui definitiu porta la marca `[PENDENT]`/`[PENDIENTE]`/`[PENDING]` als tres idiomes — mai buit, mai un text plausible sense marcar.
+- Zero fugues: cap CTA surt de la landing, tot ancora a `#contacte`. Única excepció: l'atribució obligatòria d'OpenStreetMap (requisit de llicència, quan n'hi hagi) i l'enllaç a la política de privacitat del formulari.
+- El JS propi d'una plantilla de variant viu en el seu propi mòdul, carregat només des d'aquesta plantilla — mai a `js/main.js`.
+- `grid-template-columns: repeat(N, 1fr)` porta sempre `minmax(0, 1fr)`: el mínim implícit de `1fr` és `auto`, no `0`, i pot desbordar amb contingut llarg.
+- Etiquetes/valors curts sense ús general (p. ex. "Aforament", "Preu" d'una targeta): dins el mateix `data-variant-html` que el valor, no una clau nova a `locales/*`.
+- Els noms de finca no es tradueixen (fet de marca), a diferència de la resta del contingut.
+- Contingut essencial dins d'un component visual/de tercers (mapa, widget): sempre disponible també fora, en text pla o `.sr-only`, independent de si el JS/tercer arriba a carregar.
+- Contingut creat dinàmicament després de l'arrencada (popups, etc.): delegació d'esdeveniments (`document.addEventListener`), mai vincular-lo un a un en arrencar.
+
+### Checklist de verificació estàndard
+Dona-la per feta a cada canvi, sense que calgui que et la demanin:
+- `node build-variants.js` i `node build-variants.js --check` (exit 0).
+- Xarxa sense 404 (ignora el 503 conegut de `bzr.openai.com`, aliè i previ a qualsevol canvi teu).
+- Consola sense errors propis (ignora el soroll conegut d'extensions de Chrome, vegeu més avall).
+- Cicle CAT→ESP→ENG→CAT al contingut nou, `aria-pressed` correcte.
+- `git diff --stat`: confirma que els fitxers compartits (`components.css`, `tokens.css`, `layout.css`, `index.html`, `js/main.js`) no han canviat si el prompt no ho demanava.
+- Si toques CSS de layout: mesura la convivència real amb `getBoundingClientRect`/`Range.getClientRects()` al rang 320–1920px, no l'assumeixis.
+- Recarrega dur (`cmd+shift+r`) abans de verificar visualment.
+
+### Limitacions conegudes de l'entorn de proves
+- **`resize_window` no canvia el viewport real de la pestanya de Claude in Chrome.** Símptoma: la mida "canvia" però `window.innerWidth` i les captures segueixen igual. Conclusió: fer servir un iframe del mateix origen per provar amples diferents.
+- **rAF/temporitzadors es paren o s'alenteixen si la pestanya perd el focus durant l'automatització.** Verificat (no assumit): `document.hasFocus()` en `false` i `document.visibilityState` en `hidden` durant l'automatització, zero frames de `requestAnimationFrame` en 1,5s. Conclusió: no és un bug del codi — en una pestanya real amb focus no es reprodueix; comprova el focus de la pestanya abans de sospitar del codi.
+- **Soroll d'extensions de Chrome a la consola.** Símptoma: `"A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received"`. Conclusió: ve d'una extensió instal·lada al navegador, no del nostre codi — ignora-la.
+- **El servidor local serveix contingut en caché després d'editar CSS/JS.** Símptoma: `getComputedStyle` o l'aspecte visual no reflecteix el canvi acabat de fer. Conclusió: recarrega dur (`cmd+shift+r`) abans de mesurar, no assumeixis que el canvi ha fallat.
+
+### Informe final
+Per defecte, en acabar una tasca: genera `_temp_[tema].md` a l'arrel del repo, redactat per enganxar-lo tal qual en una sessió de Claude.ai sense accés al codi (autocontingut, sense assumir que qui el llegeix ha vist els fitxers), i executa `open "<ruta_completa>"` just després. `_temp_*.md` ja està al `.gitignore`: no es versiona.
+
+### Tècniques de mesura establertes
+- **Amples diferents**: iframe del mateix origen amb `style.width` variable, no `resize_window`.
+- **Convivència de text real**: `Range.getClientRects()` sobre el node de text, no `getBoundingClientRect()` del contenidor — un contenidor de bloc s'estira a l'amplada disponible encara que el text visible sigui més curt, i dona fals negatiu.
+- **Abans de vendoritzar una llibreria**: provar la URL amb `curl` (i confirmar la versió estable real, p. ex. via l'API de GitHub) abans de baixar-la.
+- **Confirmar que un bug existia abans del fix**: injectar temporalment el codi antic al DOM (`<style>` amb `!important`, sobreescriure una funció) i mesurar — mai fiar-se de la memòria de "com era abans".
+- **Comportament tàctil sense dispositiu real**: sobrescriure `window.matchMedia` perquè `(pointer: coarse)` retorni `true` abans que el codi el consulti, i simular events `Touch`/`TouchEvent` per verificar la lògica de gestos.
