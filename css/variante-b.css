@@ -434,23 +434,49 @@
   --finques-inset: calc(
     max(0px, (100% - var(--container-wide-max)) / 2) + var(--container-wide-gutter)
   );
+  /* Quant puja la card en passar-hi el ratolí. Un sol valor: el consumeixen
+     tant el hover com el buit que se li reserva a la graella (just a sota). */
+  --finca-hover-lift: 4px;
 }
 
 .finques .services__header {
   padding-inline: var(--finques-inset);
 }
 
+/* .services__grid porta overflow-x:auto + overflow-y:hidden (layout.css):
+   el retall horitzontal és el que talla la quarta card i convida a
+   arrossegar, però el vertical es menjava els 4px que puja la card en
+   passar-hi el ratolí -- amb align-items:flex-start i sense padding
+   propi, la card recolzava EXACTAMENT sobre la vora del clip (mesurat:
+   0px de folgança, i -4px en fer hover).
+
+   Es resol reservant-li aquest buit dins del contenidor retallat: el
+   clip d'overflow es fa a la caixa de padding, així que el que cau dins
+   del padding-top NO es retalla. El mateix valor es descompta del
+   margin-top perquè les cards no es moguin ni un píxel de lloc.
+
+   Descartades les altres dues sortides: canviar l'eix de l'overflow no
+   es pot (amb overflow-x:auto, un overflow-y:visible es converteix en
+   auto i surt una barra vertical; i overflow-x:clip, que sí conviu amb
+   visible, mataria l'scroll del carrusel), i canviar el hover per un
+   que no desbordi (una escala de la foto, per exemple) seria redissenyar
+   una interacció que ja estava decidida, no arreglar-ne el retall. */
 .finques .services__grid {
   padding-inline: var(--finques-inset) var(--space-8);
+  padding-top: var(--finca-hover-lift);
+  margin-top: calc(var(--space-3) - var(--finca-hover-lift));
 }
 
-/* Cada card és un <a href="#contacte"> sencer: cap enllaç extern. */
+/* Cada card és un <a href="#contacte"> sencer: cap enllaç extern. El hover
+   és d'aquesta variant, no del component compartit: .service-card
+   (components.css) no en porta cap, i per això la secció de serveis
+   d'index.html no pateix aquest retall. */
 .finca-card {
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
 .finca-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(calc(-1 * var(--finca-hover-lift)));
 }
 
 .finca-card__name {
