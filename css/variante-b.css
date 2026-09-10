@@ -113,37 +113,20 @@
   margin-bottom: var(--space-8);
 }
 
-/* Botó píndola fosc amb cercle+fletxa: primer ús d'aquest patró de
-   botó, per això viu aquí i no a components.css (es puja a compartit
-   només quan hi hagi un segon consumidor real -- mateix criteri que es
-   va aplicar a .glass-card). Reutilitza .btn (components.css) per a la
-   forma de píndola/padding/transició; el cercle de la fletxa repeteix
-   deliberadament els mateixos números que .hero-card__arrow
-   (components.css) perquè és el mateix llenguatge visual de marca, però
-   sense compartir-ne la regla -- els colors inverteixen sentit (aquí el
-   fons ja és fosc de per si, no vidre sobre foto). */
+/* Botó píndola fosc: primer ús d'aquest patró de botó, per això viu
+   aquí i no a components.css (es puja a compartit només quan hi hagi
+   un segon consumidor real -- mateix criteri que .glass-card). Reutilitza
+   .btn (components.css) per a la forma de píndola/padding/transició i
+   .arrow-circle (components.css, ara compartida amb .hero-card) per al
+   cercle de la fletxa -- només el modificador de hover que li és propi
+   (el desplaçament cap a la dreta; .hero-card no en té) queda aquí. */
 .btn--dark {
   background: var(--color-surface-dark);
   color: var(--color-text-inverse);
   padding-right: var(--space-2);
 }
 
-.btn--dark .btn__arrow-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-  font-size: var(--text-sm);
-  flex-shrink: 0;
-  transition: background-color var(--duration-fast), border-color var(--duration-fast), transform var(--duration-fast) var(--ease-out);
-}
-
-.btn--dark:hover .btn__arrow-circle {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.8);
+.btn--dark:hover .arrow-circle {
   transform: translateX(4px);
 }
 
@@ -237,7 +220,7 @@
 
 .venue-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-5);
 }
 
@@ -279,7 +262,7 @@
 
 @media (max-width: 1024px) {
   .venue-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -329,7 +312,7 @@
 
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-8);
   text-align: center;
 }
@@ -393,7 +376,7 @@
 
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-5);
   margin-bottom: var(--space-10);
 }
