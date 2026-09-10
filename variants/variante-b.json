@@ -11,15 +11,25 @@
     "es": "[PENDIENTE] 4 fincas a 45 minutos de Barcelona · Hasta 200 invitados · Todo incluido.",
     "en": "[PENDING] 4 venues 45 min from Barcelona · Up to 200 guests · All-inclusive."
   },
-  "hero.cta": {
-    "ca": "[PENDENT] Vull la meva proposta",
-    "es": "[PENDIENTE] Quiero mi propuesta",
-    "en": "[PENDING] I want my proposal"
-  },
   "hero.bg": {
     "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
     "es": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
     "en": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+  },
+  "hero.card.image": {
+    "ca": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp",
+    "es": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp",
+    "en": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp"
+  },
+  "hero.card.label": {
+    "ca": "[PENDENT] Casa't amb UAUU",
+    "es": "[PENDIENTE] Cásate con UAUU",
+    "en": "[PENDING] Marry with UAUU"
+  },
+  "hero.card.cta": {
+    "ca": "[PENDENT] Més<br>informació",
+    "es": "[PENDIENTE] Más<br>información",
+    "en": "[PENDING] Learn<br>more"
   },
 
   "fitxa.headline": {
