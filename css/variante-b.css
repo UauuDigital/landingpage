@@ -87,6 +87,12 @@
    haver-li de calcular-la a mà -- per això NO porta aspect-ratio a
    desktop (vegeu el mòbil més avall, on sí que en cal un). */
 
+/* Decisió explícita: aquesta secció NO fa servir ".container" (layout.css,
+   compartida) -- el contingut arriba fins a la vora del viewport en lloc de
+   quedar centrat a container-max (1200px), a diferència de la resta de
+   seccions de totes dues plantilles. Per això porta el seu propi
+   padding-inline aquí (mateixos tokens que ".container", perquè el marge
+   lateral es llegeixi igual), no a layout.css. */
 .fitxa__inner {
   display: grid;
   /* minmax(0, ...) evita el mínim implícit "auto" de 1fr: sense això,
@@ -95,6 +101,7 @@
      _temp_variante-b-fitxa.md) i desbordar la secció. */
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: var(--space-10);
+  padding-inline: var(--space-8);
 }
 
 .fitxa__eyebrow {
@@ -269,6 +276,7 @@
 @media (max-width: 768px) {
   .fitxa__inner {
     grid-template-columns: 1fr;
+    padding-inline: var(--space-5);
   }
 
   .fitxa__map {
