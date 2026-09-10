@@ -148,19 +148,21 @@
          dreta -- mapa interactiu de les 4 finques (Leaflet + OSM,
          inicialitzat en diferit des de js/variante-b.js -- vegeu
          initFitxaMap() i el comentari a _temp_variante-b-mapa.md).
-         ÚNICA secció de la plantilla sense ".container": el contingut
-         arriba fins a la vora del viewport (decisió pròpia d'aquesta
-         secció, no del sistema compartit -- ".fitxa__inner" porta el seu
-         propi padding-inline a variante-b.css). Cada targeta és un únic
+         "container container--wide" hi centra el contingut igual que a
+         la resta de seccions d'aquesta plantilla (--wide, a
+         variante-b.css, és l'amplada pròpia de la Variant B: més ampla
+         que la de index.html, que no es toca) -- "full-bleed"
+         (## Variants) es refereix al fons de la secció, no al
+         contingut. Cada targeta és un únic
          data-variant-html amb l'etiqueta + el valor en dos <span>
          (mateix patró que les targetes del hero -- vegeu el punt 3 de
          ## Variants a CLAUDE.md sobre per què no hi ha clau i18n
          genèrica per a "Aforament"/"Preu"/etc.). ═══════════════════════ -->
     <section id="fitxa" class="fitxa" aria-label="Fitxa del producte">
-      <div class="fitxa__inner">
+      <div class="container container--wide fitxa__inner">
         <div class="fitxa__content">
           <p class="fitxa__eyebrow" data-variant-html="fitxa.eyebrow">[PENDENT: eyebrow]</p>
-          <h2 class="cta-headline" data-variant-html="fitxa.headline">Què és UAUU weddings &amp; events?</h2>
+          <h2 class="section-heading" data-variant-html="fitxa.headline">Què és UAUU weddings &amp; events?</h2>
           <a href="#contacte" class="btn btn--dark fitxa__cta">
             <span data-variant-html="fitxa.cta">Accedeix als catàlegs</span>
             <span class="arrow-circle" aria-hidden="true">→</span>
@@ -169,25 +171,25 @@
           <div class="fitxa-cards">
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 13.2c2.4.3 4 2 4 4.8"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 13.2c2.4.3 4 2 4 4.8"/></svg>
               </span>
               <div class="fitxa-card__text" data-variant-html="fitxa.aforament"><span class="fitxa-card__label">Aforament</span><span class="fitxa-card__value">De 35 a 320 comensals</span></div>
             </div>
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 12 4l8.5 4.5-8.5 4.5-8.5-4.5Z"/><path d="M3.5 8.5V16l8.5 4.5 8.5-4.5V8.5"/><path d="M12 13v7.5"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 12 4l8.5 4.5-8.5 4.5-8.5-4.5Z"/><path d="M3.5 8.5V16l8.5 4.5 8.5-4.5V8.5"/><path d="M12 13v7.5"/></svg>
               </span>
               <div class="fitxa-card__text" data-variant-html="fitxa.inclou"><span class="fitxa-card__label">Què inclou</span><span class="fitxa-card__value">Espai, càtering, decoració, coordinació i muntatge</span></div>
             </div>
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>
               </span>
               <div class="fitxa-card__text" data-variant-html="fitxa.disponibilitat"><span class="fitxa-card__label">Disponibilitat</span><span class="fitxa-card__value">Dates disponibles per 2027 i 2028</span></div>
             </div>
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3.5h5a2 2 0 0 1 2 2v5a2 2 0 0 1-.6 1.4l-8.4 8.4a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l8.4-8.4a2 2 0 0 1 1.4-.6Z"/><circle cx="16.5" cy="7.5" r="1.2"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3.5h5a2 2 0 0 1 2 2v5a2 2 0 0 1-.6 1.4l-8.4 8.4a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l8.4-8.4a2 2 0 0 1 1.4-.6Z"/><circle cx="16.5" cy="7.5" r="1.2"/></svg>
               </span>
               <div class="fitxa-card__text" data-variant-html="fitxa.preu"><span class="fitxa-card__label">Preu</span><span class="fitxa-card__value">Des de 134 fins a 163€ / comensal</span></div>
             </div>
@@ -227,7 +229,7 @@
          un bloc neutre .venue-card__photo-placeholder amb el text
          [PENDENT: foto Ca n'Alzina] ben visible. -->
     <section id="finques" aria-label="Les nostres finques">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="finques.headline">[PENDENT] Quatre finques, un mateix nivell d'exigència.</h2>
         <div class="venue-grid">
           <a href="#contacte" class="venue-card">
@@ -270,7 +272,7 @@
          (vegeu _temp_variante-b-contenido.md). Només l'encapçalament de la
          secció és contingut nou d'aquesta variant. ══════════════════════ -->
     <section id="serveis" aria-label="Els nostres serveis">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="serveis.headline">[PENDENT] Tot inclòs, sense sorpreses.</h2>
         <ul class="checklist">
           <li class="checklist__item">
@@ -330,7 +332,7 @@
          Les fotos sí són reals del CDN, però generals (general/...),
          no atribuïdes a cap finca concreta. ═══════════════════════════ -->
     <section id="proves" aria-label="Casos d'èxit">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="proves.headline">[PENDENT] Casos d'èxit</h2>
 
         <p class="proves-stat">
@@ -364,7 +366,7 @@
     <!-- ══ 6. COM FUNCIONA ══════════════════════════════════════════════
          3 passos. ════════════════════════════════════════════════════ -->
     <section id="com-funciona" aria-label="Com funciona">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="com-funciona.headline">[PENDENT] Com funciona</h2>
         <ol class="steps">
           <li class="steps__item">
@@ -539,7 +541,7 @@
          (faq.cta) reutilitzada a les 6 preguntes -- no té sentit
          duplicar-la sis vegades si sempre diu el mateix. ══════════════ -->
     <section id="faq" aria-label="Preguntes freqüents">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="faq.headline">[PENDENT] Preguntes freqüents</h2>
         <div class="faq-list">
           <details class="faq-item">
@@ -594,7 +596,7 @@
          variante-b.css) hi és l'únic ús que en queda a la plantilla.
          ══════════════════════════════════════════════════════════════ -->
     <section id="tancament" class="tancament" aria-label="Última crida a l'acció">
-      <div class="container">
+      <div class="container container--wide">
         <h2 class="section-heading" data-variant-html="tancament.headline">[PENDENT] Encara hi ets a temps.</h2>
         <a href="#contacte" class="btn btn--glass-dark">
           <span data-variant-html="tancament.cta">[PENDENT] Vull la meva proposta</span>

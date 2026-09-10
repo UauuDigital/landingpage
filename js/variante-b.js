@@ -70,6 +70,7 @@ async function buildFitxaMap(container) {
     scrollWheelZoom: false, // no "roba" el scroll de la roda al passar-hi per sobre
     dragging: !isCoarsePointer,
     keyboard: false, // el mapa és aria-hidden (vegeu index-b.html): fora del tab order
+    zoomControl: false, // sense botons +/- (_ref_fitxa.png no en porta); pinch i dobleclic segueixen actius
   });
 
   // Mòbil: un dit fa scroll de la pàgina (dragging queda desactivat i Leaflet
@@ -123,6 +124,15 @@ async function buildFitxaMap(container) {
   });
 
   map.fitBounds(bounds, { padding: [28, 28] });
+
+  // .fitxa__map ja no té una alçada fixa a desktop: s'estira per igualar
+  // la de .fitxa__content (vegeu variante-b.css). Leaflet només mesura el
+  // contenidor un cop, a L.map(); si l'alçada canvia després -- finestra
+  // redimensionada, o un canvi d'idioma que allarga/escurça el text i
+  // altera l'alçada de les targetes -- els tiles es quedarien mal
+  // retallats fins que l'usuari interactués amb el mapa. invalidateSize()
+  // el torna a mesurar.
+  new ResizeObserver(() => map.invalidateSize()).observe(container);
 }
 
 function initFitxaMap() {
