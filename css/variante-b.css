@@ -50,7 +50,7 @@
   border-color: rgba(255, 255, 255, 0.55);
 }
 
-/* Amplada de contingut pròpia de la Variant B: 1680px, un 40% més que el
+/* Amplada de contingut pròpia de la Variant B: 1932px, un 61% més que el
    cap de ".container" (layout.css, container-max=1200px -- compartit amb
    index.html, que no es toca). Modificador additiu sobre ".container"
    (mateix patró que ".variante-b-form__inner" més avall, que ja hi
@@ -59,9 +59,11 @@
 
    El marge lateral escala amb la finestra (4vw) en lloc de ser un fix,
    amb terra a --space-8 (32px, el mateix valor de ".container": mai més
-   estret que avui a cap ample) i sostre a --space-16 (64px, perquè a
-   partir del cap de 1680px el marge ja creix sol via margin-inline:auto
-   i no cal que el padding hi sumi indefinidament).
+   estret que avui a cap ample) i sostre a --space-16 (64px). Amb el cap
+   a 1932px, "margin-inline:auto" no reparteix res per sota d'aquesta
+   amplada: a tot el rang habitual de desktop (1440-1920px) el marge
+   lateral el fixa només el clamp, i el sostre de 64px hi mana a partir
+   de 1600px.
 
    Només a partir de 769px: per sota, el padding mòbil de ".container"
    (--space-5) es manté intacte -- no hi ha res a eixamplar en un mòbil,
@@ -73,7 +75,7 @@
    un màxim propi més estret (820px, formulari d'una sola columna) per
    una raó independent d'aquesta. */
 .container--wide {
-  max-width: 1680px;
+  max-width: 1932px;
 }
 
 @media (min-width: 769px) {
@@ -121,7 +123,7 @@
 
 /* "Full-bleed" volia dir el FONS de la secció, no el contingut: el
    contingut fa servir ".container container--wide" -- mateix marge
-   lateral i mateix cap d'amplada (1680px) que la resta de seccions
+   lateral i mateix cap d'amplada (1932px) que la resta de seccions
    d'aquesta plantilla, així queden coherents entre elles.
    ".fitxa__inner" no porta padding-inline propi -- ve d'aquelles dues
    classes (vegeu l'HTML i el bloc de ".container--wide" més amunt). */
