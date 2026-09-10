@@ -2,14 +2,24 @@
   "template": "index-b.html",
 
   "hero.headline": {
-    "ca": "[PENDENT] Casaments a mida.<br>Resposta directa.",
-    "es": "[PENDIENTE] Bodas a medida.<br>Respuesta directa.",
-    "en": "[PENDING] Weddings, your way.<br>Straight answers."
+    "ca": "Quatre finques exclusives a prop de Barcelona.",
+    "es": "[PENDIENTE] Cuatro fincas exclusivas cerca de Barcelona.",
+    "en": "[PENDING] Four exclusive venues near Barcelona."
   },
-  "hero.subtitle": {
-    "ca": "[PENDENT] 4 finques a 45 minuts de Barcelona · Fins a 200 convidats · Tot inclòs.",
-    "es": "[PENDIENTE] 4 fincas a 45 minutos de Barcelona · Hasta 200 invitados · Todo incluido.",
-    "en": "[PENDING] 4 venues 45 min from Barcelona · Up to 200 guests · All-inclusive."
+  "hero.stats.preu": {
+    "ca": "<span class=\"hero-stat-card__label\">Preu del menú</span><span class=\"hero-stat-card__value\">Des de 138,00€</span>",
+    "es": "[PENDIENTE] <span class=\"hero-stat-card__label\">Precio del menú</span><span class=\"hero-stat-card__value\">Desde 138,00€</span>",
+    "en": "[PENDING] <span class=\"hero-stat-card__label\">Menu price</span><span class=\"hero-stat-card__value\">From €138.00</span>"
+  },
+  "hero.stats.aforament": {
+    "ca": "<span class=\"hero-stat-card__label\">Aforament</span><span class=\"hero-stat-card__value\">Fins a 350 convidats</span>",
+    "es": "[PENDIENTE] <span class=\"hero-stat-card__label\">Aforo</span><span class=\"hero-stat-card__value\">Hasta 350 invitados</span>",
+    "en": "[PENDING] <span class=\"hero-stat-card__label\">Capacity</span><span class=\"hero-stat-card__value\">Up to 350 guests</span>"
+  },
+  "hero.stats.inclou": {
+    "ca": "<span class=\"hero-stat-card__label\">Què inclou</span><span class=\"hero-stat-card__value\">Des de la coordinació fins a l'últim ball</span>",
+    "es": "[PENDIENTE] <span class=\"hero-stat-card__label\">Qué incluye</span><span class=\"hero-stat-card__value\">Desde la coordinación hasta el último baile</span>",
+    "en": "[PENDING] <span class=\"hero-stat-card__label\">What's included</span><span class=\"hero-stat-card__value\">From coordination to the last dance</span>"
   },
   "hero.bg": {
     "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",

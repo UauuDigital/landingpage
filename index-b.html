@@ -96,10 +96,18 @@
   <main>
 
     <!-- ══ 1. HERO ══════════════════════════════════════════════════════
-         Titular + subtítol (dades dures) + hero-card flotant, el mateix
-         component d'index.html (imatge + label + CTA) reutilitzat tal
-         qual, ancorant aquí al formulari (#contacte) en lloc del destí de
-         la default. És l'únic enllaç d'aquesta secció. ══════════════════ -->
+         Titular + tres targetes de dades dures (preu, aforament, què
+         inclou) + hero-card flotant, el mateix component d'index.html
+         (imatge + label + CTA) reutilitzat tal qual, ancorant aquí al
+         formulari (#contacte) en lloc del destí de la default. És l'únic
+         enllaç d'aquesta secció (les targetes de dades no enllacen). Les
+         targetes reutilitzen el vidre translúcid de .hero-card via
+         .glass-card (components.css, vegeu-hi el comentari) -- aquí només
+         hi ha el layout intern (label + valor). Cada targeta és un únic
+         data-variant-html amb l'etiqueta com a text pla just abans dels
+         dos <span>, mateix patró que .fact-sheet__item (secció 2): no hi
+         ha clau i18n genèrica per a "Preu"/"Aforament"/etc., i no es crea
+         una per a aquest únic ús (vegeu CLAUDE.md ## Multiidioma). ══════ -->
     <section id="inici" class="hero" aria-label="Portada">
       <img
         class="hero__bg"
@@ -113,8 +121,12 @@
       <div class="hero__overlay" aria-hidden="true"></div>
 
       <div class="hero__content">
-        <h1 class="hero__headline" data-variant-html="hero.headline">[PENDENT] Casaments a mida.<br>Resposta directa.</h1>
-        <p class="hero__subtitle" data-variant-html="hero.subtitle">[PENDENT] 4 finques a 45 minuts de Barcelona · Fins a 200 convidats · Tot inclòs.</p>
+        <h1 class="hero__headline" data-variant-html="hero.headline">Quatre finques exclusives a prop de Barcelona.</h1>
+        <div class="hero-stats">
+          <div class="hero-stat-card glass-card" data-variant-html="hero.stats.preu"><span class="hero-stat-card__label">Preu del menú</span><span class="hero-stat-card__value">Des de 138,00€</span></div>
+          <div class="hero-stat-card glass-card" data-variant-html="hero.stats.aforament"><span class="hero-stat-card__label">Aforament</span><span class="hero-stat-card__value">Fins a 350 convidats</span></div>
+          <div class="hero-stat-card glass-card" data-variant-html="hero.stats.inclou"><span class="hero-stat-card__label">Què inclou</span><span class="hero-stat-card__value">Des de la coordinació fins a l'últim ball</span></div>
+        </div>
       </div>
 
       <div class="hero__card">

@@ -9,16 +9,80 @@
    cap token existent que els generalitzi sense inventar-ne un que només
    faria servir aquest únic lloc. */
 
-/* ── Hero: subtítol i CTA únic (index.html no en té cap dels dos) ── */
+/* ── Hero: targetes de dades dures (index.html no en té) ───────────────
+   Layout intern només: el vidre (background/blur/border/radius/shadow) ve
+   de .glass-card, compartida amb .hero-card a components.css (vegeu-hi el
+   comentari) -- res d'això es redefineix aquí. */
 
-.hero__subtitle {
+/* .hero__content (layout.css) porta max-width:100%, pensat per a index.html
+   (titular curt, mai arriba a la columna de la hero-card). El titular
+   definitiu d'aquesta variant ("Quatre finques exclusives...") és prou
+   llarg per, en un rang ampli de viewports (~650-1600px, mesurat amb
+   getBoundingClientRect -- vegeu _temp_variante-b-hero-cards.md), envair
+   la columna fixa de la hero-card (260px + el seu marge dret, posicionada
+   en absolut). Es limita aquí, no a layout.css: és un problema d'aquest
+   titular concret, no del sistema compartit. Només per damunt del
+   breakpoint mòbil de .hero (640px, layout.css): per sota, la hero-card
+   passa a ocupar tota l'amplada per sota del contingut i no hi ha
+   columna a evitar. */
+@media (min-width: 641px) {
+  .hero__content {
+    max-width: calc(100% - 260px - var(--space-8) - var(--space-8));
+  }
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.hero-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+}
+
+.hero-stat-card__label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.hero-stat-card__value {
   font-family: var(--font-sans);
   font-size: var(--text-md);
-  font-weight: var(--weight-regular);
-  line-height: var(--leading-normal);
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 46ch;
-  margin-top: var(--space-4);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+}
+
+/* Mòbil: tres targetes + hero-card en un hero d'alçada fixa (overflow:
+   hidden a layout.css) no hi caben apilades en columna sense arriscar
+   tallar el titular per dalt. En lloc d'amagar-ne cap (les tres dades
+   pesen igual de cara al lead), es converteixen en una franja horitzontal
+   amb scroll tàctil nadiu -- mateix criteri que el carrusel de serveis,
+   sense JS perquè en touch el scroll ja és nadiu. Viu aquí, no a
+   layout.css: és una decisió pròpia d'aquesta plantilla, no del sistema
+   compartit (vegeu CLAUDE.md ## Variants). */
+@media (max-width: 640px) {
+  .hero-stats {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: var(--space-1);
+  }
+
+  .hero-stats::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-stat-card {
+    flex-shrink: 0;
+    min-width: 190px;
+  }
 }
 
 /* Variant fosca de .btn--glass (components.css), pensada per anar sobre
