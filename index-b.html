@@ -135,32 +135,79 @@
             <p class="hero-card__label" data-variant="hero.card.label">Casa't amb UAUU</p>
             <div class="hero-card__cta">
               <span class="hero-card__cta-text" data-variant-html="hero.card.cta">Més<br>informació</span>
-              <span class="hero-card__arrow" aria-hidden="true">→</span>
+              <span class="arrow-circle" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
       </div>
     </section>
 
-    <!-- ══ 2. FITXA ESCANEABLE ══════════════════════════════════════════
-         Zona, capacitats, què inclou el paquet, temporades, rang de preu
-         orientatiu. Format de fitxa (llista de fets curts), no paràgrafs:
-         és el bloc que respon "això m'encaixa?" en 10 segons. Cada punt
-         combina etiqueta + valor en un sol data-variant-html (amb un
-         <strong> intern) perquè l'etiqueta també tradueixi per idioma —
-         no hi ha clau i18n "Zona"/"Capacitat" a locales/, i no es toquen
-         els fitxers compartits per crear-ne una nova només per aquesta
-         plantilla (vegeu _temp_variante-b-contenido.md). ══════════════ -->
-    <section id="fitxa" aria-label="Fitxa del producte">
-      <div class="container">
-        <h2 class="section-heading" data-variant-html="fitxa.headline">[PENDENT] La fitxa ràpida.</h2>
-        <ul class="fact-sheet">
-          <li class="fact-sheet__item" data-variant-html="fitxa.zona">[PENDENT] <strong>Zona:</strong> Anoia, a 45 minuts de Barcelona.</li>
-          <li class="fact-sheet__item" data-variant-html="fitxa.capacitat">[PENDENT] <strong>Capacitat:</strong> de 50 a 200 convidats segons la finca.</li>
-          <li class="fact-sheet__item" data-variant-html="fitxa.inclou">[PENDENT] <strong>Inclou:</strong> càtering, decoració, coordinació i muntatge.</li>
-          <li class="fact-sheet__item" data-variant-html="fitxa.temporades">[PENDENT] <strong>Temporades:</strong> disponible d'abril a octubre.</li>
-          <li class="fact-sheet__item" data-variant-html="fitxa.preu">[PENDENT] <strong>Preu orientatiu:</strong> des de [X].000 € (paquet complet).</li>
-        </ul>
+    <!-- ══ 2. FITXA RÀPIDA ══════════════════════════════════════════════
+         Dues columnes a desktop (.fitxa__inner): esquerra -- eyebrow +
+         titular + CTA de píndola fosca + 4 targetes en graella 2x2;
+         dreta -- mapa interactiu de les 4 finques (Leaflet + OSM,
+         inicialitzat en diferit des de js/main.js -- vegeu
+         initFitxaMap() i el comentari a _temp_variante-b-mapa.md).
+         Secció d'amplada completa igual que la resta de la plantilla
+         (mai el marge/radi propis del hero): ".container" hi centra el
+         contingut igual que a "Les 4 finques" o "Serveis". Cada targeta
+         és un únic data-variant-html amb l'etiqueta + el valor en dos
+         <span> (mateix patró que les targetes del hero -- vegeu el punt
+         3 de ## Variants a CLAUDE.md sobre per què no hi ha clau i18n
+         genèrica per a "Aforament"/"Preu"/etc.). ═══════════════════════ -->
+    <section id="fitxa" class="fitxa" aria-label="Fitxa del producte">
+      <div class="container fitxa__inner">
+        <div class="fitxa__content">
+          <p class="fitxa__eyebrow" data-variant-html="fitxa.eyebrow">[PENDENT: eyebrow]</p>
+          <h2 class="cta-headline" data-variant-html="fitxa.headline">Què és UAUU weddings &amp; events?</h2>
+          <a href="#contacte" class="btn btn--dark fitxa__cta">
+            <span data-variant-html="fitxa.cta">Accedeix als catàlegs</span>
+            <span class="arrow-circle" aria-hidden="true">→</span>
+          </a>
+
+          <div class="fitxa-cards">
+            <div class="fitxa-card">
+              <span class="fitxa-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 13.2c2.4.3 4 2 4 4.8"/></svg>
+              </span>
+              <div class="fitxa-card__text" data-variant-html="fitxa.aforament"><span class="fitxa-card__label">Aforament</span><span class="fitxa-card__value">De 35 a 320 comensals</span></div>
+            </div>
+            <div class="fitxa-card">
+              <span class="fitxa-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 12 4l8.5 4.5-8.5 4.5-8.5-4.5Z"/><path d="M3.5 8.5V16l8.5 4.5 8.5-4.5V8.5"/><path d="M12 13v7.5"/></svg>
+              </span>
+              <div class="fitxa-card__text" data-variant-html="fitxa.inclou"><span class="fitxa-card__label">Què inclou</span><span class="fitxa-card__value">espai, càtering, decoració, coordinació i muntatge</span></div>
+            </div>
+            <div class="fitxa-card">
+              <span class="fitxa-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>
+              </span>
+              <div class="fitxa-card__text" data-variant-html="fitxa.disponibilitat"><span class="fitxa-card__label">Disponibilitat</span><span class="fitxa-card__value">dates disponibles per 2027 i 2028</span></div>
+            </div>
+            <div class="fitxa-card">
+              <span class="fitxa-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3.5h5a2 2 0 0 1 2 2v5a2 2 0 0 1-.6 1.4l-8.4 8.4a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l8.4-8.4a2 2 0 0 1 1.4-.6Z"/><circle cx="16.5" cy="7.5" r="1.2"/></svg>
+              </span>
+              <div class="fitxa-card__text" data-variant-html="fitxa.preu"><span class="fitxa-card__label">Preu</span><span class="fitxa-card__value">des de 134 fins a 163€ / comensal</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- .fitxa__map-canvas és on Leaflet pinta (aria-hidden: el mapa
+             és purament visual/orientatiu). El mateix contingut essencial
+             (nom + municipi de cada finca) queda disponible per a lector
+             de pantalla via la llista .sr-only, independentment de si
+             Leaflet arriba a carregar-se -- no depenem que un widget de
+             mapa de tercers sigui perfectament navegable per teclat. -->
+        <div class="fitxa__map">
+          <div class="fitxa__map-canvas" aria-hidden="true"></div>
+          <ul class="sr-only">
+            <li>Can Macià — Òdena</li>
+            <li>Ca n'Alzina — Rubió</li>
+            <li>Mas Vivencs — La Pobla de Claramunt</li>
+            <li>Castell de Tous — Sant Martí de Tous</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -565,5 +612,8 @@
     data-badge="bottomleft"></div>
 
   <script type="module" src="js/main.js"></script>
+  <!-- JS específic d'aquesta plantilla (mapa de la fitxa): mai a js/main.js,
+       que és compartit amb index.html -- vegeu CLAUDE.md ## Variants. -->
+  <script type="module" src="js/variante-b.js"></script>
 </body>
 </html>

@@ -209,7 +209,20 @@
   line-height: var(--leading-tight);
 }
 
-.hero-card__arrow {
+/* ── Arrow circle ──────────────────────────────────────────────────────
+   Cercle translúcid amb fletxa a dins: component visual de marca sobre
+   fons fosc o vidre sobre foto. Dos consumidors reals -- .hero-card
+   (aquí mateix) i el botó .btn--dark de la Variant B (variante-b.css) --
+   per això viu aquí, seguint el mateix criteri que .glass-card /
+   --hero-card-width: es puja a compartit quan hi ha un segon consumidor
+   real, no abans. El canvi de color en :hover es dispara des de
+   qualsevol <a> que el contingui (els dos consumidors actuals ho són),
+   no des d'un nom de classe concret: així un futur tercer consumidor no
+   ha de repetir el color, només calen enllaços. Un comportament de hover
+   EXTRA (com el translateX de .btn--dark) és un modificador propi
+   d'aquell consumidor, no d'aquí -- per això la transition ja inclou
+   "transform" encara que aquesta regla no en defineixi cap. */
+.arrow-circle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,10 +232,10 @@
   border: 1.5px solid rgba(255, 255, 255, 0.45);
   font-size: var(--text-sm);
   flex-shrink: 0;
-  transition: background-color var(--duration-fast), border-color var(--duration-fast);
+  transition: background-color var(--duration-fast), border-color var(--duration-fast), transform var(--duration-fast) var(--ease-out);
 }
 
-.hero-card:hover .hero-card__arrow {
+a:hover .arrow-circle {
   background-color: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.8);
 }

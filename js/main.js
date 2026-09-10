@@ -48,16 +48,24 @@ function initSmoothScroll() {
     if (!rafId) rafId = requestAnimationFrame(tick);
   }, { passive: true });
 
-  // Anchor navigation: with position:fixed content, browser can't resolve #hash scrolls
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const id = link.getAttribute('href').slice(1);
-      if (!id) return;
-      const target = document.getElementById(id);
-      if (!target) return;
-      e.preventDefault();
-      window.scrollTo({ top: target.offsetTop, behavior: 'instant' });
-    });
+  // Anchor navigation: with position:fixed content, browser can't resolve #hash
+  // scrolls. Delegat sobre document (no un bucle que vincula només els àncores
+  // que ja hi ha en aquest moment): així funciona igual amb qualsevol
+  // <a href="#..."> creat més endavant (p.ex. el CTA d'un popup de mapa),
+  // sense haver-lo de tornar a vincular a mà. Mateixa condició d'activació
+  // que abans (dins d'aquesta funció, després dels retorns anticipats de
+  // dalt): en pointer:coarse, prefers-reduced-motion o sense #smooth-content,
+  // aquest listener no s'arriba a instal·lar i els àncores es comporten amb
+  // el salt natiu del navegador, exactament igual que fins ara.
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href').slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    window.scrollTo({ top: target.offsetTop, behavior: 'instant' });
   });
 
   function tick() {
