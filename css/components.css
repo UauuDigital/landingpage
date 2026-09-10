@@ -156,22 +156,18 @@
 
 /* ── Hero card ── */
 
+/* Amplada exposada com a variable perquè cap altre fitxer (p.ex. la
+   Variant B, per calcular quant d'espai reservar-li al titular) l'hagi
+   de repetir en cru -- vegeu variante-b.css. */
+:root {
+  --hero-card-width: 260px;
+}
+
 .hero-card {
   display: block;
   text-decoration: none;
   color: inherit;
-  width: 260px;
-  padding: var(--space-3);
-}
-
-/* Vidre translúcid compartit: mateix tractament visual (blur, saturació,
-   radi, vora, ombra) allà on calgui un panell flotant sobre foto de fons
-   -- .hero-card i, des de la Variant B, les targetes de dades del hero
-   (.hero-stat-card a variante-b.css). Agrupat amb .hero-card en lloc de
-   duplicar-ne els valors: qualsevol canvi al vidre (p.ex. la intensitat
-   del blur) es fa un sol cop aquí i es propaga a totes dues plantilles. */
-.hero-card,
-.glass-card {
+  width: var(--hero-card-width);
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -181,6 +177,7 @@
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.20),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  padding: var(--space-3);
 }
 
 .hero-card__image-wrap {
