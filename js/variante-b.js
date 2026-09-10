@@ -70,6 +70,7 @@ async function buildFitxaMap(container) {
     scrollWheelZoom: false, // no "roba" el scroll de la roda al passar-hi per sobre
     dragging: !isCoarsePointer,
     keyboard: false, // el mapa és aria-hidden (vegeu index-b.html): fora del tab order
+    zoomControl: false, // sense botons +/- (_ref_fitxa.png no en porta); pinch i dobleclic segueixen actius
   });
 
   // Mòbil: un dit fa scroll de la pàgina (dragging queda desactivat i Leaflet

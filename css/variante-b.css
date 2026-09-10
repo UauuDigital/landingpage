@@ -104,19 +104,43 @@
   padding-inline: var(--space-8);
 }
 
+/* Flex column perquè .fitxa-cards hi pugui fer margin-top:auto (vegeu-hi
+   el comentari) -- sense això un marge automàtic no té cap eix on repartir
+   l'espai. */
+.fitxa__content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glif + color fosc (mai l'accent) davant del text, seguint _ref_fitxa.png.
+   El glif és un ::before -- no interfereix amb data-variant-html, que només
+   substitueix el contingut de text de l'element, mai els pseudo-elements. */
 .fitxa__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--text-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: var(--weight-medium);
-  color: var(--color-accent);
+  color: var(--color-text);
   margin-bottom: var(--space-3);
+}
+
+.fitxa__eyebrow::before {
+  content: '✳';
+  font-size: 1.1em;
+  line-height: 1;
 }
 
 /* .cta-headline (components.css) ja aporta la tipografia serif gran i el
    seu propi margin-bottom -- no es redefineix res aquí. */
 
 .fitxa__cta {
+  /* .fitxa__content ara és flex column (vegeu amunt): sense align-self,
+     l'align-items:stretch per defecte estiraria el botó a tota l'amplada
+     de la columna en lloc de deixar-lo amb la mida del seu contingut. */
+  align-self: flex-start;
   margin-bottom: var(--space-8);
 }
 
@@ -133,74 +157,112 @@
   padding-right: var(--space-2);
 }
 
+/* Cercle ple de blanc amb la fletxa fosca a dins (_ref_fitxa.png), mai el
+   vidre translúcid amb vora que .arrow-circle porta per defecte -- és un
+   modificador NOMÉS d'aquest botó, .hero-card (components.css) no el rep.
+   Cal repetir background/border-color també a l'estat :hover perquè
+   "a:hover .arrow-circle" (components.css) té més especificitat que
+   ".btn--dark .arrow-circle" sol (hi compta l'element "a") i, sense
+   aquesta segona regla, el hover recuperaria el vidre translúcid. */
+.btn--dark .arrow-circle {
+  background: var(--color-bg);
+  border-color: transparent;
+  color: var(--color-text);
+}
+
 .btn--dark:hover .arrow-circle {
+  background: var(--color-bg);
+  border-color: transparent;
   transform: translateX(4px);
 }
 
+/* margin-top:auto empeny tota la graella cap avall dins de .fitxa__content
+   (flex column, vegeu més avall) -- deixa el "espacio vacío generoso" entre
+   el botó i les targetes de _ref_fitxa.png sense un valor fix, i n'alinea
+   la base amb la de .fitxa__map quan el contingut de dalt és més curt que
+   el mapa. Amb 4 targetes (2x2) en lloc de les 2 de la referència, el
+   contingut sol ja pot superar l'alçada del mapa a amplades esteses --
+   quan passa, el marge automàtic no té res a repartir i les targetes
+   toquen el botó; vegeu _temp_variante-b-refinament.md per les mesures
+   reals i el marge residual. */
 .fitxa-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
+  margin-top: auto;
 }
 
+/* Targetes altes (icona a dalt, forat vertical, text avall): justify-
+   content:space-between hi reparteix l'espai sobrant en lloc d'un
+   margin-bottom fix a la icona, així s'adapta sola si min-height canvia. */
 .fitxa-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  padding: var(--space-6);
 }
 
-/* Icones SVG inline (trazo fi, sense farciment): no hi ha cap set
-   d'icones al projecte (assets/icons buit) -- pendents de revisió de
-   disseny, vegeu _temp_variante-b-fitxa.md. */
+/* Icones SVG inline: pendents de revisió de disseny (no hi ha cap set
+   d'icones al projecte, assets/icons buit), però ja amb el trazo més gruixut
+   i el color fosc de _ref_fitxa.png en lloc del trazo fi en accent d'abans. */
 .fitxa-card__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: var(--radius-pill);
   background: var(--color-bg);
-  color: var(--color-accent);
-  margin-bottom: var(--space-3);
+  color: var(--color-text);
 }
 
 .fitxa-card__icon svg {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 
 .fitxa-card__text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-2);
 }
 
+/* Jerarquia invertida respecte a l'esbós anterior (_ref_fitxa.png): ara el
+   NOM de la categoria és l'element gran i fosc... */
 .fitxa-card__label {
-  font-size: var(--text-xs);
-  letter-spacing: 0.08em;
+  font-size: var(--text-md);
+  line-height: var(--leading-tight);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
-  font-weight: var(--weight-medium);
+  color: var(--color-text);
+  font-weight: var(--weight-bold);
 }
 
+/* ...i la descripció passa a petita i grisa. */
 .fitxa-card__value {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   line-height: var(--leading-normal);
+  color: var(--color-text-muted);
 }
 
 /* Panell del mapa: mapa interactiu real (Leaflet + OpenStreetMap),
-   inicialitzat en diferit des de js/main.js (initFitxaMap()) quan la
+   inicialitzat en diferit des de js/variante-b.js (initFitxaMap()) quan la
    secció entra en viewport -- ni el JS de Leaflet ni els tiles competeixen
    amb el LCP del hero. "Molt arrodonit": --radius-xl és el radi més gran
    del sistema de tokens fora del --radius-pill (pensat per a formes
    circulars, no encaixaria aquí). overflow:hidden hi retalla els tiles
-   quadrats de Leaflet a la cantonada arrodonida. */
+   quadrats de Leaflet a la cantonada arrodonida. 3/2 (_ref_fitxa.png,
+   mesurat sobre la imatge: ~954x602px): abans 4/5 el feia
+   desproporcionadament alt. */
 .fitxa__map {
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
   align-self: start;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   background: var(--color-surface);
 }
 

@@ -8,3 +8,8 @@ assets/images/*
 
 # Informes de treball temporals (recon, verificacions de fase)
 _temp_*.md
+
+# Imatges de referència de disseny (comparació puntual, mai un asset del
+# projecte -- CLAUDE.md ## Imatges: cap imatge al repo, tot al CDN extern)
+_ref_*.png
+_ref_*.jpg
