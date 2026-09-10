@@ -9,16 +9,24 @@
    cap token existent que els generalitzi sense inventar-ne un que només
    faria servir aquest únic lloc. */
 
-/* ── Hero: subtítol i CTA únic (index.html no en té cap dels dos) ── */
-
-.hero__subtitle {
-  font-family: var(--font-sans);
-  font-size: var(--text-md);
-  font-weight: var(--weight-regular);
-  line-height: var(--leading-normal);
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 46ch;
-  margin-top: var(--space-4);
+/* .hero__content (layout.css) porta max-width:100%, pensat per a index.html
+   (titular curt, mai arriba a la columna de la hero-card). Encara amb el
+   salt de línia manual, el titular d'aquesta variant ("Quatre finques
+   exclusives / a prop de Barcelona.") és prou llarg per, en un rang ampli
+   de viewports (~650-1300px, mesurat amb Range.getClientRects() sobre el
+   text real, no sobre el contenidor -- que sempre s'estén a tota
+   l'amplada disponible i dona fals negatiu), envair la columna fixa de
+   la hero-card (posicionada en absolut). Es limita aquí, no a
+   layout.css: és un problema d'aquest titular concret, no del sistema
+   compartit. --hero-card-width ve de tokens.css: l'amplada real de la
+   hero-card es defineix un sol cop, no es repeteix en cru en aquest
+   càlcul. Només per damunt del breakpoint mòbil de .hero (640px,
+   layout.css): per sota, la hero-card passa a ocupar tota l'amplada per
+   sota del contingut i no hi ha columna a evitar. */
+@media (min-width: 641px) {
+  .hero__content {
+    max-width: calc(100% - var(--hero-card-width) - var(--space-8) - var(--space-8));
+  }
 }
 
 /* Variant fosca de .btn--glass (components.css), pensada per anar sobre

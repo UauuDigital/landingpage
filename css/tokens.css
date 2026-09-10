@@ -105,6 +105,7 @@
   --container-prose:  680px;
   --nav-height:       72px;
   --section-padding:  var(--space-24);
+  --hero-card-width:  260px;
 }
 
 @media (max-width: 768px) {

@@ -2,14 +2,9 @@
   "template": "index-b.html",
 
   "hero.headline": {
-    "ca": "[PENDENT] Casaments a mida.<br>Resposta directa.",
-    "es": "[PENDIENTE] Bodas a medida.<br>Respuesta directa.",
-    "en": "[PENDING] Weddings, your way.<br>Straight answers."
-  },
-  "hero.subtitle": {
-    "ca": "[PENDENT] 4 finques a 45 minuts de Barcelona · Fins a 200 convidats · Tot inclòs.",
-    "es": "[PENDIENTE] 4 fincas a 45 minutos de Barcelona · Hasta 200 invitados · Todo incluido.",
-    "en": "[PENDING] 4 venues 45 min from Barcelona · Up to 200 guests · All-inclusive."
+    "ca": "Quatre finques exclusives<br>a prop de Barcelona.",
+    "es": "[PENDIENTE] Cuatro fincas exclusivas<br>cerca de Barcelona.",
+    "en": "[PENDING] Four exclusive venues<br>near Barcelona."
   },
   "hero.bg": {
     "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
@@ -22,14 +17,14 @@
     "en": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp"
   },
   "hero.card.label": {
-    "ca": "[PENDENT] Casa't amb UAUU",
-    "es": "[PENDIENTE] Cásate con UAUU",
-    "en": "[PENDING] Marry with UAUU"
+    "ca": "Casa't amb UAUU",
+    "es": "Cásate con UAUU",
+    "en": "Marry with UAUU"
   },
   "hero.card.cta": {
-    "ca": "[PENDENT] Més<br>informació",
-    "es": "[PENDIENTE] Más<br>información",
-    "en": "[PENDING] Learn<br>more"
+    "ca": "Més<br>informació",
+    "es": "Más<br>información",
+    "en": "Learn<br>more"
   },
 
   "fitxa.headline": {
