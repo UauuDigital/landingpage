@@ -214,26 +214,24 @@
   transform: translateX(4px);
 }
 
+/* 2x2 a desktop i a la franja mitjana (>640px, vegeu la media query de
+   sota); 1 sola columna per sota -- l'ample de targeta que calen icona i
+   foto fila a fila (.fitxa-card__top) no hi cap en 2 columnes (vegeu-hi
+   el comentari). */
 .fitxa-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
 }
 
-/* Targetes altes (icona a dalt, forat vertical, text avall). La icona i
-   la foto porten un gap FIX (var(--space-4)): mai els mou res. Tot el
-   sobrant de la targeta -- min-height, o l'estirament de
-   align-items:stretch quan una germana de la mateixa fila té un text
-   més llarg en ES/EN -- s'absorbeix a "margin-top: auto" de
-   .fitxa-card__text (avall), no repartit entre gaps. Amb
-   justify-content:space-between (l'enfocament anterior), aquest
-   sobrant es repartia també ABANS de la foto, i com que cada targeta
-   arriba a l'estirament amb un sobrant propi diferent (segons quant
-   text tingui), la foto no començava a la mateixa alçada a totes --
-   exactament el problema reportat ("Què inclou" més avall que
-   "Aforament" a la mateixa fila). Amb el sobrant nomès sota el text,
-   icona i foto quedem sempre al mateix punt, independentment del
-   contingut. */
+/* Targetes altes (fila icona+foto a dalt, text avall). "margin-top: auto"
+   a .fitxa-card__text absorbeix tot el sobrant de la targeta -- min-height,
+   o l'estirament de align-items:stretch quan una germana de la mateixa
+   fila té un text més llarg en ES/EN -- mantenint sempre la fila de dalt
+   arran de dalt i el text arran de baix, independentment del contingut
+   (el mateix mecanisme que abans evitava que "Què inclou" comencés més
+   avall que "Aforament"; res d'això ha canviat en moure la foto al
+   costat de la icona). */
 .fitxa-card {
   display: flex;
   flex-direction: column;
@@ -244,6 +242,16 @@
   padding: var(--space-6);
 }
 
+/* Icona a l'esquerra, foto a la dreta, mateixa fila. "align-items:
+   flex-start" perquè totes dues comencin arran de dalt encara que la
+   foto (aspect-ratio 4/3, més ampla que alta) sigui més baixa que la
+   icona a les targetes molt estretes -- vegeu .fitxa-card__photo. */
+.fitxa-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
 /* Icones SVG inline: pendents de revisió de disseny (no hi ha cap set
    d'icones al projecte, assets/icons buit), però ja amb el trazo més gruixut
    i el color fosc de _ref_fitxa.png en lloc del trazo fi en accent d'abans. */
@@ -251,6 +259,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 56px;
   height: 56px;
   border-radius: var(--radius-pill);
@@ -263,10 +272,6 @@
   height: 26px;
 }
 
-/* "margin-top: auto" l'empeny sempre al fons de la targeta, absorbint
-   tot el sobrant (vegeu el comentari a .fitxa-card): és el que manté el
-   text arran de baix igual que abans, ara sense dependre de
-   justify-content:space-between. */
 .fitxa-card__text {
   display: flex;
   flex-direction: column;
@@ -275,17 +280,21 @@
 }
 
 /* Foto placeholder (categoria general del CDN, mai atribuïda a una finca:
-   vegeu variants/variante-b.json) al buit vertical entre la icona i el
-   text -- el mateix que abans quedava sense aprofitar. Miniatura, no a
-   sang: 72px + --radius-lg és exactament la mida i el radi que ja fa
-   servir .hero-card__image-wrap en mòbil (components.css) per a una
-   "foto petita" -- reutilitza l'escala que ja existeix al sistema, no
-   n'inventa una de nova. Sense width:100% ni marge negatiu, queda dins
-   del padding de la targeta amb aire a la dreta i a sota. */
+   vegeu variants/variante-b.json) al costat de la icona, ocupant l'espai
+   lliure de la dreta -- abans hi havia una miniatura fixa de 72px sota
+   la icona; ara "flex:1" li dona tot l'ample que quedi a la fila després
+   de la icona (amb "min-width:0" perquè pugui encongir-se per sota del
+   seu ample intrínsec en targetes estretes, en lloc de desbordar) i
+   "max-width" l'atura perquè no es faci desproporcionada a les targetes
+   més amples (1920px: sense el límit faria unes 330px d'ample). L'alçada
+   ve de "aspect-ratio", no d'un valor fix: així és sempre proporcionada
+   a qualsevol ample que li toqui entre aquests dos extrems. */
 .fitxa-card__photo {
   display: block;
-  width: 72px;
-  aspect-ratio: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 200px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: var(--radius-lg);
 }
@@ -415,22 +424,42 @@
   text-decoration: underline;
 }
 
-/* Mòbil: una sola columna. Les 4 targetes es mantenen en graella 2x2
-   (hi caben còmodament fins a mòbils petits) -- no calia apilar-les
-   totes soles per manca d'espai. El
-   mapa passa de "s'estira per igualar l'alçada del contingut" (sense
-   aspect-ratio a desktop, vegeu amunt -- no té sentit apilat, ja no hi ha
-   cap alçada de columna amb qui igualar-se) a una proporció fixa pròpia:
-   sense això, sense contingut de referència al costat, el panell
-   col·lapsaria a una alçada mínima. El padding lateral mòbil ja el porta
-   ".container" (layout.css): no cal repetir-lo aquí. */
+/* Mòbil: una sola columna. Les 4 targetes es mantenen en graella 2x2 fins
+   a mòbils petits (vegeu la media query de sota per on deixen de cabre-
+   hi). El mapa passa de "s'estira per igualar l'alçada del contingut"
+   (sense aspect-ratio a desktop, vegeu amunt -- no té sentit apilat, ja
+   no hi ha cap alçada de columna amb qui igualar-se) a una proporció
+   fixa pròpia: sense això, sense contingut de referència al costat, el
+   panell col·lapsaria a una alçada mínima. El padding lateral mòbil ja
+   el porta ".container" (layout.css): no cal repetir-lo aquí. */
 @media (max-width: 768px) {
+  /* minmax(0, 1fr), no "1fr" sol (vegeu la regla del sistema a dalt de
+     tot d'aquest fitxer sobre repeat(N, 1fr)): amb "1fr" a soles, el
+     mínim implícit és "auto", no 0, i abans d'afegir-hi
+     .fitxa-card__top (icona+foto en fila) ja desbordava #smooth-content
+     -- mesurat, .fitxa__content quedava a 320px dins d'un contenidor de
+     305px. Un sol track "1fr" en una graella d'una sola columna hi és
+     igual de vulnerable que repeat(N, 1fr): el mínim implícit no depèn
+     de si n'hi ha un o diversos. */
   .fitxa__inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .fitxa__map {
     aspect-ratio: 4 / 3;
+  }
+}
+
+/* Sota aquest ample, la graella 2x2 ja no li deixa prou fila a
+   .fitxa-card__top (icona 56px + gap + foto, vegeu amunt): mesurat, a
+   375px de viewport hi queden només ~36px per a la foto dins de 2
+   columnes -- ni "miniatura gran" ni, per sota de 480px reals, ample
+   utilitzable de cap mena. Una sola targeta per fila hi torna a deixar
+   tot l'ample del contingut a la fila icona+foto. minmax(0, 1fr) pel
+   mateix motiu que a .fitxa__inner, amunt. */
+@media (max-width: 480px) {
+  .fitxa-cards {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
