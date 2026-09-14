@@ -220,20 +220,23 @@
   gap: var(--space-4);
 }
 
-/* Targetes altes (icona a dalt, forat vertical, text avall): justify-
-   content:space-between hi reparteix l'espai sobrant en lloc d'un
-   margin-bottom fix a la icona, així s'adapta sola si min-height canvia.
-   "gap" hi posa un mínim entre els tres fills (icona/foto/text): sense
-   ell, quan la foto (avall) ja ompli tot el sobrant per sobre de
-   min-height, space-between no li quedaria res a repartir i icona/foto/
-   text es tocarien. Amb "gap", si una targeta germana de la mateixa fila
-   s'estira per un text més llarg (ES/EN), space-between reparteix
-   qualsevol sobrant EXTRA per sobre d'aquest mínim entre els dos buits,
-   mantenint la icona sempre arran de dalt i el text arran de baix. */
+/* Targetes altes (icona a dalt, forat vertical, text avall). La icona i
+   la foto porten un gap FIX (var(--space-4)): mai els mou res. Tot el
+   sobrant de la targeta -- min-height, o l'estirament de
+   align-items:stretch quan una germana de la mateixa fila té un text
+   més llarg en ES/EN -- s'absorbeix a "margin-top: auto" de
+   .fitxa-card__text (avall), no repartit entre gaps. Amb
+   justify-content:space-between (l'enfocament anterior), aquest
+   sobrant es repartia també ABANS de la foto, i com que cada targeta
+   arriba a l'estirament amb un sobrant propi diferent (segons quant
+   text tingui), la foto no començava a la mateixa alçada a totes --
+   exactament el problema reportat ("Què inclou" més avall que
+   "Aforament" a la mateixa fila). Amb el sobrant nomès sota el text,
+   icona i foto quedem sempre al mateix punt, independentment del
+   contingut. */
 .fitxa-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: var(--space-4);
   min-height: 240px;
   background: var(--color-surface);
@@ -260,28 +263,29 @@
   height: 26px;
 }
 
+/* "margin-top: auto" l'empeny sempre al fons de la targeta, absorbint
+   tot el sobrant (vegeu el comentari a .fitxa-card): és el que manté el
+   text arran de baix igual que abans, ara sense dependre de
+   justify-content:space-between. */
 .fitxa-card__text {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  margin-top: auto;
 }
 
 /* Foto placeholder (categoria general del CDN, mai atribuïda a una finca:
    vegeu variants/variante-b.json) al buit vertical entre la icona i el
-   text -- el mateix que abans quedava sense aprofitar. "A tot l'ample de
-   la targeta": la foto sagna pel padding lateral (width calcula l'ample
-   total de la caixa de la targeta i el marge negatiu el compensa) i
-   `max-width: none` desactiva el `img{max-width:100%}` d'abast general
-   de base.css, que altrament la retallaria de tornada a l'ample del
-   contingut. El radi és literalment el de la targeta (--radius-lg): la
-   foto no toca ni la vora superior ni la inferior de la targeta, així
-   que necessita les 4 cantonades arrodonides, no només 2. */
+   text -- el mateix que abans quedava sense aprofitar. Miniatura, no a
+   sang: 72px + --radius-lg és exactament la mida i el radi que ja fa
+   servir .hero-card__image-wrap en mòbil (components.css) per a una
+   "foto petita" -- reutilitza l'escala que ja existeix al sistema, no
+   n'inventa una de nova. Sense width:100% ni marge negatiu, queda dins
+   del padding de la targeta amb aire a la dreta i a sota. */
 .fitxa-card__photo {
   display: block;
-  width: calc(100% + 2 * var(--space-6));
-  max-width: none;
-  margin-inline: calc(-1 * var(--space-6));
-  aspect-ratio: 3 / 1;
+  width: 72px;
+  aspect-ratio: 1;
   object-fit: cover;
   border-radius: var(--radius-lg);
 }
