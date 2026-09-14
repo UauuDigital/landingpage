@@ -451,13 +451,22 @@
 }
 
 /* Sota aquest ample, la graella 2x2 ja no li deixa prou fila a
-   .fitxa-card__top (icona 56px + gap + foto, vegeu amunt): mesurat, a
-   375px de viewport hi queden només ~36px per a la foto dins de 2
-   columnes -- ni "miniatura gran" ni, per sota de 480px reals, ample
-   utilitzable de cap mena. Una sola targeta per fila hi torna a deixar
-   tot l'ample del contingut a la fila icona+foto. minmax(0, 1fr) pel
-   mateix motiu que a .fitxa__inner, amunt. */
-@media (max-width: 480px) {
+   .fitxa-card__top (icona 56px + gap + foto, vegeu amunt) perquè la foto
+   es continuï llegint com a foto. Mesurat el mínim que arriba a fer-ho a
+   la franja ESTRETA d'escriptori (>768px, .fitxa__inner ja a 2 columnes,
+   vegeu amunt): en 2 columnes de targetes la foto no puja de 120px
+   d'ample fins a ~1100px de viewport (104px a 1024px, 123px a 1100px) --
+   just a sota, incloent el cas real de tauleta vertical que va motivar
+   aquest ajust (769px: 42px, illegible). Per sota de 1100px, doncs, una
+   sola targeta per fila hi torna a deixar tot l'ample del contingut a la
+   fila icona+foto (verificat: la foto toca sempre el max-width de
+   200px de .fitxa-card__photo, a tots els amples per sota d'aquest
+   breakpoint, incloent els mòbils petits). Substitueix l'antic tall a
+   480px, que
+   només resolia els mòbils i no la franja de tauleta/portàtil petit on
+   es va detectar el problema real. minmax(0, 1fr) pel mateix motiu que
+   a .fitxa__inner, amunt. */
+@media (max-width: 1100px) {
   .fitxa-cards {
     grid-template-columns: minmax(0, 1fr);
   }
