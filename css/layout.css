@@ -21,10 +21,10 @@ section {
 
 .hero {
   position: relative;
-  height: calc(100svh - 24px);
+  height: calc(100svh - 2 * var(--panel-inset));
   min-height: 560px;
-  margin: 12px;
-  border-radius: 20px;
+  margin: var(--panel-inset);
+  border-radius: var(--panel-radius);
   display: flex;
   align-items: flex-end;
   overflow: hidden;

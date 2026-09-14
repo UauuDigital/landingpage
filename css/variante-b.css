@@ -503,42 +503,259 @@
    val --space-5 per sota de 769px i el terme del centrat és 0, així que
    --finques-inset hi dona els mateixos 20px sol.) */
 
-/* ── Serveis en checklist (secció 4) ───────────────────────────────────
-   Mateix contingut i mateixes classes de text que la secció de serveis
-   d'index.html (.service-card__label/__description): només canvia el
-   contenidor -- una llista vertical amb marca de check, no cards en
-   carrusel. */
+/* ── Bloc de fons gris (seccions 4 i 5) ────────────────────────────────
+   Envolta serveis i prova social amb la mateixa forma que el hero: un
+   panell insetat amb cantonades arrodonides.
 
-/* Limitada a --container-prose per longitud de línia llegible, però
-   alineada a l'esquerra amb el seu titular (i amb la resta del document),
-   no centrada: amb l'amplada de .container--wide, un bloc de 680px
-   centrat quedava despenjat cap al mig i deixava el titular sol a
-   l'esquerra (436px de desfasament a 1920px). Mateix criteri a
-   .faq-list. */
-.checklist {
+   L'inset i el radi són --panel-inset/--panel-radius (tokens.css), els
+   mateixos que consumeix ".hero" a layout.css: la forma es defineix un
+   sol cop per a tots dos.
+
+   L'inset lateral NO es fa amb "margin": el fons es pinta en un
+   pseudoelement posicionat i el bloc es queda a tota l'amplada. Amb
+   "margin: 12px", el bloc contenidor de les seccions de dins passa a ser
+   24px més estret que el viewport, i com que ".container" es calcula
+   sobre el "100%" del seu bloc contenidor, els seus titulars es
+   desplacen respecte als de les seccions de fora -- trencant la
+   invariant que tots vuit estiguin alineats. I no n'hi ha prou de
+   descomptar l'inset del padding: mesurat, això alinea per sota del cap
+   però desalinea 12px a l'altra banda (2200px i amunt), on
+   "margin-inline:auto" ja cancel·la l'inset del pare pel seu compte. Amb
+   el pseudoelement no cal compensar res a cap amplada i la fórmula no
+   s'ha de repensar si el cap torna a canviar.
+
+   ".bloc-gris" no crea context d'apilament (position:relative amb
+   z-index:auto) i el pseudoelement va abans que les seccions en ordre
+   d'arbre, així que queda al darrere sense necessitat de z-index
+   negatiu; les seccions es posicionen perquè es pintin per damunt. */
+.bloc-gris {
+  position: relative;
+  margin-block: var(--panel-inset);
+}
+
+.bloc-gris::before {
+  content: '';
+  position: absolute;
+  inset: 0 var(--panel-inset);
+  border-radius: var(--panel-radius);
+  background-color: var(--color-surface);
+}
+
+.bloc-gris > section {
+  position: relative;
+}
+
+/* ── Serveis en stepper (secció 4) ─────────────────────────────────────
+   Mateix contingut i mateixes imatges que la secció de serveis
+   d'index.html (claus data-i18n services.*), en una sola card ampla per
+   servei: foto a l'esquerra, número + títol + text a la dreta
+   (_ref2_serveis.png). Es navega d'un en un amb indicador de progrés.
+
+   Res d'això toca el carrusel de finques (secció 3) ni
+   initServicesCarousel(): són interaccions diferents, i el component
+   d'aquí és propi (initServeisStepper() a js/variante-b.js). L'única
+   cosa que es reutilitza són ".services__nav"/".services__nav-btn"
+   (components.css), que són només estil de botó, sense layout. */
+
+.serveis__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.serveis__header .section-heading {
+  margin-bottom: 0;
+}
+
+/* Controls sota el titular en mòbil (serveis i finques). Compartint fila,
+   Prev./Next es menjaven ~110px d'un ample útil de ~280px i el titular de
+   serveis quedava en 5 línies a 320-414px (mesurat). 768px és el
+   breakpoint mòbil de la resta d'aquesta plantilla. El marge negatiu
+   compensa el padding-inline del botó (components.css) perquè el text
+   "Prev." alinei amb l'inici del titular i no 16px més endins.
+   .services__header és compartit amb index.html: només es toca a través
+   de ".finques", mai la classe sola. */
+@media (max-width: 768px) {
+  .serveis__header,
+  .finques .services__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .serveis__header {
+    gap: var(--space-2);
+  }
+
+  .serveis__header .services__nav,
+  .finques .services__header .services__nav {
+    margin-inline-start: calc(-1 * var(--space-4));
+  }
+}
+
+/* Sense JS no hi ha res a navegar: els controls desapareixen i les sis
+   cards es queden apilades i llegibles (vegeu .stepper__list). */
+.serveis:not(.is-ready) .services__nav,
+.serveis:not(.is-ready) .stepper__progress {
+  display: none;
+}
+
+.serveis .services__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.serveis .services__nav-btn:disabled:hover {
+  background-color: transparent;
+  color: var(--color-text-muted);
+}
+
+.stepper__list {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-8);
+}
+
+/* Amb JS, les sis cards passen a compartir la MATEIXA cel·la de graella.
+   Així l'alçada de la llista és sempre la de la card més alta i no fa cap
+   salt en canviar de servei (les descripcions tenen llargades molt
+   diferents), sense haver de fixar cap alçada a mà ni recalcular-la quan
+   canvia l'idioma -- ES i EN són més llargues que el CA.
+
+   "visibility: hidden" i no "display: none": manté la card maquetada (les
+   imatges es descarreguen i el pas següent no arrenca amb el forat buit)
+   i alhora la treu de l'arbre d'accessibilitat i del tab order, cosa que
+   "opacity: 0" sol no faria. */
+.serveis.is-ready .stepper__list {
+  display: grid;
+  gap: 0;
+}
+
+.serveis.is-ready .stepper__panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.serveis.is-ready .stepper__panel.is-current {
+  visibility: visible;
+  opacity: 1;
+}
+
+.stepper__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  gap: var(--space-10);
+  align-items: stretch;
+  padding: var(--space-2);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg);
+}
+
+.stepper__media {
+  border-radius: calc(var(--radius-lg) - var(--space-2));
+  overflow: hidden;
+}
+
+/* Les sis imatges del catàleg són totes 3:2 natives (comprovat), així que
+   amb aquesta proporció no se'n retalla cap: el format ample d'aquesta
+   card els va millor que el 6/5 de .service-card__image-wrap.
+
+   "height: 100%" no hi contradiu l'"aspect-ratio", el complementa: quan la
+   foto és el costat més alt de la card (el cas habitual) l'alçada del pare
+   és indefinida, el 100% val "auto" i mana la proporció; quan és la columna
+   de text la que estira la card -- passa en castellà cap als 1024px, on la
+   descripció més llarga ocupa una línia més -- el 100% mana i la foto omple
+   el seu costat en lloc de deixar-hi una franja blanca a sota. */
+.stepper__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.stepper__body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-6) var(--space-6) 0;
+}
+
+.stepper__num {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  line-height: 1;
+  color: var(--color-text-muted);
+}
+
+.stepper__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: var(--space-5);
+}
+
+/* Ancorada a baix, com a la referència: el número i el títol pengen de
+   dalt i el text del servei queda al peu de la card. */
+.stepper__desc {
+  margin-top: auto;
+  padding-top: var(--space-8);
+  font-size: var(--text-md);
+  line-height: 1.6;
   max-width: var(--container-prose);
 }
 
-.checklist__item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-
-.checklist__icon {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-pill);
-  background: var(--color-accent);
-  color: var(--color-text-inverse);
+.stepper__progress {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.stepper__count {
   font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper__track {
+  flex: 1;
+  height: 2px;
+  background-color: rgba(26, 23, 20, 0.14);
+  overflow: hidden;
+}
+
+.stepper__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  background-color: var(--color-text);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+/* Sota 900px la card no dona per a dues columnes: la foto passa a dalt i
+   el text a sota, i el text deixa d'anar ancorat al peu (ja no hi ha cap
+   columna de foto amb què igualar l'alçada). */
+@media (max-width: 900px) {
+  .stepper__panel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .stepper__body {
+    padding: var(--space-6) var(--space-4) var(--space-4);
+  }
+
+  .stepper__desc {
+    margin-top: var(--space-5);
+    padding-top: 0;
+  }
 }
 
 /* ── Com funciona, 3 passos (secció 6 al DOM) ──────────────────────────

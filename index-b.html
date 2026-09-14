@@ -291,60 +291,128 @@
       </div>
     </section>
 
-    <!-- ══ 4. SERVEIS (checklist) ═══════════════════════════════════════
-         Els mateixos 6 serveis d'index.html, en format checklist — NO
-         carrusel. Reutilitza els MATEIXOS data-i18n existents (services.*
-         a locales/*.json): és el mateix catàleg de serveis real, no copy
-         de campanya nova, per això no es dupliquen com a claus de variant
-         (vegeu _temp_variante-b-contenido.md). Només l'encapçalament de la
-         secció és contingut nou d'aquesta variant. ══════════════════════ -->
-    <section id="serveis" aria-label="Els nostres serveis">
+    <!-- ══ BLOC DE FONS GRIS (seccions 4 i 5) ═══════════════════════════
+         Envolta serveis i prova social amb el mateix inset i el mateix
+         radi que el hero (vegeu .bloc-gris a variante-b.css). El
+         contenidor NO porta marge lateral propi: el desplaçaria tot el
+         que hi ha a dins, perquè ".container--wide" i "--finques-inset"
+         calculen a partir del "100%" del seu bloc contenidor. El marge
+         lateral es compensa a variante-b.css perquè els titulars de
+         dins quedin alineats amb els de fora. ═══════════════════════ -->
+    <div class="bloc-gris">
+
+    <!-- ══ 4. SERVEIS (stepper) ══════════════════════════════════════════
+         Els mateixos 6 serveis d'index.html: reutilitza els MATEIXOS
+         data-i18n existents (services.* a locales/*.json) i les mateixes
+         imatges. És el catàleg de serveis real, no copy de campanya, per
+         això no es dupliquen com a claus de variant; només el titular de
+         secció és contingut propi d'aquesta variant.
+
+         Es navega d'una card a l'altra, amb indicador de progrés
+         (_ref2_serveis.png). Component PROPI: initServeisStepper() a
+         js/variante-b.js, amb ids propis. No comparteix res amb el
+         carrusel de finques (secció 3) -- aquell és arrossegament lliure
+         amb card asomant, aquest és pas a pas discret -- ni amb
+         initServicesCarousel() de js/main.js.
+
+         Sense JS, les sis cards es queden apilades i llegibles: el
+         solapament d'una sola card i els controls només s'activen quan
+         el JS hi afegeix ".is-ready". ═══════════════════════════════ -->
+    <section id="serveis" class="serveis" aria-label="Els nostres serveis">
       <div class="container container--wide">
-        <h2 class="section-heading" data-variant-html="serveis.headline">[PENDENT] Tot inclòs, sense sorpreses.</h2>
-        <ul class="checklist">
-          <li class="checklist__item">
-            <span class="checklist__icon" aria-hidden="true">✓</span>
-            <div>
-              <p class="service-card__label" data-i18n="services.venues.label">EXCLUSIVITAT DELS ESPAIS</p>
-              <p class="service-card__description" data-i18n="services.venues.desc">Exclusivitat d'espais únics, fins a 4 finques (Ca n'Alzina, Mas Vivens, Can Macià i el Castell de Tous) per al vostre gran dia.</p>
-            </div>
-          </li>
-          <li class="checklist__item">
-            <span class="checklist__icon" aria-hidden="true">✓</span>
-            <div>
-              <p class="service-card__label" data-i18n="services.coord.label">COORDINACIÓ I ACOMPANYAMENT</p>
-              <p class="service-card__description" data-i18n="services.coord.desc">Servei d'acompanyament des del primer dia fins al casament. Un equip de professionals amb anys d'experiència en casaments a la vostra disposició.</p>
-            </div>
-          </li>
-          <li class="checklist__item">
-            <span class="checklist__icon" aria-hidden="true">✓</span>
-            <div>
-              <p class="service-card__label" data-i18n="services.ceremony.label">CERIMÒNIES ÚNIQUES</p>
-              <p class="service-card__description" data-i18n="services.ceremony.desc">Muntatge, decoració floral, coordinació d'un dels moments més especials del vostre gran dia.</p>
-            </div>
-          </li>
-          <li class="checklist__item">
-            <span class="checklist__icon" aria-hidden="true">✓</span>
-            <div>
-              <p class="service-card__label" data-i18n="services.decor.label">DECORACIÓ</p>
-              <p class="service-card__description" data-i18n="services.decor.desc">Menatge de taula i centres florals a escollir entre una gran varietat d'opcions en tendència, actualitzades any rere any.</p>
-            </div>
-          </li>
-          <li class="checklist__item">
-            <span class="checklist__icon" aria-hidden="true">✓</span>
-            <div>
-              <p class="service-card__label" data-i18n="services.catering.label">GASTRONOMIA</p>
-              <p class="service-card__description" data-i18n="services.catering.desc">Dissenyeu-vos el vostre propi menú amb una extensa diversitat d'opcions d'aperitius, buffets, opcions de cuina en directe i plats pel banquet.</p>
-            </div>
-          </li>
-          <li class="checklist__item">
-            <span class="checklist__icon" aria-hidden="true">✓</span>
-            <div>
-              <p class="service-card__label" data-i18n="services.festa.label">FESTA</p>
-              <p class="service-card__description" data-i18n="services.festa.desc">Servei de DJ i bartenders per posar punt i final a una celebració inoblidable.</p>
-            </div>
-          </li>
-        </ul>
+        <div class="serveis__header">
+          <h2 class="section-heading" data-variant-html="serveis.headline">Tot inclòs, sense preocupacions, sense sorpreses.</h2>
+          <!-- ".services__nav"/".services__nav-btn" (components.css) són
+               només estil de botó, sense layout: es reutilitzen tal qual.
+               Els id, en canvi, són propis -- "services-prev"/"services-next"
+               ja els fa servir el carrusel de finques en aquesta mateixa
+               pàgina. -->
+          <div class="services__nav" aria-label="Navegació dels serveis">
+            <button type="button" class="services__nav-btn" id="serveis-step-prev" aria-label="Servei anterior">Prev.</button>
+            <button type="button" class="services__nav-btn" id="serveis-step-next" aria-label="Servei següent">Next</button>
+          </div>
+        </div>
+
+        <div class="stepper" id="serveis-stepper">
+          <ul class="stepper__list" aria-live="polite">
+
+            <li class="stepper__panel is-current">
+              <div class="stepper__media">
+                <img class="stepper__img" src="https://www.uauu.cat/media/fotos/finques/can-macia.webp" alt="" role="presentation" loading="lazy" decoding="async" width="1600" height="1068" />
+              </div>
+              <div class="stepper__body">
+                <p class="stepper__num" aria-hidden="true">01</p>
+                <h3 class="stepper__title" data-i18n="services.venues.label">EXCLUSIVITAT DELS ESPAIS</h3>
+                <p class="stepper__desc" data-i18n="services.venues.desc">Exclusivitat d'espais únics, fins a 4 finques (Ca n'Alzina, Mas Vivens, Can Macià i el Castell de Tous) per al vostre gran dia.</p>
+              </div>
+            </li>
+
+            <li class="stepper__panel">
+              <div class="stepper__media">
+                <img class="stepper__img" src="https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp" alt="" role="presentation" loading="lazy" decoding="async" width="1200" height="801" />
+              </div>
+              <div class="stepper__body">
+                <p class="stepper__num" aria-hidden="true">02</p>
+                <h3 class="stepper__title" data-i18n="services.coord.label">COORDINACIÓ I ACOMPANYAMENT</h3>
+                <p class="stepper__desc" data-i18n="services.coord.desc">Servei d'acompanyament des del primer dia fins al casament. Un equip de professionals amb anys d'experiència en casaments a la vostra disposició.</p>
+              </div>
+            </li>
+
+            <li class="stepper__panel">
+              <div class="stepper__media">
+                <img class="stepper__img" src="https://www.uauu.cat/media/finques/castell-de-tous/cerimonia/5.webp" alt="" role="presentation" loading="lazy" decoding="async" width="3196" height="2130" />
+              </div>
+              <div class="stepper__body">
+                <p class="stepper__num" aria-hidden="true">03</p>
+                <h3 class="stepper__title" data-i18n="services.ceremony.label">CERIMÒNIES ÚNIQUES</h3>
+                <p class="stepper__desc" data-i18n="services.ceremony.desc">Muntatge, decoració floral, coordinació d'un dels moments més especials del vostre gran dia.</p>
+              </div>
+            </li>
+
+            <li class="stepper__panel">
+              <div class="stepper__media">
+                <img class="stepper__img" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/27.webp" alt="" role="presentation" loading="lazy" decoding="async" width="1440" height="960" />
+              </div>
+              <div class="stepper__body">
+                <p class="stepper__num" aria-hidden="true">04</p>
+                <h3 class="stepper__title" data-i18n="services.decor.label">DECORACIÓ</h3>
+                <p class="stepper__desc" data-i18n="services.decor.desc">Menatge de taula i centres florals a escollir entre una gran varietat d'opcions en tendència, actualitzades any rere any.</p>
+              </div>
+            </li>
+
+            <li class="stepper__panel">
+              <div class="stepper__media">
+                <img class="stepper__img" src="https://www.uauu.cat/media/general/gastronomia/1.webp" alt="" role="presentation" loading="lazy" decoding="async" width="5628" height="3752" />
+              </div>
+              <div class="stepper__body">
+                <p class="stepper__num" aria-hidden="true">05</p>
+                <h3 class="stepper__title" data-i18n="services.catering.label">GASTRONOMIA</h3>
+                <p class="stepper__desc" data-i18n="services.catering.desc">Dissenyeu-vos el vostre propi menú amb una extensa diversitat d'opcions d'aperitius, buffets, opcions de cuina en directe i plats pel banquet.</p>
+              </div>
+            </li>
+
+            <li class="stepper__panel">
+              <div class="stepper__media">
+                <img class="stepper__img" src="https://www.uauu.cat/media/general/dj/festa.webp" alt="" role="presentation" loading="lazy" decoding="async" width="1200" height="798" />
+              </div>
+              <div class="stepper__body">
+                <p class="stepper__num" aria-hidden="true">06</p>
+                <h3 class="stepper__title" data-i18n="services.festa.label">FESTA</h3>
+                <p class="stepper__desc" data-i18n="services.festa.desc">Servei de DJ i bartenders per posar punt i final a una celebració inoblidable.</p>
+              </div>
+            </li>
+
+          </ul>
+
+          <!-- Indicador de progrés (_ref2_serveis.png): número actual, pista
+               amb el tram recorregut i total. Purament visual -- el compte
+               real per a lector de pantalla el dona aria-live a la llista. -->
+          <div class="stepper__progress" aria-hidden="true">
+            <span class="stepper__count" data-stepper-current>01</span>
+            <div class="stepper__track"><span class="stepper__fill"></span></div>
+            <span class="stepper__count" data-stepper-total>06</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -389,6 +457,8 @@
         </div>
       </div>
     </section>
+
+    </div><!-- /.bloc-gris -->
 
     <!-- ══ 6. COM FUNCIONA ══════════════════════════════════════════════
          3 passos. ════════════════════════════════════════════════════ -->
