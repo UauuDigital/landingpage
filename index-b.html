@@ -157,7 +157,12 @@
          data-variant-html amb l'etiqueta + el valor en dos <span>
          (mateix patró que les targetes del hero -- vegeu el punt 3 de
          ## Variants a CLAUDE.md sobre per què no hi ha clau i18n
-         genèrica per a "Aforament"/"Preu"/etc.). ═══════════════════════ -->
+         genèrica per a "Aforament"/"Preu"/etc.). Cada targeta porta també
+         una foto (.fitxa-card__photo) al buit vertical entre la icona i
+         el text -- placeholders de categoria general del CDN (cap
+         atribuïda a una finca concreta, vegeu variants/variante-b.json),
+         amb la seva pròpia clau data-variant-src perquè se substitueixin
+         igual que la resta del contingut de campanya. ═══════════════ -->
     <section id="fitxa" class="fitxa" aria-label="Fitxa del producte">
       <div class="container container--wide fitxa__inner">
         <div class="fitxa__content">
@@ -173,24 +178,68 @@
               <span class="fitxa-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15.5 13.2c2.4.3 4 2 4 4.8"/></svg>
               </span>
+              <img
+                class="fitxa-card__photo"
+                src="https://www.uauu.cat/media/general/gastronomia/6.webp"
+                data-variant-src="fitxa.aforament.photo"
+                alt=""
+                role="presentation"
+                loading="lazy"
+                decoding="async"
+                width="4763"
+                height="3175"
+              />
               <div class="fitxa-card__text" data-variant-html="fitxa.aforament"><span class="fitxa-card__label">Aforament</span><span class="fitxa-card__value">De 35 a 320 comensals</span></div>
             </div>
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 12 4l8.5 4.5-8.5 4.5-8.5-4.5Z"/><path d="M3.5 8.5V16l8.5 4.5 8.5-4.5V8.5"/><path d="M12 13v7.5"/></svg>
               </span>
+              <img
+                class="fitxa-card__photo"
+                src="https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp"
+                data-variant-src="fitxa.inclou.photo"
+                alt=""
+                role="presentation"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="801"
+              />
               <div class="fitxa-card__text" data-variant-html="fitxa.inclou"><span class="fitxa-card__label">Què inclou</span><span class="fitxa-card__value">Espai, càtering, decoració, coordinació i muntatge</span></div>
             </div>
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>
               </span>
+              <img
+                class="fitxa-card__photo"
+                src="https://www.uauu.cat/media/general/dj/festa.webp"
+                data-variant-src="fitxa.disponibilitat.photo"
+                alt=""
+                role="presentation"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="798"
+              />
               <div class="fitxa-card__text" data-variant-html="fitxa.disponibilitat"><span class="fitxa-card__label">Disponibilitat</span><span class="fitxa-card__value">Dates disponibles per 2027 i 2028</span></div>
             </div>
             <div class="fitxa-card">
               <span class="fitxa-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3.5h5a2 2 0 0 1 2 2v5a2 2 0 0 1-.6 1.4l-8.4 8.4a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l8.4-8.4a2 2 0 0 1 1.4-.6Z"/><circle cx="16.5" cy="7.5" r="1.2"/></svg>
               </span>
+              <img
+                class="fitxa-card__photo"
+                src="https://www.uauu.cat/media/general/gastronomia/4.webp"
+                data-variant-src="fitxa.preu.photo"
+                alt=""
+                role="presentation"
+                loading="lazy"
+                decoding="async"
+                width="5536"
+                height="3691"
+              />
               <div class="fitxa-card__text" data-variant-html="fitxa.preu"><span class="fitxa-card__label">Preu</span><span class="fitxa-card__value">Des de 134 fins a 163€ / comensal</span></div>
             </div>
           </div>

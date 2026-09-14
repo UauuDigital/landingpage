@@ -47,20 +47,40 @@
     "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Aforo</span><span class=\"fitxa-card__value\">De 35 a 320 comensales</span>",
     "en": "[PENDING] <span class=\"fitxa-card__label\">Capacity</span><span class=\"fitxa-card__value\">35 to 320 guests</span>"
   },
+  "fitxa.aforament.photo": {
+    "ca": "https://www.uauu.cat/media/general/gastronomia/6.webp",
+    "es": "https://www.uauu.cat/media/general/gastronomia/6.webp",
+    "en": "https://www.uauu.cat/media/general/gastronomia/6.webp"
+  },
   "fitxa.inclou": {
     "ca": "<span class=\"fitxa-card__label\">Què inclou</span><span class=\"fitxa-card__value\">Espai, càtering, decoració, coordinació i muntatge</span>",
     "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Qué incluye</span><span class=\"fitxa-card__value\">Espacio, catering, decoración, coordinación y montaje</span>",
     "en": "[PENDING] <span class=\"fitxa-card__label\">What's included</span><span class=\"fitxa-card__value\">Venue, catering, decor, coordination and setup</span>"
+  },
+  "fitxa.inclou.photo": {
+    "ca": "https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp",
+    "es": "https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp",
+    "en": "https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp"
   },
   "fitxa.disponibilitat": {
     "ca": "<span class=\"fitxa-card__label\">Disponibilitat</span><span class=\"fitxa-card__value\">Dates disponibles per 2027 i 2028</span>",
     "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Disponibilidad</span><span class=\"fitxa-card__value\">Fechas disponibles para 2027 y 2028</span>",
     "en": "[PENDING] <span class=\"fitxa-card__label\">Availability</span><span class=\"fitxa-card__value\">Dates available for 2027 and 2028</span>"
   },
+  "fitxa.disponibilitat.photo": {
+    "ca": "https://www.uauu.cat/media/general/dj/festa.webp",
+    "es": "https://www.uauu.cat/media/general/dj/festa.webp",
+    "en": "https://www.uauu.cat/media/general/dj/festa.webp"
+  },
   "fitxa.preu": {
     "ca": "<span class=\"fitxa-card__label\">Preu</span><span class=\"fitxa-card__value\">Des de 134 fins a 163€ / comensal</span>",
     "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Precio</span><span class=\"fitxa-card__value\">Desde 134 hasta 163€ / comensal</span>",
     "en": "[PENDING] <span class=\"fitxa-card__label\">Price</span><span class=\"fitxa-card__value\">From €134 to €163 / guest</span>"
+  },
+  "fitxa.preu.photo": {
+    "ca": "https://www.uauu.cat/media/general/gastronomia/4.webp",
+    "es": "https://www.uauu.cat/media/general/gastronomia/4.webp",
+    "en": "https://www.uauu.cat/media/general/gastronomia/4.webp"
   },
 
   "finques.headline": {
