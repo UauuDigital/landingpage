@@ -572,9 +572,9 @@
 /* Controls sota el titular en mòbil (serveis i finques). Compartint fila,
    Prev./Next es menjaven ~110px d'un ample útil de ~280px i el titular de
    serveis quedava en 5 línies a 320-414px (mesurat). 768px és el
-   breakpoint mòbil de la resta d'aquesta plantilla. El marge negatiu
-   compensa el padding-inline del botó (components.css) perquè el text
-   "Prev." alinei amb l'inici del titular i no 16px més endins.
+   breakpoint mòbil de la resta d'aquesta plantilla. S'alinea la CAIXA del
+   botó amb el titular, no el text: compensar el padding-inline amb un
+   marge negatiu feia que el fons del hover sobresortís 16px per l'esquerra.
    .services__header és compartit amb index.html: només es toca a través
    de ".finques", mai la classe sola. */
 @media (max-width: 768px) {
@@ -586,11 +586,6 @@
 
   .serveis__header {
     gap: var(--space-2);
-  }
-
-  .serveis__header .services__nav,
-  .finques .services__header .services__nav {
-    margin-inline-start: calc(-1 * var(--space-4));
   }
 }
 
