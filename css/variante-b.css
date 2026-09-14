@@ -507,12 +507,9 @@
    Envolta serveis i prova social amb la mateixa forma que el hero: un
    panell insetat amb cantonades arrodonides.
 
-   Els dos valors són literals a ".hero" (css/layout.css, compartit amb
-   index.html: no s'hi pot tocar per posar-hi variables). Es declaren
-   aquí un sol cop, amb el seu origen anotat, en lloc de repetir-los en
-   cru a cada regla d'aquest bloc. NO pugen a tokens.css: només els
-   consumeix aquest fitxer -- la còpia respecte al hero és inevitable
-   mentre layout.css quedi fora d'abast, i queda documentada aquí.
+   L'inset i el radi són --panel-inset/--panel-radius (tokens.css), els
+   mateixos que consumeix ".hero" a layout.css: la forma es defineix un
+   sol cop per a tots dos.
 
    L'inset lateral NO es fa amb "margin": el fons es pinta en un
    pseudoelement posicionat i el bloc es queda a tota l'amplada. Amb
@@ -532,18 +529,15 @@
    d'arbre, així que queda al darrere sense necessitat de z-index
    negatiu; les seccions es posicionen perquè es pintin per damunt. */
 .bloc-gris {
-  --bloc-gris-inset: 12px;  /* = margin de .hero (layout.css) */
-  --bloc-gris-radius: 20px; /* = border-radius de .hero (layout.css) */
-
   position: relative;
-  margin-block: var(--bloc-gris-inset);
+  margin-block: var(--panel-inset);
 }
 
 .bloc-gris::before {
   content: '';
   position: absolute;
-  inset: 0 var(--bloc-gris-inset);
-  border-radius: var(--bloc-gris-radius);
+  inset: 0 var(--panel-inset);
+  border-radius: var(--panel-radius);
   background-color: var(--color-surface);
 }
 
@@ -573,6 +567,31 @@
 
 .serveis__header .section-heading {
   margin-bottom: 0;
+}
+
+/* Controls sota el titular en mòbil (serveis i finques). Compartint fila,
+   Prev./Next es menjaven ~110px d'un ample útil de ~280px i el titular de
+   serveis quedava en 5 línies a 320-414px (mesurat). 768px és el
+   breakpoint mòbil de la resta d'aquesta plantilla. El marge negatiu
+   compensa el padding-inline del botó (components.css) perquè el text
+   "Prev." alinei amb l'inici del titular i no 16px més endins.
+   .services__header és compartit amb index.html: només es toca a través
+   de ".finques", mai la classe sola. */
+@media (max-width: 768px) {
+  .serveis__header,
+  .finques .services__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .serveis__header {
+    gap: var(--space-2);
+  }
+
+  .serveis__header .services__nav,
+  .finques .services__header .services__nav {
+    margin-inline-start: calc(-1 * var(--space-4));
+  }
 }
 
 /* Sense JS no hi ha res a navegar: els controls desapareixen i les sis

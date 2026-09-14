@@ -106,6 +106,11 @@
   --nav-height:       72px;
   --section-padding:  var(--space-24);
   --hero-card-width:  260px;
+
+  /* Panell insetat amb cantonades arrodonides: .hero (layout.css) i el bloc
+     gris de la Variant B (variante-b.css) comparteixen la mateixa forma. */
+  --panel-inset:      12px;
+  --panel-radius:     20px;
 }
 
 @media (max-width: 768px) {
