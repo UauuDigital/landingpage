@@ -4,22 +4,44 @@
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
 
-  # ── Cache strategy ──────────────────────────────────────────────────────
-  # Code (HTML/CSS/JS/JSON): the browser stores it but revalidates on every
-  # load. If unchanged the server replies 304 (cap byte); en desplegar una
-  # versió nova, l'usuari que ja tenia la pàgina oberta la rep actualitzada
-  # al recarregar, sense haver de versionar fitxers a mà.
-  <FilesMatch "\.(html|css|js|json)$">
+# ── Caché (política comuna UAUU) ─────────────────────────────────────────────
+# Còpia mestra: Uauu/_shared-assets/cache/htaccess-cache.conf
+#
+# Codi (HTML/JS/CSS/JSON/manifest): el navegador el guarda però pregunta
+# SEMPRE al servidor si ha canviat (304 si no). Un deploy es veu amb un F5
+# normal, sense Ctrl+Shift+R.
+# Imatges i fonts: 7 dies. Per canviar-ne una abans, canvia-li el nom.
+#
+# IMPORTANT (Plesk): perquè aquest fitxer s'apliqui, html/htm/js/mjs/css/json/
+# webmanifest NO han de ser a la llista "Serve static files directly by nginx"
+# (Apache & nginx Settings del domini).
+
+# Validador: Last-Modified. Es desactiva l'ETag perquè Apache hi afegeix
+# "-gzip" quan comprimeix i llavors el 304 deixa de funcionar.
+FileETag None
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+
+# Evita que una regla "Expires" heretada del servidor afegeixi un max-age.
+<IfModule mod_expires.c>
+  ExpiresActive Off
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html?|js|mjs|css|json|webmanifest)$">
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
 
-  # Assets immutables (fonts/imatges): cache llarg. Per renovar-los, canvia
-  # el nom del fitxer (p. ex. Inter-Variable.woff2 → Inter-Variable-2.woff2).
-  <FilesMatch "\.(woff2|woff|ttf|otf|webp|png|jpe?g|gif|svg|ico)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
+  # version.json (avís de versió nova): no es guarda mai.
+  <FilesMatch "^version\.json$">
+    Header set Cache-Control "no-store"
+  </FilesMatch>
+
+  <FilesMatch "\.(png|jpe?g|gif|webp|avif|svg|ico|woff2?|ttf|otf|eot|mp4|webm)$">
+    Header set Cache-Control "public, max-age=604800"
   </FilesMatch>
 </IfModule>
-
-# 304 revalidation needs validators; emit an ETag from mtime + size.
-FileETag MTime Size
+# ─────────────────────────────────────────────────────────────────────────────
