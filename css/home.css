@@ -1,4 +1,4 @@
-/* ── Variant B — CSS propi d'index-b.html ──────────────────────────────────
+/* ── Home — CSS propi d'index.html ───────────────────────────────────────
    Calc de la home de palette.eco amb les tipografies de UAUU (Ogg per al
    serif de la referència, Inter per a la seva sans/mono).
 
@@ -712,7 +712,7 @@
    Tres cites en serif, centrades, que s'alternen amb fundit; cadascuna
    amb una miniatura rodona de la parella al costat de la firma, a mode
    d'avatar. Navegació 01/02/03 a sota.
-   JS a js/variante-b-resenyes.js. */
+   JS a js/home-resenyes.js. */
 
 .vb-reviews__head {
   display: flex;

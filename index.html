@@ -42,16 +42,16 @@
   <meta property="og:url" content="https://www.uauu.cat/" />
   <meta property="og:title" content="UAUU — El vostre gran dia comença aquí" />
   <meta property="og:description" content="Històries úniques en espais únics. Casaments exclusius a Ca n'Alzina, Mas Vivencs, Can Macià i Castell de Tous." />
-  <meta property="og:image" content="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp" />
+  <meta property="og:image" content="https://www.uauu.cat/media/landing/casarse_en_barcelona.webp" />
   <meta property="og:image:alt" content="Casament a una finca UAUU" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="UAUU — El vostre gran dia comença aquí" />
   <meta name="twitter:description" content="Històries úniques en espais únics. Casaments exclusius amb UAUU." />
-  <meta name="twitter:image" content="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp" />
+  <meta name="twitter:image" content="https://www.uauu.cat/media/landing/casarse_en_barcelona.webp" />
 
-  <link rel="preload" as="image" href="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="https://www.uauu.cat/media/landing/casarse_en_barcelona.webp" fetchpriority="high" />
   <link rel="preload" as="font" href="fonts/Ogg-Medium.woff2" type="font/woff2" crossorigin />
   <link rel="preload" as="font" href="fonts/Inter-Variable-latin.woff2" type="font/woff2" crossorigin />
 
@@ -68,294 +68,546 @@
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <!-- Només allò específic d'aquesta plantilla (la home): res de compartit
+       es redefineix aquí, vegeu la capçalera de home.css. -->
+  <link rel="stylesheet" href="css/home.css" />
 </head>
-<body>
+<body class="vb">
 
   <a href="#inici" class="sr-only skip-link">Salta al contingut principal</a>
-
-  <!-- ══ NAV ══════════════════════════════════════════════════════════════ -->
-  <header role="banner">
-    <nav class="site-nav" aria-label="Navegació principal">
-      <a href="#inici" class="site-nav__logo" aria-label="UAUU — inici">
-        <img class="site-nav__logo-img" src="logos/UAUU.png" alt="UAUU" width="78" height="20" />
-      </a>
-      <div class="site-nav__lang" role="group" aria-label="Selecció d'idioma">
-        <button class="site-nav__lang-btn is-active" data-lang="ca" aria-pressed="true" data-i18n="nav.lang.ca">CAT</button>
-        <span class="site-nav__lang-divider" aria-hidden="true">|</span>
-        <button class="site-nav__lang-btn" data-lang="es" aria-pressed="false" data-i18n="nav.lang.es">ESP</button>
-        <span class="site-nav__lang-divider" aria-hidden="true">|</span>
-        <button class="site-nav__lang-btn" data-lang="en" aria-pressed="false" data-i18n="nav.lang.en">ENG</button>
-      </div>
-    </nav>
-  </header>
 
   <div id="smooth-content">
   <main>
 
-    <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
-    <section id="inici" class="hero" aria-label="Portada">
-      <img
-        class="hero__bg"
-        src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp"
-        data-variant-src="hero.bg"
-        alt=""
-        role="presentation"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="hero__overlay" aria-hidden="true"></div>
-
-      <div class="hero__content">
-        <h1 class="hero__headline" data-variant-html="hero.headline" data-i18n-html="hero.headline">El vostre<br>gran dia<br>comença aquí.</h1>
+    <!-- ══ 1. HERO ══════════════════════════════════════════════════════
+         Calc de la home de palette.eco: imatge encastada amb 1rem de marge
+         i cantonades arrodonides, titular serif gran a dalt a l'esquerra i
+         un sol CTA fosc. Sense menú: només el logo UAUU centrat (la
+         referència hi porta navegació; aquí no, per no obrir fugues). El
+         selector d'idioma viu al peu (fila inferior, mateix lloc que el
+         "Language" de la referència). Sense .site-nav a propòsit: initNav()
+         de js/main.js hi enganxaria el comportament de pill d'index.html. -->
+    <section id="inici" class="vb-hero" aria-label="Portada">
+      <div class="vb-hero__bg" aria-hidden="true">
+        <img
+          class="vb-hero__img"
+          src="https://www.uauu.cat/media/landing/casarse_en_barcelona.webp"
+          data-variant-src="hero.bg"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+          width="6000"
+          height="4000"
+        />
       </div>
 
-      <div class="hero__card">
-        <a class="hero-card" href="#contacte">
-          <div class="hero-card__image-wrap">
-            <img
-              class="hero-card__image"
-              src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
-              data-variant-src="hero.card.image"
-              alt="Cerimònia UAUU"
-              loading="eager"
-              fetchpriority="low"
-              decoding="async"
-              width="200"
-              height="150"
-            />
-          </div>
-          <div class="hero-card__body">
-            <p class="hero-card__label" data-variant="hero.card.label" data-i18n="hero.card.label">CASA'T AMB UAUU</p>
-            <div class="hero-card__cta">
-              <span class="hero-card__cta-text" data-variant-html="hero.card.cta" data-i18n-html="hero.card.cta">Més<br>informació</span>
-              <span class="arrow-circle" aria-hidden="true">→</span>
-            </div>
-          </div>
-        </a>
+      <header class="vb-header" role="banner">
+        <div class="vb-header__logo">
+          <img class="vb-header__logo-img" src="logos/UAUU.png" alt="UAUU" width="234" height="60" />
+        </div>
+        <div class="vb-header__lang" role="group" aria-label="Selecció d'idioma">
+          <button class="site-nav__lang-btn is-active" data-lang="ca" aria-pressed="true" data-i18n="nav.lang.ca">CAT</button>
+          <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+          <button class="site-nav__lang-btn" data-lang="es" aria-pressed="false" data-i18n="nav.lang.es">ESP</button>
+          <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+          <button class="site-nav__lang-btn" data-lang="en" aria-pressed="false" data-i18n="nav.lang.en">ENG</button>
+        </div>
+      </header>
+
+      <div class="vb-hero__content">
+        <h1 class="vb-hero__title vb-h1" data-variant-html="hero.headline">Quatre finques exclusives a prop de Barcelona.</h1>
+        <a href="#contacte" class="vb-btn vb-hero__cta" data-variant-html="hero.cta">Més informació</a>
       </div>
     </section>
 
-    <!-- ══ SERVICES ══════════════════════════════════════════════════════ -->
-    <section id="serveis" class="services">
-      <div class="services__header">
-        <h2 class="section-heading reveal" data-i18n="services.title">Els nostres serveis</h2>
-        <div class="services__nav" aria-label="Navegació del carrusel">
-          <button class="services__nav-btn" id="services-prev" aria-label="Anterior">Prev.</button>
-          <button class="services__nav-btn" id="services-next" aria-label="Següent">Next</button>
-        </div>
-      </div>
+    <!-- ══ 2. VALORS (01–04) ═════════════════════════════════════════════
+         La franja "brandValues" de la referència, amb les dades de la
+         fitxa: etiqueta + valor dins la mateixa clau (CLAUDE.md: etiquetes
+         curtes sense ús general no van a locales/*). -->
+    <section class="vb-values vb-slice" aria-label="UAUU en xifres">
+      <ul class="vb-values__list">
+        <li class="vb-values__item reveal">
+          <span class="vb-values__num" aria-hidden="true">01</span>
+          <p class="vb-values__text vb-label" data-variant-html="valors.1"><span class="vb-values__label">Aforament</span><br>De 35 a 250 comensals</p>
+        </li>
+        <li class="vb-values__item reveal reveal--delay-1">
+          <span class="vb-values__num" aria-hidden="true">02</span>
+          <p class="vb-values__text vb-label" data-variant-html="valors.2"><span class="vb-values__label">Què inclou</span><br>Espai, càtering, decoració, coordinació i muntatge</p>
+        </li>
+        <li class="vb-values__item reveal reveal--delay-2">
+          <span class="vb-values__num" aria-hidden="true">03</span>
+          <p class="vb-values__text vb-label" data-variant-html="valors.3"><span class="vb-values__label">Disponibilitat</span><br>Dates disponibles per 2027 i 2028</p>
+        </li>
+        <li class="vb-values__item reveal reveal--delay-3">
+          <span class="vb-values__num" aria-hidden="true">04</span>
+          <p class="vb-values__text vb-label" data-variant-html="valors.4"><span class="vb-values__label">Preu del menú</span><br>Des de 134 fins a 163€ / comensal</p>
+        </li>
+      </ul>
+    </section>
 
-      <div class="services__grid">
+    <!-- ══ 3. FINQUES ═══════════════════════════════════════════════════
+         El "New drops" de la referència: títol gegant + cercles. Allà cada
+         cercle és un color i en hover hi apareix la textura; aquí cada
+         cercle és una foto de la finca i en hover hi apareix una segona
+         foto. Els noms de finca i de poble no es tradueixen (fet de marca). -->
+    <section id="finques" class="vb-drops vb-slice" aria-labelledby="finques-title">
+      <h2 id="finques-title" class="vb-drops__title reveal" data-variant-html="finques.headline">Les finques</h2>
 
-        <article class="service-card">
-          <div class="service-card__image-wrap">
-            <img class="service-card__image" src="https://www.uauu.cat/media/fotos/finques/can-macia.webp" alt="Can Macià" loading="lazy" decoding="async" width="382" height="318" />
-          </div>
-          <p class="service-card__label" data-i18n="services.venues.label">EXCLUSIVITAT DELS ESPAIS</p>
-          <p class="service-card__description" data-i18n="services.venues.desc">Exclusivitat d'espais únics, fins a 4 finques (Ca n'Alzina, Mas Vivencs, Can Macià i el Castell de Tous) per al vostre gran dia.</p>
-        </article>
+      <ul class="vb-drops__list">
+        <li class="vb-drop reveal">
+          <a class="vb-drop__link" href="#contacte">
+            <span class="vb-drop__circle" aria-hidden="true">
+              <img class="vb-drop__img" src="https://www.uauu.cat/media/fotos/finques/ca-n-alzina.webp" alt="" loading="lazy" width="160" height="160" />
+              <img class="vb-drop__img vb-drop__img--hover" src="https://www.uauu.cat/media/finques/ca-n-alzina/galeria-dimatges/ca-n-alzina_36.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-drop__title vb-label">Ca n'Alzina — Rubió</span>
+            <span class="vb-drop__meta vb-label" data-variant-html="finques.alzina">Fins a 250 convidats</span>
+          </a>
+        </li>
+        <li class="vb-drop reveal reveal--delay-1">
+          <a class="vb-drop__link" href="#contacte">
+            <span class="vb-drop__circle" aria-hidden="true">
+              <img class="vb-drop__img" src="https://www.uauu.cat/media/fotos/finques/can-macia.webp" alt="" loading="lazy" width="160" height="160" />
+              <img class="vb-drop__img vb-drop__img--hover" src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/10.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-drop__title vb-label">Can Macià — Òdena</span>
+            <span class="vb-drop__meta vb-label" data-variant-html="finques.macia">Fins a 250 convidats</span>
+          </a>
+        </li>
+        <li class="vb-drop reveal reveal--delay-2">
+          <a class="vb-drop__link" href="#contacte">
+            <span class="vb-drop__circle" aria-hidden="true">
+              <img class="vb-drop__img" src="https://www.uauu.cat/media/fotos/finques/castell-de-tous.webp" alt="" loading="lazy" width="160" height="160" />
+              <img class="vb-drop__img vb-drop__img--hover" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/16.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-drop__title vb-label">Castell de Tous — Sant Martí de Tous</span>
+            <span class="vb-drop__meta vb-label" data-variant-html="finques.castell">Fins a 140 convidats</span>
+          </a>
+        </li>
+        <li class="vb-drop reveal reveal--delay-3">
+          <a class="vb-drop__link" href="#contacte">
+            <span class="vb-drop__circle" aria-hidden="true">
+              <img class="vb-drop__img" src="https://www.uauu.cat/media/fotos/finques/mas-vivencs.webp" alt="" loading="lazy" width="160" height="160" />
+              <img class="vb-drop__img vb-drop__img--hover" src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/27.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-drop__title vb-label">Mas Vivencs — La Pobla de Claramunt</span>
+            <span class="vb-drop__meta vb-label" data-variant-html="finques.vivens">Fins a 250 convidats</span>
+          </a>
+        </li>
+      </ul>
 
-        <article class="service-card">
-          <div class="service-card__image-wrap">
-            <img class="service-card__image" src="https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp" alt="Coordinació i acompanyament" loading="lazy" decoding="async" width="382" height="318" />
-          </div>
-          <p class="service-card__label" data-i18n="services.coord.label">COORDINACIÓ I ACOMPANYAMENT</p>
-          <p class="service-card__description" data-i18n="services.coord.desc">Servei d'acompanyament des del primer dia fins al casament. Un equip de professionals amb anys d'experiència en casaments a la vostra disposició.</p>
-        </article>
+      <a href="#contacte" class="vb-btn" data-variant-html="finques.cta">Consulta disponibilitat</a>
+    </section>
 
-        <article class="service-card">
-          <div class="service-card__image-wrap">
-            <img class="service-card__image" src="https://www.uauu.cat/media/finques/castell-de-tous/cerimonia/5.webp" alt="Cerimònies úniques" loading="lazy" decoding="async" width="382" height="318" />
-          </div>
-          <p class="service-card__label" data-i18n="services.ceremony.label">CERIMÒNIES ÚNIQUES</p>
-          <p class="service-card__description" data-i18n="services.ceremony.desc">Muntatge, decoració floral, coordinació d'un dels moments més especials del vostre gran dia.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-card__image-wrap">
-            <img class="service-card__image" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/27.webp" alt="Decoració" loading="lazy" decoding="async" width="382" height="318" />
-          </div>
-          <p class="service-card__label" data-i18n="services.decor.label">DECORACIÓ</p>
-          <p class="service-card__description" data-i18n="services.decor.desc">Menatge de taula i centres florals a escollir entre una gran varietat d'opcions en tendència, actualitzades any rere any.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-card__image-wrap">
-            <img class="service-card__image" src="https://www.uauu.cat/media/general/gastronomia/1.webp" alt="Gastronomia" loading="lazy" decoding="async" width="382" height="318" />
-          </div>
-          <p class="service-card__label" data-i18n="services.catering.label">GASTRONOMIA</p>
-          <p class="service-card__description" data-i18n="services.catering.desc">Dissenyeu-vos el vostre propi menú amb una extensa diversitat d'opcions d'aperitius, buffets, opcions de cuina en directe i plats pel banquet.</p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-card__image-wrap">
-            <img class="service-card__image" src="https://www.uauu.cat/media/general/dj/festa.webp" alt="Festa" loading="lazy" decoding="async" width="382" height="318" />
-          </div>
-          <p class="service-card__label" data-i18n="services.festa.label">FESTA</p>
-          <p class="service-card__description" data-i18n="services.festa.desc">Servei de DJ i bartenders per posar punt i final a una celebració inoblidable.</p>
-        </article>
-
+    <!-- ══ 4. MISSIÓ ════════════════════════════════════════════════════
+         "Our mission": etiqueta + paràgraf serif centrat, caixa amb només
+         la vora inferior. -->
+    <section class="vb-mission vb-slice" aria-labelledby="mission-title">
+      <div class="vb-mission__content reveal">
+        <h2 id="mission-title" class="vb-label" data-variant-html="missio.eyebrow">Què és UAUU weddings &amp; events?</h2>
+        <p class="vb-mission__text vb-h3" data-variant-html="missio.text">Fa més de deu anys que acompanyem parelles fins al <em>Sí, vull</em>. Més de 1.500 casaments després, encara els preparem <em>un a un</em>: quatre finques, un sol equip i cap detall a l’atzar.</p>
       </div>
     </section>
 
-    <!-- ══ CTA / FORM ════════════════════════════════════════════════════ -->
-    <section id="contacte" class="cta-section" aria-label="Sol·licita preus i proposta">
-      <img
-        class="cta-section__bg"
-        src="https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp"
-        data-variant-src="cta.bg"
-        alt=""
-        role="presentation"
-        loading="lazy"
-        fetchpriority="low"
-        decoding="async"
-      />
-      <div class="cta-section__overlay" aria-hidden="true"></div>
-
-      <div class="cta-section__inner">
-        <h2 class="cta-headline reveal" data-variant-html="cta.headline" data-i18n-html="cta.headline">
-          Accedeix als nostres<br>preus i proposta.
-        </h2>
-
-        <div class="venue-logos reveal reveal--delay-1" aria-label="Finques UAUU">
-          <img class="venue-logos__item" src="logos/CA.png" alt="Ca n'Alzina" loading="lazy" width="83" height="40" />
-          <img class="venue-logos__item" src="logos/CT.png" alt="Castell de Tous" loading="lazy" width="78" height="40" />
-          <img class="venue-logos__item" src="logos/CM.png" alt="Can Macià" loading="lazy" width="64" height="40" />
-          <img class="venue-logos__item" src="logos/MV.png" alt="Mas Vivencs" loading="lazy" width="84" height="40" />
+    <!-- ══ 5. IMATGE + PANELL ═══════════════════════════════════════════
+         "leftRight": dues meitats quadrades, foto i panell de color amb
+         titular centrat i una línia en versaletes al peu. -->
+    <section class="vb-split vb-slice" aria-labelledby="split-title">
+      <div class="vb-split__media reveal">
+        <img class="vb-split__img" src="https://www.uauu.cat/media/landing/DSC02191.webp" alt="" loading="lazy" width="900" height="900" />
+      </div>
+      <div class="vb-panel vb-panel--sand reveal reveal--delay-1">
+        <div class="vb-panel__content">
+          <h2 id="split-title" class="vb-h2" data-variant-html="split.headline">Tot inclòs, sense preocupacions, sense sorpreses.</h2>
         </div>
+        <p class="vb-panel__foot vb-label" data-variant-html="split.foot">Espai, càtering, decoració, coordinació i muntatge</p>
+      </div>
+    </section>
 
-        <form
-          id="contact-form"
-          class="contact-form reveal reveal--delay-2"
-          action="https://crm.espaigastronomia.cat/index.php?entryPoint=WebToPersonCapture"
-          method="POST"
-          novalidate
-          aria-label="Formulari de contacte"
-        >
+    <!-- ══ 6. "SÍ, VULL" ════════════════════════════════════════════════
+         El "No, No, No" de la referència: titular gegant, quatre línies
+         serif i CTA. -->
+    <section class="vb-yes vb-slice" aria-labelledby="yes-title">
+      <h2 id="yes-title" class="vb-yes__title reveal" data-variant-html="si.headline">Sí, vull</h2>
+      <p class="vb-yes__text reveal" data-variant-html="si.text">Sí a una finca només per a vosaltres<br>Sí a un menú dissenyat a la vostra mida<br>Sí a un equip que ho coordina tot<br>Sí a una festa inoblidable</p>
+      <a href="#contacte" class="vb-btn reveal" data-variant-html="si.cta">Descobreix els preus</a>
+    </section>
 
-          <div class="contact-form__field">
-            <label class="sr-only" for="first_name" data-i18n="form.name">Nom *</label>
-            <input
-              class="contact-form__input"
-              type="text"
-              id="first_name"
-              name="first_name"
-              autocomplete="given-name"
-              required
-              data-i18n="form.name"
-              placeholder="Nom *"
-            />
-            <span class="contact-form__error" role="alert"></span>
-          </div>
+    <!-- ══ 7. TEXT SOBRE IMATGE + IMATGE ════════════════════════════════
+         "textImageCTA" + "singleImage". Les fotos de les finques són més
+         fosques que les de la referència: text blanc amb vel suau. -->
+    <section class="vb-split vb-slice" aria-labelledby="visit-title">
+      <div class="vb-split__media vb-cover reveal">
+        <img class="vb-split__img" src="https://www.uauu.cat/media/landing/AtypicalWedding119.webp" alt="" loading="lazy" width="900" height="900" />
+        <div class="vb-cover__content">
+          <h2 id="visit-title" class="vb-cover__title" data-variant-html="visita.headline">Veniu a conèixer les finques en persona.</h2>
+          <a href="#contacte" class="vb-btn" data-variant-html="visita.cta">Demana una visita</a>
+        </div>
+      </div>
+      <div class="vb-split__media reveal reveal--delay-1">
+        <img class="vb-split__img" src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp" alt="" loading="lazy" width="900" height="900" />
+      </div>
+    </section>
 
-          <div class="contact-form__field">
-            <label class="sr-only" for="last_name" data-i18n="form.surname">Cognoms *</label>
-            <input
-              class="contact-form__input"
-              type="text"
-              id="last_name"
-              name="last_name"
-              autocomplete="family-name"
-              required
-              data-i18n="form.surname"
-              placeholder="Cognoms *"
-            />
-            <span class="contact-form__error" role="alert"></span>
-          </div>
+    <!-- ══ 8. LOGOS ═════════════════════════════════════════════════════
+         "brandReferences": la fila de logos de premsa, aquí els de les
+         quatre finques. -->
+    <section class="vb-refs vb-slice" aria-label="Les quatre finques">
+      <ul class="vb-refs__list">
+        <li class="vb-refs__item"><a href="#contacte" class="vb-refs__link"><img class="vb-refs__logo" src="logos/CA.png" alt="Ca n'Alzina" loading="lazy" width="401" height="193" /></a></li>
+        <li class="vb-refs__item"><a href="#contacte" class="vb-refs__link"><img class="vb-refs__logo" src="logos/CM.png" alt="Can Macià" loading="lazy" width="309" height="193" /></a></li>
+        <li class="vb-refs__item"><a href="#contacte" class="vb-refs__link"><img class="vb-refs__logo" src="logos/CT.png" alt="Castell de Tous" loading="lazy" width="398" height="205" /></a></li>
+        <li class="vb-refs__item"><a href="#contacte" class="vb-refs__link"><img class="vb-refs__logo" src="logos/MV.png" alt="Mas Vivencs" loading="lazy" width="399" height="191" /></a></li>
+      </ul>
+    </section>
 
-          <div class="contact-form__field">
-            <label class="sr-only" for="email1" data-i18n="form.email">Correu electrònic *</label>
-            <input
-              class="contact-form__input"
-              type="email"
-              id="email1"
-              name="email1"
-              autocomplete="email"
-              required
-              data-i18n="form.email"
-              placeholder="Correu electrònic *"
-            />
-            <span class="contact-form__error" role="alert"></span>
-          </div>
+    <!-- ══ 9. GALERIA + PANELL ══════════════════════════════════════════
+         "fourImages" + "textColorLink". El panell de la referència enllaça
+         a Instagram; aquí ancora al formulari (zero fugues). -->
+    <section class="vb-split vb-slice" aria-labelledby="gallery-title">
+      <ul class="vb-gallery reveal" aria-hidden="true">
+        <li class="vb-gallery__item vb-gallery__item--bw"><img class="vb-gallery__img" src="https://www.uauu.cat/media/finques/ca-n-alzina/galeria-dimatges/ca-n-alzina_2.webp" alt="" loading="lazy" width="450" height="450" /></li>
+        <li class="vb-gallery__item"><img class="vb-gallery__img" src="https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/24.webp" alt="" loading="lazy" width="450" height="450" /></li>
+        <li class="vb-gallery__item"><img class="vb-gallery__img" src="https://www.uauu.cat/media/finques/ca-n-alzina/galeria-dimatges/ca-n-alzina_33.webp" alt="" loading="lazy" width="450" height="450" /></li>
+        <li class="vb-gallery__item vb-gallery__item--bw"><img class="vb-gallery__img" src="https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/18.webp" alt="" loading="lazy" width="450" height="450" /></li>
+      </ul>
+      <div class="vb-panel vb-panel--sand reveal reveal--delay-1">
+        <div class="vb-panel__content">
+          <h2 id="gallery-title" class="vb-h2" data-variant-html="galeria.headline">Dissenyem junts el vostre gran dia.</h2>
+          <p class="vb-panel__sub" data-variant-html="galeria.sub">UAUU weddings &amp; events</p>
+        </div>
+        <a href="#contacte" class="vb-panel__foot vb-label vb-link" data-variant-html="galeria.cta">Demana informació sense compromís</a>
+      </div>
+    </section>
 
-          <div class="contact-form__field">
-            <label class="sr-only" for="phone_mobile" data-i18n="form.phone">Número de telèfon *</label>
-            <div class="contact-form__phone-wrap">
-              <div class="country-selector-wrap">
-                <button type="button" class="country-selector" id="country-selector" aria-haspopup="listbox" aria-expanded="false" aria-label="Prefix telefònic">
-                  <span class="cs-flag">🇪🇸</span>
-                  <span class="cs-dial">+34</span>
-                  <span class="cs-chevron" aria-hidden="true"></span>
-                </button>
-                <div class="country-dropdown" id="country-dropdown" role="listbox" hidden>
-                  <input type="text" class="country-search" placeholder="Buscar..." autocomplete="off" />
-                  <ul class="country-list"></ul>
-                </div>
-              </div>
+    <!-- ══ 10. RESSENYES ════════════════════════════════════════════════
+         Sense equivalent a la referència: cita en serif gran centrada, i
+         tres cites que s'alternen amb fundit, cadascuna amb una miniatura rodona de la parella
+         (js/home-resenyes.js). Ressenyes reals (ES original; CA/EN traduïts). -->
+    <section class="vb-reviews vb-slice" aria-labelledby="reviews-title">
+      <header class="vb-reviews__head reveal">
+        <h2 id="reviews-title" class="vb-label" data-variant-html="resenyes.titol">Ressenyes</h2>
+        <p class="vb-label" data-variant-html="resenyes.valoracio">4.9 / 5 · 1041 ressenyes a bodas.net</p>
+      </header>
+
+      <div class="vb-reviews__stage reveal">
+        <figure class="vb-reviews__slide is-active">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.1.text">“Destaquem especialment l'excel·lent coordinació de l'equip, així com les facilitats que ens van oferir en cada fase del procés. […] Sens dubte, repetiríem l'experiència amb ells!”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/alba_CT.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.1.autor">Alba &amp; Javi · Castell de Tous · 2025</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.2.text">“Fins i tot algun dels convidats ens va dir que era el millor lloc de casaments on havia estat.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Ester_14_03_26_MV.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.2.autor">Ester &amp; David · Mas Vivencs · 2026</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.3.text">“El nostre casament a Can Macià va superar qualsevol expectativa pel que fa a professionalitat, proximitat i qualitat.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Maria_CM.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.3.autor">Maria &amp; Gonzalo · Can Macià · 2025</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.4.text">“Vam al·lucinar amb el Pre-Wedding Day, en vam sortir amb moltes ganes que arribés la data del nostre casament.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Sara_Alejandro_CA.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.4.autor">Sara &amp; Alejandro · Ca n'Alzina · 2025</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.5.text">“Van estar pendents de tot i en cap moment em vaig sentir perduda.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/finques/castell-de-tous/cerimonia/1.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.5.autor">Natalia &amp; Guillermo · Castell de Tous · 2023</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.6.text">“Control absolut d'intoleràncies i al·lèrgies! Sóc celíaca i ho van gestionar de meravella!”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/finques/mas-vivencs/cerimonia/1.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.6.autor">Míriam &amp; Bernat · Mas Vivencs · 2025</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.7.text">“Ni un sol comentari negatiu dels 88 convidats, absolutament tots meravellats amb el servei, l'amabilitat i com d'exquisites eren totes les preparacions.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/David_Irene_CM.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.7.autor">David &amp; Irene · Can Macià · 2025</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.8.text">“Vam visitar quatre o cinc llocs més, però aquestes vistes d'infart a la Vall de Rubió no es troben dues vegades.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Mary_CA.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.8.autor">Mari Carmen &amp; Ivan · Ca n'Alzina · 2026</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.9.text">“Els convidats van quedar impressionats en veure el castell, la decoració, el bon gust de cada detall i el bon servei el dia del casament.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Cristina_CT.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.9.autor">Cristina &amp; Oscar · Castell de Tous · 2024</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.10.text">“Com a núvia vivint a l'estranger, estava força nerviosa per la planificació a distància […] Tanmateix, la Laura va fer que tot fos increïblement fàcil.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/finques/mas-vivencs/cerimonia/8.webp" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.10.autor">Laia &amp; Tom · Mas Vivencs · 2024</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.11.text">“Només diré que els convidats van catalogar el nostre casament com el millor al qual havien anat.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Mariona_CM.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.11.autor">Mariona &amp; Sergi · Can Macià · 2025</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.12.text">“El Pre-Wedding Day ens va semblar una idea fantàstica per triar la decoració, les estovalles, els aperitius… i fer que tota l'organització fos molt més senzilla.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Sandra_y_Francisco_CA.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.12.autor">Sandra &amp; Francisco · Ca n'Alzina · 2026</span>
+          </figcaption>
+        </figure>
+        <figure class="vb-reviews__slide">
+          <blockquote class="vb-reviews__quote" data-variant-html="resenyes.13.text">“Recordo com, visitant-lo, li vaig dir al meu ara marit que aquest era el nostre lloc, i aquell mateix dia vam reservar la data.”</blockquote>
+          <figcaption class="vb-reviews__who">
+            <span class="vb-reviews__photo">
+              <img class="vb-reviews__img" src="https://www.uauu.cat/media/landing/ressenyes/Cristina_CT_2.jpg" alt="" loading="lazy" width="160" height="160" />
+            </span>
+            <span class="vb-label" data-variant-html="resenyes.13.autor">Cristina &amp; Joel · Castell de Tous · 2023</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="vb-reviews__nav reveal reveal--delay-1">
+        <button type="button" class="vb-reviews__dot is-active" data-index="0" aria-current="true">01</button>
+        <button type="button" class="vb-reviews__dot" data-index="1">02</button>
+        <button type="button" class="vb-reviews__dot" data-index="2">03</button>
+        <button type="button" class="vb-reviews__dot" data-index="3">04</button>
+        <button type="button" class="vb-reviews__dot" data-index="4">05</button>
+        <button type="button" class="vb-reviews__dot" data-index="5">06</button>
+        <button type="button" class="vb-reviews__dot" data-index="6">07</button>
+        <button type="button" class="vb-reviews__dot" data-index="7">08</button>
+        <button type="button" class="vb-reviews__dot" data-index="8">09</button>
+        <button type="button" class="vb-reviews__dot" data-index="9">10</button>
+        <button type="button" class="vb-reviews__dot" data-index="10">11</button>
+        <button type="button" class="vb-reviews__dot" data-index="11">12</button>
+        <button type="button" class="vb-reviews__dot" data-index="12">13</button>
+      </div>
+    </section>
+
+    <!-- ══ 11. PEU + FORMULARI ══════════════════════════════════════════
+         El peu de la referència ("Sign up now" + columnes + marca gegant)
+         acull el formulari: és el seu lloc de captació. El <form> és el
+         d'index.html camp per camp (mateixos ids/names, js/form.js sense
+         tocar); només canvia l'aspecte, a home.css. Les columnes
+         d'enllaços de la referència passen a ser text pla (zero fugues). -->
+    <footer id="contacte" class="vb-footer" aria-label="Sol·licita la teva proposta">
+      <div class="vb-footer__main">
+        <div class="vb-footer__form-col">
+          <h2 class="vb-h3" data-variant-html="form.headline">Accedeix a la proposta complerta.</h2>
+
+          <form
+            id="contact-form"
+            class="contact-form vb-form"
+            action="https://crm.espaigastronomia.cat/index.php?entryPoint=WebToPersonCapture"
+            method="POST"
+            novalidate
+            aria-label="Formulari de contacte"
+          >
+
+            <div class="contact-form__field">
+              <label class="sr-only" for="first_name" data-i18n="form.name">Nom *</label>
               <input
                 class="contact-form__input"
-                type="tel"
-                id="phone_mobile"
-                name="phone_mobile"
-                autocomplete="tel-national"
+                type="text"
+                id="first_name"
+                name="first_name"
+                autocomplete="given-name"
                 required
-                data-i18n="form.phone"
-                placeholder="Número de telèfon *"
+                data-i18n="form.name"
+                placeholder="Nom *"
+              />
+              <span class="contact-form__error" role="alert"></span>
+            </div>
+
+            <div class="contact-form__field">
+              <label class="sr-only" for="last_name" data-i18n="form.surname">Cognoms *</label>
+              <input
+                class="contact-form__input"
+                type="text"
+                id="last_name"
+                name="last_name"
+                autocomplete="family-name"
+                required
+                data-i18n="form.surname"
+                placeholder="Cognoms *"
+              />
+              <span class="contact-form__error" role="alert"></span>
+            </div>
+
+            <div class="contact-form__field">
+              <label class="sr-only" for="email1" data-i18n="form.email">Correu electrònic *</label>
+              <input
+                class="contact-form__input"
+                type="email"
+                id="email1"
+                name="email1"
+                autocomplete="email"
+                required
+                data-i18n="form.email"
+                placeholder="Correu electrònic *"
+              />
+              <span class="contact-form__error" role="alert"></span>
+            </div>
+
+            <div class="contact-form__field">
+              <label class="sr-only" for="phone_mobile" data-i18n="form.phone">Número de telèfon *</label>
+              <div class="contact-form__phone-wrap">
+                <div class="country-selector-wrap">
+                  <button type="button" class="country-selector" id="country-selector" aria-haspopup="listbox" aria-expanded="false" aria-label="Prefix telefònic">
+                    <span class="cs-flag">🇪🇸</span>
+                    <span class="cs-dial">+34</span>
+                    <span class="cs-chevron" aria-hidden="true"></span>
+                  </button>
+                  <div class="country-dropdown" id="country-dropdown" role="listbox" hidden>
+                    <input type="text" class="country-search" placeholder="Buscar..." autocomplete="off" />
+                    <ul class="country-list"></ul>
+                  </div>
+                </div>
+                <input
+                  class="contact-form__input"
+                  type="tel"
+                  id="phone_mobile"
+                  name="phone_mobile"
+                  autocomplete="tel-national"
+                  required
+                  data-i18n="form.phone"
+                  placeholder="Número de telèfon *"
+                />
+              </div>
+              <span class="contact-form__error" role="alert"></span>
+            </div>
+
+            <div class="contact-form__field">
+              <label class="sr-only" for="date_display" data-i18n="form.date">Data del casament</label>
+              <input
+                class="contact-form__input"
+                type="text"
+                id="date_display"
+                data-i18n="form.date"
+                placeholder="Data del casament"
+                autocomplete="off"
               />
             </div>
-            <span class="contact-form__error" role="alert"></span>
-          </div>
 
-          <div class="contact-form__field">
-            <label class="sr-only" for="date_display" data-i18n="form.date">Data del casament</label>
-            <input
-              class="contact-form__input"
-              type="text"
-              id="date_display"
-              data-i18n="form.date"
-              placeholder="Data del casament"
-              autocomplete="off"
-            />
-          </div>
-
-          <div class="contact-form__field">
-            <label class="sr-only" for="num_diners_c" data-i18n="form.guests">Nombre de convidats</label>
-            <input
-              class="contact-form__input"
-              type="number"
-              id="num_diners_c"
-              name="num_diners_c"
-              min="1"
-              data-i18n="form.guests"
-              placeholder="Nombre de convidats"
-              autocomplete="off"
-            />
-          </div>
-
-          <div class="form-footer">
-            <div class="form-checkbox">
-              <input type="checkbox" id="privacy" name="privacy" required />
-              <label for="privacy" data-i18n-html="form.privacy">
-                He llegit i accepto la <a href="https://www.uauu.cat/politica-de-privacitat/" target="_blank" rel="noopener noreferrer">política de privacitat</a>
-              </label>
+            <div class="contact-form__field">
+              <label class="sr-only" for="num_diners_c" data-i18n="form.guests">Nombre de convidats</label>
+              <input
+                class="contact-form__input"
+                type="number"
+                id="num_diners_c"
+                name="num_diners_c"
+                min="1"
+                data-i18n="form.guests"
+                placeholder="Nombre de convidats"
+                autocomplete="off"
+              />
             </div>
-            <button type="submit" id="btn-submit" data-i18n="form.submit">Enviar</button>
+
+            <div class="form-footer">
+              <div class="form-checkbox">
+                <input type="checkbox" id="privacy" name="privacy" required />
+                <label for="privacy" data-i18n-html="form.privacy">
+                  He llegit i accepto la <a href="https://www.uauu.cat/politica-de-privacitat/" target="_blank" rel="noopener noreferrer">política de privacitat</a>
+                </label>
+              </div>
+              <button type="submit" id="btn-submit" data-i18n="form.submit">Enviar</button>
+            </div>
+
+            <input type="text" name="hp_website" class="honeypot" tabindex="-1" autocomplete="off" />
+
+            <input type="hidden" name="campaign_id"       value="837aea38-483f-e9a6-32dc-6a22cfcaf05e" />
+            <input type="hidden" name="redirect_url"      value="https://www.uauu.cat/welcome/gracies.html" />
+            <input type="hidden" name="assigned_user_id"  value="a622e474-8b6e-1ee8-bb2e-69d5f4e15f53" />
+            <input type="hidden" name="moduleDir"         value="Leads" />
+            <input type="hidden" name="event_type_c"      value="Casament" />
+            <input type="hidden" name="lead_source" id="lead_source" value="web_directe" />
+            <input type="hidden" name="idioma_contacto_c" id="idioma_contacto_c" value="catala" />
+            <input type="hidden" name="description" id="description" />
+
+          </form>
+        </div>
+
+        <div class="vb-footer__cols">
+          <div class="vb-footer__group">
+            <h3 class="vb-label vb-footer__group-title" data-variant-html="peu.finques">Finques</h3>
+            <ul class="vb-footer__list vb-label">
+              <li>Ca n'Alzina</li>
+              <li>Can Macià</li>
+              <li>Castell de Tous</li>
+              <li>Mas Vivencs</li>
+            </ul>
           </div>
-
-          <input type="text" name="hp_website" class="honeypot" tabindex="-1" autocomplete="off" />
-
-          <input type="hidden" name="campaign_id"       value="837aea38-483f-e9a6-32dc-6a22cfcaf05e" />
-          <input type="hidden" name="redirect_url"      value="https://www.uauu.cat/welcome/gracies.html" />
-          <input type="hidden" name="assigned_user_id"  value="a622e474-8b6e-1ee8-bb2e-69d5f4e15f53" />
-          <input type="hidden" name="moduleDir"         value="Leads" />
-          <input type="hidden" name="event_type_c"      value="Casament" />
-          <input type="hidden" name="lead_source" id="lead_source" value="web_directe" />
-          <input type="hidden" name="idioma_contacto_c" id="idioma_contacto_c" value="catala" />
-          <input type="hidden" name="description" id="description" />
-
-        </form>
+          <div class="vb-footer__group">
+            <h3 class="vb-label vb-footer__group-title" data-i18n="services.title">Els nostres serveis</h3>
+            <ul class="vb-footer__list vb-label">
+              <li data-i18n="services.coord.label">COORDINACIÓ I ACOMPANYAMENT</li>
+              <li data-i18n="services.ceremony.label">CERIMÒNIES ÚNIQUES</li>
+              <li data-i18n="services.decor.label">DECORACIÓ</li>
+              <li data-i18n="services.catering.label">GASTRONOMIA</li>
+              <li data-i18n="services.festa.label">FESTA</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </section>
+
+      <div class="vb-footer__brand">
+        <img class="vb-footer__brand-img" src="logos/UAUU_logotip_negre.svg" alt="UAUU" loading="lazy" width="1066" height="271" />
+      </div>
+
+      <div class="vb-footer__bottom vb-label">
+        <p>UAUU weddings &amp; events</p>
+        <div class="vb-footer__lang" role="group" aria-label="Selecció d'idioma">
+          <button class="site-nav__lang-btn is-active" data-lang="ca" aria-pressed="true" data-i18n="nav.lang.ca">CAT</button>
+          <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+          <button class="site-nav__lang-btn" data-lang="es" aria-pressed="false" data-i18n="nav.lang.es">ESP</button>
+          <span class="site-nav__lang-divider" aria-hidden="true">|</span>
+          <button class="site-nav__lang-btn" data-lang="en" aria-pressed="false" data-i18n="nav.lang.en">ENG</button>
+        </div>
+      </div>
+    </footer>
 
   </main>
   </div><!-- #smooth-content -->
@@ -367,5 +619,6 @@
     data-badge="bottomleft"></div>
 
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/home-resenyes.js"></script>
 </body>
 </html>

@@ -62,11 +62,11 @@
   line-height: var(--leading-normal);
 }
 
-/* Mateix botó que .vb-btn de la Variant B (css/variante-b.css): mateixes
+/* Mateix botó que .vb-btn de la home (css/home.css): mateixes
    fórmules sobre la unitat fluida --u (la de la variant escala amb l'ample,
    0.6944vw a desktop i 2.6667vw sota 1024px), mateixos colors i transició.
    Aquí és local al botó perquè gracies.css no comparteix l'escala amb la
-   variant; els valors en cru repeteixen els de variante-b.css. */
+   variant; els valors en cru repeteixen els de home.css. */
 .gracies__cta {
   --u: 0.6944vw;
   --gr-ink: #1e1e1e;

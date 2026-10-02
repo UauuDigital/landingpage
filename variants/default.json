@@ -1,38 +1,279 @@
 {
+  "meta.title": "UAUU — El vostre gran dia comença aquí",
+  "meta.description": "UAUU — Històries úniques en espais únics. Casaments exclusius a Ca n'Alzina, Mas Vivencs, Can Macià i Castell de Tous.",
   "hero.headline": {
-    "ca": "El vostre<br>gran dia<br>comença aquí.",
-    "es": "Vuestro<br>gran dia<br>empieza aquí.",
-    "en": "Where your<br>dream day<br>begins."
+    "ca": "Quatre finques exclusives a prop de Barcelona.",
+    "es": "Cuatro fincas exclusivas cerca de Barcelona.",
+    "en": "Four exclusive venues near Barcelona."
   },
   "hero.bg": {
-    "ca": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp",
-    "es": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp",
-    "en": "https://www.uauu.cat/media/finques/can-macia/galeria-dimatges/36.webp"
+    "ca": "https://www.uauu.cat/media/landing/casarse_en_barcelona.webp",
+    "es": "https://www.uauu.cat/media/landing/casarse_en_barcelona.webp",
+    "en": "https://www.uauu.cat/media/landing/casarse_en_barcelona.webp"
   },
-  "hero.card.image": {
-    "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
-    "es": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
-    "en": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+  "hero.cta": {
+    "ca": "Més informació",
+    "es": "Más información",
+    "en": "Learn more"
   },
-  "hero.card.label": {
-    "ca": "CASA'T AMB UAUU",
-    "es": "CÁSATE CON UAUU",
-    "en": "GET MARRIED WITH UAUU"
+  "valors.1": {
+    "ca": "<span class=\"vb-values__label\">Aforament</span><br>De 35 a 250 comensals",
+    "es": "<span class=\"vb-values__label\">Aforo</span><br>De 35 a 250 comensales",
+    "en": "<span class=\"vb-values__label\">Capacity</span><br>35 to 250 guests"
   },
-  "hero.card.cta": {
-    "ca": "Més<br>informació",
-    "es": "Más<br>información",
-    "en": "Learn<br>more"
+  "valors.2": {
+    "ca": "<span class=\"vb-values__label\">Què inclou</span><br>Espai, càtering, decoració, coordinació i muntatge",
+    "es": "<span class=\"vb-values__label\">Qué incluye</span><br>Espacio, catering, decoración, coordinación y montaje",
+    "en": "<span class=\"vb-values__label\">What's included</span><br>Venue, catering, decor, coordination and setup"
   },
-
-  "cta.headline": {
-    "ca": "Accedeix als nostres<br>preus i proposta.",
-    "es": "Accede a nuestros<br>precios y propuesta.",
-    "en": "Access our pricing<br>and proposal."
+  "valors.3": {
+    "ca": "<span class=\"vb-values__label\">Disponibilitat</span><br>Dates disponibles per 2027 i 2028",
+    "es": "<span class=\"vb-values__label\">Disponibilidad</span><br>Fechas disponibles para 2027 y 2028",
+    "en": "<span class=\"vb-values__label\">Availability</span><br>Dates available for 2027 and 2028"
   },
-  "cta.bg": {
-    "ca": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp",
-    "es": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp",
-    "en": "https://www.uauu.cat/media/finques/mas-vivencs/galeria-dimatges/20.1.webp"
+  "valors.4": {
+    "ca": "<span class=\"vb-values__label\">Preu del menú</span><br>Des de 134 fins a 163€ / comensal",
+    "es": "<span class=\"vb-values__label\">Precio del menú</span><br>Desde 134 hasta 163€ / comensal",
+    "en": "<span class=\"vb-values__label\">Menu price</span><br>From €134 to €163 per guest"
+  },
+  "finques.headline": {
+    "ca": "Les finques",
+    "es": "Las fincas",
+    "en": "The venues"
+  },
+  "finques.alzina": {
+    "ca": "Fins a 250 convidats",
+    "es": "Hasta 250 invitados",
+    "en": "Up to 250 guests"
+  },
+  "finques.macia": {
+    "ca": "Fins a 250 convidats",
+    "es": "Hasta 250 invitados",
+    "en": "Up to 250 guests"
+  },
+  "finques.castell": {
+    "ca": "Fins a 140 convidats",
+    "es": "Hasta 140 invitados",
+    "en": "Up to 140 guests"
+  },
+  "finques.vivens": {
+    "ca": "Fins a 250 convidats",
+    "es": "Hasta 250 invitados",
+    "en": "Up to 250 guests"
+  },
+  "finques.cta": {
+    "ca": "Consulta disponibilitat",
+    "es": "Consulta disponibilidad",
+    "en": "Check availability"
+  },
+  "missio.eyebrow": {
+    "ca": "Què és UAUU weddings &amp; events?",
+    "es": "¿Qué es UAUU weddings &amp; events?",
+    "en": "What is UAUU weddings &amp; events?"
+  },
+  "missio.text": {
+    "ca": "Fa més de deu anys que acompanyem parelles fins al <em>Sí, vull</em>. Més de 1.500 casaments després, encara els preparem <em>un a un</em>: quatre finques, un sol equip i cap detall a l’atzar.",
+    "es": "Hace más de diez años que acompañamos a parejas hasta el <em>Sí, quiero</em>. Más de 1.500 bodas después, seguimos preparándolas <em>una a una</em>: cuatro fincas, un solo equipo y ningún detalle al azar.",
+    "en": "For more than ten years we have walked couples all the way to <em>I do</em>. Over 1,500 weddings later, we still plan them <em>one by one</em>: four venues, one team and no detail left to chance."
+  },
+  "split.headline": {
+    "ca": "Tot inclòs, sense preocupacions, sense sorpreses.",
+    "es": "Todo incluido, sin preocupaciones, sin sorpresas.",
+    "en": "All-inclusive, no worries, no surprises."
+  },
+  "split.foot": {
+    "ca": "Espai, càtering, decoració, coordinació i muntatge",
+    "es": "Espacio, catering, decoración, coordinación y montaje",
+    "en": "Venue, catering, decor, coordination and setup"
+  },
+  "si.headline": {
+    "ca": "Sí, vull",
+    "es": "Sí, quiero",
+    "en": "I do"
+  },
+  "si.text": {
+    "ca": "Sí a una finca només per a vosaltres<br>Sí a un menú dissenyat a la vostra mida<br>Sí a un equip que ho coordina tot<br>Sí a una festa inoblidable",
+    "es": "Sí a una finca solo para vosotros<br>Sí a un menú diseñado a vuestra medida<br>Sí a un equipo que lo coordina todo<br>Sí a una fiesta inolvidable",
+    "en": "Yes to a venue just for you<br>Yes to a menu designed around you<br>Yes to a team that coordinates everything<br>Yes to an unforgettable party"
+  },
+  "si.cta": {
+    "ca": "Descobreix els preus",
+    "es": "Descubre los precios",
+    "en": "Discover our prices"
+  },
+  "visita.headline": {
+    "ca": "Veniu a conèixer les finques en persona.",
+    "es": "Venid a conocer las fincas en persona.",
+    "en": "Come and see the venues in person."
+  },
+  "visita.cta": {
+    "ca": "Demana una visita",
+    "es": "Pide una visita",
+    "en": "Book a visit"
+  },
+  "galeria.headline": {
+    "ca": "Dissenyem junts el vostre gran dia.",
+    "es": "Diseñemos juntos vuestro gran día.",
+    "en": "Let's design your big day together."
+  },
+  "galeria.sub": {
+    "ca": "UAUU weddings &amp; events",
+    "es": "UAUU weddings &amp; events",
+    "en": "UAUU weddings &amp; events"
+  },
+  "galeria.cta": {
+    "ca": "Demana informació sense compromís",
+    "es": "Pide información sin compromiso",
+    "en": "Ask for information, no strings attached"
+  },
+  "form.headline": {
+    "ca": "Accedeix a la proposta complerta.",
+    "es": "Accede a la propuesta completa.",
+    "en": "Access the full proposal."
+  },
+  "peu.finques": {
+    "ca": "Finques",
+    "es": "Fincas",
+    "en": "Venues"
+  },
+  "resenyes.titol": {
+    "ca": "Ressenyes",
+    "es": "Reseñas",
+    "en": "Reviews"
+  },
+  "resenyes.valoracio": {
+    "ca": "4.9 / 5 · 1041 ressenyes a bodas.net",
+    "es": "4.9 / 5 · 1041 reseñas en bodas.net",
+    "en": "4.9 / 5 · 1041 reviews on bodas.net"
+  },
+  "resenyes.1.text": {
+    "ca": "“Destaquem especialment l'excel·lent coordinació de l'equip, així com les facilitats que ens van oferir en cada fase del procés. […] Sens dubte, repetiríem l'experiència amb ells!”",
+    "es": "“Destacamos especialmente la excelente coordinación del equipo, así como las facilidades ofrecidas en cada fase del proceso. […] Sin duda, repetiríamos la experiencia con ellos!”",
+    "en": "“We would especially highlight the team's excellent coordination, as well as the support offered at every stage of the process. […] Without a doubt, we would do it all again with them!”"
+  },
+  "resenyes.1.autor": {
+    "ca": "Alba &amp; Javi · Castell de Tous · 2025",
+    "es": "Alba &amp; Javi · Castell de Tous · 2025",
+    "en": "Alba &amp; Javi · Castell de Tous · 2025"
+  },
+  "resenyes.2.text": {
+    "ca": "“Fins i tot algun dels convidats ens va dir que era el millor lloc de casaments on havia estat.”",
+    "es": "“Incluso alguno de los invitados nos dijo que era el mejor sitio de bodas en el que había estado.”",
+    "en": "“Even some of our guests told us it was the best wedding venue they had ever been to.”"
+  },
+  "resenyes.2.autor": {
+    "ca": "Ester &amp; David · Mas Vivencs · 2026",
+    "es": "Ester &amp; David · Mas Vivencs · 2026",
+    "en": "Ester &amp; David · Mas Vivencs · 2026"
+  },
+  "resenyes.3.text": {
+    "ca": "“El nostre casament a Can Macià va superar qualsevol expectativa pel que fa a professionalitat, proximitat i qualitat.”",
+    "es": "“Nuestra boda en Can Macià superó cualquier expectativa, tanto en cuanto profesionalidad, cercanía y calidad.”",
+    "en": "“Our wedding at Can Macià exceeded every expectation in professionalism, warmth and quality.”"
+  },
+  "resenyes.3.autor": {
+    "ca": "Maria &amp; Gonzalo · Can Macià · 2025",
+    "es": "Maria &amp; Gonzalo · Can Macià · 2025",
+    "en": "Maria &amp; Gonzalo · Can Macià · 2025"
+  },
+  "resenyes.4.text": {
+    "ca": "“Vam al·lucinar amb el Pre-Wedding Day, en vam sortir amb moltes ganes que arribés la data del nostre casament.”",
+    "es": "“Alucinamos con el Pre wedding Day, salimos de allí deseando que llegara la fecha de nuestra boda.”",
+    "en": "“We were blown away by the Pre-Wedding Day, and we left wishing our wedding date would hurry up and arrive.”"
+  },
+  "resenyes.4.autor": {
+    "ca": "Sara &amp; Alejandro · Ca n'Alzina · 2025",
+    "es": "Sara &amp; Alejandro · Ca n'Alzina · 2025",
+    "en": "Sara &amp; Alejandro · Ca n'Alzina · 2025"
+  },
+  "resenyes.5.text": {
+    "ca": "“Van estar pendents de tot i en cap moment em vaig sentir perduda.”",
+    "es": "“Estuvieron pendientes de todo y en ningún momento me sentí perdida.”",
+    "en": "“They took care of everything and at no point did I feel lost.”"
+  },
+  "resenyes.5.autor": {
+    "ca": "Natalia &amp; Guillermo · Castell de Tous · 2023",
+    "es": "Natalia &amp; Guillermo · Castell de Tous · 2023",
+    "en": "Natalia &amp; Guillermo · Castell de Tous · 2023"
+  },
+  "resenyes.6.text": {
+    "ca": "“Control absolut d'intoleràncies i al·lèrgies! Sóc celíaca i ho van gestionar de meravella!”",
+    "es": "“Control absoluto de intolerancias y alergias! Soy celíaca, y lo gestionaron de maravilla!”",
+    "en": "“Complete control of intolerances and allergies! I'm celiac, and they handled it wonderfully!”"
+  },
+  "resenyes.6.autor": {
+    "ca": "Míriam &amp; Bernat · Mas Vivencs · 2025",
+    "es": "Míriam &amp; Bernat · Mas Vivencs · 2025",
+    "en": "Míriam &amp; Bernat · Mas Vivencs · 2025"
+  },
+  "resenyes.7.text": {
+    "ca": "“Ni un sol comentari negatiu dels 88 convidats, absolutament tots meravellats amb el servei, l'amabilitat i com d'exquisites eren totes les preparacions.”",
+    "es": "“Ni un solo comentario negativo por parte de los 88 invitados, absolutamente todos maravillados con el servicio, la amabilidad y lo exquisito que estaban todas las preparaciones.”",
+    "en": "“Not a single negative comment from our 88 guests, absolutely everyone was amazed by the service, the kindness and how exquisite everything on the menu was.”"
+  },
+  "resenyes.7.autor": {
+    "ca": "David &amp; Irene · Can Macià · 2025",
+    "es": "David &amp; Irene · Can Macià · 2025",
+    "en": "David &amp; Irene · Can Macià · 2025"
+  },
+  "resenyes.8.text": {
+    "ca": "“Vam visitar quatre o cinc llocs més, però aquestes vistes d'infart a la Vall de Rubió no es troben dues vegades.”",
+    "es": "“Visitamos cuatro o cinco lugares más, pero esas vistas de infarto a la Vall de Rubió no se encuentran dos veces.”",
+    "en": "“We visited four or five other places, but those breathtaking views over the Vall de Rubió can't be found twice.”"
+  },
+  "resenyes.8.autor": {
+    "ca": "Mari Carmen &amp; Ivan · Ca n'Alzina · 2026",
+    "es": "Mari Carmen &amp; Ivan · Ca n'Alzina · 2026",
+    "en": "Mari Carmen &amp; Ivan · Ca n'Alzina · 2026"
+  },
+  "resenyes.9.text": {
+    "ca": "“Els convidats van quedar impressionats en veure el castell, la decoració, el bon gust de cada detall i el bon servei el dia del casament.”",
+    "es": "“Los invitados quedaron impresionados al ver el castillo, la decoración, el buen gusto de cada detalle y el buen servicio el día de la boda.”",
+    "en": "“Our guests were blown away when they saw the castle, the decoration, the good taste in every detail and the great service on the wedding day.”"
+  },
+  "resenyes.9.autor": {
+    "ca": "Cristina &amp; Oscar · Castell de Tous · 2024",
+    "es": "Cristina &amp; Oscar · Castell de Tous · 2024",
+    "en": "Cristina &amp; Oscar · Castell de Tous · 2024"
+  },
+  "resenyes.10.text": {
+    "ca": "“Com a núvia vivint a l'estranger, estava força nerviosa per la planificació a distància […] Tanmateix, la Laura va fer que tot fos increïblement fàcil.”",
+    "es": "“Como novia viviendo en el extranjero, estaba bastante nerviosa por la planificación a distancia […] Sin embargo, Laura hizo que todo fuera increíblemente fácil.”",
+    "en": "“As a bride living abroad, I was quite nervous about planning from a distance […] However, Laura made everything incredibly easy.”"
+  },
+  "resenyes.10.autor": {
+    "ca": "Laia &amp; Tom · Mas Vivencs · 2024",
+    "es": "Laia &amp; Tom · Mas Vivencs · 2024",
+    "en": "Laia &amp; Tom · Mas Vivencs · 2024"
+  },
+  "resenyes.11.text": {
+    "ca": "“Només diré que els convidats van catalogar el nostre casament com el millor al qual havien anat.”",
+    "es": "“Solo diré que los invitados catalogaron nuestra boda como la mejor a la que habían ido.”",
+    "en": "“I'll just say that our guests called ours the best wedding they had ever been to.”"
+  },
+  "resenyes.11.autor": {
+    "ca": "Mariona &amp; Sergi · Can Macià · 2025",
+    "es": "Mariona &amp; Sergi · Can Macià · 2025",
+    "en": "Mariona &amp; Sergi · Can Macià · 2025"
+  },
+  "resenyes.12.text": {
+    "ca": "“El Pre-Wedding Day ens va semblar una idea fantàstica per triar la decoració, les estovalles, els aperitius… i fer que tota l'organització fos molt més senzilla.”",
+    "es": "“El Pre-Wedding Day nos pareció una idea fantástica para elegir la decoración, mantelería, aperitivos… y hacer que toda la organización fuera mucho más sencilla.”",
+    "en": "“We thought the Pre-Wedding Day was a fantastic idea for choosing the decoration, table linens, appetizers… and making the whole organization much simpler.”"
+  },
+  "resenyes.12.autor": {
+    "ca": "Sandra &amp; Francisco · Ca n'Alzina · 2026",
+    "es": "Sandra &amp; Francisco · Ca n'Alzina · 2026",
+    "en": "Sandra &amp; Francisco · Ca n'Alzina · 2026"
+  },
+  "resenyes.13.text": {
+    "ca": "“Recordo com, visitant-lo, li vaig dir al meu ara marit que aquest era el nostre lloc, i aquell mateix dia vam reservar la data.”",
+    "es": "“Recuerdo como visitándolo le dije a mi ahora marido que este era nuestro sitio y ese mismo día reservamos la fecha.”",
+    "en": "“I remember how, while visiting, I told my now-husband that this was our place, and that very same day we booked the date.”"
+  },
+  "resenyes.13.autor": {
+    "ca": "Cristina &amp; Joel · Castell de Tous · 2023",
+    "es": "Cristina &amp; Joel · Castell de Tous · 2023",
+    "en": "Cristina &amp; Joel · Castell de Tous · 2023"
   }
 }
