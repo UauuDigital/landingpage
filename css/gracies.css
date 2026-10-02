@@ -62,8 +62,48 @@
   line-height: var(--leading-normal);
 }
 
+/* Mateix botó que .vb-btn de la home (css/home.css): mateixes
+   fórmules sobre la unitat fluida --u (la de la variant escala amb l'ample,
+   0.6944vw a desktop i 2.6667vw sota 1024px), mateixos colors i transició.
+   Aquí és local al botó perquè gracies.css no comparteix l'escala amb la
+   variant; els valors en cru repeteixen els de home.css. */
 .gracies__cta {
+  --u: 0.6944vw;
+  --gr-ink: #1e1e1e;
+  --gr-paper: #f8f8f6;
+  --gr-ease: cubic-bezier(0.16, 1.08, 0.38, 0.98);
+
+  display: inline-block;
   margin-top: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: calc(0.99 * var(--u));
+  font-weight: var(--weight-regular);
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  color: var(--gr-paper);
+  background: var(--gr-ink);
+  border: 1px solid var(--gr-ink);
+  border-radius: calc(0.45 * var(--u));
+  padding: calc(1.53 * var(--u)) calc(2.7 * var(--u)) calc(1.305 * var(--u));
+  transition:
+    background-color 0.3s var(--gr-ease),
+    color 0.5s var(--gr-ease),
+    border-color 0.5s var(--gr-ease);
+}
+
+@media (min-width: 1024px) {
+  .gracies__cta:hover {
+    color: var(--gr-ink);
+    background: var(--gr-paper);
+  }
+}
+
+@media (max-width: 1023px) {
+  .gracies__cta {
+    --u: 2.6667vw;
+  }
 }
 
 @media (max-width: 640px) {

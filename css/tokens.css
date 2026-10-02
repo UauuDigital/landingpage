@@ -108,7 +108,7 @@
   --hero-card-width:  260px;
 
   /* Panell insetat amb cantonades arrodonides: .hero (layout.css) i el bloc
-     gris de la Variant B (variante-b.css) comparteixen la mateixa forma. */
+     gris de la home (home.css) comparteixen la mateixa forma. */
   --panel-inset:      12px;
   --panel-radius:     20px;
 }

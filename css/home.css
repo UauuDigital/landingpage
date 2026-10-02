@@ -1,0 +1,1114 @@
+/* ── Home — CSS propi d'index.html ───────────────────────────────────────
+   Calc de la home de palette.eco amb les tipografies de UAUU (Ogg per al
+   serif de la referència, Inter per a la seva sans/mono).
+
+   Unitat fluida: la referència escala TOT amb el font-size de <html>
+   (1rem = 10px a 1440px d'ample en desktop i a 375px en mòbil, tall a
+   1024px). Aquí no es toca el font-size de <html> -- el formulari i el
+   selector de prefix de components.css en depenen -- sinó que es replica
+   amb --u, i totes les mides de la referència en rem passen a ser
+   calc(N * var(--u)) amb la mateixa N. Els colors propis de la referència
+   (tinta gris dels textos petits, sorra i verd dels panells, vores) són
+   locals a aquest fitxer: només els fa servir aquesta plantilla. */
+
+.vb {
+  --u: 0.6944vw;
+  --vb-ink: #1e1e1e;
+  --vb-paper: #f8f8f6;
+  --vb-ink-soft: #3c3c3c;
+  --vb-line: rgba(31, 30, 30, 0.1);
+  --vb-field-line: #e0e0e0;
+  --vb-sand: #f4ede6;
+  --vb-green: #425e44;
+  --vb-warning: #9e3641;
+  --vb-radius: calc(1 * var(--u));
+  --vb-radius-sm: calc(0.5 * var(--u));
+  --vb-ease-out: cubic-bezier(0.16, 1.08, 0.38, 0.98);
+  --vb-ease-inout: cubic-bezier(0.77, 0, 0.175, 1);
+  --vb-ease-fade: cubic-bezier(0.26, 1.04, 0.54, 1);
+  --vb-captcha-clearance: 80px; /* amplada del distintiu de reCAPTCHA plegat + aire */
+
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  /* Com la referència: a macOS el suavitzat per subpíxel engreixa els
+     traços, i Ogg només el tenim amb llicència en pes Medium -- és l'única
+     manera d'alleugerir-lo sense un pes més prim. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 1023px) {
+  .vb {
+    --u: 2.6667vw;
+  }
+}
+
+/* ── Tipografia (h--1/2/3 i p--s de la referència) ── */
+
+.vb-h1,
+.vb-h2,
+.vb-h3 {
+  font-family: var(--font-serif);
+  line-height: 1.05;
+  color: inherit;
+}
+
+.vb-h1 { font-size: calc(7.5 * var(--u)); }
+.vb-h2 { font-size: calc(6.5 * var(--u)); line-height: calc(7 * var(--u)); }
+.vb-h3 { font-size: calc(4.5 * var(--u)); line-height: calc(5.5 * var(--u)); }
+
+.vb-label {
+  font-family: var(--font-sans);
+  font-size: calc(1.1 * var(--u));
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vb-ink-soft);
+}
+
+@media (max-width: 1023px) {
+  .vb-h1,
+  .vb-h2 { font-size: calc(4 * var(--u)); line-height: 1.05; }
+  .vb-h3 { font-size: calc(3 * var(--u)); line-height: calc(3.5 * var(--u)); }
+}
+
+/* ── Botó (primaryBtn) ── */
+
+.vb-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: calc(0.99 * var(--u));
+  font-weight: var(--weight-regular);
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--vb-paper);
+  background: var(--vb-ink);
+  border: 1px solid var(--vb-ink);
+  border-radius: calc(0.45 * var(--u));
+  padding: calc(1.53 * var(--u)) calc(2.7 * var(--u)) calc(1.305 * var(--u));
+  transition:
+    background-color 0.3s var(--vb-ease-out),
+    color 0.5s var(--vb-ease-out),
+    border-color 0.5s var(--vb-ease-out);
+}
+
+@media (min-width: 1024px) {
+  .vb-btn:hover {
+    color: var(--vb-ink);
+    background: var(--vb-paper);
+  }
+}
+
+/* Subratllat que creix d'esquerra a dreta (dropTitle / smallLink) */
+.vb-link {
+  background-image: linear-gradient(90deg, currentColor 0, currentColor 100%);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+}
+
+/* ── Marges de secció (slice_sliceMargins) ──
+   Marges verticals que col·lapsen entre germans: 6u entre seccions. El
+   padding-block que layout.css dona a tot <section> (pensat per a
+   index.html) s'anul·la: aquí l'espai entre seccions és només el marge. */
+
+.vb-slice {
+  margin: calc(6 * var(--u));
+  padding-block: 0;
+}
+
+@media (max-width: 1023px) {
+  .vb-slice {
+    margin: calc(3.125 * var(--u)) calc(1.5625 * var(--u));
+  }
+}
+
+/* ══ 1. Hero ═══════════════════════════════════════════════════════════ */
+
+.vb-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: calc(14 * var(--u)) calc(6 * var(--u)) calc(6 * var(--u));
+  display: flex;
+  color: var(--color-text-inverse);
+}
+
+.vb-hero__bg {
+  position: absolute;
+  inset: calc(1 * var(--u));
+  border-radius: var(--vb-radius);
+  overflow: hidden;
+}
+
+.vb-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Les fotos de les finques són més fosques i contrastades que la de la
+   referència: un vel suau només a la part de dalt, on viu el titular. */
+.vb-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 23, 20, 0.35) 0%, rgba(26, 23, 20, 0) 60%);
+}
+
+.vb-header {
+  position: absolute;
+  top: calc(1 * var(--u));
+  left: 0;
+  right: 0;
+  height: calc(8 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.vb-header__lang {
+  position: absolute;
+  right: calc(6 * var(--u));
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: calc(0.8 * var(--u));
+}
+
+.vb-header__lang .site-nav__lang-btn,
+.vb-header__lang .site-nav__lang-divider {
+  font-size: calc(1.1 * var(--u));
+  letter-spacing: 0.06em;
+}
+
+.vb-header__lang .site-nav__lang-btn {
+  padding: calc(0.6 * var(--u)) 0;
+}
+
+.vb-header__logo-img {
+  display: block;
+  height: calc(2.8 * var(--u));
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.vb-hero__content {
+  position: relative;
+  z-index: 1;
+  margin-bottom: calc(2 * var(--u));
+}
+
+.vb-hero__title {
+  width: calc(64 * var(--u));
+  max-width: 100%;
+  margin-bottom: calc(4 * var(--u));
+}
+
+.vb-hero__cta {
+  min-width: calc(21.6 * var(--u));
+  color: var(--vb-ink);
+  background: var(--vb-paper);
+  border-color: var(--vb-paper);
+}
+
+@media (min-width: 1024px) {
+  .vb-hero__cta:hover {
+    color: var(--vb-paper);
+    background: var(--vb-ink);
+  }
+}
+
+@media (max-width: 1023px) {
+  .vb-hero {
+    padding: calc(3.125 * var(--u));
+    padding-top: calc(12 * var(--u));
+    min-height: calc(100svh - 6.5 * var(--u));
+  }
+
+  .vb-hero__bg {
+    inset: calc(0.6 * var(--u));
+  }
+
+  .vb-header {
+    top: calc(0.6 * var(--u));
+    justify-content: flex-start;
+    padding-left: calc(3.125 * var(--u));
+  }
+
+  .vb-header__lang {
+    right: calc(3.125 * var(--u));
+    gap: calc(0.9 * var(--u));
+  }
+
+  .vb-header__lang .site-nav__lang-btn,
+  .vb-header__lang .site-nav__lang-divider {
+    font-size: calc(1.2 * var(--u));
+  }
+
+  .vb-header__lang .site-nav__lang-btn {
+    padding: calc(1 * var(--u)) 0;
+  }
+
+  .vb-header__logo-img {
+    height: calc(2.4 * var(--u));
+  }
+
+  .vb-hero__content {
+    width: 100%;
+    margin-top: calc(2 * var(--u));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .vb-hero__title {
+    width: auto;
+  }
+
+  .vb-hero__cta {
+    align-self: center;
+  }
+}
+
+/* ══ 2. Valors 01–04 ═══════════════════════════════════════════════════ */
+
+.vb-values__list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.vb-values__item {
+  display: flex;
+  align-items: center;
+}
+
+.vb-values__num {
+  font-family: var(--font-serif);
+  font-size: calc(2.2 * var(--u));
+  line-height: 1.5;
+  color: var(--vb-ink-soft);
+  margin-right: calc(2 * var(--u));
+}
+
+.vb-values__text {
+  max-width: calc(24 * var(--u));
+}
+
+/* Jerarquia per pes i to, no per família: Inter és variable i ja porta el
+   600; la cursiva no existeix al fitxer (seria sintètica) i Ogg a 11px
+   en versaletes perd el contrast. */
+.vb-values__label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+@media (max-width: 1023px) {
+  .vb-values {
+    margin-top: calc(4 * var(--u));
+    margin-bottom: calc(4 * var(--u));
+  }
+
+  .vb-values__list {
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .vb-values__item + .vb-values__item {
+    margin-top: calc(2.5 * var(--u));
+  }
+}
+
+/* ══ 3. Finques (newDrops + dropsList) ═════════════════════════════════ */
+
+.vb-drops {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vb-drops__title {
+  font-family: var(--font-serif);
+  font-size: calc(15 * var(--u));
+  line-height: 1.05;
+  text-align: center;
+}
+
+.vb-drops__list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(3 * var(--u)) calc(6 * var(--u));
+  margin: calc(8 * var(--u)) 0 calc(4 * var(--u));
+}
+
+.vb-drop {
+  margin-bottom: calc(1.5 * var(--u));
+}
+
+.vb-drop__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.vb-drop__circle {
+  position: relative;
+  display: block;
+  width: calc(20 * var(--u));
+  height: calc(20 * var(--u));
+  margin-bottom: calc(2.5 * var(--u));
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.vb-drop__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vb-drop__img--hover {
+  opacity: 0;
+  transition: opacity 0.5s var(--vb-ease-fade);
+}
+
+.vb-drop__title {
+  line-height: 1;
+  background-image: linear-gradient(90deg, currentColor 0, currentColor 100%);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: background-size 0.6s var(--vb-ease-inout);
+}
+
+@media (min-width: 1024px) {
+  .vb-drop__link:hover .vb-drop__img--hover,
+  .vb-drop__link:focus-visible .vb-drop__img--hover {
+    opacity: 1;
+  }
+
+  .vb-drop__link:hover .vb-drop__title,
+  .vb-drop__link:focus-visible .vb-drop__title {
+    background-size: 100% 1px;
+    transition-timing-function: var(--vb-ease-out);
+  }
+}
+
+@media (max-width: 1023px) {
+  .vb-drops__title {
+    font-size: calc(6.5 * var(--u));
+  }
+
+  .vb-drops__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(0.78125 * var(--u)) calc(1.5625 * var(--u));
+    margin: calc(5 * var(--u)) 0 calc(2.5 * var(--u));
+  }
+
+  .vb-drop {
+    margin-bottom: calc(1.2 * var(--u));
+  }
+
+  .vb-drop__circle {
+    width: calc(14.0625 * var(--u));
+    height: calc(14.0625 * var(--u));
+    margin-bottom: calc(1.5 * var(--u));
+  }
+}
+
+/* ══ 4. Missió (textWithTitle) ═════════════════════════════════════════ */
+
+.vb-mission {
+  border-radius: var(--vb-radius);
+  border-bottom: 1px solid var(--vb-line);
+}
+
+.vb-mission__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: calc(6 * var(--u)) calc(24 * var(--u)) calc(12 * var(--u));
+}
+
+.vb-mission__content > :not(:last-child) {
+  margin-bottom: calc(2 * var(--u));
+}
+
+/* Tot l'Ogg en tinta fosca sobre blanc va en la tinta suau dels textos
+   secundaris: Ogg només el tenim en pes Medium, i és la manera d'alleugerir-lo
+   sense perdre contrast (11:1). La jerarquia la fa la mida, no el to. Fora
+   d'aquí: el titular del hero i el del text sobre foto (blanc sobre imatge)
+   i els panells de color (verd), que ja tenen el seu propi to. */
+.vb-mission__text,
+.vb-drops__title,
+.vb-yes__title,
+.vb-yes__text,
+.vb-footer__form-col .vb-h3 {
+  color: var(--vb-ink-soft);
+}
+
+/* Cursiva SINTÈTICA (el navegador inclina l'Ogg vertical): provisional fins
+   a tenir l'Ogg Medium Italic amb llicència web -- les úniques cursives
+   d'Ogg disponibles són versions TRIAL sense accents ni puntuació. Quan
+   arribi el fitxer: @font-face 'Ogg' amb font-style: italic i treure
+   font-synthesis d'aquí. */
+.vb-mission__text em {
+  font-style: italic;
+  font-synthesis: style;
+}
+
+@media (max-width: 1023px) {
+  .vb-mission__content {
+    padding: calc(1.5625 * var(--u)) calc(2.34375 * var(--u)) calc(3.125 * var(--u));
+  }
+}
+
+/* ══ 5/7/9. Dues meitats quadrades (leftRight) ═════════════════════════ */
+
+.vb-split {
+  display: flex;
+  gap: calc(1 * var(--u));
+}
+
+.vb-split > * {
+  width: calc(50% - 0.5 * var(--u));
+  aspect-ratio: 1;
+}
+
+.vb-split__media {
+  position: relative;
+  border-radius: var(--vb-radius);
+  overflow: hidden;
+}
+
+.vb-split__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1023px) {
+  .vb-split {
+    flex-direction: column;
+  }
+
+  .vb-split > * {
+    width: 100%;
+  }
+}
+
+/* Panell de color (textColorLink) */
+
+.vb-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: calc(6 * var(--u));
+  border-radius: var(--vb-radius);
+  color: var(--vb-green);
+}
+
+.vb-panel--sand   { background: var(--vb-sand); }
+.vb-panel--accent { background: var(--color-accent); }
+
+.vb-panel__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vb-panel__content > :not(:last-child) {
+  margin-bottom: calc(3 * var(--u));
+}
+
+.vb-panel__sub {
+  font-family: var(--font-serif);
+  font-size: calc(2.5 * var(--u));
+  line-height: 1;
+}
+
+.vb-panel__foot {
+  margin-top: calc(6 * var(--u));
+  color: inherit;
+}
+
+@media (max-width: 1023px) {
+  .vb-panel {
+    padding: calc(6.25 * var(--u)) calc(1.5625 * var(--u));
+    justify-content: center;
+  }
+
+  .vb-panel__foot {
+    margin-bottom: calc(-3.125 * var(--u));
+  }
+}
+
+/* Text sobre imatge (textImageCTA) */
+
+.vb-cover__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(8 * var(--u));
+  color: var(--color-text-inverse);
+  background: rgba(26, 23, 20, 0.25);
+}
+
+.vb-cover__content > :not(:last-child) {
+  margin-bottom: calc(3 * var(--u));
+}
+
+.vb-cover__title {
+  font-family: var(--font-serif);
+  font-size: calc(5.5 * var(--u));
+  line-height: calc(6 * var(--u));
+}
+
+@media (max-width: 1023px) {
+  .vb-cover__content {
+    padding: calc(6.25 * var(--u)) calc(3.125 * var(--u));
+  }
+
+  .vb-cover__title {
+    font-size: calc(3.8 * var(--u));
+    line-height: calc(4.3 * var(--u));
+  }
+}
+
+/* Galeria de 4 (fourImages) */
+
+.vb-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(1 * var(--u));
+}
+
+.vb-gallery__item {
+  aspect-ratio: 1;
+  border-radius: var(--vb-radius-sm);
+  overflow: hidden;
+}
+
+.vb-gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Blanc i negre en diagonal (1 i 4): el color i el B/N s'alternen. */
+.vb-gallery__item--bw .vb-gallery__img {
+  filter: grayscale(1);
+}
+
+@media (max-width: 1023px) {
+  .vb-gallery {
+    gap: calc(0.5 * var(--u));
+  }
+}
+
+/* ══ 6. "Sí, vull" (titleTextCTA) ══════════════════════════════════════ */
+
+.vb-yes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.vb-yes > :not(:last-child) {
+  margin-bottom: calc(3 * var(--u));
+}
+
+.vb-yes__title {
+  font-family: var(--font-serif);
+  font-size: calc(23 * var(--u));
+  line-height: 1.05;
+}
+
+.vb-yes__text {
+  font-family: var(--font-serif);
+  font-size: calc(2.2 * var(--u));
+  line-height: calc(3.5 * var(--u));
+}
+
+/* La referència fa 25u en mòbil perquè el seu titular són paraules de dues
+   lletres ("No,"); aquí les paraules són més llargues i a 25u no hi caben
+   (mesurat: 1154px de text en 278px a 320). Es redueix fins que "vull" hi
+   cap, i overflow-wrap parteix el que sigui més llarg (la marca [PENDENT]). */
+@media (max-width: 1023px) {
+  .vb-yes__title {
+    font-size: calc(13 * var(--u));
+    overflow-wrap: anywhere;
+    margin-bottom: 0;
+  }
+}
+
+/* ══ 8. Logos (brandReferences) ════════════════════════════════════════ */
+
+.vb-refs__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vb-refs__item {
+  flex: 1;
+  max-width: calc(24 * var(--u));
+  display: flex;
+  justify-content: center;
+}
+
+.vb-refs__link {
+  display: flex;
+}
+
+.vb-refs__logo {
+  height: calc(7 * var(--u));
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1023px) {
+  .vb-refs {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .vb-refs__list {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .vb-refs__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vb-refs__item {
+    flex: 0 0 calc(18 * var(--u));
+    max-width: none;
+    padding: 0 calc(1.5 * var(--u));
+  }
+}
+
+/* ══ 10. Ressenyes ═════════════════════════════════════════════════════
+   Tres cites en serif, centrades, que s'alternen amb fundit; cadascuna
+   amb una miniatura rodona de la parella al costat de la firma, a mode
+   d'avatar. Navegació 01/02/03 a sota.
+   JS a js/home-resenyes.js. */
+
+.vb-reviews__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: calc(2 * var(--u));
+  margin-bottom: calc(8 * var(--u));
+}
+
+.vb-reviews__stage {
+  display: grid;
+}
+
+/* Totes les cites ocupen la mateixa cel·la: l'alçada és la de la més alta i
+   el fundit no fa saltar el layout. visibility triga a canviar perquè la
+   sortint es vegi fins que s'esvaeix. */
+.vb-reviews__slide {
+  grid-area: 1 / 1;
+  justify-self: center;
+  width: 100%;
+  max-width: calc(100 * var(--u));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.9s var(--vb-ease-fade),
+    visibility 0s linear 0.9s;
+}
+
+.vb-reviews__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.9s var(--vb-ease-fade),
+    visibility 0s;
+}
+
+.vb-reviews__quote {
+  font-family: var(--font-serif);
+  font-size: calc(5.5 * var(--u));
+  line-height: calc(6.5 * var(--u));
+  color: var(--vb-ink-soft);
+  margin-bottom: calc(4 * var(--u));
+}
+
+.vb-reviews__who {
+  display: flex;
+  align-items: center;
+  gap: calc(1.5 * var(--u));
+}
+
+.vb-reviews__photo {
+  flex: none;
+  width: calc(6 * var(--u));
+  height: calc(6 * var(--u));
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.vb-reviews__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vb-reviews__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: calc(0.5 * var(--u)) calc(2 * var(--u));
+  margin-top: calc(5 * var(--u));
+}
+
+.vb-reviews__dot {
+  font-family: var(--font-sans);
+  font-size: calc(1.1 * var(--u));
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: var(--vb-ink-soft);
+  opacity: 0.4;
+  padding: 0;
+  background-image: linear-gradient(90deg, currentColor 0, currentColor 100%);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition:
+    opacity 0.5s var(--vb-ease-out),
+    background-size 0.6s var(--vb-ease-inout);
+}
+
+.vb-reviews__dot.is-active {
+  opacity: 1;
+  background-size: 100% 1px;
+}
+
+@media (min-width: 1024px) {
+  .vb-reviews__dot:hover {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vb-reviews__slide,
+  .vb-reviews__slide.is-active,
+  .vb-reviews__dot {
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .vb-reviews__head {
+    margin-bottom: calc(5 * var(--u));
+  }
+
+  .vb-reviews__quote {
+    font-size: calc(3.4 * var(--u));
+    line-height: calc(4.2 * var(--u));
+    margin-bottom: calc(3 * var(--u));
+  }
+
+  .vb-reviews__photo {
+    width: calc(5 * var(--u));
+    height: calc(5 * var(--u));
+  }
+
+  .vb-reviews__nav {
+    gap: calc(0.5 * var(--u)) calc(1.4 * var(--u));
+    margin-top: calc(4 * var(--u));
+  }
+}
+
+/* ══ 11. Peu + formulari ═══════════════════════════════════════════════ */
+
+.vb-footer {
+  margin: calc(6 * var(--u)) calc(6 * var(--u)) 0;
+}
+
+.vb-footer__main {
+  display: flex;
+  border-top: 1px solid var(--vb-field-line);
+  border-bottom: 1px solid var(--vb-field-line);
+  padding: calc(1.8 * var(--u)) 0;
+}
+
+.vb-footer__form-col {
+  flex: 1;
+  min-width: 0;
+  padding: calc(4.2 * var(--u)) calc(6 * var(--u)) calc(2.4 * var(--u)) 0;
+  border-right: 1px solid var(--vb-field-line);
+}
+
+
+.vb-footer__cols {
+  flex: 0 0 calc(48 * var(--u));
+  display: flex;
+  gap: calc(4 * var(--u));
+  padding: calc(4.2 * var(--u)) 0 calc(2.4 * var(--u)) calc(6 * var(--u));
+}
+
+.vb-footer__group-title {
+  color: var(--color-text);
+  margin-bottom: calc(1.5 * var(--u));
+}
+
+.vb-footer__list {
+  line-height: 1.7;
+}
+
+.vb-footer__brand {
+  padding: calc(2 * var(--u)) 0;
+  border-bottom: 1px solid var(--vb-field-line);
+}
+
+.vb-footer__brand-img {
+  width: 100%;
+  height: auto;
+}
+
+.vb-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(2 * var(--u));
+  padding: calc(2 * var(--u)) 0 calc(3 * var(--u));
+}
+
+/* El distintiu de reCAPTCHA (fix a baix a l'esquerra, js/form.js) taparia
+   el text de la fila inferior en arribar al final de la pàgina. */
+.vb-footer__bottom {
+  padding-left: var(--vb-captcha-clearance);
+}
+
+/* Selector d'idioma: mateixes classes que index.html (js/lang.js les busca),
+   però en tinta fosca sobre blanc. */
+.vb-footer__lang {
+  display: flex;
+  align-items: center;
+  gap: calc(0.8 * var(--u));
+}
+
+.vb-footer__lang .site-nav__lang-btn,
+.vb-footer__lang .site-nav__lang-divider {
+  font-size: calc(1.1 * var(--u));
+  letter-spacing: 0.06em;
+  color: rgba(31, 30, 30, 0.45);
+}
+
+.vb-footer__lang .site-nav__lang-btn:hover,
+.vb-footer__lang .site-nav__lang-btn.is-active {
+  color: var(--color-text);
+}
+
+@media (max-width: 1023px) {
+  .vb-footer {
+    margin: calc(3.125 * var(--u)) calc(1.5625 * var(--u)) 0;
+  }
+
+  .vb-footer__main {
+    flex-direction: column;
+  }
+
+  .vb-footer__form-col {
+    padding: calc(3 * var(--u)) 0;
+    border-right: none;
+    border-bottom: 1px solid var(--vb-field-line);
+  }
+
+  .vb-footer__cols {
+    flex-basis: auto;
+    padding: calc(3 * var(--u)) 0 calc(1.2 * var(--u));
+  }
+
+  .vb-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Formulari: el d'index.html, retocat a l'estil del camp de la referència
+   (vora fina clara, radi petit, placeholder en versaletes). Selectors amb
+   .vb-form davant per guanyar en especificitat a components.css sense
+   tocar-lo; els estats .is-error es redefineixen explícitament perquè
+   les vores de components.css (vermell sobre vidre) no hi arriben. */
+
+.vb-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(1 * var(--u));
+  max-width: calc(66 * var(--u));
+  margin-top: calc(3 * var(--u));
+}
+
+.vb-form .contact-form__input,
+.vb-form .contact-form__phone-wrap {
+  background: var(--color-bg);
+  border: 1px solid var(--vb-field-line);
+  border-radius: var(--vb-radius-sm);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--color-text);
+}
+
+.vb-form .contact-form__input {
+  font-size: calc(1.2 * var(--u));
+  font-weight: 400;
+  padding: calc(1.6 * var(--u)) calc(2 * var(--u)) calc(1.4 * var(--u));
+}
+
+.vb-form .contact-form__input::placeholder {
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.vb-form .contact-form__input:focus,
+.vb-form .contact-form__phone-wrap:focus-within {
+  background: var(--color-bg);
+  border-color: var(--color-text);
+  box-shadow: none;
+}
+
+.vb-form .contact-form__phone-wrap .contact-form__input,
+.vb-form .contact-form__phone-wrap .contact-form__input:focus {
+  border: none;
+  border-radius: 0;
+  padding-left: calc(1.2 * var(--u));
+}
+
+.vb-form .contact-form__input.is-error,
+.vb-form .contact-form__phone-wrap.is-error {
+  border-color: var(--vb-warning);
+  box-shadow: none;
+}
+
+.vb-form .contact-form__error {
+  color: var(--vb-warning);
+  font-size: max(12px, calc(1.1 * var(--u)));
+  padding-left: 0;
+}
+
+.vb-form .country-selector {
+  color: var(--color-text);
+  border-right-color: var(--vb-field-line);
+  padding-left: calc(2 * var(--u));
+}
+
+.vb-form .cs-dial {
+  color: var(--color-text);
+  font-size: calc(1.2 * var(--u));
+}
+
+.vb-form .cs-chevron {
+  border-color: var(--color-text);
+}
+
+.vb-form .form-footer {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: calc(1 * var(--u)) 0 0;
+  gap: calc(2 * var(--u));
+}
+
+.vb-form .form-checkbox label {
+  color: var(--vb-ink-soft);
+  font-size: calc(1.2 * var(--u));
+  font-weight: 400;
+}
+
+.vb-form .form-checkbox label a {
+  color: inherit;
+}
+
+.vb-form .form-footer.is-error {
+  border: none;
+  box-shadow: none;
+}
+
+.vb-form .form-footer.is-error .form-checkbox label {
+  color: var(--vb-warning);
+}
+
+.vb-form #btn-submit {
+  font-size: calc(0.99 * var(--u));
+  font-weight: var(--weight-regular);
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--vb-paper);
+  background: var(--vb-ink);
+  border: 1px solid var(--vb-ink);
+  border-radius: calc(0.45 * var(--u));
+  padding: calc(1.53 * var(--u)) calc(2.7 * var(--u)) calc(1.305 * var(--u));
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  transition:
+    background-color 0.3s var(--vb-ease-out),
+    color 0.5s var(--vb-ease-out);
+}
+
+@media (min-width: 1024px) {
+  .vb-form #btn-submit:hover {
+    color: var(--vb-ink);
+    background: var(--vb-paper);
+  }
+}
+
+@media (max-width: 1023px) {
+  .vb-form {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: none;
+  }
+
+  /* 16px mínim: per sota, iOS fa zoom en enfocar el camp. */
+  .vb-form .contact-form__input,
+  .vb-form .cs-dial,
+  .vb-form .form-checkbox label {
+    font-size: max(16px, calc(1.2 * var(--u)));
+  }
+
+  .vb-form .form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .vb-form #btn-submit {
+    align-self: stretch;
+  }
+}
