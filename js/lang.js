@@ -4,7 +4,29 @@ const SUPPORTED = ['ca', 'es', 'en'];
 const DEFAULT_LANG = 'ca';
 const LANG_CRM    = { ca: 'catala', es: 'castellano', en: 'ingles' };
 
+const URL_LANG_PARAM = 'lang';
+
 let currentStrings = {};
+
+// ?lang=xx a la URL guanya sobre l'idioma desat: permet enllaços (i campanyes)
+// que forcin un idioma. Un valor que no sigui ca/es/en s'ignora.
+function langFromUrl() {
+  const raw = new URLSearchParams(window.location.search).get(URL_LANG_PARAM);
+  const lang = raw?.trim().toLowerCase();
+  return SUPPORTED.includes(lang) ? lang : null;
+}
+
+// Conserva la resta de paràmetres (utm_*...) i el hash. replaceState: no
+// afegeix entrades a l'historial ni recarrega.
+function writeLangToUrl(lang) {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set(URL_LANG_PARAM, lang);
+    window.history.replaceState(window.history.state, '', url);
+  } catch (_) {
+    // Sense History API: la pàgina funciona igual, només no es reflecteix a la URL
+  }
+}
 
 // Mateix raonament que a variant.js: import.meta.url ancora la ruta a la
 // ubicació real de js/lang.js, no a la del document que l'ha carregat -- així
@@ -38,7 +60,7 @@ function applyStrings(strings) {
   });
 }
 
-async function switchLang(lang) {
+async function switchLang(lang, { updateUrl = false } = {}) {
   if (!SUPPORTED.includes(lang)) return;
 
   try {
@@ -46,6 +68,7 @@ async function switchLang(lang) {
     applyStrings(currentStrings);
     document.documentElement.lang = lang;
     localStorage.setItem('uauu-lang', lang);
+    if (updateUrl) writeLangToUrl(lang);
 
     // La variant (si n'hi ha) torna a aplicar-se per SOBRE de l'idioma que
     // acabem de carregar: sense això, el seu copy no sobreviuria al canvi
@@ -66,14 +89,26 @@ async function switchLang(lang) {
 }
 
 export function initLang() {
+  const fromUrl = langFromUrl();
   const saved = localStorage.getItem('uauu-lang');
-  const initial = SUPPORTED.includes(saved) ? saved : DEFAULT_LANG;
+  const initial = fromUrl ?? (SUPPORTED.includes(saved) ? saved : DEFAULT_LANG);
+
+  // Un ?lang= explícit també es desa encara que no calgui canviar res (p. ex.
+  // ?lang=ca amb 'es' desat): gracies.html llegeix l'idioma d'aquí.
+  if (fromUrl) {
+    try {
+      localStorage.setItem('uauu-lang', fromUrl);
+    } catch (_) {
+      // emmagatzematge bloquejat: l'idioma de la URL s'aplica igualment a aquesta visita
+    }
+  }
 
   // L'HTML ja porta els textos de l'idioma per defecte: no cal baixar el JSON
   // ni reescriure el DOM per tornar a posar el mateix.
   if (initial !== document.documentElement.lang) switchLang(initial);
 
+  // Només el clic de l'usuari reescriu la URL; la càrrega inicial la deixa tal qual.
   document.querySelectorAll('.site-nav__lang-btn').forEach((btn) => {
-    btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+    btn.addEventListener('click', () => switchLang(btn.dataset.lang, { updateUrl: true }));
   });
 }

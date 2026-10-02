@@ -13,7 +13,7 @@ URL de producció: `https://www.uauu.cat/welcome/` (el site NO viu a l'arrel del
 ## Estructura de fitxers
 ```
 index.html           # Entrada única / plantilla per defecte. Totes les seccions aquí.
-index-b.html         # Plantilla pròpia de la Variant B "Resposta directa" (vegeu ## Variants)
+index-b.html         # Plantilla pròpia de la Variant B (calc de la home de palette.eco, vegeu ## Variants)
 gracies.html         # Pàgina de gràcies. Destí del redirect_url del CRM tras enviar el formulari.
 css/tokens.css       # Variables: colors, fonts, spacing. RES es defineix fora d'aquí.
 css/base.css         # Reset + estils globals (inclou .sr-only i .skip-link)
@@ -27,14 +27,16 @@ js/form.js           # Validació + reCAPTCHA invisible (carregat en diferit) + 
 js/lang.js           # Switch CA / ES / EN, càrrega de locales/, aria-pressed
 js/variant.js        # Motor de variants de campanya (vegeu ## Variants)
 js/phone.js          # Selector de prefix telefònic (cerca + navegació amb teclat)
+js/variante-b-resenyes.js # Fundit de ressenyes de la Variant B (només l'hi carrega index-b.html)
 locales/ca.json      # Tots els textos en català (idioma per defecte i font de veritat)
 locales/es.json      # Castellà
 locales/en.json      # Anglès
 variants/default.json    # Contingut variable de l'arrel (mateixos valors que index.html)
-variants/variante-b.json # Variant B "Resposta directa" (vegeu ## Variants) — tot placeholder, no desplegar
+variants/variante-b.json # Variant B (vegeu ## Variants) — amb placeholders, no desplegar
 variants/_ejemplo.json   # Referència del format d'una variant — el "_" fa que el generador l'ignori
 build-variants.js    # Generador estàtic de pàgines de variant (vegeu ## Variants)
 logos/               # Logos UAUU.png, CA.png, CT.png, CM.png, MV.png
+                     # Peu de la Variant B: UAUU_logotip_negre.svg (només UAUU); UAUU_lletra_negra_estret.svg és el lockup complet amb tagline, ambdós extrets de UAUU.svg (logo vectorial original)
 fonts/               # Ogg-Medium.woff2 + Inter-Variable-latin.woff2 (variable, subset llatí)
 assets/              # Buit al repo (assets a https://uauu.cat/media/)
 favicon.ico
@@ -47,7 +49,7 @@ tokens → base → layout → components → animations
 - To: premium, càlid, modern. Mai genèric.
 - Paleta: `--color-text` #1a1714 | `--color-bg` #ffffff | `--color-surface` #f5f5f5 | `--color-accent` #c8b89a
 - Tipografia: **Ogg** (serif custom, `--font-serif`) per a titulars · **Inter** (variable, `--font-sans`) per a cos
-- Les 4 finques: Ca n'Alzina · Can Macià · Castell de Tous · Mas Vivens
+- Les 4 finques: Ca n'Alzina · Can Macià · Castell de Tous · Mas Vivencs
 
 ## Seccions (ordre al DOM)
 1. **Hero** (#inici) — full-viewport, imatge de fons, headline, hero-card flotant (foto + CTA → #contacte)
@@ -65,6 +67,7 @@ No hi ha footer.
 - Textos externalitzats a `locales/{ca,es,en}.json`
 - Cada element visible amb `data-i18n="clau"` (o `data-i18n-html` per HTML ric)
 - Idioma per defecte: català. Detecció automàtica per `navigator.language`. Es guarda a `localStorage('uauu-lang')`
+- **Idioma a la URL (`?lang=ca|es|en`, a `js/lang.js`)**: té prioritat sobre l'idioma desat; un valor no vàlid s'ignora. Un `?lang=` explícit també es desa a `localStorage`, perquè `gracies.html` (que neteja la URL) llegeix l'idioma d'allà. Només el clic d'un botó d'idioma reescriu la URL (`replaceState`, conservant `utm_*` i el hash, sense afegir entrades a l'historial); la càrrega inicial mai la toca. Ordre: URL > `localStorage` > català. Nota: el codi NO fa cap detecció per `navigator.language` malgrat el que diu la línia anterior: sense res desat i sense `?lang=`, és català.
 - Si l'idioma inicial coincideix amb el `lang` de `<html>` (català), `initLang()` no baixa el JSON ni toca el DOM: l'HTML ja porta aquests textos. Per això l'HTML i `ca.json` han d'estar sempre sincronitzats.
 - Lang buttons: `aria-pressed="true/false"` (no `aria-current`)
 - Quan s'afegeix una clau nova: actualitzar els **tres** fitxers JSON simultàniament
@@ -83,12 +86,15 @@ Sistema de variants de contingut per campanya (Meta/Google Ads, promos estaciona
 - **`node build-variants.js`**: per cada `variants/<nom>.json` (excepte `default.json` i els `_*`), genera `<nom>/index.html` a partir de la SEVA plantilla (`template`, o `index.html` per defecte) — plantilla + JSON ja resolts: copy en ca cuit al DOM, `<title>`/meta/OG/Twitter i el preload del hero coherents amb la variant, totes les rutes relatives reescrites amb `../`. Sense npm, sense dependències. Les carpetes generades no es versionen (porten el seu propi `.gitignore`) i no s'editen mai a mà.
 - **Pas obligatori abans de cada pujada per FTP**: `node build-variants.js --check` (exit 0 si tot està al dia, 1 si la plantilla d'una variant — la seva pròpia, no necessàriament `index.html` — o el seu `variants/<nom>.json` ha canviat des de l'última generació — en aquest cas, `node build-variants.js` i tornar a comprovar).
 
-### Variant B — "Resposta directa"
-Landing llarga (9 seccions) centrada 100% en captar el lead, pensada per a trànsit fred que necessita més context abans de convertir. Plantilla pròpia `index-b.html` + `css/variante-b.css`; JSON `variants/variante-b.json`. Ordre de seccions: 1. Hero (titular + subtítol + un únic CTA) · 2. Fitxa escaneable (zona, capacitat, què inclou, temporades, preu) · 3. Les 4 finques en carrusel (foto + nom + Essència/Capacitat/Ubicació; reutilitza el component de serveis d'`index.html`, vegeu més avall) · 4. Serveis en checklist (reutilitza el catàleg real de `locales/*`, no és copy de variant) · 5. Prova social (ressenyes + xifra de bodes/any + fotos) · 6. Com funciona (3 passos) · 7. Formulari (el mateix `<form>` d'`index.html`, en una sola columna) · 8. FAQ (`<details>/<summary>`, cada resposta acaba amb CTA) · 9. Tancament (CTA repetit). Cap enllaç extern excepte la política de privacitat del formulari; tots els CTA anquen a `#contacte`.
+### Variant B — calc de palette.eco
+Reconstruïda des de zero (oct. 2026) calcant l'estil de la home de https://www.palette.eco/ amb les tipografies de UAUU (Ogg per al seu serif, Inter per a la seva sans/mono). Plantilla pròpia `index-b.html` + `css/variante-b.css`; JSON `variants/variante-b.json`. JS propi només per a les ressenyes: `js/variante-b-resenyes.js` (mòdul carregat NOMÉS des d'`index-b.html`; la versió anterior de JS d'aquesta variant era per al mapa Leaflet i s'ha eliminat junt amb `js/vendor/`).
 
-**⚠️ NO desplegar encara**: la major part del contingut textual de la Variant B és placeholder (`[PENDENT]`/`[PENDIENTE]`/`[PENDING]`), pendent de contingut real. Especialment sensible: **les 3 ressenyes de la secció de prova social han de ser testimonis reals de clients** (mai inventats) i **la xifra de bodes organitzades l'any ha de ser la dada de negoci real** (mai una xifra inventada perquè sembli plausible). El contingut de la secció 3 (titular i les 4 finques) sí és definitiu en català; el castellà i l'anglès en són traduccions marcades `[PENDIENTE: revisión de marca]`/`[PENDING: brand review]`.
+- **Sense menú**: només el logo UAUU dins el hero — centrat a desktop; per sota de 1024px passa a l'esquerra, alineat amb el titular, i el selector d'idioma (`.vb-header__lang`, també al peu) a la dreta, perquè centrat el logo quedava enganxat al selector (`.vb-header`, a propòsit sense `.site-nav` perquè `initNav()` no hi enganxi la pill d'`index.html`). El selector d'idioma viu a la fila inferior del peu (mateix lloc que el "Language" de la referència), amb les mateixes classes `.site-nav__lang-btn` que busca `js/lang.js`.
+- **Unitat fluida `--u`**: la referència escala tot amb el font-size de `<html>` (1rem = 10px a 1440px en desktop i a 375px en mòbil, tall a 1024px). Aquí NO es toca `html { font-size }` (el formulari i el selector de prefix de `components.css` en depenen): `--u` (0.6944vw / 2.6667vw, a `.vb`) la replica, i cada mida N rem de la referència és `calc(N * var(--u))`. A 1920px coincideix al píxel (contingut 1745, cercles 267, meitats 866).
+- Ordre de seccions (nom del component de la referència entre parèntesis): 1. Hero (`intro`) · 2. Valors 01–04 amb les dades de la fitxa (`brandValues`) · 3. Les finques: títol gegant + 4 cercles amb foto i segona foto en hover (`newDrops`/`dropsList`) · 4. Missió (`textWithTitle`) · 5. Foto + panell sorra (`leftRight`) · 6. "Sí, vull": titular gegant + 4 línies + CTA (`titleTextCTA`) · 7. Text sobre foto + foto (`textImageCTA`/`singleImage`) · 8. Logos de les 4 finques (`brandReferences`) · 9. Galeria 2×2 + panell accent (`fourImages`/`textColorLink`) · 10. Ressenyes (sense equivalent a la referència: 3 cites en serif centrades, amb miniatura rodona de la parella a la firma (avatar), que s'alternen amb fundit de 0.9s, autoavanç cada 7s amb pausa en hover/focus i sense autoavanç amb `prefers-reduced-motion`, navegació 01/02/03; 13 ressenyes reals intercalades entre finques, claus `resenyes.1..13.{text,autor}`; ES és l'original, CA/EN són traduccions pendents de revisió) · 11. Peu = `#contacte`: el mateix `<form>` d'`index.html` (restil a `variante-b.css`, js/form.js sense tocar) + columnes de text pla + marca gegant + fila inferior amb idioma.
+- Desviacions conscients de la referència: CTA del hero fosc com la resta, amb versaletes més espaiades (0.16em) i una mica més gran, com a contrapunt del titular serif; vel suau al hero i al text sobre foto; títol "Sí, vull" a 13u en mòbil (no 25u: les paraules no hi caben); totes les sortides de la referència (Instagram, newsletter, columnes d'enllaços) són CTA a `#contacte` o text pla; sense el cercle de color en hover de la galeria 2×2 (allà és una mostra de pintura, aquí no té equivalent); la marca gegant del peu fa ~33u d'alt (la de la referència ~21u): és només el logotip UAUU (`logos/UAUU_logotip_negre.svg`, sense el "Weddings & Events") a tot l'ample del peu.
 
-**Deute conegut — els id del carrusel de la secció 3**: els botons prev/next porten `id="services-prev"`/`"services-next"` encara que la secció no sigui la de serveis. Són el ganxo literal d'`initServicesCarousel()` (`js/main.js`), que busca els botons per aquests id i el carrusel amb un `querySelector` únic; reutilitzar-los és el que evita generalitzar un JS compartit amb `index.html` en producció. Funciona perquè cada pàgina té un sol carrusel. **Si mai n'hi ha dos a la mateixa pàgina, caldrà generalitzar `initServicesCarousel()` abans** (per exemple, que iteri sobre tots els `.services__grid` i busqui els botons dins de la seva pròpia secció); fins llavors, no cal tocar-lo.
+**⚠️ NO desplegar encara**: tot el copy de la Variant B està pendent de revisió per part de l'usuari. Les marques `[PENDENT]`/`[PENDIENTE]`/`[PENDING]` s'han retirat a petició seva (oct. 2026, n'és conscient): no tornar-les a afegir en aquesta variant. Textos encara provisionals: títol i CTA de les finques, missió, "Sí, vull", text sobre foto, panell de la galeria, titular del formulari, meta title/description, i totes les traduccions ES/EN.
 
 ## Fonts
 - `Inter-Variable-latin.woff2` és un subset (Latin bàsic + Latin-1 + Latin Extended-A + puntuació general + €, fletxes) generat amb `pyftsubset` des de l'Inter Variable oficial, conservant els eixos `wght` i `opsz`. Si mai cal un caràcter fora d'aquests rangs, regenerar el subset (no tornar a la font completa, 349 KB).
@@ -148,7 +154,7 @@ Les regles i la verificació d'aquesta secció **s'apliquen per defecte, sense q
 - Media queries pròpies d'una variant: només al CSS d'aquella variant (`variante-b.css`, `gracies.css`...), mai a `layout.css` ni `components.css`.
 - Res puja a `components.css`/`tokens.css` fins que hi ha un segon consumidor **real**. Amb un sol ús, queda al CSS de la variant encara que s'assembli a algun component compartit.
 - Token nou (a `tokens.css`) només quan dos fitxers reals necessiten literalment el mateix valor. Repetir un valor que ja és "en cru" en algun altre lloc del sistema no obliga a tokenitzar-lo.
-- Tot contingut que no sigui definitiu porta la marca `[PENDENT]`/`[PENDIENTE]`/`[PENDING]` als tres idiomes — mai buit, mai un text plausible sense marcar.
+- Tot contingut que no sigui definitiu porta la marca `[PENDENT]`/`[PENDIENTE]`/`[PENDING]` als tres idiomes — mai buit, mai un text plausible sense marcar (excepte la Variant B, vegeu-ne la secció).
 - Zero fugues: cap CTA surt de la landing, tot ancora a `#contacte`. Única excepció: l'atribució obligatòria d'OpenStreetMap (requisit de llicència, quan n'hi hagi) i l'enllaç a la política de privacitat del formulari.
 - El JS propi d'una plantilla de variant viu en el seu propi mòdul, carregat només des d'aquesta plantilla — mai a `js/main.js`.
 - `grid-template-columns: repeat(N, 1fr)` porta sempre `minmax(0, 1fr)`: el mínim implícit de `1fr` és `auto`, no `0`, i pot desbordar amb contingut llarg.
@@ -174,7 +180,7 @@ Dona-la per feta a cada canvi, sense que calgui que et la demanin:
 - **El servidor local serveix contingut en caché després d'editar CSS/JS.** Símptoma: `getComputedStyle` o l'aspecte visual no reflecteix el canvi acabat de fer. Conclusió: recarrega dur (`cmd+shift+r`) abans de mesurar, no assumeixis que el canvi ha fallat.
 
 ### Informe final
-Per defecte, en acabar una tasca: genera `_temp_[tema].md` a l'arrel del repo, redactat per enganxar-lo tal qual en una sessió de Claude.ai sense accés al codi (autocontingut, sense assumir que qui el llegeix ha vist els fitxers), i executa `open "<ruta_completa>"` just després. `_temp_*.md` ja està al `.gitignore`: no es versiona.
+No es genera cap `_temp_[tema].md` en acabar una tasca (retirat a petició de l'usuari, oct. 2026): el resum va directament a la resposta final. Només si l'usuari ho demana explícitament.
 
 ### Tècniques de mesura establertes
 - **Amples diferents**: iframe del mateix origen amb `style.width` variable, no `resize_window`.

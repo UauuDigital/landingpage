@@ -1,330 +1,280 @@
 {
   "template": "index-b.html",
-
+  "meta.title": "UAUU — Variant B",
+  "meta.description": "Descripció meta de la variant B.",
   "hero.headline": {
-    "ca": "Quatre finques exclusives<br>a prop de Barcelona.",
-    "es": "[PENDIENTE] Cuatro fincas exclusivas<br>cerca de Barcelona.",
-    "en": "[PENDING] Four exclusive venues<br>near Barcelona."
+    "ca": "Quatre finques exclusives a prop de Barcelona.",
+    "es": "Cuatro fincas exclusivas cerca de Barcelona.",
+    "en": "Four exclusive venues near Barcelona."
   },
   "hero.bg": {
-    "ca": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
-    "es": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp",
-    "en": "https://www.uauu.cat/media/finques/castell-de-tous/galeria-dimatges/8.webp"
+    "ca": "https://www.uauu.cat/media/landing/casarse_en_barcelona.webp",
+    "es": "https://www.uauu.cat/media/landing/casarse_en_barcelona.webp",
+    "en": "https://www.uauu.cat/media/landing/casarse_en_barcelona.webp"
   },
-  "hero.card.image": {
-    "ca": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp",
-    "es": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp",
-    "en": "https://www.uauu.cat/media/finques/can-macia/cerimonia/1.webp"
+  "hero.cta": {
+    "ca": "Més informació",
+    "es": "Más información",
+    "en": "Learn more"
   },
-  "hero.card.label": {
-    "ca": "Casa't amb UAUU",
-    "es": "Cásate con UAUU",
-    "en": "Marry with UAUU"
+  "valors.1": {
+    "ca": "<span class=\"vb-values__label\">Aforament</span><br>De 35 a 250 comensals",
+    "es": "<span class=\"vb-values__label\">Aforo</span><br>De 35 a 250 comensales",
+    "en": "<span class=\"vb-values__label\">Capacity</span><br>35 to 250 guests"
   },
-  "hero.card.cta": {
-    "ca": "Més<br>informació",
-    "es": "Más<br>información",
-    "en": "Learn<br>more"
+  "valors.2": {
+    "ca": "<span class=\"vb-values__label\">Què inclou</span><br>Espai, càtering, decoració, coordinació i muntatge",
+    "es": "<span class=\"vb-values__label\">Qué incluye</span><br>Espacio, catering, decoración, coordinación y montaje",
+    "en": "<span class=\"vb-values__label\">What's included</span><br>Venue, catering, decor, coordination and setup"
   },
-
-  "fitxa.eyebrow": {
-    "ca": "[PENDENT: eyebrow]",
-    "es": "[PENDIENTE: eyebrow]",
-    "en": "[PENDING: eyebrow]"
+  "valors.3": {
+    "ca": "<span class=\"vb-values__label\">Disponibilitat</span><br>Dates disponibles per 2027 i 2028",
+    "es": "<span class=\"vb-values__label\">Disponibilidad</span><br>Fechas disponibles para 2027 y 2028",
+    "en": "<span class=\"vb-values__label\">Availability</span><br>Dates available for 2027 and 2028"
   },
-  "fitxa.headline": {
-    "ca": "Què és UAUU weddings &amp; events?",
-    "es": "[PENDIENTE] ¿Qué es UAUU weddings &amp; events?",
-    "en": "[PENDING] What is UAUU weddings &amp; events?"
+  "valors.4": {
+    "ca": "<span class=\"vb-values__label\">Preu del menú</span><br>Des de 134 fins a 163€ / comensal",
+    "es": "<span class=\"vb-values__label\">Precio del menú</span><br>Desde 134 hasta 163€ / comensal",
+    "en": "<span class=\"vb-values__label\">Menu price</span><br>From €134 to €163 per guest"
   },
-  "fitxa.cta": {
-    "ca": "Accedeix als catàlegs",
-    "es": "[PENDIENTE] Accede a los catálogos",
-    "en": "[PENDING] Access the catalogues"
-  },
-  "fitxa.aforament": {
-    "ca": "<span class=\"fitxa-card__label\">Aforament</span><span class=\"fitxa-card__value\">De 35 a 320 comensals</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Aforo</span><span class=\"fitxa-card__value\">De 35 a 320 comensales</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">Capacity</span><span class=\"fitxa-card__value\">35 to 320 guests</span>"
-  },
-  "fitxa.aforament.photo": {
-    "ca": "https://www.uauu.cat/media/general/gastronomia/6.webp",
-    "es": "https://www.uauu.cat/media/general/gastronomia/6.webp",
-    "en": "https://www.uauu.cat/media/general/gastronomia/6.webp"
-  },
-  "fitxa.inclou": {
-    "ca": "<span class=\"fitxa-card__label\">Què inclou</span><span class=\"fitxa-card__value\">Espai, càtering, decoració, coordinació i muntatge</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Qué incluye</span><span class=\"fitxa-card__value\">Espacio, catering, decoración, coordinación y montaje</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">What's included</span><span class=\"fitxa-card__value\">Venue, catering, decor, coordination and setup</span>"
-  },
-  "fitxa.inclou.photo": {
-    "ca": "https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp",
-    "es": "https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp",
-    "en": "https://www.uauu.cat/media/general/serveis-esencials/coordinacio.webp"
-  },
-  "fitxa.disponibilitat": {
-    "ca": "<span class=\"fitxa-card__label\">Disponibilitat</span><span class=\"fitxa-card__value\">Dates disponibles per 2027 i 2028</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Disponibilidad</span><span class=\"fitxa-card__value\">Fechas disponibles para 2027 y 2028</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">Availability</span><span class=\"fitxa-card__value\">Dates available for 2027 and 2028</span>"
-  },
-  "fitxa.disponibilitat.photo": {
-    "ca": "https://www.uauu.cat/media/general/dj/festa.webp",
-    "es": "https://www.uauu.cat/media/general/dj/festa.webp",
-    "en": "https://www.uauu.cat/media/general/dj/festa.webp"
-  },
-  "fitxa.preu": {
-    "ca": "<span class=\"fitxa-card__label\">Preu</span><span class=\"fitxa-card__value\">Des de 134 fins a 163€ / comensal</span>",
-    "es": "[PENDIENTE] <span class=\"fitxa-card__label\">Precio</span><span class=\"fitxa-card__value\">Desde 134 hasta 163€ / comensal</span>",
-    "en": "[PENDING] <span class=\"fitxa-card__label\">Price</span><span class=\"fitxa-card__value\">From €134 to €163 / guest</span>"
-  },
-  "fitxa.preu.photo": {
-    "ca": "https://www.uauu.cat/media/general/gastronomia/4.webp",
-    "es": "https://www.uauu.cat/media/general/gastronomia/4.webp",
-    "en": "https://www.uauu.cat/media/general/gastronomia/4.webp"
-  },
-
   "finques.headline": {
-    "ca": "Quatre escenaris, una sola visió.",
-    "es": "[PENDIENTE: revisión de marca] Cuatro escenarios, una sola visión.",
-    "en": "[PENDING: brand review] Four settings, a single vision."
+    "ca": "Les finques",
+    "es": "Las fincas",
+    "en": "The venues"
   },
-  "finques.alzina.essencia": {
-    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Finca situada en plena natura, envoltada de vinyes i ametllers.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Finca situada en plena naturaleza, rodeada de viñedos y almendros.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A venue set in unspoilt countryside, surrounded by vineyards and almond trees.</span>"
+  "finques.alzina": {
+    "ca": "Fins a 250 convidats",
+    "es": "Hasta 250 invitados",
+    "en": "Up to 250 guests"
   },
-  "finques.alzina.capacitat": {
-    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 250 convidats.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 250 invitados.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 250 guests.</span>"
+  "finques.macia": {
+    "ca": "Fins a 250 convidats",
+    "es": "Hasta 250 invitados",
+    "en": "Up to 250 guests"
   },
-  "finques.alzina.ubicacio": {
-    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">Rubió, a 45 minuts de Barcelona.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">Rubió, a 45 minutos de Barcelona.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">Rubió, 45 minutes from Barcelona.</span>"
+  "finques.castell": {
+    "ca": "Fins a 140 convidats",
+    "es": "Hasta 140 invitados",
+    "en": "Up to 140 guests"
   },
-  "finques.vivencs.essencia": {
-    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Masia en un entorn natural privilegiat i unes vistes espectaculars a la Serra de Rubió.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Masía en un entorno natural privilegiado y unas vistas espectaculares a la Serra de Rubió.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A farmhouse in a privileged natural setting with spectacular views over the Serra de Rubió.</span>"
+  "finques.vivens": {
+    "ca": "Fins a 250 convidats",
+    "es": "Hasta 250 invitados",
+    "en": "Up to 250 guests"
   },
-  "finques.vivencs.capacitat": {
-    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 320 convidats.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 320 invitados.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 320 guests.</span>"
+  "finques.cta": {
+    "ca": "Consulta disponibilitat",
+    "es": "Consulta disponibilidad",
+    "en": "Check availability"
   },
-  "finques.vivencs.ubicacio": {
-    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">La Pobla de Claramunt, a 45 minuts de Barcelona.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">La Pobla de Claramunt, a 45 minutos de Barcelona.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">La Pobla de Claramunt, 45 minutes from Barcelona.</span>"
+  "missio.eyebrow": {
+    "ca": "Què és UAUU weddings &amp; events?",
+    "es": "¿Qué es UAUU weddings &amp; events?",
+    "en": "What is UAUU weddings &amp; events?"
   },
-  "finques.castell.essencia": {
-    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Un escenari de conte, un castell històric rehabilitat amb més de 1000 anys d'història.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Un escenario de cuento, un castillo histórico rehabilitado con más de 1000 años de historia.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A fairy-tale setting: a restored historic castle with over 1,000 years of history.</span>"
+  "missio.text": {
+    "ca": "Fa més de deu anys que acompanyem parelles fins al <em>Sí, vull</em>. Més de 1.500 casaments després, encara els preparem <em>un a un</em>: quatre finques, un sol equip i cap detall a l’atzar.",
+    "es": "Hace más de diez años que acompañamos a parejas hasta el <em>Sí, quiero</em>. Más de 1.500 bodas después, seguimos preparándolas <em>una a una</em>: cuatro fincas, un solo equipo y ningún detalle al azar.",
+    "en": "For more than ten years we have walked couples all the way to <em>I do</em>. Over 1,500 weddings later, we still plan them <em>one by one</em>: four venues, one team and no detail left to chance."
   },
-  "finques.castell.capacitat": {
-    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 140 convidats.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 140 invitados.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 140 guests.</span>"
-  },
-  "finques.castell.ubicacio": {
-    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">Sant Martí de Tous, a 50 minuts de Barcelona.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">Sant Martí de Tous, a 50 minutos de Barcelona.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">Sant Martí de Tous, 50 minutes from Barcelona.</span>"
-  },
-  "finques.macia.essencia": {
-    "ca": "<span class=\"service-card__label\">Essència</span><span class=\"service-card__description\">Casa del segle XVII envoltada de frondosos jardins.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Esencia</span><span class=\"service-card__description\">Casa del siglo XVII rodeada de frondosos jardines.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Essence</span><span class=\"service-card__description\">A 17th-century house surrounded by lush gardens.</span>"
-  },
-  "finques.macia.capacitat": {
-    "ca": "<span class=\"service-card__label\">Capacitat</span><span class=\"service-card__description\">Fins a 250 convidats.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Capacidad</span><span class=\"service-card__description\">Hasta 250 invitados.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Capacity</span><span class=\"service-card__description\">Up to 250 guests.</span>"
-  },
-  "finques.macia.ubicacio": {
-    "ca": "<span class=\"service-card__label\">Ubicació</span><span class=\"service-card__description\">Òdena, a 40 minuts de Barcelona.</span>",
-    "es": "[PENDIENTE: revisión de marca] <span class=\"service-card__label\">Ubicación</span><span class=\"service-card__description\">Òdena, a 40 minutos de Barcelona.</span>",
-    "en": "[PENDING: brand review] <span class=\"service-card__label\">Location</span><span class=\"service-card__description\">Òdena, 40 minutes from Barcelona.</span>"
-  },
-
-  "serveis.headline": {
+  "split.headline": {
     "ca": "Tot inclòs, sense preocupacions, sense sorpreses.",
-    "es": "[PENDIENTE: revisión de marca] Todo incluido, sin preocupaciones, sin sorpresas.",
-    "en": "[PENDING: brand review] All included, no worries, no surprises."
+    "es": "Todo incluido, sin preocupaciones, sin sorpresas.",
+    "en": "All-inclusive, no worries, no surprises."
   },
-
-  "com-funciona.headline": {
-    "ca": "[PENDENT] Com funciona",
-    "es": "[PENDIENTE] Cómo funciona",
-    "en": "[PENDING] How it works"
+  "split.foot": {
+    "ca": "Espai, càtering, decoració, coordinació i muntatge",
+    "es": "Espacio, catering, decoración, coordinación y montaje",
+    "en": "Venue, catering, decor, coordination and setup"
   },
-  "com-funciona.pas1.titol": {
-    "ca": "[PENDENT] Ens expliques la teva idea",
-    "es": "[PENDIENTE] Nos cuentas tu idea",
-    "en": "[PENDING] Tell us your idea"
+  "si.headline": {
+    "ca": "Sí, vull",
+    "es": "Sí, quiero",
+    "en": "I do"
   },
-  "com-funciona.pas1.desc": {
-    "ca": "[PENDENT] Omples el formulari amb les dades bàsiques del vostre casament.",
-    "es": "[PENDIENTE] Rellenas el formulario con los datos básicos de vuestra boda.",
-    "en": "[PENDING] Fill in the form with the basic details of your wedding."
+  "si.text": {
+    "ca": "Sí a una finca només per a vosaltres<br>Sí a un menú dissenyat a la vostra mida<br>Sí a un equip que ho coordina tot<br>Sí a una festa inoblidable",
+    "es": "Sí a una finca solo para vosotros<br>Sí a un menú diseñado a vuestra medida<br>Sí a un equipo que lo coordina todo<br>Sí a una fiesta inolvidable",
+    "en": "Yes to a venue just for you<br>Yes to a menu designed around you<br>Yes to a team that coordinates everything<br>Yes to an unforgettable party"
   },
-  "com-funciona.pas2.titol": {
-    "ca": "[PENDENT] Et truquem amb una proposta",
-    "es": "[PENDIENTE] Te llamamos con una propuesta",
-    "en": "[PENDING] We call you with a proposal"
+  "si.cta": {
+    "ca": "Descobreix els preus",
+    "es": "Descubre los precios",
+    "en": "Discover our prices"
   },
-  "com-funciona.pas2.desc": {
-    "ca": "[PENDENT] En menys de 24h et contactem amb un pressupost i les dates disponibles.",
-    "es": "[PENDIENTE] En menos de 24h te contactamos con un presupuesto y las fechas disponibles.",
-    "en": "[PENDING] Within 24h we contact you with a quote and available dates."
+  "visita.headline": {
+    "ca": "Veniu a conèixer les finques en persona.",
+    "es": "Venid a conocer las fincas en persona.",
+    "en": "Come and see the venues in person."
   },
-  "com-funciona.pas3.titol": {
-    "ca": "[PENDENT] Visiteu la finca i reserveu",
-    "es": "[PENDIENTE] Visitáis la finca y reserváis",
-    "en": "[PENDING] Visit the venue and book"
+  "visita.cta": {
+    "ca": "Demana una visita",
+    "es": "Pide una visita",
+    "en": "Book a visit"
   },
-  "com-funciona.pas3.desc": {
-    "ca": "[PENDENT] Coneixeu l'espai en persona i confirmeu la data amb l'equip UAUU.",
-    "es": "[PENDIENTE] Conocéis el espacio en persona y confirmáis la fecha con el equipo UAUU.",
-    "en": "[PENDING] Meet the venue in person and confirm the date with the UAUU team."
+  "galeria.headline": {
+    "ca": "Dissenyem junts el vostre gran dia.",
+    "es": "Diseñemos juntos vuestro gran día.",
+    "en": "Let's design your big day together."
   },
-
+  "galeria.sub": {
+    "ca": "UAUU weddings &amp; events",
+    "es": "UAUU weddings &amp; events",
+    "en": "UAUU weddings &amp; events"
+  },
+  "galeria.cta": {
+    "ca": "Demana informació sense compromís",
+    "es": "Pide información sin compromiso",
+    "en": "Ask for information, no strings attached"
+  },
   "form.headline": {
-    "ca": "[PENDENT] Demana la teva proposta personalitzada.",
-    "es": "[PENDIENTE] Pide tu propuesta personalizada.",
-    "en": "[PENDING] Get your personalised proposal."
+    "ca": "Accedeix a la proposta complerta.",
+    "es": "Accede a la propuesta completa.",
+    "en": "Access the full proposal."
   },
-
-  "proves.headline": {
-    "ca": "[PENDENT] Casos d'èxit.",
-    "es": "[PENDIENTE] Casos de éxito.",
-    "en": "[PENDING] Success stories."
+  "peu.finques": {
+    "ca": "Finques",
+    "es": "Fincas",
+    "en": "Venues"
   },
-  "proves.bodes.xifra": {
-    "ca": "[PENDENT: xifra]",
-    "es": "[PENDIENTE: cifra]",
-    "en": "[PENDING: figure]"
+  "resenyes.titol": {
+    "ca": "Ressenyes",
+    "es": "Reseñas",
+    "en": "Reviews"
   },
-  "proves.bodes.label": {
-    "ca": "[PENDENT: etiqueta de la xifra, p.ex. \"casaments organitzats l'any passat\"]",
-    "es": "[PENDIENTE: etiqueta de la cifra, p.ej. \"bodas organizadas el año pasado\"]",
-    "en": "[PENDING: figure label, e.g. \"weddings organised last year\"]"
+  "resenyes.valoracio": {
+    "ca": "4.9 / 5 · 1041 ressenyes a bodas.net",
+    "es": "4.9 / 5 · 1041 reseñas en bodas.net",
+    "en": "4.9 / 5 · 1041 reviews on bodas.net"
   },
-  "proves.ressenya1.text": {
-    "ca": "[PENDENT: ressenya 1 — testimoni real pendent, no inventar]",
-    "es": "[PENDIENTE: reseña 1 — testimonio real pendiente, no inventar]",
-    "en": "[PENDING: review 1 — real testimonial pending, do not invent]"
+  "resenyes.1.text": {
+    "ca": "“Destaquem especialment l'excel·lent coordinació de l'equip, així com les facilitats que ens van oferir en cada fase del procés. […] Sens dubte, repetiríem l'experiència amb ells!”",
+    "es": "“Destacamos especialmente la excelente coordinación del equipo, así como las facilidades ofrecidas en cada fase del proceso. […] Sin duda, repetiríamos la experiencia con ellos!”",
+    "en": "“We would especially highlight the team's excellent coordination, as well as the support offered at every stage of the process. […] Without a doubt, we would do it all again with them!”"
   },
-  "proves.ressenya1.autor": {
-    "ca": "[PENDENT: nom i finca reals]",
-    "es": "[PENDIENTE: nombre y finca reales]",
-    "en": "[PENDING: real name and venue]"
+  "resenyes.1.autor": {
+    "ca": "Alba &amp; Javi · Castell de Tous · 2025",
+    "es": "Alba &amp; Javi · Castell de Tous · 2025",
+    "en": "Alba &amp; Javi · Castell de Tous · 2025"
   },
-  "proves.ressenya2.text": {
-    "ca": "[PENDENT: ressenya 2 — testimoni real pendent, no inventar]",
-    "es": "[PENDIENTE: reseña 2 — testimonio real pendiente, no inventar]",
-    "en": "[PENDING: review 2 — real testimonial pending, do not invent]"
+  "resenyes.2.text": {
+    "ca": "“Fins i tot algun dels convidats ens va dir que era el millor lloc de casaments on havia estat.”",
+    "es": "“Incluso alguno de los invitados nos dijo que era el mejor sitio de bodas en el que había estado.”",
+    "en": "“Even some of our guests told us it was the best wedding venue they had ever been to.”"
   },
-  "proves.ressenya2.autor": {
-    "ca": "[PENDENT: nom i finca reals]",
-    "es": "[PENDIENTE: nombre y finca reales]",
-    "en": "[PENDING: real name and venue]"
+  "resenyes.2.autor": {
+    "ca": "Ester &amp; David · Mas Vivencs · 2026",
+    "es": "Ester &amp; David · Mas Vivencs · 2026",
+    "en": "Ester &amp; David · Mas Vivencs · 2026"
   },
-  "proves.ressenya3.text": {
-    "ca": "[PENDENT: ressenya 3 — testimoni real pendent, no inventar]",
-    "es": "[PENDIENTE: reseña 3 — testimonio real pendiente, no inventar]",
-    "en": "[PENDING: review 3 — real testimonial pending, do not invent]"
+  "resenyes.3.text": {
+    "ca": "“El nostre casament a Can Macià va superar qualsevol expectativa pel que fa a professionalitat, proximitat i qualitat.”",
+    "es": "“Nuestra boda en Can Macià superó cualquier expectativa, tanto en cuanto profesionalidad, cercanía y calidad.”",
+    "en": "“Our wedding at Can Macià exceeded every expectation in professionalism, warmth and quality.”"
   },
-  "proves.ressenya3.autor": {
-    "ca": "[PENDENT: nom i finca reals]",
-    "es": "[PENDIENTE: nombre y finca reales]",
-    "en": "[PENDING: real name and venue]"
+  "resenyes.3.autor": {
+    "ca": "Maria &amp; Gonzalo · Can Macià · 2025",
+    "es": "Maria &amp; Gonzalo · Can Macià · 2025",
+    "en": "Maria &amp; Gonzalo · Can Macià · 2025"
   },
-
-  "faq.headline": {
-    "ca": "[PENDENT] Preguntes freqüents",
-    "es": "[PENDIENTE] Preguntas frecuentes",
-    "en": "[PENDING] Frequently asked questions"
+  "resenyes.4.text": {
+    "ca": "“Vam al·lucinar amb el Pre-Wedding Day, en vam sortir amb moltes ganes que arribés la data del nostre casament.”",
+    "es": "“Alucinamos con el Pre wedding Day, salimos de allí deseando que llegara la fecha de nuestra boda.”",
+    "en": "“We were blown away by the Pre-Wedding Day, and we left wishing our wedding date would hurry up and arrive.”"
   },
-  "faq.cta": {
-    "ca": "[PENDENT] Demana la teva proposta",
-    "es": "[PENDIENTE] Pide tu propuesta",
-    "en": "[PENDING] Get your proposal"
+  "resenyes.4.autor": {
+    "ca": "Sara &amp; Alejandro · Ca n'Alzina · 2025",
+    "es": "Sara &amp; Alejandro · Ca n'Alzina · 2025",
+    "en": "Sara &amp; Alejandro · Ca n'Alzina · 2025"
   },
-  "faq.p1.pregunta": {
-    "ca": "[PENDENT] Quin és el rang de preus?",
-    "es": "[PENDIENTE] ¿Cuál es el rango de precios?",
-    "en": "[PENDING] What's the price range?"
+  "resenyes.5.text": {
+    "ca": "“Van estar pendents de tot i en cap moment em vaig sentir perduda.”",
+    "es": "“Estuvieron pendientes de todo y en ningún momento me sentí perdida.”",
+    "en": "“They took care of everything and at no point did I feel lost.”"
   },
-  "faq.p1.resposta": {
-    "ca": "[PENDENT] Resposta a la pregunta 1.",
-    "es": "[PENDIENTE] Respuesta a la pregunta 1.",
-    "en": "[PENDING] Answer to question 1."
+  "resenyes.5.autor": {
+    "ca": "Natalia &amp; Guillermo · Castell de Tous · 2023",
+    "es": "Natalia &amp; Guillermo · Castell de Tous · 2023",
+    "en": "Natalia &amp; Guillermo · Castell de Tous · 2023"
   },
-  "faq.p2.pregunta": {
-    "ca": "[PENDENT] Quines dates hi ha disponibles?",
-    "es": "[PENDIENTE] ¿Qué fechas hay disponibles?",
-    "en": "[PENDING] What dates are available?"
+  "resenyes.6.text": {
+    "ca": "“Control absolut d'intoleràncies i al·lèrgies! Sóc celíaca i ho van gestionar de meravella!”",
+    "es": "“Control absoluto de intolerancias y alergias! Soy celíaca, y lo gestionaron de maravilla!”",
+    "en": "“Complete control of intolerances and allergies! I'm celiac, and they handled it wonderfully!”"
   },
-  "faq.p2.resposta": {
-    "ca": "[PENDENT] Resposta a la pregunta 2.",
-    "es": "[PENDIENTE] Respuesta a la pregunta 2.",
-    "en": "[PENDING] Answer to question 2."
+  "resenyes.6.autor": {
+    "ca": "Míriam &amp; Bernat · Mas Vivencs · 2025",
+    "es": "Míriam &amp; Bernat · Mas Vivencs · 2025",
+    "en": "Míriam &amp; Bernat · Mas Vivencs · 2025"
   },
-  "faq.p3.pregunta": {
-    "ca": "[PENDENT] Quina és la capacitat màxima?",
-    "es": "[PENDIENTE] ¿Cuál es la capacidad máxima?",
-    "en": "[PENDING] What's the maximum capacity?"
+  "resenyes.7.text": {
+    "ca": "“Ni un sol comentari negatiu dels 88 convidats, absolutament tots meravellats amb el servei, l'amabilitat i com d'exquisites eren totes les preparacions.”",
+    "es": "“Ni un solo comentario negativo por parte de los 88 invitados, absolutamente todos maravillados con el servicio, la amabilidad y lo exquisito que estaban todas las preparaciones.”",
+    "en": "“Not a single negative comment from our 88 guests, absolutely everyone was amazed by the service, the kindness and how exquisite everything on the menu was.”"
   },
-  "faq.p3.resposta": {
-    "ca": "[PENDENT] Resposta a la pregunta 3.",
-    "es": "[PENDIENTE] Respuesta a la pregunta 3.",
-    "en": "[PENDING] Answer to question 3."
+  "resenyes.7.autor": {
+    "ca": "David &amp; Irene · Can Macià · 2025",
+    "es": "David &amp; Irene · Can Macià · 2025",
+    "en": "David &amp; Irene · Can Macià · 2025"
   },
-  "faq.p4.pregunta": {
-    "ca": "[PENDENT] Què inclou exactament el paquet?",
-    "es": "[PENDIENTE] ¿Qué incluye exactamente el paquete?",
-    "en": "[PENDING] What exactly does the package include?"
+  "resenyes.8.text": {
+    "ca": "“Vam visitar quatre o cinc llocs més, però aquestes vistes d'infart a la Vall de Rubió no es troben dues vegades.”",
+    "es": "“Visitamos cuatro o cinco lugares más, pero esas vistas de infarto a la Vall de Rubió no se encuentran dos veces.”",
+    "en": "“We visited four or five other places, but those breathtaking views over the Vall de Rubió can't be found twice.”"
   },
-  "faq.p4.resposta": {
-    "ca": "[PENDENT] Resposta a la pregunta 4.",
-    "es": "[PENDIENTE] Respuesta a la pregunta 4.",
-    "en": "[PENDING] Answer to question 4."
+  "resenyes.8.autor": {
+    "ca": "Mari Carmen &amp; Ivan · Ca n'Alzina · 2026",
+    "es": "Mari Carmen &amp; Ivan · Ca n'Alzina · 2026",
+    "en": "Mari Carmen &amp; Ivan · Ca n'Alzina · 2026"
   },
-  "faq.p5.pregunta": {
-    "ca": "[PENDENT] Com funciona la reserva i el dipòsit?",
-    "es": "[PENDIENTE] ¿Cómo funciona la reserva y el depósito?",
-    "en": "[PENDING] How does booking and the deposit work?"
+  "resenyes.9.text": {
+    "ca": "“Els convidats van quedar impressionats en veure el castell, la decoració, el bon gust de cada detall i el bon servei el dia del casament.”",
+    "es": "“Los invitados quedaron impresionados al ver el castillo, la decoración, el buen gusto de cada detalle y el buen servicio el día de la boda.”",
+    "en": "“Our guests were blown away when they saw the castle, the decoration, the good taste in every detail and the great service on the wedding day.”"
   },
-  "faq.p5.resposta": {
-    "ca": "[PENDENT] Resposta a la pregunta 5.",
-    "es": "[PENDIENTE] Respuesta a la pregunta 5.",
-    "en": "[PENDING] Answer to question 5."
+  "resenyes.9.autor": {
+    "ca": "Cristina &amp; Oscar · Castell de Tous · 2024",
+    "es": "Cristina &amp; Oscar · Castell de Tous · 2024",
+    "en": "Cristina &amp; Oscar · Castell de Tous · 2024"
   },
-  "faq.p6.pregunta": {
-    "ca": "[PENDENT] Què passa si plou?",
-    "es": "[PENDIENTE] ¿Qué pasa si llueve?",
-    "en": "[PENDING] What happens if it rains?"
+  "resenyes.10.text": {
+    "ca": "“Com a núvia vivint a l'estranger, estava força nerviosa per la planificació a distància […] Tanmateix, la Laura va fer que tot fos increïblement fàcil.”",
+    "es": "“Como novia viviendo en el extranjero, estaba bastante nerviosa por la planificación a distancia […] Sin embargo, Laura hizo que todo fuera increíblemente fácil.”",
+    "en": "“As a bride living abroad, I was quite nervous about planning from a distance […] However, Laura made everything incredibly easy.”"
   },
-  "faq.p6.resposta": {
-    "ca": "[PENDENT] Resposta a la pregunta 6.",
-    "es": "[PENDIENTE] Respuesta a la pregunta 6.",
-    "en": "[PENDING] Answer to question 6."
+  "resenyes.10.autor": {
+    "ca": "Laia &amp; Tom · Mas Vivencs · 2024",
+    "es": "Laia &amp; Tom · Mas Vivencs · 2024",
+    "en": "Laia &amp; Tom · Mas Vivencs · 2024"
   },
-
-  "tancament.headline": {
-    "ca": "[PENDENT] Encara hi ets a temps.",
-    "es": "[PENDIENTE] Todavía estás a tiempo.",
-    "en": "[PENDING] There's still time."
+  "resenyes.11.text": {
+    "ca": "“Només diré que els convidats van catalogar el nostre casament com el millor al qual havien anat.”",
+    "es": "“Solo diré que los invitados catalogaron nuestra boda como la mejor a la que habían ido.”",
+    "en": "“I'll just say that our guests called ours the best wedding they had ever been to.”"
   },
-  "tancament.cta": {
-    "ca": "[PENDENT] Vull la meva proposta",
-    "es": "[PENDIENTE] Quiero mi propuesta",
-    "en": "[PENDING] I want my proposal"
+  "resenyes.11.autor": {
+    "ca": "Mariona &amp; Sergi · Can Macià · 2025",
+    "es": "Mariona &amp; Sergi · Can Macià · 2025",
+    "en": "Mariona &amp; Sergi · Can Macià · 2025"
   },
-
-  "meta.title": "[PENDENT] UAUU — Resposta directa",
-  "meta.description": "[PENDENT] Descripció meta de la variant B (resposta directa)."
+  "resenyes.12.text": {
+    "ca": "“El Pre-Wedding Day ens va semblar una idea fantàstica per triar la decoració, les estovalles, els aperitius… i fer que tota l'organització fos molt més senzilla.”",
+    "es": "“El Pre-Wedding Day nos pareció una idea fantástica para elegir la decoración, mantelería, aperitivos… y hacer que toda la organización fuera mucho más sencilla.”",
+    "en": "“We thought the Pre-Wedding Day was a fantastic idea for choosing the decoration, table linens, appetizers… and making the whole organization much simpler.”"
+  },
+  "resenyes.12.autor": {
+    "ca": "Sandra &amp; Francisco · Ca n'Alzina · 2026",
+    "es": "Sandra &amp; Francisco · Ca n'Alzina · 2026",
+    "en": "Sandra &amp; Francisco · Ca n'Alzina · 2026"
+  },
+  "resenyes.13.text": {
+    "ca": "“Recordo com, visitant-lo, li vaig dir al meu ara marit que aquest era el nostre lloc, i aquell mateix dia vam reservar la data.”",
+    "es": "“Recuerdo como visitándolo le dije a mi ahora marido que este era nuestro sitio y ese mismo día reservamos la fecha.”",
+    "en": "“I remember how, while visiting, I told my now-husband that this was our place, and that very same day we booked the date.”"
+  },
+  "resenyes.13.autor": {
+    "ca": "Cristina &amp; Joel · Castell de Tous · 2023",
+    "es": "Cristina &amp; Joel · Castell de Tous · 2023",
+    "en": "Cristina &amp; Joel · Castell de Tous · 2023"
+  }
 }

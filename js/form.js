@@ -8,8 +8,8 @@ const LEAD_EVENT_FIRED_KEY = 'uauu_lead_event_fired';
 // origen o inservible per filtrar). Només valors d'aquesta llista blanca.
 // Per afegir un canal nou (nova campanya): afegiu-hi una entrada aquí.
 const UTM_SOURCE_MAP = {
-  chatgpt: 'chatgpt_ads',
-  openai: 'chatgpt_ads',
+  chatgpt: 'chatgpt_test',
+  openai: 'chatgpt_test',
   instagram: 'bio_instagram',
   ig: 'bio_instagram',
   facebook: 'meta_ads',
