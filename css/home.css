@@ -409,6 +409,12 @@
     font-size: calc(6.5 * var(--u));
   }
 
+  /* La ubicació només es mostra a desktop: a mòbil, amb dues columnes, el nom
+     llarg + el poble desordenaven la graella. */
+  .vb-drop__place {
+    display: none;
+  }
+
   .vb-drops__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: calc(0.78125 * var(--u)) calc(1.5625 * var(--u));
