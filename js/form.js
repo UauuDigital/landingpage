@@ -22,6 +22,10 @@ const UTM_SOURCE_MAP = {
   stories: 'instagram_stories',
   web: 'landing_web',
   landing_web: 'landing_web',
+  web_ca: 'landing_web_CA',
+  web_cm: 'landing_web_CM',
+  web_ct: 'landing_web_CT',
+  web_mv: 'landing_web_MV',
 };
 // Valor quan no hi ha utm_source, o quan no és cap dels canals reconeguts.
 const DEFAULT_LEAD_SOURCE = 'web_directe';
