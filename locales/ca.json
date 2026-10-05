@@ -38,5 +38,6 @@
   "form.date": "Data del casament",
   "form.guests": "Nombre de convidats",
   "form.privacy": "He llegit i accepto la <a href=\"https://www.uauu.cat/politica-de-privacitat/\" target=\"_blank\" rel=\"noopener noreferrer\">política de privacitat</a>",
-  "form.submit": "Enviar"
+  "form.submit": "Enviar",
+  "modal.close": "Tancar"
 }

@@ -1118,3 +1118,105 @@
     align-self: stretch;
   }
 }
+
+/* ══ Modal del formulari ═══════════════════════════════════════════════
+   js/home-modal.js hi mou el formulari del peu mentre és obert. Fora de
+   #smooth-content: allà dins, el transform del scroll suau el faria
+   desplaçar-se amb la pàgina. */
+
+html.is-modal-open {
+  overflow: hidden;
+}
+
+.vb-modal {
+  width: min(calc(78 * var(--u)), calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: calc(5 * var(--u)) calc(5 * var(--u)) calc(4 * var(--u));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: none;
+  border-radius: var(--vb-radius);
+}
+
+.vb-modal::backdrop {
+  background: rgba(30, 30, 30, 0.55);
+}
+
+.vb-modal[open] {
+  animation: vb-modal-in 0.5s var(--vb-ease-fade) both;
+}
+
+.vb-modal[open]::backdrop {
+  animation: vb-modal-backdrop-in 0.5s ease both;
+}
+
+.vb-modal.is-closing {
+  animation: vb-modal-out 0.3s ease-in both;
+}
+
+.vb-modal.is-closing::backdrop {
+  animation: vb-modal-backdrop-out 0.3s ease-in both;
+}
+
+@keyframes vb-modal-in {
+  from { opacity: 0; transform: translateY(calc(2.4 * var(--u))) scale(0.98); }
+}
+
+@keyframes vb-modal-out {
+  to { opacity: 0; transform: translateY(calc(1.2 * var(--u))) scale(0.99); }
+}
+
+@keyframes vb-modal-backdrop-in {
+  from { opacity: 0; }
+}
+
+@keyframes vb-modal-backdrop-out {
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vb-modal[open],
+  .vb-modal[open]::backdrop {
+    animation: none;
+  }
+}
+
+.vb-modal__close {
+  position: absolute;
+  top: calc(1.5 * var(--u));
+  right: calc(1.5 * var(--u));
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--vb-ink-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.vb-modal .vb-h3 {
+  color: var(--vb-ink-soft);
+  padding-right: 40px;
+}
+
+.vb-modal .vb-form {
+  max-width: none;
+}
+
+/* El modal fa scroll intern: un desplegable cap avall quedaria tallat. */
+.vb-modal .country-dropdown {
+  top: auto;
+  bottom: calc(100% + 10px);
+}
+
+@media (max-width: 1023px) {
+  .vb-modal {
+    padding: calc(8 * var(--u)) calc(4 * var(--u)) calc(4 * var(--u));
+  }
+}
