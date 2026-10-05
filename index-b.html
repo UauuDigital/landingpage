@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Idioma != català (?lang= o idioma desat): amaga el cos fins que js/lang.js hi aplica la traducció, perquè no es vegi un instant el català de l'HTML. Mateixa lògica que initLang(); lang.js treu la classe i, si el JS falla, el timeout. -->
+  <script>
+  try {
+    var m = (location.search.match(/[?&]lang=([^&]*)/) || [])[1];
+    m = m && m.trim().toLowerCase();
+    var l = /^(ca|es|en)$/.test(m) ? m : localStorage.getItem('uauu-lang');
+    if (l === 'es' || l === 'en') {
+      document.documentElement.classList.add('lang-pending');
+      setTimeout(function () { document.documentElement.classList.remove('lang-pending'); }, 2500);
+    }
+  } catch (_) {}
+  </script>
+
   <!-- OpenAI Ads Measurement Pixel — snippet oficial (developers.openai.com/ads/measurement-pixel). -->
   <script>
   (function (w, d, s, u) {

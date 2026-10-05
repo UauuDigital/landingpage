@@ -85,6 +85,8 @@ async function switchLang(lang, { updateUrl = false } = {}) {
     });
   } catch (err) {
     console.error('[lang]', err);
+  } finally {
+    document.documentElement.classList.remove('lang-pending');
   }
 }
 
@@ -106,6 +108,7 @@ export function initLang() {
   // L'HTML ja porta els textos de l'idioma per defecte: no cal baixar el JSON
   // ni reescriure el DOM per tornar a posar el mateix.
   if (initial !== document.documentElement.lang) switchLang(initial);
+  else document.documentElement.classList.remove('lang-pending');
 
   // Només el clic de l'usuari reescriu la URL; la càrrega inicial la deixa tal qual.
   document.querySelectorAll('.site-nav__lang-btn').forEach((btn) => {
