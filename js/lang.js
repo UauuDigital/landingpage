@@ -2,7 +2,7 @@ import { reapplyVariant } from './variant.js';
 
 const SUPPORTED = ['ca', 'es', 'en'];
 const DEFAULT_LANG = 'ca';
-const LANG_CRM    = { ca: 'catala', es: 'castellano', en: 'ingles' };
+export const LANG_CRM = { ca: 'catala', es: 'castella', en: 'angles' };
 
 const URL_LANG_PARAM = 'lang';
 

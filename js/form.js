@@ -1,4 +1,5 @@
-const LANG_MAP = { ca: 'catala', es: 'castellano', en: 'ingles' };
+import { LANG_CRM } from './lang.js';
+
 const LEAD_EVENT_ID_KEY = 'uauu_lead_event_id';
 const LEAD_EVENT_FIRED_KEY = 'uauu_lead_event_fired';
 
@@ -216,7 +217,7 @@ function validate(form) {
 
 function syncLang() {
   const field = document.getElementById('idioma_contacto_c');
-  if (field) field.value = LANG_MAP[document.documentElement.lang] ?? 'catala';
+  if (field) field.value = LANG_CRM[document.documentElement.lang] ?? 'catala';
 }
 
 export function initForm() {
