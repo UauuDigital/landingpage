@@ -1,5 +1,12 @@
 import { LANG_CRM } from './lang.js';
 
+// ── Còpia d'ombra cap a la UAUU Suite (CRM nou) ────────────────────────────
+// Cada lead s'envia TAMBÉ a la Suite (`POST /api/leads-public/landing`), a més del submit natiu al SugarCRM, que continua sent el destí real i el que redirigeix a gracies.html.
+// `navigator.sendBeacon` (text/plain amb JSON) perquè sobreviu a la sortida de la pàgina i no necessita preflight de CORS; és "best effort": mai llança ni bloqueja el SugarCRM.
+// SENSE captcha: un token de reCAPTCHA només es pot verificar un cop i el SugarCRM el necessita (la Suite, en mode ombra, no el demana: LANDING_OMBRA).
+// `CRM_NOU_URL` buit = desactivada. Les dades personals NO es posen mai a la URL.
+const CRM_NOU_URL = 'https://uauuapi-production.up.railway.app/api/leads-public/landing';
+
 const LEAD_EVENT_ID_KEY = 'uauu_lead_event_id';
 const LEAD_EVENT_FIRED_KEY = 'uauu_lead_event_fired';
 
@@ -97,10 +104,42 @@ function storeLeadEventId() {
   }
 }
 
+// Envia una còpia del lead a la Suite. Contracte propi (docs/entrada-leads.md del repo del CRM): el servidor torna a validar-ho tot i assigna l'origen de l'`utmSource` sense traduir.
+function sendToSuite(form) {
+  if (!CRM_NOU_URL || typeof navigator.sendBeacon !== 'function') return;
+  try {
+    const val = (selector) => form.querySelector(selector)?.value.trim() || undefined;
+    const guests = Number.parseInt(val('#num_diners_c') ?? '', 10);
+    const payload = {
+      nom: val('#first_name'),
+      cognoms: val('#last_name'),
+      email: val('#email1'),
+      telefon: val('#phone_mobile'), // ja amb el prefix (+34…)
+      convidats: Number.isInteger(guests) && guests >= 1 && guests <= 2000 ? guests : undefined,
+      dataText: val('#date_display'),
+      idioma: document.documentElement.lang,
+      utmSource: sessionStorage.getItem(UTM_SOURCE_STORAGE_KEY) || undefined,
+      eventId: sessionStorage.getItem(LEAD_EVENT_ID_KEY) || undefined,
+      privacitatAcceptada: !!form.querySelector('#privacy')?.checked,
+      hp_website: val('[name="hp_website"]') ?? '',
+    };
+    navigator.sendBeacon(CRM_NOU_URL, new Blob([JSON.stringify(payload)], { type: 'text/plain' }));
+  } catch (_) {
+    // La Suite és una còpia: qualsevol error s'ignora i el SugarCRM continua igual
+  }
+}
+
+// Últim pas comú: event_id + lead_source, còpia a la Suite i submit natiu al SugarCRM.
+function submitLead() {
+  const form = document.getElementById('contact-form');
+  storeLeadEventId();
+  sendToSuite(form);
+  form.submit();
+}
+
 // reCAPTCHA callback — must be global
 window.enviarAlCRM = function () {
-  storeLeadEventId();
-  document.getElementById('contact-form').submit();
+  submitLead();
 };
 
 // ── reCAPTCHA en diferit ───────────────────────────────────────────────────
@@ -271,8 +310,7 @@ export function initForm() {
       // Si l'usuari tanca el repte sense resoldre'l, ha de poder tornar a enviar
       submitting = false;
     } else {
-      storeLeadEventId();
-      form.submit();
+      submitLead();
     }
   });
 }
